@@ -1,0 +1,16 @@
+<Files transitions.txt>
+    order allow,deny
+    deny from all
+</Files>
+
+ErrorDocument 404 /index.html
+
+Options +FollowSymLinks
+
+RewriteEngine On
+
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} ^www\.loginov\.rocks [OR]
+RewriteCond %{HTTP_HOST} ^danilaloginov\.ru [OR]
+RewriteCond %{HTTP_HOST} ^www\.danilaloginov\.ru
+RewriteRule (.*) https://loginov.rocks/$1 [R=301,L]
