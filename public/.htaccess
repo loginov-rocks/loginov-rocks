@@ -9,8 +9,8 @@ Options +FollowSymLinks
 
 RewriteEngine On
 
-RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP_HOST} ^www\.loginov\.rocks [OR]
 RewriteCond %{HTTP_HOST} ^danilaloginov\.ru [OR]
-RewriteCond %{HTTP_HOST} ^www\.danilaloginov\.ru
-RewriteRule (.*) https://loginov.rocks/$1 [R=301,L]
+RewriteCond %{HTTP_HOST} ^www\.danilaloginov\.ru [OR]
+RewriteCond %{HTTP:X-HTTPS} !1
+RewriteRule ^(.*)$ https://loginov.rocks/$1 [R=301,L]

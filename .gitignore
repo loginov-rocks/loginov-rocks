@@ -1,21 +1,10 @@
-/.idea/
-/public/transitions.txt
+# IntelliJ IDEA
+.idea/dictionaries
+.idea/tasks.xml
+.idea/workspace.xml
 
-# WordPress.gitignore from https://github.com/github/gitignore/blob/master/WordPress.gitignore
+# macOS
+.DS_Store
 
-*.log
-/public/wp-config.php
-/public/wp-content/advanced-cache.php
-/public/wp-content/backup-db/
-/public/wp-content/backups/
-/public/wp-content/blogs.dir/
-/public/wp-content/cache/
-/public/wp-content/upgrade/
-/public/wp-content/uploads/
-/public/wp-content/wp-cache-config.php
-
-#/public/.htaccess
-/public/license.txt
-/public/readme.html
-/public/sitemap.xml
-/public/sitemap.xml.gz
+# Public
+public/transitions.txt
