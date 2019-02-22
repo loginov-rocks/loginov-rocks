@@ -5,8 +5,12 @@
       <paths name="hosting">
         <serverdata>
           <mappings>
-            <mapping deploy="/" local="$PROJECT_DIR$/public" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/" web="/" />
           </mappings>
+          <excludedPaths>
+            <excludedPath local="true" path="$PROJECT_DIR$/.idea" />
+            <excludedPath path="/test" />
+          </excludedPaths>
         </serverdata>
       </paths>
     </serverData>
