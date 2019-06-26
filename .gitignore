@@ -1,10 +1,5 @@
 # IntelliJ IDEA
-.idea/dictionaries
-.idea/webServers.xml
 .idea/workspace.xml
 
 # macOS
 .DS_Store
-
-# Public
-public/transitions.txt

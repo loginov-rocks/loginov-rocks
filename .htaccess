@@ -1,9 +1,0 @@
-ErrorDocument 404 /index.html
-
-Options +FollowSymLinks
-
-RewriteEngine On
-
-RewriteCond %{HTTP_HOST} ^www\.loginov\.rocks [OR]
-RewriteCond %{HTTP:X-HTTPS} !1
-RewriteRule ^(.*)$ https://loginov.rocks/$1 [R=301,L]
