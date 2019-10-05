@@ -18,3 +18,4 @@ deploy:
     branch: master
   provider: pages
   skip_cleanup: true
+  target_branch: master
