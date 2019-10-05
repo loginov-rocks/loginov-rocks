@@ -8,6 +8,96 @@ exports[`matches snapshot 1`] = `
   <p>
     I am Danila, nice to meet you!
   </p>
+  <h2>
+    Social Presence
+  </h2>
   <SocialPresence />
+  <h2>
+    Open Source
+  </h2>
+  <h3>
+    Projects
+  </h3>
+  <WorksList
+    works={
+      Array [
+        Object {
+          "github": true,
+          "name": "Angular-Gulp-Boilerplate",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "Web-Bluetooth-Terminal",
+          "npm": true,
+        },
+        Object {
+          "archived": true,
+          "github": true,
+          "name": "Cordova-Bluetooth-Terminal",
+        },
+      ]
+    }
+  />
+  <h3>
+    Libraries
+  </h3>
+  <WorksList
+    works={
+      Array [
+        Object {
+          "github": true,
+          "name": "bluetooth-terminal",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "canvas-heightmap",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "comments-extractor",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "gulpdoc",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "gulp-locales-bundler",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "locales-bundler",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "react-native-redux-form",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "redux-repository",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "name": "three-sky",
+          "npm": true,
+        },
+        Object {
+          "archived": true,
+          "github": true,
+          "name": "ooyala-player-component",
+          "npm": true,
+        },
+      ]
+    }
+  />
 </Fragment>
 `;
