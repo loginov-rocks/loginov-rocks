@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Fragment>
+  <h2>
+    Social presence
+  </h2>
+  <ul>
+    <li
+      key="0"
+    >
+      <a
+        href="https://www.linkedin.com/in/loginov-rocks/"
+      >
+        LinkedIn
+      </a>
+    </li>
+    <li
+      key="1"
+    >
+      <a
+        href="https://github.com/loginov-rocks"
+      >
+        GitHub
+      </a>
+    </li>
+    <li
+      key="2"
+    >
+      <a
+        href="https://medium.com/@loginov_rocks"
+      >
+        Medium
+      </a>
+    </li>
+    <li
+      key="3"
+    >
+      <a
+        href="https://www.drive2.com/r/toyota/chaser/288230376151952785/"
+      >
+        DRIVE2
+      </a>
+       
+      — my Toyota Chaser GX71 blog, originally
+       
+      <a
+        href="https://www.drive2.ru/r/toyota/chaser/288230376151952785/"
+      >
+        in Russian
+      </a>
+    </li>
+    <li
+      key="4"
+    >
+      <a
+        href="https://www.instagram.com/loginov_rocks/"
+      >
+        Instagram
+      </a>
+    </li>
+    <li
+      key="5"
+    >
+      <a
+        href="https://www.facebook.com/1oginov"
+      >
+        Facebook
+      </a>
+    </li>
+    <li
+      key="6"
+    >
+      <a
+        href="https://twitter.com/loginov_rocks"
+      >
+        Twitter
+      </a>
+    </li>
+    <li
+      key="7"
+    >
+      <a
+        href="https://www.npmjs.com/~loginov-rocks"
+      >
+        npm
+      </a>
+    </li>
+  </ul>
+</Fragment>
+`;
