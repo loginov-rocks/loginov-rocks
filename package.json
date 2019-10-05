@@ -1,0 +1,18 @@
+{
+  "name": "@loginov-rocks/loginov-rocks.github.io",
+  "version": "0.0.0",
+  "description": "Personal website",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loginov-rocks/loginov-rocks.github.io.git"
+  },
+  "author": "Danila Loginov <danila@loginov.rocks> (https://loginov.rocks)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loginov-rocks/loginov-rocks.github.io/issues"
+  },
+  "homepage": "https://loginov.rocks"
+}
