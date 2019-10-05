@@ -1,6 +1,6 @@
 {
   "name": "@loginov-rocks/loginov-rocks.github.io",
-  "version": "0.0.0",
+  "version": "2.2.0",
   "description": "Personal website",
   "scripts": {
     "build": "npm run clean:build && webpack --mode production",
