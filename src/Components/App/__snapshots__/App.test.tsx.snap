@@ -19,6 +19,7 @@ exports[`matches snapshot 1`] = `
     Projects
   </h3>
   <WorksList
+    gitHubRepos={Array []}
     works={
       Array [
         Object {
@@ -43,6 +44,7 @@ exports[`matches snapshot 1`] = `
     Libraries
   </h3>
   <WorksList
+    gitHubRepos={Array []}
     works={
       Array [
         Object {

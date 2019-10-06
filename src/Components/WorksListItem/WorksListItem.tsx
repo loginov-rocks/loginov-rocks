@@ -1,9 +1,11 @@
 import * as React from 'react';
 
 import Work from 'Interfaces/Work';
+import GitHubRepo from 'Lib/GitHub/GitHubRepo';
 import { toGitHub, toNpm } from 'Lib/links';
 
 interface Props {
+  gitHubRepos?: GitHubRepo[];
   work: Work;
 }
 
