@@ -15,7 +15,7 @@ const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Props) => {
     GitHub.getTags(repo.name).then((t) => {
       setTags(t);
     });
-  });
+  }, []);
 
   const version = tags.length > 0 ? tags[0].name : undefined;
 
