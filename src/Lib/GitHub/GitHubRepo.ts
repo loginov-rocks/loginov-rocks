@@ -1,4 +1,6 @@
 export default interface GitHubRepo {
+  description: string | null;
+  language: string | null;
   name: string;
-  description: string;
+  stargazers_count: number;
 } // eslint-disable-line semi

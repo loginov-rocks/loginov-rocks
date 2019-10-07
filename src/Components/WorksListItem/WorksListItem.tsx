@@ -9,26 +9,46 @@ interface Props {
   work: Work;
 }
 
-const WorksListItem: React.FunctionComponent<Props> = ({ work }: Props) => (
-  <li>
+const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Props) => {
+  const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.name === work.name) : undefined;
 
-    {work.archived ? <s>{work.name}</s> : work.name}
+  return (
+    <li>
 
-    {work.github && (
-      <>
-        {' '}
-        <a href={toGitHub(work.name)}>GitHub</a>
-      </>
-    )}
+      {work.archived ? <s>{work.name}</s> : work.name}
 
-    {work.npm && (
-      <>
-        {' '}
-        <a href={toNpm(work.name)}>npm</a>
-      </>
-    )}
+      {work.github && (
+        <>
+          {' '}
+          <a href={toGitHub(work.name)}>GitHub</a>
+        </>
+      )}
 
-  </li>
-);
+      {work.npm && (
+        <>
+          {' '}
+          <a href={toNpm(work.name)}>npm</a>
+        </>
+      )}
+
+      {gitHubRepo && (
+        <>
+          <br />
+          <strong>{gitHubRepo.language}</strong>
+          {gitHubRepo.stargazers_count > 0 && (
+            <>
+              {' '}
+              &#x2B50;
+              {gitHubRepo.stargazers_count}
+            </>
+          )}
+          {' '}
+          {gitHubRepo.description}
+        </>
+      )}
+
+    </li>
+  );
+};
 
 export default WorksListItem;
