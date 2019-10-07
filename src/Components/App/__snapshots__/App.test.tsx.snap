@@ -24,13 +24,53 @@ exports[`matches snapshot 1`] = `
       Array [
         Object {
           "github": true,
+          "homepage": "https://loginov.rocks/Web-Bluetooth-Terminal",
+          "name": "Web-Bluetooth-Terminal",
+          "npm": true,
+        },
+        Object {
+          "github": true,
+          "homepage": "https://loginov.rocks/Portfolio",
+          "name": "Portfolio",
+        },
+        Object {
+          "github": true,
+          "name": "Portfolio-Firebase",
+        },
+        Object {
+          "github": true,
+          "homepage": "https://loginov.rocks/Firebase-Authenticator",
+          "name": "Firebase-Authenticator",
+        },
+        Object {
+          "github": true,
+          "name": "IoT-Firebase-Authentication",
+        },
+        Object {
+          "github": true,
+          "homepage": "https://loginov.rocks",
+          "name": "loginov-rocks.github.io",
+        },
+        Object {
+          "github": true,
           "name": "Angular-Gulp-Boilerplate",
           "npm": true,
         },
         Object {
           "github": true,
-          "name": "Web-Bluetooth-Terminal",
-          "npm": true,
+          "name": "Arduino-Coffeemaker",
+        },
+        Object {
+          "github": true,
+          "name": "MeArm-Controller",
+        },
+        Object {
+          "github": true,
+          "name": "MQTT-Home-Monitor",
+        },
+        Object {
+          "github": true,
+          "name": "NodeMCU-Arduino-PlatformIO",
         },
         Object {
           "archived": true,
@@ -47,6 +87,10 @@ exports[`matches snapshot 1`] = `
     gitHubRepos={Array []}
     works={
       Array [
+        Object {
+          "github": true,
+          "name": "UbxGps",
+        },
         Object {
           "github": true,
           "name": "bluetooth-terminal",

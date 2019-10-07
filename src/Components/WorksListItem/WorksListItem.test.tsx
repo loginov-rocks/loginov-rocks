@@ -10,3 +10,14 @@ it('matches snapshot', () => {
 
   expect(wrapper).toMatchSnapshot();
 });
+
+it('matches snapshot with GitHub repo', () => {
+  const wrapper = shallow(
+    <WorksListItem
+      gitHubRepos={require('Lib/GitHub/__fixtures__/repos.json')} // eslint-disable-line global-require
+      work={{ github: true, name: 'Angular-Gulp-Boilerplate' }}
+    />,
+  );
+
+  expect(wrapper).toMatchSnapshot();
+});

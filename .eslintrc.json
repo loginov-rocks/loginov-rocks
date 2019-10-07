@@ -22,14 +22,6 @@
         "allowTypedFunctionExpressions": true
       }
     ],
-    "camelcase": [
-      "error",
-      {
-        "allow": [
-          "stargazers_count"
-        ]
-      }
-    ],
     "max-len": [
       "error",
       {

@@ -1,5 +1,6 @@
 import GitHubOptions from './GitHubOptions';
 import GitHubRepo from './GitHubRepo';
+import GitHubTag from './GitHubTag';
 
 export default class GitHub {
   private readonly baseUrl: string = 'https://api.github.com';
@@ -63,6 +64,18 @@ export default class GitHub {
 
     return GitHub.fetchAll(`${this.baseUrl}/users/${this.username}/repos`)
       .then((responses) => GitHub.mergeJsonResponses<GitHubRepo[]>(responses))
+      .catch(() => []);
+  }
+
+  getTags(repo: string): Promise<GitHubTag[]> {
+    // Avoid GitHub API throttling while developing.
+    if (process.env.NODE_ENV === 'development') {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+      return Promise.resolve(require('./__fixtures__/tags.json'));
+    }
+
+    return fetch(`${this.baseUrl}/repos/${this.username}/${repo}/tags`)
+      .then((response) => response.json())
       .catch(() => []);
   }
 }

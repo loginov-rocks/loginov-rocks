@@ -7,11 +7,11 @@ import GitHub from 'Lib/GitHub';
 import GitHubRepo from 'Lib/GitHub/GitHubRepo';
 
 const App: React.FunctionComponent = () => {
-  const [gitHubRepos, setRepos] = React.useState<GitHubRepo[]>([]);
+  const [gitHubRepos, setGitHubRepos] = React.useState<GitHubRepo[]>([]);
 
   React.useEffect(() => {
     GitHub.getRepos().then((repos) => {
-      setRepos(repos);
+      setGitHubRepos(repos);
     });
   }, []);
 

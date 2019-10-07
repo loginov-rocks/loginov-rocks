@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+import GitHubWorkDetails from 'Components/GitHubWorkDetails';
 import Work from 'Interfaces/Work';
 import GitHubRepo from 'Lib/GitHub/GitHubRepo';
 import { toGitHub, toNpm } from 'Lib/links';
@@ -17,7 +18,7 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
     title = <a href={work.homepage}>{title}</a>;
   }
   if (work.archived) {
-    title = <s>{title}</s>;
+    title = <s title="Archived">{title}</s>;
   }
 
   return (
@@ -28,6 +29,8 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
       {work.github && (
         <>
           {' '}
+          /
+          {' '}
           <a href={toGitHub(work.name)}>GitHub</a>
         </>
       )}
@@ -35,34 +38,16 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
       {work.npm && (
         <>
           {' '}
+          /
+          {' '}
           <a href={toNpm(work.name)}>npm</a>
         </>
       )}
 
       {gitHubRepo && (
         <>
-
-          {gitHubRepo.description && (
-            <>
-              <br />
-              {gitHubRepo.description}
-            </>
-          )}
-
-          {(gitHubRepo.language || gitHubRepo.stargazers_count > 0) && (
-            <>
-              <br />
-              {gitHubRepo.language}
-              {gitHubRepo.stargazers_count > 0 && (
-                <>
-                  {' '}
-                  &#x2B50;
-                  {gitHubRepo.stargazers_count}
-                </>
-              )}
-            </>
-          )}
-
+          <br />
+          <GitHubWorkDetails repo={gitHubRepo} />
         </>
       )}
 

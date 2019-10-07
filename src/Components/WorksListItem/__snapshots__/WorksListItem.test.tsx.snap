@@ -2,6 +2,129 @@
 
 exports[`matches snapshot 1`] = `
 <li>
-  Some work
+  <strong>
+    Some work
+  </strong>
+</li>
+`;
+
+exports[`matches snapshot with GitHub repo 1`] = `
+<li>
+  <strong>
+    Angular-Gulp-Boilerplate
+  </strong>
+   
+  /
+   
+  <a
+    href="https://github.com/loginov-rocks/Angular-Gulp-Boilerplate"
+  >
+    GitHub
+  </a>
+  <br />
+  <GitHubWorkDetails
+    repo={
+      Object {
+        "archive_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/{archive_format}{/ref}",
+        "archived": false,
+        "assignees_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/assignees{/user}",
+        "blobs_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/git/blobs{/sha}",
+        "branches_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/branches{/branch}",
+        "clone_url": "https://github.com/loginov-rocks/Angular-Gulp-Boilerplate.git",
+        "collaborators_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/collaborators{/collaborator}",
+        "comments_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/comments{/number}",
+        "commits_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/commits{/sha}",
+        "compare_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/compare/{base}...{head}",
+        "contents_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/contents/{+path}",
+        "contributors_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/contributors",
+        "created_at": "2016-11-07T19:55:23Z",
+        "default_branch": "master",
+        "deployments_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/deployments",
+        "description": "Clean but full featured AngularJS boilerplate using Gulp workflow and best practices",
+        "disabled": false,
+        "downloads_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/downloads",
+        "events_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/events",
+        "fork": false,
+        "forks": 14,
+        "forks_count": 14,
+        "forks_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/forks",
+        "full_name": "loginov-rocks/Angular-Gulp-Boilerplate",
+        "git_commits_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/git/commits{/sha}",
+        "git_refs_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/git/refs{/sha}",
+        "git_tags_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/git/tags{/sha}",
+        "git_url": "git://github.com/loginov-rocks/Angular-Gulp-Boilerplate.git",
+        "has_downloads": true,
+        "has_issues": true,
+        "has_pages": false,
+        "has_projects": false,
+        "has_wiki": false,
+        "homepage": "https://www.npmjs.com/package/angular-gulp-boilerplate",
+        "hooks_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/hooks",
+        "html_url": "https://github.com/loginov-rocks/Angular-Gulp-Boilerplate",
+        "id": 73115313,
+        "issue_comment_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/issues/comments{/number}",
+        "issue_events_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/issues/events{/number}",
+        "issues_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/issues{/number}",
+        "keys_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/keys{/key_id}",
+        "labels_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/labels{/name}",
+        "language": "JavaScript",
+        "languages_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/languages",
+        "license": Object {
+          "key": "mit",
+          "name": "MIT License",
+          "node_id": "MDc6TGljZW5zZTEz",
+          "spdx_id": "MIT",
+          "url": "https://api.github.com/licenses/mit",
+        },
+        "merges_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/merges",
+        "milestones_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/milestones{/number}",
+        "mirror_url": null,
+        "name": "Angular-Gulp-Boilerplate",
+        "node_id": "MDEwOlJlcG9zaXRvcnk3MzExNTMxMw==",
+        "notifications_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/notifications{?since,all,participating}",
+        "open_issues": 1,
+        "open_issues_count": 1,
+        "owner": Object {
+          "avatar_url": "https://avatars0.githubusercontent.com/u/8770338?v=4",
+          "events_url": "https://api.github.com/users/loginov-rocks/events{/privacy}",
+          "followers_url": "https://api.github.com/users/loginov-rocks/followers",
+          "following_url": "https://api.github.com/users/loginov-rocks/following{/other_user}",
+          "gists_url": "https://api.github.com/users/loginov-rocks/gists{/gist_id}",
+          "gravatar_id": "",
+          "html_url": "https://github.com/loginov-rocks",
+          "id": 8770338,
+          "login": "loginov-rocks",
+          "node_id": "MDQ6VXNlcjg3NzAzMzg=",
+          "organizations_url": "https://api.github.com/users/loginov-rocks/orgs",
+          "received_events_url": "https://api.github.com/users/loginov-rocks/received_events",
+          "repos_url": "https://api.github.com/users/loginov-rocks/repos",
+          "site_admin": false,
+          "starred_url": "https://api.github.com/users/loginov-rocks/starred{/owner}{/repo}",
+          "subscriptions_url": "https://api.github.com/users/loginov-rocks/subscriptions",
+          "type": "User",
+          "url": "https://api.github.com/users/loginov-rocks",
+        },
+        "private": false,
+        "pulls_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/pulls{/number}",
+        "pushed_at": "2019-10-06T18:32:43Z",
+        "releases_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/releases{/id}",
+        "size": 2054,
+        "ssh_url": "git@github.com:loginov-rocks/Angular-Gulp-Boilerplate.git",
+        "stargazers_count": 26,
+        "stargazers_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/stargazers",
+        "statuses_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/statuses/{sha}",
+        "subscribers_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/subscribers",
+        "subscription_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/subscription",
+        "svn_url": "https://github.com/loginov-rocks/Angular-Gulp-Boilerplate",
+        "tags_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/tags",
+        "teams_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/teams",
+        "trees_url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/git/trees{/sha}",
+        "updated_at": "2019-10-01T18:19:45Z",
+        "url": "https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate",
+        "watchers": 26,
+        "watchers_count": 26,
+      }
+    }
+  />
 </li>
 `;

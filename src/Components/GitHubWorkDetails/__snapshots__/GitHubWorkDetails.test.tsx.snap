@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Fragment>
+  Clean but full featured AngularJS boilerplate using Gulp workflow and best practices
+  <br />
+  <span
+    title="Language"
+  >
+    JavaScript
+  </span>
+   
+  /
+   
+  <span
+    title="GitHub Stars"
+  >
+    ⭐
+    26
+  </span>
+   
+  /
+   
+  <span
+    title="Last Updated"
+  >
+    Oct 1, 2019
+  </span>
+</Fragment>
+`;
