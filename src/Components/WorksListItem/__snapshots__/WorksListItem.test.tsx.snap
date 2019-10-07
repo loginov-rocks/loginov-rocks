@@ -16,11 +16,11 @@ exports[`matches snapshot with GitHub repo 1`] = `
    
   /
    
-  <a
+  <Link
     href="https://github.com/loginov-rocks/Angular-Gulp-Boilerplate"
   >
     GitHub
-  </a>
+  </Link>
   <br />
   <GitHubWorkDetails
     repo={

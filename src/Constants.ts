@@ -16,6 +16,7 @@ export const OPEN_SOURCE_LIBRARIES: Work[] = [
   {
     github: true,
     name: 'UbxGps',
+    platformio: 'https://platformio.org/lib/show/2014/UbxGps',
   },
   {
     github: true,

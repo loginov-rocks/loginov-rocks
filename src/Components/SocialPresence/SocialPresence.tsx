@@ -1,22 +1,23 @@
 import * as React from 'react';
 
+import Link from 'Components/Link';
 import { USERNAMES } from 'Constants';
 
 const items = [
-  <a href={`https://www.linkedin.com/in/${USERNAMES.LINKEDIN}/`}>LinkedIn</a>,
-  <a href={`https://github.com/${USERNAMES.GITHUB}`}>GitHub</a>,
-  <a href={`https://medium.com/@${USERNAMES.MEDIUM}`}>Medium</a>,
+  <Link href={`https://www.linkedin.com/in/${USERNAMES.LINKEDIN}/`}>LinkedIn</Link>,
+  <Link href={`https://github.com/${USERNAMES.GITHUB}`}>GitHub</Link>,
+  <Link href={`https://medium.com/@${USERNAMES.MEDIUM}`}>Medium</Link>,
   <>
-    <a href="https://www.drive2.com/r/toyota/chaser/288230376151952785/">DRIVE2</a>
+    <Link href="https://www.drive2.com/r/toyota/chaser/288230376151952785/">DRIVE2</Link>
     {' '}
     &mdash; my Toyota Chaser GX71 blog, originally
     {' '}
-    <a href="https://www.drive2.ru/r/toyota/chaser/288230376151952785/">in Russian</a>
+    <Link href="https://www.drive2.ru/r/toyota/chaser/288230376151952785/">in Russian</Link>
   </>,
-  <a href={`https://www.instagram.com/${USERNAMES.INSTAGRAM}/`}>Instagram</a>,
-  <a href={`https://www.facebook.com/${USERNAMES.FACEBOOK}`}>Facebook</a>,
-  <a href={`https://twitter.com/${USERNAMES.TWITTER}`}>Twitter</a>,
-  <a href={`https://www.npmjs.com/~${USERNAMES.NPM}`}>npm</a>,
+  <Link href={`https://www.instagram.com/${USERNAMES.INSTAGRAM}/`}>Instagram</Link>,
+  <Link href={`https://www.facebook.com/${USERNAMES.FACEBOOK}`}>Facebook</Link>,
+  <Link href={`https://twitter.com/${USERNAMES.TWITTER}`}>Twitter</Link>,
+  <Link href={`https://www.npmjs.com/~${USERNAMES.NPM}`}>npm</Link>,
 ];
 
 const SocialPresence: React.FunctionComponent = () => (

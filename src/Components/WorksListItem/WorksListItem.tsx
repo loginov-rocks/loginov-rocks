@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import GitHubWorkDetails from 'Components/GitHubWorkDetails';
+import Link from 'Components/Link';
 import Work from 'Interfaces/Work';
 import GitHubRepo from 'Lib/GitHub/GitHubRepo';
 import { toGitHub, toNpm } from 'Lib/links';
@@ -15,7 +16,7 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
 
   let title = <strong>{work.name}</strong>;
   if (work.homepage) {
-    title = <a href={work.homepage}>{title}</a>;
+    title = <Link href={work.homepage}>{title}</Link>;
   }
   if (work.archived) {
     title = <s title="Archived">{title}</s>;
@@ -31,7 +32,7 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
           {' '}
           /
           {' '}
-          <a href={toGitHub(work.name)}>GitHub</a>
+          <Link href={toGitHub(work.name)}>GitHub</Link>
         </>
       )}
 
@@ -40,7 +41,16 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
           {' '}
           /
           {' '}
-          <a href={toNpm(work.name)}>npm</a>
+          <Link href={toNpm(work.name)}>npm</Link>
+        </>
+      )}
+
+      {work.platformio && (
+        <>
+          {' '}
+          /
+          {' '}
+          <Link href={work.platformio}>PlatformIO</Link>
         </>
       )}
 

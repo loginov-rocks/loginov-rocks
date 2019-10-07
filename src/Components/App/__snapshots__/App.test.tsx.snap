@@ -90,6 +90,7 @@ exports[`matches snapshot 1`] = `
         Object {
           "github": true,
           "name": "UbxGps",
+          "platformio": "https://platformio.org/lib/show/2014/UbxGps",
         },
         Object {
           "github": true,

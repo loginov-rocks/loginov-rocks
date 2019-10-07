@@ -4,4 +4,5 @@ export default interface Work {
   homepage?: string;
   name: string;
   npm?: boolean;
+  platformio?: string;
 } // eslint-disable-line semi
