@@ -12,10 +12,18 @@ interface Props {
 const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Props) => {
   const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.name === work.name) : undefined;
 
+  let title = <strong>{work.name}</strong>;
+  if (work.homepage) {
+    title = <a href={work.homepage}>{title}</a>;
+  }
+  if (work.archived) {
+    title = <s>{title}</s>;
+  }
+
   return (
     <li>
 
-      {work.archived ? <s>{work.name}</s> : work.name}
+      {title}
 
       {work.github && (
         <>
@@ -33,17 +41,28 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
 
       {gitHubRepo && (
         <>
-          <br />
-          <strong>{gitHubRepo.language}</strong>
-          {gitHubRepo.stargazers_count > 0 && (
+
+          {gitHubRepo.description && (
             <>
-              {' '}
-              &#x2B50;
-              {gitHubRepo.stargazers_count}
+              <br />
+              {gitHubRepo.description}
             </>
           )}
-          {' '}
-          {gitHubRepo.description}
+
+          {(gitHubRepo.language || gitHubRepo.stargazers_count > 0) && (
+            <>
+              <br />
+              {gitHubRepo.language}
+              {gitHubRepo.stargazers_count > 0 && (
+                <>
+                  {' '}
+                  &#x2B50;
+                  {gitHubRepo.stargazers_count}
+                </>
+              )}
+            </>
+          )}
+
         </>
       )}
 
