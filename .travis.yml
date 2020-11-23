@@ -15,7 +15,7 @@ deploy:
   keep_history: true
   local_dir: dist
   on:
-    branch: trunk
+    branch: main
   provider: pages
   skip_cleanup: true
-  target_branch: master
+  target_branch: artifacts

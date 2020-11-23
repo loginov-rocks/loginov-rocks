@@ -1,5 +1,5 @@
 {
-  "name": "@loginov-rocks/loginov-rocks.github.io",
+  "name": "@loginov-rocks/loginov-rocks",
   "version": "2.2.0",
   "description": "Personal website",
   "scripts": {
@@ -19,12 +19,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/loginov-rocks/loginov-rocks.github.io.git"
+    "url": "git+https://github.com/loginov-rocks/loginov-rocks.git"
   },
   "author": "Danila Loginov <danila@loginov.rocks> (https://loginov.rocks)",
   "license": "MIT",
+  "private": true,
   "bugs": {
-    "url": "https://github.com/loginov-rocks/loginov-rocks.github.io/issues"
+    "url": "https://github.com/loginov-rocks/loginov-rocks/issues"
   },
   "homepage": "https://loginov.rocks",
   "dependencies": {
