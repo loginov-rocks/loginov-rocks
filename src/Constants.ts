@@ -1,6 +1,6 @@
 import Work from 'Interfaces/Work';
 
-export const PERSONAL_WEBSITE = 'https://loginov.rocks';
+export const PERSONAL_WEBSITE = 'https://loginov-rocks.github.io';
 
 export const USERNAMES = {
   FACEBOOK: '1oginov',
@@ -95,11 +95,6 @@ export const OPEN_SOURCE_PROJECTS: Work[] = [
   {
     github: true,
     name: 'IoT-Firebase-Authentication',
-  },
-  {
-    github: true,
-    homepage: PERSONAL_WEBSITE,
-    name: 'loginov-rocks.github.io',
   },
   {
     github: true,
