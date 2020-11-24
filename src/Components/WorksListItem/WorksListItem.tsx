@@ -65,4 +65,8 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
   );
 };
 
+WorksListItem.defaultProps = {
+  gitHubRepos: [],
+};
+
 export default WorksListItem;

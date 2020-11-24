@@ -24,13 +24,13 @@ exports[`matches snapshot 1`] = `
       Array [
         Object {
           "github": true,
-          "homepage": "https://loginov.rocks/Web-Bluetooth-Terminal",
+          "homepage": "https://loginov-rocks.github.io/Web-Bluetooth-Terminal",
           "name": "Web-Bluetooth-Terminal",
           "npm": true,
         },
         Object {
           "github": true,
-          "homepage": "https://loginov.rocks/Portfolio",
+          "homepage": "https://loginov-rocks.github.io/Portfolio",
           "name": "Portfolio",
         },
         Object {
@@ -39,17 +39,12 @@ exports[`matches snapshot 1`] = `
         },
         Object {
           "github": true,
-          "homepage": "https://loginov.rocks/Firebase-Authenticator",
+          "homepage": "https://loginov-rocks.github.io/Firebase-Authenticator",
           "name": "Firebase-Authenticator",
         },
         Object {
           "github": true,
           "name": "IoT-Firebase-Authentication",
-        },
-        Object {
-          "github": true,
-          "homepage": "https://loginov.rocks",
-          "name": "loginov-rocks.github.io",
         },
         Object {
           "github": true,

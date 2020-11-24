@@ -16,4 +16,8 @@ const WorksList: React.FunctionComponent<Props> = ({ gitHubRepos, works }: Props
   </ul>
 );
 
+WorksList.defaultProps = {
+  gitHubRepos: [],
+};
+
 export default WorksList;

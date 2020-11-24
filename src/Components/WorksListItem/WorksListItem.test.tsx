@@ -14,7 +14,8 @@ it('matches snapshot', () => {
 it('matches snapshot with GitHub repo', () => {
   const wrapper = shallow(
     <WorksListItem
-      gitHubRepos={require('Lib/GitHub/__fixtures__/repos.json')} // eslint-disable-line global-require
+      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+      gitHubRepos={require('Lib/GitHub/__fixtures__/repos.json')}
       work={{ github: true, name: 'Angular-Gulp-Boilerplate' }}
     />,
   );

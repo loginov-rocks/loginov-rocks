@@ -8,7 +8,8 @@ import GitHubWorkDetails from './GitHubWorkDetails';
 it('matches snapshot', () => {
   const wrapper = shallow(
     <GitHubWorkDetails
-      repo={require('Lib/GitHub/__fixtures__/repos.json')[0]} // eslint-disable-line global-require
+      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+      repo={require('Lib/GitHub/__fixtures__/repos.json')[0]}
     />,
   );
 

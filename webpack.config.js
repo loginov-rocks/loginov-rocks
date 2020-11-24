@@ -9,6 +9,7 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
+    open: true,
     port: 3000,
   },
   entry: {
@@ -28,14 +29,18 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
-    new CopyPlugin([
-      {
-        from: 'public',
-        ignore: [
-          'index.html',
-        ],
-      },
-    ]),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'public',
+          globOptions: {
+            ignore: [
+              '**/index.html',
+            ],
+          },
+        },
+      ],
+    }),
     new Dotenv({
       safe: false,
       systemvars: true,

@@ -3,6 +3,7 @@
 exports[`matches snapshot 1`] = `
 <ul>
   <WorksListItem
+    gitHubRepos={Array []}
     key="0"
     work={
       Object {
