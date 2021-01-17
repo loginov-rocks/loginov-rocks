@@ -1,7 +1,7 @@
 {
   "name": "@loginov-rocks/loginov-rocks",
   "version": "2.2.2",
-  "description": "Personal website",
+  "description": "Personal Website",
   "scripts": {
     "build": "npm run clean:build && webpack --mode production",
     "build:dev": "npm run clean:build && webpack --mode development",

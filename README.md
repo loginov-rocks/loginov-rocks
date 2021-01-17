@@ -1,3 +1,3 @@
 # loginov.rocks
 
-![CI](https://github.com/loginov-rocks/loginov-rocks/workflows/CI/badge.svg)
+[![CI](https://github.com/loginov-rocks/loginov-rocks/workflows/CI/badge.svg)](https://github.com/loginov-rocks/loginov-rocks/actions)
