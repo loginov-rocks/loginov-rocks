@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="manifest" href="manifest.json" />
 
+    <% if (webpackConfig.mode === 'production') { %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-22946119-2"></script>
     <script>
@@ -43,6 +44,7 @@
       <div><img src="https://mc.yandex.ru/watch/20603545" style="position:absolute; left:-9999px;" alt="" /></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
+    <% } %>
 
   </head>
   <body>

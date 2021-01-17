@@ -16,12 +16,13 @@ jobs:
     strategy:
       matrix:
         node-version:
-          - 14.x
+          # last version
+          - 14
 
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
@@ -29,9 +30,3 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: dist
-          path: dist
-          retention-days: 1
