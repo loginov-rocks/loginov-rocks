@@ -42,5 +42,42 @@ exports.handler = (event, context, callback) => {
     response.statusDescription = 'OK';
   }
 
+  // Enforce HTTP Strict Transport Security.
+  // @see https://infosec.mozilla.org/guidelines/web_security#http-strict-transport-security
+  // @see https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security
+  response.headers['strict-transport-security'] = [
+    {
+      key: 'Strict-Transport-Security',
+      value: `max-age=${365 * 24 * 60 * 60}; includeSubdomains; preload`,
+    },
+  ];
+
+  // Prevent browsers from incorrectly detecting non-scripts as scripts.
+  // @see https://infosec.mozilla.org/guidelines/web_security#x-content-type-options
+  // @see https://developer.mozilla.org/en-us/docs/Web/HTTP/Headers/X-Content-Type-Options
+  response.headers['x-content-type-options'] = [
+    {
+      key: 'X-Content-Type-Options',
+      value: 'nosniff',
+    },
+  ];
+
+  // Block site from being framed.
+  // @see https://infosec.mozilla.org/guidelines/web_security#x-frame-options
+  // @see https://developer.mozilla.org/en-us/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors
+  // @see https://developer.mozilla.org/en-us/docs/Web/HTTP/Headers/X-Frame-Options
+  response.headers['content-security-policy'] = [
+    {
+      key: 'Content-Security-Policy',
+      value: 'frame-ancestors \'none\'',
+    },
+  ];
+  response.headers['x-frame-options'] = [
+    {
+      key: 'X-Frame-Options',
+      value: 'DENY',
+    },
+  ];
+
   callback(null, response);
 };
