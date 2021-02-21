@@ -1,20 +1,18 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 
 const CopyPlugin = require('copy-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
-    open: true,
+    hot: true,
     port: 3000,
   },
-  entry: {
-    bundle: './src/index.tsx',
-  },
+  entry: './src/index.tsx',
   module: {
     rules: [
       {
@@ -25,8 +23,9 @@ module.exports = {
     ],
   },
   output: {
-    filename: '[name].js',
+    filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   plugins: [
     new CopyPlugin({
@@ -41,14 +40,11 @@ module.exports = {
         },
       ],
     }),
-    new Dotenv({
-      safe: false,
-      systemvars: true,
-    }),
     new HtmlPlugin({
-      inject: false,
+      scriptLoading: 'defer',
       template: 'public/index.html',
     }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     alias: {

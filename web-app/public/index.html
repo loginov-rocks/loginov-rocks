@@ -1,13 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+
     <meta charset="utf-8" />
-    <title>Danila Loginov, personal website</title>
+
+    <title>Danila Loginov</title>
+
+    <meta name="description" content="Personal Website of Danila Loginov" />
     <meta name="robots" content="all" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="manifest" href="manifest.json" />
+
+    <link rel="manifest" href="/manifest.json" />
 
     <% if (webpackConfig.mode === 'production') { %>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-22946119-2"></script>
     <script>
@@ -44,6 +50,7 @@
       <div><img src="https://mc.yandex.ru/watch/20603545" style="position:absolute; left:-9999px;" alt="" /></div>
     </noscript>
     <!-- /Yandex.Metrika counter -->
+
     <% } %>
 
   </head>
@@ -53,7 +60,6 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="app"></div>
-    <script src="bundle.js"></script>
 
   </body>
 </html>

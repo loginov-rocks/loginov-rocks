@@ -1,5 +1,8 @@
 {
   "display": "standalone",
-  "name": "loginov.rocks",
-  "start_url": "."
+  "name": "Danila Loginov",
+  "short_name": "Danila Loginov",
+  "start_url": ".",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff"
 }
