@@ -12,12 +12,13 @@ module.exports = {
     hot: true,
     port: 3000,
   },
+  devtool: false,
   entry: './src/index.tsx',
   module: {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.tsx?$/,
+        test: /\.[j|t]sx?$/,
         use: 'babel-loader',
       },
     ],
@@ -50,7 +51,7 @@ module.exports = {
     alias: {
       Constants: path.resolve(__dirname, 'src/Constants.ts'),
     },
-    extensions: ['.js', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [
       'node_modules',
       path.resolve(__dirname, 'src'),
