@@ -1,3 +1,5 @@
-export default interface GitHubTag {
+/* eslint-disable camelcase */
+
+export interface GitHubTag {
   name: string;
-} // eslint-disable-line semi
+}
