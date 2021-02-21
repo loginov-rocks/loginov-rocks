@@ -27,7 +27,6 @@ jobs:
           # last version
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - run: cd web-app
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
