@@ -34,7 +34,7 @@ jobs:
       - run: npm run build
       - uses: reggionick/s3-deploy@v3
         with:
-          folder: dist
+          folder: web-app/dist
           bucket: ${{ secrets.S3_BUCKET }}
           bucket-region: ${{ secrets.S3_BUCKET_REGION }}
           delete-removed: true
