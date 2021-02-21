@@ -1,9 +1,11 @@
-name: CD
+name: Web App CD
 
 on:
   push:
     tags:
       - v[0-9].[0-9]+.[0-9]+
+    paths:
+      - web-app/**
 
 jobs:
   deploy:

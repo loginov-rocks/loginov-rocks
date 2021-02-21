@@ -1,17 +1,1 @@
-# Build
-dist/
-
-# Coverage
-coverage/
-
-# Environment
-.env
-
-# IntelliJ IDEA
-.idea/workspace.xml
-
-# macOS
 .DS_Store
-
-# npm
-node_modules/
