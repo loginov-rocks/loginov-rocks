@@ -1,81 +1,52 @@
-import GitHubOptions from './GitHubOptions';
-import GitHubRepo from './GitHubRepo';
-import GitHubTag from './GitHubTag';
+import { Octokit } from '@octokit/rest';
 
-export default class GitHub {
-  private readonly baseUrl: string = 'https://api.github.com';
+import { Data } from './Data';
+import { GitHubRepo } from './GitHubRepo';
+import { Repo } from './Repo';
+import { GitHubUser } from './GitHubUser';
 
-  private readonly username: string;
+interface Options {
+  personalAccessToken: string;
+}
 
-  private static parseNextPageUrl(headers: Headers): string | undefined {
-    const header = headers.get('Link');
+export class GitHub {
+  private readonly octokit: Octokit;
 
-    if (!header) {
-      return undefined;
-    }
-
-    const links = header.split(',');
-    const link = links.find((l) => l.endsWith('>; rel="next"'));
-
-    if (!link) {
-      return undefined;
-    }
-
-    return link.trim().substring(1).replace('>; rel="next"', '');
-  }
-
-  private static fetchAll(url: string, responsesStack: Response[] = []): Promise<Response[]> {
-    return fetch(url).then((response) => {
-      responsesStack.push(response);
-
-      const nextPage = this.parseNextPageUrl(response.headers);
-
-      if (nextPage) {
-        return this.fetchAll(nextPage, responsesStack);
-      }
-
-      return responsesStack;
+  constructor({ personalAccessToken }: Options) {
+    this.octokit = new Octokit({
+      auth: personalAccessToken,
     });
   }
 
-  private static mergeJsonResponses<T>(responsesStack: Response[]): Promise<T> {
-    return Promise.all(responsesStack.map((response) => response.json()))
-      .then((results) => {
-        const [firstResult, ...otherResults] = results;
+  private async getRepos(url: string): Promise<Repo[]> {
+    const response = await this.octokit.request(url);
+    const gitHubRepos = response.data as GitHubRepo[];
 
-        if (otherResults) {
-          return firstResult.concat(...otherResults);
-        }
-
-        return firstResult;
-      });
+    return gitHubRepos.map((repo) => ({
+      description: repo.description || '',
+      homepageUrl: repo.homepage || '',
+      language: repo.language || '',
+      // TODO
+      latestVersion: '',
+      stars: repo.stargazers_count,
+      title: repo.name,
+      updatedAt: new Date(repo.updated_at).getTime(),
+      url: repo.html_url,
+    }));
   }
 
-  constructor({ username }: GitHubOptions) {
-    this.username = username;
-  }
+  async getData(): Promise<Data> {
+    const response = await this.octokit.request('/user');
+    const gitHubUser = response.data as GitHubUser;
 
-  getRepos(): Promise<GitHubRepo[]> {
-    // Avoid GitHub API throttling while developing.
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      return Promise.resolve(require('./__fixtures__/repos.json'));
-    }
+    const repos = await this.getRepos(gitHubUser.repos_url);
 
-    return GitHub.fetchAll(`${this.baseUrl}/users/${this.username}/repos`)
-      .then((responses) => GitHub.mergeJsonResponses<GitHubRepo[]>(responses))
-      .catch(() => []);
-  }
-
-  getTags(repo: string): Promise<GitHubTag[]> {
-    // Avoid GitHub API throttling while developing.
-    if (process.env.NODE_ENV === 'development') {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      return Promise.resolve(require('./__fixtures__/tags.json'));
-    }
-
-    return fetch(`${this.baseUrl}/repos/${this.username}/${repo}/tags`)
-      .then((response) => response.json())
-      .catch(() => []);
+    return {
+      homepageUrl: gitHubUser.blog,
+      repos,
+      timestamp: Date.now(),
+      url: gitHubUser.html_url,
+      user: gitHubUser.login,
+    };
   }
 }

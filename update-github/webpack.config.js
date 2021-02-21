@@ -5,6 +5,9 @@ const path = require('path');
 module.exports = {
   devtool: false,
   entry: './src/index.ts',
+  externals: {
+    'aws-sdk': 'commonjs aws-sdk',
+  },
   module: {
     rules: [
       {

@@ -1,11 +1,9 @@
-import { HELLO_WORLD } from 'Constants';
+import gitHub from 'GitHub';
+import s3Object from 'S3Object';
 
-interface Response {
-  body: string;
-  statusCode: number;
-}
+exports.handler = async (): Promise<Record<string, never>> => {
+  const data = await gitHub.getData();
+  await s3Object.update(data);
 
-exports.handler = async (): Promise<Response> => ({
-  body: HELLO_WORLD,
-  statusCode: 200,
-});
+  return {};
+};

@@ -3,7 +3,7 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack');
+const { HotModuleReplacementPlugin } = require('webpack');
 
 module.exports = {
   devServer: {
@@ -45,7 +45,7 @@ module.exports = {
       scriptLoading: 'defer',
       template: 'public/index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(),
+    new HotModuleReplacementPlugin(),
   ],
   resolve: {
     alias: {

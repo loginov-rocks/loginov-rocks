@@ -25,7 +25,10 @@
     "url": "https://github.com/loginov-rocks/loginov-rocks/issues"
   },
   "homepage": "https://loginov.rocks",
-  "dependencies": {},
+  "dependencies": {
+    "@octokit/rest": "^18.2.0",
+    "aws-sdk": "^2.848.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.12.17",
     "@babel/plugin-proposal-class-properties": "^7.12.13",
