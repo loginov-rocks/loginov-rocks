@@ -35,9 +35,9 @@ jobs:
       - uses: reggionick/s3-deploy@v3
         with:
           folder: web-app/dist
-          bucket: ${{ secrets.S3_BUCKET }}
-          bucket-region: ${{ secrets.S3_BUCKET_REGION }}
+          bucket: ${{ secrets.WEB_APP_S3_BUCKET_NAME }}
+          bucket-region: ${{ secrets.AWS_REGION }}
           delete-removed: true
-          dist-id: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
-          invalidation: /
+          dist-id: ${{ secrets.WEB_APP_CLOUDFRONT_DISTRIBUTION_ID }}
+          invalidation: /*
           private: true
