@@ -1,14 +1,14 @@
-name: Web App CD
+name: CD
 
 on:
   push:
     tags:
       - v[0-9].[0-9]+.[0-9]+
-    paths:
-      - web-app/**
 
 jobs:
-  deploy:
+
+  web-app-cd:
+    name: Web App CD
 
     defaults:
       run:
@@ -41,3 +41,33 @@ jobs:
           dist-id: ${{ secrets.WEB_APP_CLOUDFRONT_DISTRIBUTION_ID }}
           invalidation: /*
           private: true
+
+  update-github-cd:
+    name: Update GitHub CD
+    needs: web-app-cd
+
+    defaults:
+      run:
+        working-directory: update-github
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          # last version
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          function_name: ${{ secrets.UPDATE_GITHUB_LAMBDA_NAME }}
+          source: update-github/dist/index.js

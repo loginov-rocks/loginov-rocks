@@ -13,7 +13,8 @@ on:
       - web-app/**
 
 jobs:
-  build:
+  ci:
+    name: CI
 
     defaults:
       run:

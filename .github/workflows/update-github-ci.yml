@@ -13,7 +13,8 @@ on:
       - update-github/**
 
 jobs:
-  build:
+  ci:
+    name: CI
 
     defaults:
       run:
