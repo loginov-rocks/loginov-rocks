@@ -1,8 +1,8 @@
-import { Repo } from '@loginov-rocks/loginov-rocks-shared/src/Repo';
+import { GitHubRepo } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 interface Props {
-  repo: Repo;
+  repo: GitHubRepo;
 }
 
 export const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Props) => (

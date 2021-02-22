@@ -1,6 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-import mockData from '@loginov-rocks/loginov-rocks-shared/src/__fixtures__/data.json';
+import { gitHubMockData } from '@loginov-rocks/loginov-rocks-shared';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -15,7 +15,7 @@ it('matches snapshot', () => {
 it('matches snapshot with GitHub repo', () => {
   const wrapper = shallow(
     <WorksListItem
-      gitHubRepos={mockData.repos}
+      gitHubRepos={gitHubMockData.repos}
       work={{ github: true, name: 'Angular-Gulp-Boilerplate' }}
     />,
   );

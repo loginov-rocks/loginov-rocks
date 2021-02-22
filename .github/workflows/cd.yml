@@ -7,8 +7,30 @@ on:
 
 jobs:
 
+  shared-cd:
+    name: Shared CD
+
+    defaults:
+      run:
+        working-directory: shared
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          # last version
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+
   web-app-cd:
     name: Web App CD
+    needs:
+      - shared
 
     defaults:
       run:
@@ -44,7 +66,9 @@ jobs:
 
   update-github-cd:
     name: Update GitHub CD
-    needs: web-app-cd
+    needs:
+      - shared
+      - web-app-cd
 
     defaults:
       run:

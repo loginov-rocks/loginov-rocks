@@ -1,5 +1,4 @@
-import mockData from '@loginov-rocks/loginov-rocks-shared/src/__fixtures__/data.json';
-import { Data } from '@loginov-rocks/loginov-rocks-shared/src/Data';
+import { gitHubMockData, GitHubData as Data } from '@loginov-rocks/loginov-rocks-shared';
 
 interface Options {
   url: string;
@@ -14,7 +13,7 @@ export class GitHubData {
 
   get(): Promise<Data> {
     if (process.env.NODE_ENV !== 'production') {
-      return Promise.resolve(mockData);
+      return Promise.resolve(gitHubMockData);
     }
 
     return fetch(this.url)

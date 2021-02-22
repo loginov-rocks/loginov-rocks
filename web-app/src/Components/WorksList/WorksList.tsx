@@ -1,11 +1,11 @@
-import { Repo } from '@loginov-rocks/loginov-rocks-shared/src/Repo';
+import { GitHubRepo } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 import { WorksListItem } from 'Components/WorksListItem';
 import { Work } from 'Interfaces/Work';
 
 interface Props {
-  gitHubRepos?: Repo[];
+  gitHubRepos?: GitHubRepo[];
   works: Work[];
 }
 

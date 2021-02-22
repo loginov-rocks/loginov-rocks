@@ -1,4 +1,4 @@
-import { Data } from '@loginov-rocks/loginov-rocks-shared/src/Data';
+import { GitHubData as Data } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 import { SocialPresence } from 'Components/SocialPresence';

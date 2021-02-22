@@ -2,7 +2,11 @@
   "name": "@loginov-rocks/loginov-rocks-shared",
   "version": "2.2.4",
   "description": "Shared",
-  "scripts": {},
+  "main": "src/index.ts",
+  "scripts": {
+    "lint": "eslint --ext=js,ts src",
+    "typecheck": "tsc"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/loginov-rocks/loginov-rocks.git"
@@ -15,5 +19,12 @@
   },
   "homepage": "https://loginov.rocks",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.15.1",
+    "@typescript-eslint/parser": "^4.15.1",
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "typescript": "^4.1.5"
+  }
 }

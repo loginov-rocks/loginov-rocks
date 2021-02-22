@@ -1,5 +1,4 @@
-import { Data } from '@loginov-rocks/loginov-rocks-shared/src/Data';
-import { Repo } from '@loginov-rocks/loginov-rocks-shared/src/Repo';
+import { GitHubData as Data, GitHubRepo as Repo } from '@loginov-rocks/loginov-rocks-shared';
 import { Octokit } from '@octokit/rest';
 
 import { GitHubRepo } from './GitHubRepo';
