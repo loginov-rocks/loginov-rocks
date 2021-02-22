@@ -1,3 +1,3 @@
-import SocialPresence from './SocialPresence';
+import { SocialPresence } from './SocialPresence';
 
-export default SocialPresence;
+export { SocialPresence };

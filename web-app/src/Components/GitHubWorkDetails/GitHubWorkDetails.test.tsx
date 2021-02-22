@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import GitHubWorkDetails from './GitHubWorkDetails';
+import { GitHubWorkDetails } from './GitHubWorkDetails';
 
 it('matches snapshot', () => {
   const wrapper = shallow(

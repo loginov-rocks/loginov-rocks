@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import SocialPresence from 'Components/SocialPresence';
-import WorksList from 'Components/WorksList';
+import { SocialPresence } from 'Components/SocialPresence';
+import { WorksList } from 'Components/WorksList';
 import { OPEN_SOURCE_LIBRARIES, OPEN_SOURCE_PROJECTS } from 'Constants';
 import GitHub from 'Lib/GitHub';
 import GitHubRepo from 'Lib/GitHub/GitHubRepo';
 
-const App: React.FunctionComponent = () => {
+export const App: React.FunctionComponent = () => {
   const [gitHubRepos, setGitHubRepos] = React.useState<GitHubRepo[]>([]);
 
   React.useEffect(() => {
@@ -37,5 +37,3 @@ const App: React.FunctionComponent = () => {
     </>
   );
 };
-
-export default App;

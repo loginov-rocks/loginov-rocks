@@ -8,7 +8,7 @@ interface Props {
   repo: GitHubRepo;
 }
 
-const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Props) => {
+export const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Props) => {
   const [tags, setTags] = React.useState<GitHubTag[]>([]);
 
   React.useEffect(() => {
@@ -70,5 +70,3 @@ const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Props) => {
     </>
   );
 };
-
-export default GitHubWorkDetails;

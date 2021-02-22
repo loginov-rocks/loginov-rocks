@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import WorksListItem from './WorksListItem';
+import { WorksListItem } from './WorksListItem';
 
 it('matches snapshot', () => {
   const wrapper = shallow(<WorksListItem work={{ name: 'Some work' }} />);

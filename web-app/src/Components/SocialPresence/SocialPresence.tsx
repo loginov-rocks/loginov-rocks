@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import Link from 'Components/Link';
+import { Link } from 'Components/Link';
 import { USERNAMES } from 'Constants';
 
 const items = [
@@ -20,11 +20,9 @@ const items = [
   <Link href={`https://www.npmjs.com/~${USERNAMES.NPM}`}>npm</Link>,
 ];
 
-const SocialPresence: React.FunctionComponent = () => (
+export const SocialPresence: React.FunctionComponent = () => (
   <ul>
     {/* eslint-disable-next-line react/no-array-index-key */}
     {items.map((item, index) => <li key={index}>{item}</li>)}
   </ul>
 );
-
-export default SocialPresence;

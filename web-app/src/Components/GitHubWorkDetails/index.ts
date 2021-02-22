@@ -1,3 +1,3 @@
-import GitHubWorkDetails from './GitHubWorkDetails';
+import { GitHubWorkDetails } from './GitHubWorkDetails';
 
-export default GitHubWorkDetails;
+export { GitHubWorkDetails };

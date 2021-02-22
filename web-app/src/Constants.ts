@@ -1,6 +1,4 @@
-import Work from 'Interfaces/Work';
-
-export const PERSONAL_WEBSITE = 'https://loginov-rocks.github.io';
+import { Work } from 'Interfaces/Work';
 
 export const USERNAMES = {
   FACEBOOK: '1oginov',
@@ -74,13 +72,13 @@ export const OPEN_SOURCE_LIBRARIES: Work[] = [
 export const OPEN_SOURCE_PROJECTS: Work[] = [
   {
     github: true,
-    homepage: `${PERSONAL_WEBSITE}/Web-Bluetooth-Terminal`,
+    homepage: 'https://loginov-rocks.github.io/Web-Bluetooth-Terminal',
     name: 'Web-Bluetooth-Terminal',
     npm: true,
   },
   {
     github: true,
-    homepage: `${PERSONAL_WEBSITE}/Portfolio`,
+    homepage: 'https://loginov-rocks.github.io/Portfolio',
     name: 'Portfolio',
   },
   {
@@ -89,7 +87,7 @@ export const OPEN_SOURCE_PROJECTS: Work[] = [
   },
   {
     github: true,
-    homepage: `${PERSONAL_WEBSITE}/Firebase-Authenticator`,
+    homepage: 'https://loginov-rocks.github.io/Firebase-Authenticator',
     name: 'Firebase-Authenticator',
   },
   {

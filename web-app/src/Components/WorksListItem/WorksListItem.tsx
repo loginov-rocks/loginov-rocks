@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import GitHubWorkDetails from 'Components/GitHubWorkDetails';
-import Link from 'Components/Link';
-import Work from 'Interfaces/Work';
+import { GitHubWorkDetails } from 'Components/GitHubWorkDetails';
+import { Link } from 'Components/Link';
+import { Work } from 'Interfaces/Work';
 import GitHubRepo from 'Lib/GitHub/GitHubRepo';
 import { toGitHub, toNpm } from 'Lib/links';
 
@@ -11,7 +11,7 @@ interface Props {
   work: Work;
 }
 
-const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Props) => {
+export const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Props) => {
   const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.name === work.name) : undefined;
 
   let title = <strong>{work.name}</strong>;
@@ -68,5 +68,3 @@ const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Pr
 WorksListItem.defaultProps = {
   gitHubRepos: [],
 };
-
-export default WorksListItem;
