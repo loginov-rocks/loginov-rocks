@@ -1,9 +1,9 @@
+import { Data } from '@loginov-rocks/loginov-rocks-shared/src/Data';
 import * as React from 'react';
 
 import { SocialPresence } from 'Components/SocialPresence';
 import { WorksList } from 'Components/WorksList';
 import { OPEN_SOURCE_LIBRARIES, OPEN_SOURCE_PROJECTS, WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
-import { Data } from 'Lib/GitHub/Data';
 import { GitHubData } from 'Lib/GitHub/GitHubData';
 
 const gitHubData = new GitHubData({ url: `/${WEB_APP_S3_GITHUB_FILE_KEY}` });

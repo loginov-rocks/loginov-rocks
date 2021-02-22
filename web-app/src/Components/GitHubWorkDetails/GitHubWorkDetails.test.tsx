@@ -1,9 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
+import mockData from '@loginov-rocks/loginov-rocks-shared/src/__fixtures__/data.json';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
-import mockData from 'Lib/GitHub/__fixtures__/data.json';
 
 import { GitHubWorkDetails } from './GitHubWorkDetails';
 

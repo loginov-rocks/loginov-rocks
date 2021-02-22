@@ -1,8 +1,8 @@
+import { Data } from '@loginov-rocks/loginov-rocks-shared/src/Data';
+import { Repo } from '@loginov-rocks/loginov-rocks-shared/src/Repo';
 import { Octokit } from '@octokit/rest';
 
-import { Data } from './Data';
 import { GitHubRepo } from './GitHubRepo';
-import { Repo } from './Repo';
 import { GitHubUser } from './GitHubUser';
 
 interface Options {

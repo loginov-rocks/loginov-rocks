@@ -1,6 +1,5 @@
+import { Repo } from '@loginov-rocks/loginov-rocks-shared/src/Repo';
 import * as React from 'react';
-
-import { Repo } from 'Lib/GitHub/Repo';
 
 interface Props {
   repo: Repo;

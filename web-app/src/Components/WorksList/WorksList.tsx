@@ -1,8 +1,8 @@
+import { Repo } from '@loginov-rocks/loginov-rocks-shared/src/Repo';
 import * as React from 'react';
 
 import { WorksListItem } from 'Components/WorksListItem';
 import { Work } from 'Interfaces/Work';
-import { Repo } from 'Lib/GitHub/Repo';
 
 interface Props {
   gitHubRepos?: Repo[];

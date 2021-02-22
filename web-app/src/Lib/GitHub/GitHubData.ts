@@ -1,5 +1,5 @@
-import mockData from './__fixtures__/data.json';
-import { Data } from './Data';
+import mockData from '@loginov-rocks/loginov-rocks-shared/src/__fixtures__/data.json';
+import { Data } from '@loginov-rocks/loginov-rocks-shared/src/Data';
 
 interface Options {
   url: string;

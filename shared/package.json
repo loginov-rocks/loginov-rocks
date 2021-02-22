@@ -1,0 +1,19 @@
+{
+  "name": "@loginov-rocks/loginov-rocks-shared",
+  "version": "2.2.4",
+  "description": "Shared",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loginov-rocks/loginov-rocks.git"
+  },
+  "author": "Danila Loginov <danila@loginov.rocks> (https://loginov.rocks)",
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/loginov-rocks/loginov-rocks/issues"
+  },
+  "homepage": "https://loginov.rocks",
+  "dependencies": {},
+  "devDependencies": {}
+}

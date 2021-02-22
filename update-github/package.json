@@ -26,6 +26,7 @@
   },
   "homepage": "https://loginov.rocks",
   "dependencies": {
+    "@loginov-rocks/loginov-rocks-shared": "file:../shared",
     "@octokit/rest": "^18.2.0",
     "aws-sdk": "^2.848.0"
   },
