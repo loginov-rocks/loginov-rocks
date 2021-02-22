@@ -18,6 +18,7 @@
 1. `GITHUB_PERSONAL_ACCESS_TOKEN`
 2. `WEB_APP_S3_BUCKET_NAME`
 3. `WEB_APP_S3_GITHUB_FILE_KEY`
+4. `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
 
 ## Permissions
 
@@ -31,8 +32,12 @@ Simple setup using one origin (Web App S3 Bucket) with the help of Origin Access
 
 ### Update GitHub Lambda
 
-Basic execution role, but also S3 PutObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and
-`WEB_APP_S3_GITHUB_FILE_KEY`, example:
+Basic execution role, but also:
+
+* S3 PutObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and `WEB_APP_S3_GITHUB_FILE_KEY`
+* CloudFront CreateInvalidation for a specific resource matching `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
+
+Example:
 
 ```json
 {
@@ -40,8 +45,14 @@ Basic execution role, but also S3 PutObject for a specific resource matching `WE
     "Statement": [
         {
             "Effect": "Allow",
-            "Action": "s3:PutObject",
-            "Resource": "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}"
+            "Action": [
+                "s3:PutObject",
+                "cloudfront:CreateInvalidation"
+            ],
+            "Resource": [
+                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}",
+                "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
+            ]
         }
     ]
 }

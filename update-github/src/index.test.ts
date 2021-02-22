@@ -1,5 +1,14 @@
 /* eslint-disable @typescript-eslint/no-var-requires, max-classes-per-file */
 
+jest.mock('CloudFrontInvalidation/CloudFrontInvalidation', () => ({
+  CloudFrontInvalidation: class {
+    // eslint-disable-next-line class-methods-use-this
+    invalidate(): Promise<void> {
+      return Promise.resolve();
+    }
+  },
+}));
+
 jest.mock('GitHub/GitHub', () => ({
   GitHub: class {
     // eslint-disable-next-line class-methods-use-this
