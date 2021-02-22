@@ -1,6 +1,6 @@
 {
   "name": "@loginov-rocks/loginov-rocks-web-app",
-  "version": "2.2.4",
+  "version": "2.3.0",
   "description": "Web App",
   "scripts": {
     "build": "npm run clean:build && webpack --mode production && npm run build:github",
