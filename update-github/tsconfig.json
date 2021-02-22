@@ -3,7 +3,6 @@
     "baseUrl": "src",
     "esModuleInterop": true,
     "noEmit": true,
-    "resolveJsonModule": true,
     "strict": true
   }
 }

@@ -4,7 +4,6 @@
     "esModuleInterop": true,
     "jsx": "react",
     "noEmit": true,
-    "resolveJsonModule": true,
     "strict": true
   }
 }
