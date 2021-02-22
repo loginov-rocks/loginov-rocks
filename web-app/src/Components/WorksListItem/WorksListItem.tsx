@@ -3,16 +3,16 @@ import * as React from 'react';
 import { GitHubWorkDetails } from 'Components/GitHubWorkDetails';
 import { Link } from 'Components/Link';
 import { Work } from 'Interfaces/Work';
-import GitHubRepo from 'Lib/GitHub/GitHubRepo';
+import { Repo } from 'Lib/GitHub/Repo';
 import { toGitHub, toNpm } from 'Lib/links';
 
 interface Props {
-  gitHubRepos?: GitHubRepo[];
+  gitHubRepos?: Repo[];
   work: Work;
 }
 
 export const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Props) => {
-  const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.name === work.name) : undefined;
+  const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.title === work.name) : undefined;
 
   let title = <strong>{work.name}</strong>;
   if (work.homepage) {

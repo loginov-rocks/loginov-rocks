@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { WorksListItem } from 'Components/WorksListItem';
 import { Work } from 'Interfaces/Work';
-import GitHubRepo from 'Lib/GitHub/GitHubRepo';
+import { Repo } from 'Lib/GitHub/Repo';
 
 interface Props {
-  gitHubRepos?: GitHubRepo[];
+  gitHubRepos?: Repo[];
   works: Work[];
 }
 

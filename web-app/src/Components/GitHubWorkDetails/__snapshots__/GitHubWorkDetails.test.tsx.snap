@@ -16,7 +16,7 @@ exports[`matches snapshot 1`] = `
     title="GitHub Stars"
   >
     ⭐
-    26
+    29
   </span>
    
   /
@@ -24,7 +24,7 @@ exports[`matches snapshot 1`] = `
   <span
     title="Last Updated"
   >
-    Oct 1, 2019
+    Feb 16, 2021
   </span>
 </Fragment>
 `;

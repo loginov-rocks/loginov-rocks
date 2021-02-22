@@ -1,4 +1,7 @@
-/* eslint-disable @typescript-eslint/no-var-requires, max-classes-per-file */
+/* eslint-disable max-classes-per-file */
+
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { handler } = require('./index');
 
 jest.mock('CloudFrontInvalidation/CloudFrontInvalidation', () => ({
   CloudFrontInvalidation: class {
@@ -30,8 +33,6 @@ jest.mock('S3Object/S3Object', () => ({
     }
   },
 }));
-
-const { handler } = require('index');
 
 describe('handler', () => {
   it('gets GitHub data and updates S3', async () => {

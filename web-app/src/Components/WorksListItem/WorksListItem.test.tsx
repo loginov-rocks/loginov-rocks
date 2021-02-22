@@ -3,6 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import mockData from 'Lib/GitHub/__fixtures__/data.json';
+
 import { WorksListItem } from './WorksListItem';
 
 it('matches snapshot', () => {
@@ -14,8 +16,7 @@ it('matches snapshot', () => {
 it('matches snapshot with GitHub repo', () => {
   const wrapper = shallow(
     <WorksListItem
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-      gitHubRepos={require('Lib/GitHub/__fixtures__/repos.json')}
+      gitHubRepos={mockData.repos}
       work={{ github: true, name: 'Angular-Gulp-Boilerplate' }}
     />,
   );

@@ -1,72 +1,58 @@
 import * as React from 'react';
 
-import GitHub from 'Lib/GitHub';
-import GitHubRepo from 'Lib/GitHub/GitHubRepo';
-import GitHubTag from 'Lib/GitHub/GitHubTag';
+import { Repo } from 'Lib/GitHub/Repo';
 
 interface Props {
-  repo: GitHubRepo;
+  repo: Repo;
 }
 
-export const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Props) => {
-  const [tags, setTags] = React.useState<GitHubTag[]>([]);
+export const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Props) => (
+  <>
 
-  React.useEffect(() => {
-    GitHub.getTags(repo.name).then((t) => {
-      setTags(t);
-    });
-  }, []);
+    {repo.description && (
+      <>
+        {repo.description}
+        <br />
+      </>
+    )}
 
-  const version = tags.length > 0 ? tags[0].name : undefined;
+    {repo.language && (
+      <>
+        <span title="Language">{repo.language}</span>
+        {' '}
+        /
+        {' '}
+      </>
+    )}
 
-  return (
-    <>
+    {repo.stars > 0 && (
+      <>
+        <span title="GitHub Stars">
+          &#x2B50;
+          {repo.stars}
+        </span>
+        {' '}
+        /
+        {' '}
+      </>
+    )}
 
-      {repo.description && (
-        <>
-          {repo.description}
-          <br />
-        </>
-      )}
+    <span title="Last Updated">
+      {new Date(repo.updatedAt).toLocaleDateString(undefined, {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+      })}
+    </span>
 
-      {repo.language && (
-        <>
-          <span title="Language">{repo.language}</span>
-          {' '}
-          /
-          {' '}
-        </>
-      )}
+    {repo.latestVersion && (
+      <>
+        {' '}
+        /
+        {' '}
+        <span title="Last Version">{repo.latestVersion}</span>
+      </>
+    )}
 
-      {repo.stargazers_count > 0 && (
-        <>
-          <span title="GitHub Stars">
-            &#x2B50;
-            {repo.stargazers_count}
-          </span>
-          {' '}
-          /
-          {' '}
-        </>
-      )}
-
-      <span title="Last Updated">
-        {new Date(repo.updated_at).toLocaleDateString(undefined, {
-          day: 'numeric',
-          month: 'short',
-          year: 'numeric',
-        })}
-      </span>
-
-      {version && (
-        <>
-          {' '}
-          /
-          {' '}
-          <span title="Last Version">{version}</span>
-        </>
-      )}
-
-    </>
-  );
-};
+  </>
+);

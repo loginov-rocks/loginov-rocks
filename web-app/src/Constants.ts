@@ -1,5 +1,7 @@
 import { Work } from 'Interfaces/Work';
 
+export const WEB_APP_S3_GITHUB_FILE_KEY = 'github.json';
+
 export const USERNAMES = {
   FACEBOOK: '1oginov',
   GITHUB: 'loginov-rocks',

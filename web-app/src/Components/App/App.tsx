@@ -2,17 +2,20 @@ import * as React from 'react';
 
 import { SocialPresence } from 'Components/SocialPresence';
 import { WorksList } from 'Components/WorksList';
-import { OPEN_SOURCE_LIBRARIES, OPEN_SOURCE_PROJECTS } from 'Constants';
-import GitHub from 'Lib/GitHub';
-import GitHubRepo from 'Lib/GitHub/GitHubRepo';
+import { OPEN_SOURCE_LIBRARIES, OPEN_SOURCE_PROJECTS, WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
+import { Data } from 'Lib/GitHub/Data';
+import { GitHubData } from 'Lib/GitHub/GitHubData';
+
+const gitHubData = new GitHubData({ url: `/${WEB_APP_S3_GITHUB_FILE_KEY}` });
 
 export const App: React.FunctionComponent = () => {
-  const [gitHubRepos, setGitHubRepos] = React.useState<GitHubRepo[]>([]);
+  const [data, setData] = React.useState<Data | null>(null);
 
   React.useEffect(() => {
-    GitHub.getRepos().then((repos) => {
-      setGitHubRepos(repos);
-    });
+    gitHubData.get()
+      .then((_data) => {
+        setData(_data);
+      });
   }, []);
 
   return (
@@ -27,11 +30,11 @@ export const App: React.FunctionComponent = () => {
         <h2>Open Source</h2>
         <>
           <h3>Projects</h3>
-          <WorksList gitHubRepos={gitHubRepos} works={OPEN_SOURCE_PROJECTS} />
+          <WorksList gitHubRepos={data ? data.repos : []} works={OPEN_SOURCE_PROJECTS} />
         </>
         <>
           <h3>Libraries</h3>
-          <WorksList gitHubRepos={gitHubRepos} works={OPEN_SOURCE_LIBRARIES} />
+          <WorksList gitHubRepos={data ? data.repos : []} works={OPEN_SOURCE_LIBRARIES} />
         </>
       </>
     </>
