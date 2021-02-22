@@ -19,15 +19,17 @@
 2. `WEB_APP_S3_BUCKET_NAME`
 3. `WEB_APP_S3_GITHUB_FILE_KEY`
 
-## Web App S3 Bucket
+## Permissions
+
+### Web App S3 Bucket
 
 Block all public access, configure Origin Access Identity for the CloudFront Distribution. 
 
-## Web App Cloudfront Distribution
+### Web App Cloudfront Distribution
 
 Simple setup using one origin (Web App S3 Bucket) with the help of Origin Access Identity.
 
-## Update GitHub Lambda
+### Update GitHub Lambda
 
 Basic execution role, but also S3 PutObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and
 `WEB_APP_S3_GITHUB_FILE_KEY`, example:
@@ -37,7 +39,6 @@ Basic execution role, but also S3 PutObject for a specific resource matching `WE
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": "s3:PutObject",
             "Resource": "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}"
@@ -46,9 +47,9 @@ Basic execution role, but also S3 PutObject for a specific resource matching `WE
 }
 ```
 
-## AWS User
+### AWS User
 
-AWS User needed for the Continuous Deployment done with GitHub Actions.
+AWS User is required for the Continuous Deployment done with GitHub Actions.
 
 S3: ListBucket, GetObject, PutObject, DeleteObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and any
 object in it, example:
@@ -58,12 +59,11 @@ object in it, example:
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
-                "s3:PutObject",
-                "s3:GetObject",
                 "s3:ListBucket",
+                "s3:GetObject",
+                "s3:PutObject",
                 "s3:DeleteObject"
             ],
             "Resource": [
@@ -83,7 +83,6 @@ CloudFront: ListInvalidations, GetInvalidation, CreateInvalidation for a specifi
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
                 "cloudfront:ListInvalidations",
@@ -96,6 +95,26 @@ CloudFront: ListInvalidations, GetInvalidation, CreateInvalidation for a specifi
 }
 ```
 
-## GitHub Personal Access Token
+Lambda: CreateFunction, UpdateFunctionCode, UpdateFunctionConfiguration for a specific matching `AWS_REGION` and
+`UPDATE_GITHUB_LAMBDA_NAME`, example:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "lambda:CreateFunction",
+                "lambda:UpdateFunctionCode",
+                "lambda:UpdateFunctionConfiguration"
+            ],
+            "Resource": "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
+        }
+    ]
+}
+```
+
+### GitHub Personal Access Token
 
 No additional scopes, just public access.
