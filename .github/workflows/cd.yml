@@ -30,7 +30,7 @@ jobs:
   web-app-cd:
     name: Web App CD
     needs:
-      - shared
+      - shared-cd
 
     defaults:
       run:
@@ -67,7 +67,7 @@ jobs:
   update-github-cd:
     name: Update GitHub CD
     needs:
-      - shared
+      - shared-cd
       - web-app-cd
 
     defaults:
