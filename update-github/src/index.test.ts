@@ -1,15 +1,33 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires, max-classes-per-file */
+
+jest.mock('GitHub/GitHub', () => ({
+  GitHub: class {
+    // eslint-disable-next-line class-methods-use-this
+    getData(): Promise<unknown> {
+      return Promise.resolve('Mock');
+    }
+  },
+}));
+
+jest.mock('S3Object/S3Object', () => ({
+  S3Object: class {
+    // eslint-disable-next-line class-methods-use-this
+    update(data: unknown): Promise<void> {
+      if (data !== 'Mock') {
+        return Promise.reject();
+      }
+
+      return Promise.resolve();
+    }
+  },
+}));
 
 const { handler } = require('index');
 
-it('returns status code 200', async () => {
-  const response = await handler();
+describe('handler', () => {
+  it('gets GitHub data and updates S3', async () => {
+    const response = await handler();
 
-  expect(response.statusCode).toBe(200);
-});
-
-it('returns the same response', async () => {
-  const response = await handler();
-
-  expect(response.body).toMatchSnapshot();
+    expect(response).toStrictEqual({});
+  });
 });
