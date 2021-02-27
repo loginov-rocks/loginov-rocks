@@ -1,5 +1,9 @@
 import {
-  GITHUB_PERSONAL_ACCESS_TOKEN, WEB_APP_CLOUDFRONT_DISTRIBUTION_ID, WEB_APP_S3_BUCKET_NAME, WEB_APP_S3_GITHUB_FILE_KEY,
+  GITHUB_BASE_URL,
+  GITHUB_PERSONAL_ACCESS_TOKEN,
+  WEB_APP_CLOUDFRONT_DISTRIBUTION_ID,
+  WEB_APP_S3_BUCKET_NAME,
+  WEB_APP_S3_GITHUB_FILE_KEY,
 } from 'Constants';
 import { CloudFrontInvalidation } from 'CloudFrontInvalidation/CloudFrontInvalidation';
 import { GitHub } from 'GitHub/GitHub';
@@ -11,6 +15,7 @@ const cloudFrontInvalidation = new CloudFrontInvalidation({
 });
 
 const gitHub = new GitHub({
+  baseUrl: GITHUB_BASE_URL,
   personalAccessToken: GITHUB_PERSONAL_ACCESS_TOKEN,
 });
 

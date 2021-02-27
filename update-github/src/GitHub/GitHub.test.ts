@@ -1,31 +1,27 @@
+/* eslint-disable @typescript-eslint/no-var-requires, import/no-extraneous-dependencies */
+
 import { GitHub } from './GitHub';
 
-jest.mock('@octokit/rest', () => ({
-  Octokit: class {
-    // eslint-disable-next-line class-methods-use-this
-    request(url: string): Promise<unknown> {
-      if (url === '/user') {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-        const data = require('./__fixtures__/gitHubUser.json');
-        return Promise.resolve({ data });
-      }
+// eslint-disable-next-line global-require
+jest.mock('node-fetch', () => require('fetch-mock-jest').sandbox());
+const fetchMock = require('node-fetch');
 
-      if (url === 'https://api.github.com/users/loginov-rocks/repos') {
-        // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
-        const data = require('./__fixtures__/gitHubRepos.json');
-        return Promise.resolve({ data });
-      }
+const gitHubUserMock = require('./__fixtures__/gitHubUser.json');
+const gitHubReposMock = require('./__fixtures__/gitHubRepos.json');
 
-      return Promise.reject();
-    }
-  },
-}));
-
-const gitHub = new GitHub({ personalAccessToken: 'personal-access-token' });
+const gitHub = new GitHub({
+  baseUrl: 'https://api.github.com',
+  personalAccessToken: 'personal-access-token',
+});
 
 describe('getData', () => {
   it('gets GitHub data using API', async () => {
+    fetchMock.get('https://api.github.com/user', gitHubUserMock);
+    fetchMock.get('https://api.github.com/user/repos', gitHubReposMock);
+
     const data = await gitHub.getData();
+
+    fetchMock.reset();
 
     expect(data).toStrictEqual(
       expect.objectContaining({

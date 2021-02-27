@@ -1,6 +1,5 @@
-/* eslint-disable max-classes-per-file */
+/* eslint-disable @typescript-eslint/no-var-requires, max-classes-per-file */
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { handler } = require('./index');
 
 jest.mock('CloudFrontInvalidation/CloudFrontInvalidation', () => ({

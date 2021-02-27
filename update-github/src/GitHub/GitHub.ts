@@ -1,25 +1,91 @@
 import { GitHubData as Data, GitHubRepo as Repo } from '@loginov-rocks/loginov-rocks-shared';
-import { Octokit } from '@octokit/rest';
+import fetch, { Headers, Response } from 'node-fetch';
 
 import { GitHubRepo } from './GitHubRepo';
 import { GitHubUser } from './GitHubUser';
 
 interface Options {
+  baseUrl: string;
   personalAccessToken: string;
 }
 
 export class GitHub {
-  private readonly octokit: Octokit;
+  private static parseNextPageUrl(headers: Headers): string | undefined {
+    const header = headers.get('Link');
 
-  constructor({ personalAccessToken }: Options) {
-    this.octokit = new Octokit({
-      auth: personalAccessToken,
+    if (!header) {
+      return undefined;
+    }
+
+    const links = header.split(',');
+    const link = links.find((l) => l.endsWith('>; rel="next"'));
+
+    if (!link) {
+      return undefined;
+    }
+
+    return link.trim().substring(1).replace('>; rel="next"', '');
+  }
+
+  private static async mergeArrayResponses<T>(responsesStack: Response[]): Promise<T> {
+    const results = await Promise.all(responsesStack.map((response) => response.json()));
+
+    const [firstResult, ...otherResults] = results;
+
+    if (otherResults) {
+      return firstResult.concat(...otherResults);
+    }
+
+    return firstResult;
+  }
+
+  private readonly baseUrl: string;
+
+  private readonly personalAccessToken: string;
+
+  constructor({ baseUrl, personalAccessToken }: Options) {
+    this.baseUrl = baseUrl;
+    this.personalAccessToken = personalAccessToken;
+  }
+
+  private apiGet(url: string): Promise<Response> {
+    const apiUrl = url.startsWith(this.baseUrl) ? url : `${this.baseUrl}${url}`;
+
+    return fetch(apiUrl, {
+      headers: {
+        Authorization: `token ${this.personalAccessToken}`,
+      },
     });
   }
 
-  private async getRepos(url: string): Promise<Repo[]> {
-    const response = await this.octokit.request(url);
-    const gitHubRepos = response.data as GitHubRepo[];
+  private async apiGetWithPagination(url: string, responsesStack: Response[] = []): Promise<Response[]> {
+    const response = await this.apiGet(url);
+
+    responsesStack.push(response);
+
+    const nextPageUrl = GitHub.parseNextPageUrl(response.headers);
+
+    if (nextPageUrl) {
+      return this.apiGetWithPagination(nextPageUrl, responsesStack);
+    }
+
+    return responsesStack;
+  }
+
+  private async getGitHubUser(): Promise<GitHubUser> {
+    const response = await this.apiGet('/user');
+
+    return response.json();
+  }
+
+  private async getGitHubRepos(): Promise<GitHubRepo[]> {
+    const responsesStack = await this.apiGetWithPagination('/user/repos');
+
+    return GitHub.mergeArrayResponses<GitHubRepo[]>(responsesStack);
+  }
+
+  private async getRepos(): Promise<Repo[]> {
+    const gitHubRepos = await this.getGitHubRepos();
 
     return gitHubRepos.map((repo) => ({
       description: repo.description || '',
@@ -35,10 +101,8 @@ export class GitHub {
   }
 
   async getData(): Promise<Data> {
-    const response = await this.octokit.request('/user');
-    const gitHubUser = response.data as GitHubUser;
-
-    const repos = await this.getRepos(gitHubUser.repos_url);
+    const gitHubUser = await this.getGitHubUser();
+    const repos = await this.getRepos();
 
     return {
       homepageUrl: gitHubUser.blog,
