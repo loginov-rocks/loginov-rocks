@@ -26,8 +26,8 @@ describe('getData', () => {
     expect(data).toStrictEqual(
       expect.objectContaining({
         homepageUrl: 'https://loginov.rocks',
+        login: 'loginov-rocks',
         url: 'https://github.com/loginov-rocks',
-        user: 'loginov-rocks',
       }),
     );
     expect(typeof data.timestamp).toBe('number');
@@ -40,9 +40,9 @@ describe('getData', () => {
       homepageUrl: 'https://www.npmjs.com/package/angular-gulp-boilerplate',
       isArchived: false,
       language: 'JavaScript',
-      latestVersion: '',
+      latestTag: '',
+      name: 'Angular-Gulp-Boilerplate',
       stars: 29,
-      title: 'Angular-Gulp-Boilerplate',
       updatedAt: 1613486363000,
       url: 'https://github.com/loginov-rocks/Angular-Gulp-Boilerplate',
     });

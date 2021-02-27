@@ -11,6 +11,5 @@ export interface GitHubRepo {
     login: string;
   };
   stargazers_count: number;
-  tags_url: string;
   updated_at: string;
 }

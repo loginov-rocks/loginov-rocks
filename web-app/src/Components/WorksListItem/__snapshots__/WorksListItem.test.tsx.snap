@@ -21,20 +21,5 @@ exports[`matches snapshot with GitHub repo 1`] = `
   >
     GitHub
   </Link>
-  <br />
-  <GitHubWorkDetails
-    repo={
-      Object {
-        "description": "Clean but full featured AngularJS boilerplate using Gulp workflow and best practices",
-        "homepageUrl": "https://www.npmjs.com/package/angular-gulp-boilerplate",
-        "language": "JavaScript",
-        "latestVersion": "",
-        "stars": 29,
-        "title": "Angular-Gulp-Boilerplate",
-        "updatedAt": 1613486363000,
-        "url": "https://github.com/loginov-rocks/Angular-Gulp-Boilerplate",
-      }
-    }
-  />
 </li>
 `;

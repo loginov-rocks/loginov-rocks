@@ -44,12 +44,12 @@ export const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }: Prop
       })}
     </span>
 
-    {repo.latestVersion && (
+    {repo.latestTag && (
       <>
         {' '}
         /
         {' '}
-        <span title="Last Version">{repo.latestVersion}</span>
+        <span title="Latest Tag">{repo.latestTag}</span>
       </>
     )}
 

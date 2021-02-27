@@ -100,9 +100,9 @@ export class GitHub {
         isArchived: repo.archived,
         language: repo.language || '',
         // TODO
-        latestVersion: '',
+        latestTag: '',
+        name: repo.name,
         stars: repo.stargazers_count,
-        title: repo.name,
         updatedAt: new Date(repo.updated_at).getTime(),
         url: repo.html_url,
       }));
@@ -114,10 +114,10 @@ export class GitHub {
 
     return {
       homepageUrl: gitHubUser.blog,
+      login: gitHubUser.login,
       repos,
       timestamp: Date.now(),
       url: gitHubUser.html_url,
-      user: gitHubUser.login,
     };
   }
 }

@@ -3,9 +3,9 @@ export interface Repo {
   homepageUrl: string;
   isArchived: boolean;
   language: string;
-  latestVersion: string;
+  latestTag: string;
+  name: string;
   stars: number;
-  title: string;
   updatedAt: number;
   url: string;
 }

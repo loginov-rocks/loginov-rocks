@@ -12,7 +12,7 @@ interface Props {
 }
 
 export const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Props) => {
-  const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.title === work.name) : undefined;
+  const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.name === work.name) : undefined;
 
   let title = <strong>{work.name}</strong>;
   if (work.homepage) {
