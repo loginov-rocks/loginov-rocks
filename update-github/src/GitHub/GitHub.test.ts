@@ -17,7 +17,8 @@ const gitHub = new GitHub({
 describe('getData', () => {
   it('gets GitHub data using API', async () => {
     fetchMock.get('https://api.github.com/user', gitHubUserMock);
-    fetchMock.get('https://api.github.com/user/repos', gitHubReposMock);
+    fetchMock.get('https://api.github.com/user/repos?affiliation=owner&per_page=100&sort=full_name&visibility=public',
+      gitHubReposMock);
 
     const data = await gitHub.getData();
 
@@ -33,7 +34,7 @@ describe('getData', () => {
     expect(typeof data.timestamp).toBe('number');
 
     expect(Array.isArray(data.repos)).toBeTruthy();
-    expect(data.repos.length).toBe(30);
+    expect(data.repos.length).toBe(32);
 
     expect(data.repos[0]).toStrictEqual({
       description: 'Clean but full featured AngularJS boilerplate using Gulp workflow and best practices',
@@ -43,7 +44,7 @@ describe('getData', () => {
       latestTag: '',
       name: 'Angular-Gulp-Boilerplate',
       stars: 29,
-      updatedAt: 1613486363000,
+      updatedAt: 1614276648000,
       url: 'https://github.com/loginov-rocks/Angular-Gulp-Boilerplate',
     });
 

@@ -9,11 +9,6 @@ interface Options {
   personalAccessToken: string;
 }
 
-interface GetReposFilter {
-  // eslint-disable-next-line no-unused-vars
-  (gitHubRepo: GitHubRepo): boolean;
-}
-
 export class GitHub {
   private static parseNextPageUrl(headers: Headers): string | undefined {
     const header = headers.get('Link');
@@ -53,6 +48,9 @@ export class GitHub {
     this.personalAccessToken = personalAccessToken;
   }
 
+  /**
+   * @see https://docs.github.com/en/rest/overview/resources-in-the-rest-api#oauth2-token-sent-in-a-header
+   */
   private apiGet(url: string): Promise<Response> {
     const apiUrl = url.startsWith(this.baseUrl) ? url : `${this.baseUrl}${url}`;
 
@@ -63,6 +61,9 @@ export class GitHub {
     });
   }
 
+  /**
+   * @see https://docs.github.com/en/rest/overview/resources-in-the-rest-api#pagination
+   */
   private async apiGetWithPagination(url: string, responsesStack: Response[] = []): Promise<Response[]> {
     const response = await this.apiGet(url);
 
@@ -77,40 +78,46 @@ export class GitHub {
     return responsesStack;
   }
 
+  /**
+   * @see https://docs.github.com/en/rest/reference/users#get-the-authenticated-user
+   */
   private async getGitHubUser(): Promise<GitHubUser> {
     const response = await this.apiGet('/user');
 
     return response.json();
   }
 
+  /**
+   * @see https://docs.github.com/en/rest/reference/repos#list-repositories-for-the-authenticated-user
+   */
   private async getGitHubRepos(): Promise<GitHubRepo[]> {
-    const responsesStack = await this.apiGetWithPagination('/user/repos');
+    const responsesStack = await this.apiGetWithPagination(
+      '/user/repos?affiliation=owner&per_page=100&sort=full_name&visibility=public',
+    );
 
     return GitHub.mergeArrayResponses<GitHubRepo[]>(responsesStack);
   }
 
-  private async getRepos(filter: GetReposFilter = () => true): Promise<Repo[]> {
+  private async getRepos(): Promise<Repo[]> {
     const gitHubRepos = await this.getGitHubRepos();
 
-    return gitHubRepos
-      .filter(filter)
-      .map((repo) => ({
-        description: repo.description || '',
-        homepageUrl: repo.homepage || '',
-        isArchived: repo.archived,
-        language: repo.language || '',
-        // TODO
-        latestTag: '',
-        name: repo.name,
-        stars: repo.stargazers_count,
-        updatedAt: new Date(repo.updated_at).getTime(),
-        url: repo.html_url,
-      }));
+    return gitHubRepos.map((repo) => ({
+      description: repo.description || '',
+      homepageUrl: repo.homepage || '',
+      isArchived: repo.archived,
+      language: repo.language || '',
+      // TODO
+      latestTag: '',
+      name: repo.name,
+      stars: repo.stargazers_count,
+      updatedAt: new Date(repo.updated_at).getTime(),
+      url: repo.html_url,
+    }));
   }
 
   async getData(): Promise<Data> {
     const gitHubUser = await this.getGitHubUser();
-    const repos = await this.getRepos((gitHubRepo) => gitHubRepo.owner.login === gitHubUser.login);
+    const repos = await this.getRepos();
 
     return {
       homepageUrl: gitHubUser.blog,
