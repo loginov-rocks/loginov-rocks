@@ -5,6 +5,7 @@ Array [
   Object {
     "description": "Clean but full featured AngularJS boilerplate using Gulp workflow and best practices",
     "homepageUrl": "https://www.npmjs.com/package/angular-gulp-boilerplate",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 29,
@@ -15,6 +16,7 @@ Array [
   Object {
     "description": "Training Repository",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -25,6 +27,7 @@ Array [
   Object {
     "description": "Training Repository",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -35,6 +38,7 @@ Array [
   Object {
     "description": "ES6 class for serial communication with your own Bluetooth Low Energy (Smart) devices",
     "homepageUrl": "https://loginov-rocks.github.io/Web-Bluetooth-Terminal/",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 31,
@@ -45,6 +49,7 @@ Array [
   Object {
     "description": "Canvas heightmap generator",
     "homepageUrl": "https://www.npmjs.com/package/canvas-heightmap",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 1,
@@ -55,6 +60,7 @@ Array [
   Object {
     "description": "Training Repository",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -65,6 +71,7 @@ Array [
   Object {
     "description": "Training Repository",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "Dart",
     "latestVersion": "",
     "stars": 0,
@@ -75,6 +82,7 @@ Array [
   Object {
     "description": "Extract comments from glob of files, annotated or not",
     "homepageUrl": "https://www.npmjs.com/package/comments-extractor",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -85,6 +93,7 @@ Array [
   Object {
     "description": "",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "C++",
     "latestVersion": "",
     "stars": 0,
@@ -95,6 +104,7 @@ Array [
   Object {
     "description": "Simple app for communication with devices via bluetooth based on Apache Cordova (PhoneGap)",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 10,
@@ -105,6 +115,7 @@ Array [
   Object {
     "description": "🦋 An OpenApi validator for ExpressJS that automatically validates API requests using an OpenAPI 3.x specification,",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "TypeScript",
     "latestVersion": "",
     "stars": 0,
@@ -115,6 +126,7 @@ Array [
   Object {
     "description": "Firebase Authenticator",
     "homepageUrl": "https://loginov.rocks/Firebase-Authenticator/",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -125,6 +137,7 @@ Array [
   Object {
     "description": "Gulp plugin to bundle JSON localization files",
     "homepageUrl": "https://www.npmjs.com/package/gulp-locales-bundler",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 1,
@@ -135,6 +148,7 @@ Array [
   Object {
     "description": "Documentation generator for Gulp tasks",
     "homepageUrl": "https://www.npmjs.com/package/gulpdoc",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -145,6 +159,7 @@ Array [
   Object {
     "description": "Training Repository",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -155,6 +170,7 @@ Array [
   Object {
     "description": "",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "C++",
     "latestVersion": "",
     "stars": 0,
@@ -165,6 +181,7 @@ Array [
   Object {
     "description": "Locales bundler",
     "homepageUrl": "https://www.npmjs.com/package/locales-bundler",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -175,6 +192,7 @@ Array [
   Object {
     "description": "MeArm Controller",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "Arduino",
     "latestVersion": "",
     "stars": 2,
@@ -185,6 +203,7 @@ Array [
   Object {
     "description": "MQTT Home Monitor",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "C++",
     "latestVersion": "",
     "stars": 0,
@@ -195,6 +214,7 @@ Array [
   Object {
     "description": "Training Repository",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "TypeScript",
     "latestVersion": "",
     "stars": 0,
@@ -205,6 +225,7 @@ Array [
   Object {
     "description": "Quick start with NodeMCU v3 (ESP8266), Arduino ecosystem, and PlatformIO IDE",
     "homepageUrl": "https://loginov-rocks.medium.com/quick-start-with-nodemcu-v3-esp8266-arduino-ecosystem-and-platformio-ide-b8415bf9a038",
+    "isArchived": false,
     "language": "C++",
     "latestVersion": "",
     "stars": 2,
@@ -215,6 +236,7 @@ Array [
   Object {
     "description": "Ooyala Player Component",
     "homepageUrl": "https://www.npmjs.com/package/ooyala-player-component",
+    "isArchived": false,
     "language": "TypeScript",
     "latestVersion": "",
     "stars": 0,
@@ -225,6 +247,7 @@ Array [
   Object {
     "description": "Portfolio App",
     "homepageUrl": "https://loginov-rocks.github.io/Portfolio/",
+    "isArchived": false,
     "language": "TypeScript",
     "latestVersion": "",
     "stars": 0,
@@ -235,6 +258,7 @@ Array [
   Object {
     "description": "Firebase Services for Portfolio App",
     "homepageUrl": "https://loginov.rocks/Portfolio",
+    "isArchived": false,
     "language": "TypeScript",
     "latestVersion": "",
     "stars": 0,
@@ -245,6 +269,7 @@ Array [
   Object {
     "description": "React Native Redux Form fields",
     "homepageUrl": "https://www.npmjs.com/package/react-native-redux-form",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 0,
@@ -255,6 +280,7 @@ Array [
   Object {
     "description": "Redux Repository",
     "homepageUrl": "https://www.npmjs.com/package/redux-repository",
+    "isArchived": false,
     "language": "TypeScript",
     "latestVersion": "",
     "stars": 0,
@@ -265,6 +291,7 @@ Array [
   Object {
     "description": "Three.js Sky object from official repository example",
     "homepageUrl": "https://www.npmjs.com/package/three-sky",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 2,
@@ -275,6 +302,7 @@ Array [
   Object {
     "description": "Training Repository",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "TypeScript",
     "latestVersion": "",
     "stars": 0,
@@ -285,6 +313,7 @@ Array [
   Object {
     "description": "Arduino library for the fastest and simplest communication with u-blox GPS modules",
     "homepageUrl": "",
+    "isArchived": false,
     "language": "C++",
     "latestVersion": "",
     "stars": 83,
@@ -295,6 +324,7 @@ Array [
   Object {
     "description": "Progressive Web Application for serial communication with your own Bluetooth Low Energy (Smart) devices",
     "homepageUrl": "https://loginov-rocks.github.io/Web-Bluetooth-Terminal/",
+    "isArchived": false,
     "language": "JavaScript",
     "latestVersion": "",
     "stars": 129,

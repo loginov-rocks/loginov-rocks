@@ -9,6 +9,11 @@ interface Options {
   personalAccessToken: string;
 }
 
+interface GetReposFilter {
+  // eslint-disable-next-line no-unused-vars
+  (gitHubRepo: GitHubRepo): boolean;
+}
+
 export class GitHub {
   private static parseNextPageUrl(headers: Headers): string | undefined {
     const header = headers.get('Link');
@@ -84,25 +89,28 @@ export class GitHub {
     return GitHub.mergeArrayResponses<GitHubRepo[]>(responsesStack);
   }
 
-  private async getRepos(): Promise<Repo[]> {
+  private async getRepos(filter: GetReposFilter = () => true): Promise<Repo[]> {
     const gitHubRepos = await this.getGitHubRepos();
 
-    return gitHubRepos.map((repo) => ({
-      description: repo.description || '',
-      homepageUrl: repo.homepage || '',
-      language: repo.language || '',
-      // TODO
-      latestVersion: '',
-      stars: repo.stargazers_count,
-      title: repo.name,
-      updatedAt: new Date(repo.updated_at).getTime(),
-      url: repo.html_url,
-    }));
+    return gitHubRepos
+      .filter(filter)
+      .map((repo) => ({
+        description: repo.description || '',
+        homepageUrl: repo.homepage || '',
+        isArchived: repo.archived,
+        language: repo.language || '',
+        // TODO
+        latestVersion: '',
+        stars: repo.stargazers_count,
+        title: repo.name,
+        updatedAt: new Date(repo.updated_at).getTime(),
+        url: repo.html_url,
+      }));
   }
 
   async getData(): Promise<Data> {
     const gitHubUser = await this.getGitHubUser();
-    const repos = await this.getRepos();
+    const repos = await this.getRepos((gitHubRepo) => gitHubRepo.owner.login === gitHubUser.login);
 
     return {
       homepageUrl: gitHubUser.blog,

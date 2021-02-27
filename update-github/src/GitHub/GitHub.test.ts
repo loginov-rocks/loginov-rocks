@@ -38,6 +38,7 @@ describe('getData', () => {
     expect(data.repos[0]).toStrictEqual({
       description: 'Clean but full featured AngularJS boilerplate using Gulp workflow and best practices',
       homepageUrl: 'https://www.npmjs.com/package/angular-gulp-boilerplate',
+      isArchived: false,
       language: 'JavaScript',
       latestVersion: '',
       stars: 29,
