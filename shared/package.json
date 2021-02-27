@@ -1,6 +1,6 @@
 {
   "name": "@loginov-rocks/loginov-rocks-shared",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Shared",
   "main": "src/index.ts",
   "scripts": {
