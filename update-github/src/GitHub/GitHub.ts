@@ -2,6 +2,7 @@ import { GitHubData as Data, GitHubRepo as Repo } from '@loginov-rocks/loginov-r
 import fetch, { Headers, Response } from 'node-fetch';
 
 import { GitHubRepo } from './GitHubRepo';
+import { GitHubTag } from './GitHubTag';
 import { GitHubUser } from './GitHubUser';
 
 interface Options {
@@ -98,21 +99,45 @@ export class GitHub {
     return GitHub.mergeArrayResponses<GitHubRepo[]>(responsesStack);
   }
 
+  /**
+   * @see https://docs.github.com/en/rest/reference/repos#list-repository-tags
+   */
+  private async getGitHubTags(ownerLogin: string, repoName: string): Promise<GitHubTag[]> {
+    const response = await this.apiGet(`/repos/${ownerLogin}/${repoName}/tags`);
+
+    return response.json();
+  }
+
   private async getRepos(): Promise<Repo[]> {
     const gitHubRepos = await this.getGitHubRepos();
 
-    return gitHubRepos.map((repo) => ({
-      description: repo.description || '',
-      homepageUrl: repo.homepage || '',
-      isArchived: repo.archived,
-      language: repo.language || '',
-      // TODO
-      latestTag: '',
-      name: repo.name,
-      stars: repo.stargazers_count,
-      updatedAt: new Date(repo.updated_at).getTime(),
-      url: repo.html_url,
-    }));
+    const repoToLatestTagMapping = await Promise.all(
+      gitHubRepos.map(async (repo) => {
+        const tags = await this.getGitHubTags(repo.owner.login, repo.name);
+
+        return {
+          latestTag: tags.length > 0 ? tags[0].name : '',
+          repoName: repo.name,
+        };
+      }),
+    );
+
+    return gitHubRepos.map((repo) => {
+      const repoToLatestTag = repoToLatestTagMapping.find(({ repoName }) => repoName === repo.name);
+      const latestTag = repoToLatestTag ? repoToLatestTag.latestTag : '';
+
+      return {
+        description: repo.description || '',
+        homepageUrl: repo.homepage || '',
+        isArchived: repo.archived,
+        language: repo.language || '',
+        latestTag,
+        name: repo.name,
+        stars: repo.stargazers_count,
+        updatedAt: new Date(repo.updated_at).getTime(),
+        url: repo.html_url,
+      };
+    });
   }
 
   async getData(): Promise<Data> {

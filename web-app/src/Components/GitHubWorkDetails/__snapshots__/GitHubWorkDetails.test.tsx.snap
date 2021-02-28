@@ -24,7 +24,15 @@ exports[`matches snapshot 1`] = `
   <span
     title="Last Updated"
   >
-    Feb 16, 2021
+    Feb 25, 2021
+  </span>
+   
+  /
+   
+  <span
+    title="Latest Tag"
+  >
+    v1.0.10
   </span>
 </Fragment>
 `;
