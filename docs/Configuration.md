@@ -5,11 +5,11 @@
 ### Repository Secrets
 
 1. `AWS_ACCESS_KEY_ID`
-2. `AWS_SECRET_ACCESS_KEY`
-3. `AWS_REGION` - used the same for both Web App and Update GitHub Lambda
-4. `WEB_APP_S3_BUCKET_NAME`
+2. `AWS_REGION` - used the same for both Web App and Update GitHub Lambda
+3. `AWS_SECRET_ACCESS_KEY`
+4. `UPDATE_GITHUB_LAMBDA_NAME`
 5. `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
-6. `UPDATE_GITHUB_LAMBDA_NAME`
+6. `WEB_APP_S3_BUCKET_NAME`
 
 ## AWS
 
