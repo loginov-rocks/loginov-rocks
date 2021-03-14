@@ -1,4 +1,32 @@
 {
+  "openSource": {
+    "libraries": [
+      "UbxGps",
+      "bluetooth-terminal",
+      "canvas-heightmap",
+      "comments-extractor",
+      "gulpdoc",
+      "gulp-locales-bundler",
+      "locales-bundler",
+      "react-native-redux-form",
+      "redux-repository",
+      "three-sky",
+      "ooyala-player-component"
+    ],
+    "projects": [
+      "Web-Bluetooth-Terminal",
+      "Portfolio",
+      "Portfolio-Firebase",
+      "Firebase-Authenticator",
+      "IoT-Firebase-Authentication",
+      "Angular-Gulp-Boilerplate",
+      "Connected-Espresso-Machine",
+      "NodeMCU-Arduino-PlatformIO",
+      "loginov-rocks",
+      "Node-AWS-App",
+      "Cordova-Bluetooth-Terminal"
+    ]
+  },
   "socialPresenceItems": [
     {
       "title": "LinkedIn",

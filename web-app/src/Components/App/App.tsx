@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { SocialPresence } from 'Components/SocialPresence';
 import { WorksList } from 'Components/WorksList';
-import { OPEN_SOURCE_LIBRARIES, OPEN_SOURCE_PROJECTS, WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
+import { WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
 import { Data } from 'Lib/Data';
 import { GitHubData as GetGitHubData } from 'Lib/GitHubData';
 
@@ -35,11 +35,11 @@ export const App: React.FunctionComponent<Props> = ({ data }: Props) => {
         <h2>Open Source</h2>
         <>
           <h3>Projects</h3>
-          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={OPEN_SOURCE_PROJECTS} />
+          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={data.openSource.projects} />
         </>
         <>
           <h3>Libraries</h3>
-          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={OPEN_SOURCE_LIBRARIES} />
+          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={data.openSource.libraries} />
         </>
       </>
     </>

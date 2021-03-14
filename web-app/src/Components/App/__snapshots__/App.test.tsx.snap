@@ -66,10 +66,10 @@ exports[`matches snapshot 1`] = `
         "Firebase-Authenticator",
         "IoT-Firebase-Authentication",
         "Angular-Gulp-Boilerplate",
-        "Arduino-Coffeemaker",
-        "MeArm-Controller",
-        "MQTT-Home-Monitor",
+        "Connected-Espresso-Machine",
         "NodeMCU-Arduino-PlatformIO",
+        "loginov-rocks",
+        "Node-AWS-App",
         "Cordova-Bluetooth-Terminal",
       ]
     }
