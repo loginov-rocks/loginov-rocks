@@ -17,9 +17,9 @@
 
 1. `GITHUB_BASE_URL`
 2. `GITHUB_PERSONAL_ACCESS_TOKEN`
-3. `WEB_APP_S3_BUCKET_NAME`
-4. `WEB_APP_S3_GITHUB_FILE_KEY`
-5. `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
+3. `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
+4. `WEB_APP_S3_BUCKET_NAME`
+5. `WEB_APP_S3_GITHUB_FILE_KEY`
 
 ## Permissions
 
@@ -37,8 +37,6 @@ Basic execution role, but also:
 
 * S3 PutObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and `WEB_APP_S3_GITHUB_FILE_KEY`
 * CloudFront CreateInvalidation for a specific resource matching `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
-
-Example:
 
 ```json
 {
@@ -63,8 +61,12 @@ Example:
 
 AWS User is required for the Continuous Deployment done with GitHub Actions.
 
-S3: ListBucket, GetObject, PutObject, DeleteObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and any
-object in it, example:
+* S3: ListBucket, GetObject, PutObject, DeleteObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and any
+object in it
+* CloudFront: ListInvalidations, GetInvalidation, CreateInvalidation for a specific resource matching
+`WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
+* Lambda: CreateFunction, UpdateFunctionCode, UpdateFunctionConfiguration for a specific matching `AWS_REGION` and
+`UPDATE_GITHUB_LAMBDA_NAME`
 
 ```json
 {
@@ -73,55 +75,23 @@ object in it, example:
         {
             "Effect": "Allow",
             "Action": [
-                "s3:ListBucket",
-                "s3:GetObject",
                 "s3:PutObject",
-                "s3:DeleteObject"
-            ],
-            "Resource": [
-                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*",
-                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}"
-            ]
-        }
-    ]
-}
-```
-
-CloudFront: ListInvalidations, GetInvalidation, CreateInvalidation for a specific resource matching
-`WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`, example:
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
+                "s3:GetObject",
+                "s3:ListBucket",
+                "s3:DeleteObject",
                 "cloudfront:ListInvalidations",
                 "cloudfront:GetInvalidation",
-                "cloudfront:CreateInvalidation"
-            ],
-            "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
-        }
-    ]
-}
-```
-
-Lambda: CreateFunction, UpdateFunctionCode, UpdateFunctionConfiguration for a specific matching `AWS_REGION` and
-`UPDATE_GITHUB_LAMBDA_NAME`, example:
-
-```json
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
+                "cloudfront:CreateInvalidation",
                 "lambda:CreateFunction",
                 "lambda:UpdateFunctionCode",
                 "lambda:UpdateFunctionConfiguration"
             ],
-            "Resource": "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
+            "Resource": [
+                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*",
+                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}",
+                "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}",
+                "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
+            ]
         }
     ]
 }
