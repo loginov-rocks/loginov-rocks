@@ -11,7 +11,45 @@ exports[`matches snapshot 1`] = `
   <h2>
     Social Presence
   </h2>
-  <SocialPresence />
+  <SocialPresence
+    items={
+      Array [
+        Object {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/loginov-rocks/",
+        },
+        Object {
+          "title": "GitHub",
+          "url": "https://github.com/loginov-rocks",
+        },
+        Object {
+          "title": "Medium",
+          "url": "https://loginov-rocks.medium.com/",
+        },
+        Object {
+          "title": "DRIVE2",
+          "url": "https://www.drive2.com/r/toyota/chaser/288230376151952785/",
+          "url2": "https://www.drive2.ru/r/toyota/chaser/288230376151952785/",
+        },
+        Object {
+          "title": "Instagram",
+          "url": "https://www.instagram.com/loginov_rocks/",
+        },
+        Object {
+          "title": "Facebook",
+          "url": "https://www.facebook.com/1oginov",
+        },
+        Object {
+          "title": "Twitter",
+          "url": "https://twitter.com/loginov_rocks",
+        },
+        Object {
+          "title": "npm",
+          "url": "https://www.npmjs.com/~loginov-rocks",
+        },
+      ]
+    }
+  />
   <h2>
     Open Source
   </h2>

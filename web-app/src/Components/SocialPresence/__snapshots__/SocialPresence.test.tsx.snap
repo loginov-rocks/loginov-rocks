@@ -24,7 +24,7 @@ exports[`matches snapshot 1`] = `
     key="2"
   >
     <Link
-      href="https://medium.com/@loginov_rocks"
+      href="https://loginov-rocks.medium.com/"
     >
       Medium
     </Link>

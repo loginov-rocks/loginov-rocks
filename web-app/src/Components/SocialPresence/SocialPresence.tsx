@@ -1,28 +1,40 @@
 import * as React from 'react';
 
 import { Link } from 'Components/Link';
-import { USERNAMES } from 'Constants';
+import { SOCIAL_PRESENCE_DRIVE2_TITLE } from 'Constants';
+import { SocialPresenceItem } from 'Lib/SocialPresenceItem';
 
-const items = [
-  <Link href={`https://www.linkedin.com/in/${USERNAMES.LINKEDIN}/`}>LinkedIn</Link>,
-  <Link href={`https://github.com/${USERNAMES.GITHUB}`}>GitHub</Link>,
-  <Link href={`https://medium.com/@${USERNAMES.MEDIUM}`}>Medium</Link>,
-  <>
-    <Link href="https://www.drive2.com/r/toyota/chaser/288230376151952785/">DRIVE2</Link>
-    {' '}
-    &mdash; my Toyota Chaser GX71 blog, originally
-    {' '}
-    <Link href="https://www.drive2.ru/r/toyota/chaser/288230376151952785/">in Russian</Link>
-  </>,
-  <Link href={`https://www.instagram.com/${USERNAMES.INSTAGRAM}/`}>Instagram</Link>,
-  <Link href={`https://www.facebook.com/${USERNAMES.FACEBOOK}`}>Facebook</Link>,
-  <Link href={`https://twitter.com/${USERNAMES.TWITTER}`}>Twitter</Link>,
-  <Link href={`https://www.npmjs.com/~${USERNAMES.NPM}`}>npm</Link>,
-];
+interface Props {
+  items: SocialPresenceItem[];
+}
 
-export const SocialPresence: React.FunctionComponent = () => (
+export const SocialPresence: React.FunctionComponent<Props> = ({ items }: Props) => (
   <ul>
-    {/* eslint-disable-next-line react/no-array-index-key */}
-    {items.map((item, index) => <li key={index}>{item}</li>)}
+    {items.map((item, index) => {
+      let content;
+
+      if (item.title === SOCIAL_PRESENCE_DRIVE2_TITLE) {
+        content = (
+          <>
+            <Link href={item.url}>{item.title}</Link>
+            {' '}
+            &mdash; my Toyota Chaser GX71 blog, originally
+            {' '}
+            <Link href={item.url2 as string}>in Russian</Link>
+          </>
+        );
+      } else {
+        content = (
+          <Link href={item.url}>{item.title}</Link>
+        );
+      }
+
+      return (
+        // eslint-disable-next-line react/no-array-index-key
+        <li key={index}>
+          {content}
+        </li>
+      );
+    })}
   </ul>
 );

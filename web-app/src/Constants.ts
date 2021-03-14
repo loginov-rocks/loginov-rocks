@@ -1,14 +1,6 @@
-export const WEB_APP_S3_GITHUB_FILE_KEY = 'github.json';
+export const SOCIAL_PRESENCE_DRIVE2_TITLE = 'DRIVE2';
 
-export const USERNAMES = {
-  FACEBOOK: '1oginov',
-  GITHUB: 'loginov-rocks',
-  INSTAGRAM: 'loginov_rocks',
-  LINKEDIN: 'loginov-rocks',
-  MEDIUM: 'loginov_rocks',
-  NPM: 'loginov-rocks',
-  TWITTER: 'loginov_rocks',
-};
+export const WEB_APP_S3_GITHUB_FILE_KEY = 'github.json';
 
 export const OPEN_SOURCE_LIBRARIES: string[] = [
   'UbxGps',

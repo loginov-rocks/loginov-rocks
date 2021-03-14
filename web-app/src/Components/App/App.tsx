@@ -1,20 +1,25 @@
-import { GitHubData as Data } from '@loginov-rocks/loginov-rocks-shared';
+import { GitHubData } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 import { SocialPresence } from 'Components/SocialPresence';
 import { WorksList } from 'Components/WorksList';
 import { OPEN_SOURCE_LIBRARIES, OPEN_SOURCE_PROJECTS, WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
-import { GitHubData } from 'Lib/GitHubData';
+import { Data } from 'Lib/Data';
+import { GitHubData as GetGitHubData } from 'Lib/GitHubData';
 
-const gitHubData = new GitHubData({ url: `/${WEB_APP_S3_GITHUB_FILE_KEY}` });
+const getGitHubData = new GetGitHubData({ url: `/${WEB_APP_S3_GITHUB_FILE_KEY}` });
 
-export const App: React.FunctionComponent = () => {
-  const [data, setData] = React.useState<Data | null>(null);
+interface Props {
+  data: Data;
+}
+
+export const App: React.FunctionComponent<Props> = ({ data }: Props) => {
+  const [gitHubData, setGitHubData] = React.useState<GitHubData | null>(null);
 
   React.useEffect(() => {
-    gitHubData.get()
-      .then((_data) => {
-        setData(_data);
+    getGitHubData.get()
+      .then((_gitHubData) => {
+        setGitHubData(_gitHubData);
       });
   }, []);
 
@@ -24,17 +29,17 @@ export const App: React.FunctionComponent = () => {
       <p>I am Danila, nice to meet you!</p>
       <>
         <h2>Social Presence</h2>
-        <SocialPresence />
+        <SocialPresence items={data.socialPresenceItems} />
       </>
       <>
         <h2>Open Source</h2>
         <>
           <h3>Projects</h3>
-          <WorksList gitHubRepos={data ? data.repos : []} works={OPEN_SOURCE_PROJECTS} />
+          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={OPEN_SOURCE_PROJECTS} />
         </>
         <>
           <h3>Libraries</h3>
-          <WorksList gitHubRepos={data ? data.repos : []} works={OPEN_SOURCE_LIBRARIES} />
+          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={OPEN_SOURCE_LIBRARIES} />
         </>
       </>
     </>

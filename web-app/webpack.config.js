@@ -48,9 +48,6 @@ module.exports = {
     new HotModuleReplacementPlugin(),
   ],
   resolve: {
-    alias: {
-      Constants: path.resolve(__dirname, 'src/Constants.ts'),
-    },
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     modules: [
       'node_modules',
