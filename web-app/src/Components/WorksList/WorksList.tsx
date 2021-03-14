@@ -2,11 +2,10 @@ import { GitHubRepo } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 import { WorksListItem } from 'Components/WorksListItem';
-import { Work } from 'Interfaces/Work';
 
 interface Props {
   gitHubRepos?: GitHubRepo[];
-  works: Work[];
+  works: string[];
 }
 
 export const WorksList: React.FunctionComponent<Props> = ({ gitHubRepos, works }: Props) => (

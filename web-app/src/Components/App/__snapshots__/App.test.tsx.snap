@@ -22,56 +22,17 @@ exports[`matches snapshot 1`] = `
     gitHubRepos={Array []}
     works={
       Array [
-        Object {
-          "github": true,
-          "homepage": "https://loginov-rocks.github.io/Web-Bluetooth-Terminal",
-          "name": "Web-Bluetooth-Terminal",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "homepage": "https://loginov-rocks.github.io/Portfolio",
-          "name": "Portfolio",
-        },
-        Object {
-          "github": true,
-          "name": "Portfolio-Firebase",
-        },
-        Object {
-          "github": true,
-          "homepage": "https://loginov-rocks.github.io/Firebase-Authenticator",
-          "name": "Firebase-Authenticator",
-        },
-        Object {
-          "github": true,
-          "name": "IoT-Firebase-Authentication",
-        },
-        Object {
-          "github": true,
-          "name": "Angular-Gulp-Boilerplate",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "Arduino-Coffeemaker",
-        },
-        Object {
-          "github": true,
-          "name": "MeArm-Controller",
-        },
-        Object {
-          "github": true,
-          "name": "MQTT-Home-Monitor",
-        },
-        Object {
-          "github": true,
-          "name": "NodeMCU-Arduino-PlatformIO",
-        },
-        Object {
-          "archived": true,
-          "github": true,
-          "name": "Cordova-Bluetooth-Terminal",
-        },
+        "Web-Bluetooth-Terminal",
+        "Portfolio",
+        "Portfolio-Firebase",
+        "Firebase-Authenticator",
+        "IoT-Firebase-Authentication",
+        "Angular-Gulp-Boilerplate",
+        "Arduino-Coffeemaker",
+        "MeArm-Controller",
+        "MQTT-Home-Monitor",
+        "NodeMCU-Arduino-PlatformIO",
+        "Cordova-Bluetooth-Terminal",
       ]
     }
   />
@@ -82,62 +43,17 @@ exports[`matches snapshot 1`] = `
     gitHubRepos={Array []}
     works={
       Array [
-        Object {
-          "github": true,
-          "name": "UbxGps",
-          "platformio": "https://platformio.org/lib/show/2014/UbxGps",
-        },
-        Object {
-          "github": true,
-          "name": "bluetooth-terminal",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "canvas-heightmap",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "comments-extractor",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "gulpdoc",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "gulp-locales-bundler",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "locales-bundler",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "react-native-redux-form",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "redux-repository",
-          "npm": true,
-        },
-        Object {
-          "github": true,
-          "name": "three-sky",
-          "npm": true,
-        },
-        Object {
-          "archived": true,
-          "github": true,
-          "name": "ooyala-player-component",
-          "npm": true,
-        },
+        "UbxGps",
+        "bluetooth-terminal",
+        "canvas-heightmap",
+        "comments-extractor",
+        "gulpdoc",
+        "gulp-locales-bundler",
+        "locales-bundler",
+        "react-native-redux-form",
+        "redux-repository",
+        "three-sky",
+        "ooyala-player-component",
       ]
     }
   />

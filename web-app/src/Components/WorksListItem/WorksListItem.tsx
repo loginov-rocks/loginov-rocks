@@ -3,22 +3,20 @@ import * as React from 'react';
 
 import { GitHubWorkDetails } from 'Components/GitHubWorkDetails';
 import { Link } from 'Components/Link';
-import { Work } from 'Interfaces/Work';
-import { toGitHub, toNpm } from 'Lib/links';
 
 interface Props {
   gitHubRepos?: GitHubRepo[];
-  work: Work;
+  work: string;
 }
 
 export const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }: Props) => {
-  const gitHubRepo = work.github && gitHubRepos ? gitHubRepos.find((repo) => repo.name === work.name) : undefined;
+  const gitHubRepo = gitHubRepos ? gitHubRepos.find((repo) => repo.name === work) : undefined;
 
-  let title = <strong>{work.name}</strong>;
-  if (work.homepage) {
-    title = <Link href={work.homepage}>{title}</Link>;
+  let title = <strong>{work}</strong>;
+  if (gitHubRepo && gitHubRepo.homepageUrl) {
+    title = <Link href={gitHubRepo.homepageUrl}>{title}</Link>;
   }
-  if (work.archived) {
+  if (gitHubRepo && gitHubRepo.isArchived) {
     title = <s title="Archived">{title}</s>;
   }
 
@@ -27,30 +25,12 @@ export const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, wor
 
       {title}
 
-      {work.github && (
+      {gitHubRepo && (
         <>
           {' '}
           /
           {' '}
-          <Link href={toGitHub(work.name)}>GitHub</Link>
-        </>
-      )}
-
-      {work.npm && (
-        <>
-          {' '}
-          /
-          {' '}
-          <Link href={toNpm(work.name)}>npm</Link>
-        </>
-      )}
-
-      {work.platformio && (
-        <>
-          {' '}
-          /
-          {' '}
-          <Link href={work.platformio}>PlatformIO</Link>
+          <Link href={gitHubRepo.url}>GitHub</Link>
         </>
       )}
 

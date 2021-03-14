@@ -9,7 +9,7 @@ import { WorksListItem } from './WorksListItem';
 const gitHubMockData = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/data.json');
 
 it('matches snapshot', () => {
-  const wrapper = shallow(<WorksListItem work={{ name: 'Some work' }} />);
+  const wrapper = shallow(<WorksListItem work="Some work" />);
 
   expect(wrapper).toMatchSnapshot();
 });
@@ -18,7 +18,7 @@ it('matches snapshot with GitHub repo', () => {
   const wrapper = shallow(
     <WorksListItem
       gitHubRepos={gitHubMockData.repos}
-      work={{ github: true, name: 'Angular-Gulp-Boilerplate' }}
+      work="Angular-Gulp-Boilerplate"
     />,
   );
 

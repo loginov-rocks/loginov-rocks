@@ -5,11 +5,7 @@ exports[`matches snapshot 1`] = `
   <WorksListItem
     gitHubRepos={Array []}
     key="0"
-    work={
-      Object {
-        "name": "Some work",
-      }
-    }
+    work="Some work"
   />
 </ul>
 `;

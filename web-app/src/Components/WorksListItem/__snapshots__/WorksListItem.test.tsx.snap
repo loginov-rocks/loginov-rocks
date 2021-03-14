@@ -10,9 +10,13 @@ exports[`matches snapshot 1`] = `
 
 exports[`matches snapshot with GitHub repo 1`] = `
 <li>
-  <strong>
-    Angular-Gulp-Boilerplate
-  </strong>
+  <Link
+    href="https://www.npmjs.com/package/angular-gulp-boilerplate"
+  >
+    <strong>
+      Angular-Gulp-Boilerplate
+    </strong>
+  </Link>
    
   /
    

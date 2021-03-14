@@ -1,5 +1,3 @@
-import { Work } from 'Interfaces/Work';
-
 export const WEB_APP_S3_GITHUB_FILE_KEY = 'github.json';
 
 export const USERNAMES = {
@@ -12,114 +10,30 @@ export const USERNAMES = {
   TWITTER: 'loginov_rocks',
 };
 
-export const OPEN_SOURCE_LIBRARIES: Work[] = [
-  {
-    github: true,
-    name: 'UbxGps',
-    platformio: 'https://platformio.org/lib/show/2014/UbxGps',
-  },
-  {
-    github: true,
-    name: 'bluetooth-terminal',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'canvas-heightmap',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'comments-extractor',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'gulpdoc',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'gulp-locales-bundler',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'locales-bundler',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'react-native-redux-form',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'redux-repository',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'three-sky',
-    npm: true,
-  },
-  {
-    archived: true,
-    github: true,
-    name: 'ooyala-player-component',
-    npm: true,
-  },
+export const OPEN_SOURCE_LIBRARIES: string[] = [
+  'UbxGps',
+  'bluetooth-terminal',
+  'canvas-heightmap',
+  'comments-extractor',
+  'gulpdoc',
+  'gulp-locales-bundler',
+  'locales-bundler',
+  'react-native-redux-form',
+  'redux-repository',
+  'three-sky',
+  'ooyala-player-component',
 ];
 
-export const OPEN_SOURCE_PROJECTS: Work[] = [
-  {
-    github: true,
-    homepage: 'https://loginov-rocks.github.io/Web-Bluetooth-Terminal',
-    name: 'Web-Bluetooth-Terminal',
-    npm: true,
-  },
-  {
-    github: true,
-    homepage: 'https://loginov-rocks.github.io/Portfolio',
-    name: 'Portfolio',
-  },
-  {
-    github: true,
-    name: 'Portfolio-Firebase',
-  },
-  {
-    github: true,
-    homepage: 'https://loginov-rocks.github.io/Firebase-Authenticator',
-    name: 'Firebase-Authenticator',
-  },
-  {
-    github: true,
-    name: 'IoT-Firebase-Authentication',
-  },
-  {
-    github: true,
-    name: 'Angular-Gulp-Boilerplate',
-    npm: true,
-  },
-  {
-    github: true,
-    name: 'Arduino-Coffeemaker',
-  },
-  {
-    github: true,
-    name: 'MeArm-Controller',
-  },
-  {
-    github: true,
-    name: 'MQTT-Home-Monitor',
-  },
-  {
-    github: true,
-    name: 'NodeMCU-Arduino-PlatformIO',
-  },
-  {
-    archived: true,
-    github: true,
-    name: 'Cordova-Bluetooth-Terminal',
-  },
+export const OPEN_SOURCE_PROJECTS: string[] = [
+  'Web-Bluetooth-Terminal',
+  'Portfolio',
+  'Portfolio-Firebase',
+  'Firebase-Authenticator',
+  'IoT-Firebase-Authentication',
+  'Angular-Gulp-Boilerplate',
+  'Arduino-Coffeemaker',
+  'MeArm-Controller',
+  'MQTT-Home-Monitor',
+  'NodeMCU-Arduino-PlatformIO',
+  'Cordova-Bluetooth-Terminal',
 ];
