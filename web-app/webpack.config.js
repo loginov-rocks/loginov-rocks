@@ -3,7 +3,7 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
-const { HotModuleReplacementPlugin } = require('webpack');
+const webpack = require('webpack');
 
 module.exports = {
   devServer: {
@@ -18,7 +18,7 @@ module.exports = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.[j|t]sx?$/,
+        test: /\.tsx?$/,
         use: 'babel-loader',
       },
     ],
@@ -45,7 +45,7 @@ module.exports = {
       scriptLoading: 'defer',
       template: 'public/index.html',
     }),
-    new HotModuleReplacementPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],

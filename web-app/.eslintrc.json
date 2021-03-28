@@ -27,8 +27,6 @@
       "error",
       "ignorePackages",
       {
-        "js": "never",
-        "jsx": "never",
         "ts": "never",
         "tsx": "never"
       }
@@ -46,7 +44,6 @@
       "error",
       {
         "extensions": [
-          ".jsx",
           ".tsx"
         ]
       }
@@ -65,7 +62,6 @@
       "node": {
         "extensions": [
           ".js",
-          ".jsx",
           ".ts",
           ".tsx"
         ],

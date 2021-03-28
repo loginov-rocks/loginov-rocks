@@ -1,8 +1,8 @@
 {
   "extends": [
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
@@ -18,17 +18,14 @@
         "allowTypedFunctionExpressions": true
       }
     ],
-    "@typescript-eslint/no-use-before-define": "error",
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "js": "never",
         "ts": "never"
       }
     ],
     "import/prefer-default-export": "off",
-    "no-use-before-define": "off",
     "max-len": [
       "error",
       {
@@ -49,7 +46,6 @@
     "import/resolver": {
       "node": {
         "extensions": [
-          ".js",
           ".ts"
         ]
       }

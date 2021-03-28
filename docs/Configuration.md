@@ -25,7 +25,7 @@
 
 ### Web App S3 Bucket
 
-Block all public access, configure Origin Access Identity for the CloudFront Distribution. 
+Block all public access, configure Origin Access Identity for the CloudFront Distribution.
 
 ### Web App Cloudfront Distribution
 
@@ -33,67 +33,68 @@ Simple setup using one origin (Web App S3 Bucket) with the help of Origin Access
 
 ### Update GitHub Lambda
 
-Basic execution role, but also:
+Basic execution role, but also `loginov-rocks-update-github-inline-policy`:
 
 * S3 PutObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and `WEB_APP_S3_GITHUB_FILE_KEY`
 * CloudFront CreateInvalidation for a specific resource matching `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutObject",
-                "cloudfront:CreateInvalidation"
-            ],
-            "Resource": [
-                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}",
-                "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
-            ]
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "cloudfront:CreateInvalidation"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}",
+        "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
+      ]
+    }
+  ]
 }
 ```
 
 ### AWS User
 
-AWS User is required for the Continuous Deployment done with GitHub Actions.
+AWS User is required for the Continuous Deployment done with GitHub Actions - `loginov-rocks-github-cd` user with the
+`loginov-rocks-github-cd-inline-policy`:
 
 * S3: ListBucket, GetObject, PutObject, DeleteObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and any
-object in it
+  object in it
 * CloudFront: ListInvalidations, GetInvalidation, CreateInvalidation for a specific resource matching
-`WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
+  `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
 * Lambda: CreateFunction, UpdateFunctionCode, UpdateFunctionConfiguration for a specific matching `AWS_REGION` and
-`UPDATE_GITHUB_LAMBDA_NAME`
+  `UPDATE_GITHUB_LAMBDA_NAME`
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "s3:PutObject",
-                "s3:GetObject",
-                "s3:ListBucket",
-                "s3:DeleteObject",
-                "cloudfront:ListInvalidations",
-                "cloudfront:GetInvalidation",
-                "cloudfront:CreateInvalidation",
-                "lambda:CreateFunction",
-                "lambda:UpdateFunctionCode",
-                "lambda:UpdateFunctionConfiguration"
-            ],
-            "Resource": [
-                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*",
-                "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}",
-                "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}",
-                "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
-            ]
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:ListBucket",
+        "s3:DeleteObject",
+        "cloudfront:ListInvalidations",
+        "cloudfront:GetInvalidation",
+        "cloudfront:CreateInvalidation",
+        "lambda:CreateFunction",
+        "lambda:UpdateFunctionCode",
+        "lambda:UpdateFunctionConfiguration"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*",
+        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}",
+        "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}",
+        "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
+      ]
+    }
+  ]
 }
 ```
 

@@ -12,7 +12,7 @@ module.exports = {
     rules: [
       {
         exclude: /node_modules/,
-        test: /\.[j|t]s$/,
+        test: /\.ts$/,
         use: 'babel-loader',
       },
     ],
@@ -22,9 +22,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    alias: {
-      Constants: path.resolve(__dirname, 'src/Constants.ts'),
-    },
     extensions: ['.js', '.ts'],
     modules: [
       'node_modules',
