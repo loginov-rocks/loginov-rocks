@@ -1,4 +1,4 @@
-import AWS from 'aws-sdk';
+import { S3 } from 'aws-sdk';
 
 interface Options {
   bucketName: string;
@@ -10,12 +10,12 @@ export class S3Object {
 
   private readonly fileKey: string;
 
-  private readonly s3: AWS.S3;
+  private readonly s3: S3;
 
   constructor({ bucketName, fileKey }: Options) {
     this.bucketName = bucketName;
     this.fileKey = fileKey;
-    this.s3 = new AWS.S3();
+    this.s3 = new S3();
   }
 
   async update(data: unknown): Promise<void> {

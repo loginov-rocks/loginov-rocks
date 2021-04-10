@@ -1,4 +1,4 @@
-import AWS from 'aws-sdk';
+import { CloudFront } from 'aws-sdk';
 
 interface Options {
   distributionId: string;
@@ -10,12 +10,12 @@ export class CloudFrontInvalidation {
 
   private readonly path: string;
 
-  private readonly cloudFront: AWS.CloudFront;
+  private readonly cloudFront: CloudFront;
 
   constructor({ distributionId, path }: Options) {
     this.distributionId = distributionId;
     this.path = path;
-    this.cloudFront = new AWS.CloudFront();
+    this.cloudFront = new CloudFront();
   }
 
   async invalidate(): Promise<void> {
