@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import data from 'Data.json';
+import * as data from 'Data.json';
 
 import { App } from './App';
 
