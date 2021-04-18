@@ -7,7 +7,7 @@
 
 Monorepo for my [personal website](https://loginov.rocks).
 
-## Reference
+## Docs
 
 * [AWS Architecture Diagram](https://github.com/loginov-rocks/loginov-rocks/blob/main/docs/AWS%20Architecture%20Diagram.png)
 * [Configuration](https://github.com/loginov-rocks/loginov-rocks/blob/main/docs/Configuration.md)
