@@ -29,7 +29,13 @@ export class GitHub {
   }
 
   private static async mergeArrayResponses<T>(responsesStack: Response[]): Promise<T> {
-    const results = await Promise.all(responsesStack.map((response) => response.json()));
+    const results = await Promise.all(responsesStack.map((response) => {
+      if (!response.ok) {
+        throw new Error('GitHub one of the requests in merge array responses stack failed');
+      }
+
+      return response.json();
+    }));
 
     const [firstResult, ...otherResults] = results;
 
@@ -85,6 +91,10 @@ export class GitHub {
   private async getGitHubUser(): Promise<GitHubUser> {
     const response = await this.apiGet('/user');
 
+    if (!response.ok) {
+      throw new Error('GitHub get user request failed');
+    }
+
     return response.json();
   }
 
@@ -104,6 +114,10 @@ export class GitHub {
    */
   private async getGitHubTags(ownerLogin: string, repoName: string): Promise<GitHubTag[]> {
     const response = await this.apiGet(`/repos/${ownerLogin}/${repoName}/tags`);
+
+    if (!response.ok) {
+      throw new Error('GitHub get tags request failed');
+    }
 
     return response.json();
   }
