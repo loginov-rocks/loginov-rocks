@@ -16,7 +16,7 @@ export const App: React.FunctionComponent<Props> = ({ homeData }: Props) => (
       <Route exact path="/">
         <Home data={homeData} />
       </Route>
-      <Route path="/dolph">
+      <Route path="/:lang?/dolph">
         <Dolph />
       </Route>
       <Route path="*">

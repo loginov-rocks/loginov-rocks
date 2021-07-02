@@ -1,0 +1,3 @@
+.link:before {
+    content: '+' attr(data-ghi) attr(data-abc) attr(data-jkl) attr(data-def);
+}

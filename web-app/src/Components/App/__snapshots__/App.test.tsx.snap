@@ -139,7 +139,7 @@ exports[`matches snapshot 1`] = `
       />
     </Route>
     <Route
-      path="/dolph"
+      path="/:lang?/dolph"
     >
       <Dolph />
     </Route>
