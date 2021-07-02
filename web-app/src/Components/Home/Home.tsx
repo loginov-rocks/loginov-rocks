@@ -4,16 +4,16 @@ import * as React from 'react';
 import { SocialPresence } from 'Components/SocialPresence';
 import { WorksList } from 'Components/WorksList';
 import { WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
-import { Data } from 'Lib/Data';
+import { HomeData } from 'Data/Interfaces/HomeData';
 import { GitHubData as GetGitHubData } from 'Lib/GitHubData';
 
 const getGitHubData = new GetGitHubData({ url: `/${WEB_APP_S3_GITHUB_FILE_KEY}` });
 
 interface Props {
-  data: Data;
+  data: HomeData;
 }
 
-export const App: React.FunctionComponent<Props> = ({ data }: Props) => {
+export const Home: React.FunctionComponent<Props> = ({ data }: Props) => {
   const [gitHubData, setGitHubData] = React.useState<GitHubData | null>(null);
 
   React.useEffect(() => {

@@ -1,6 +1,6 @@
 import { SocialPresenceItem } from './SocialPresenceItem';
 
-export interface Data {
+export interface HomeData {
   openSource: {
     libraries: string[];
     projects: string[];

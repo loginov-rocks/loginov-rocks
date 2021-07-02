@@ -3,12 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import * as data from 'Data.json';
+import * as homeData from 'Data/Home.json';
 
 import { SocialPresence } from './SocialPresence';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(<SocialPresence items={data.socialPresenceItems} />);
+  const wrapper = shallow(<SocialPresence items={homeData.socialPresenceItems} />);
 
   expect(wrapper).toMatchSnapshot();
 });
