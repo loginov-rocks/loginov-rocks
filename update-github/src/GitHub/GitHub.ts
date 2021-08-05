@@ -11,6 +11,15 @@ interface Options {
 }
 
 export class GitHub {
+  private readonly baseUrl: string;
+
+  private readonly personalAccessToken: string;
+
+  constructor({ baseUrl, personalAccessToken }: Options) {
+    this.baseUrl = baseUrl;
+    this.personalAccessToken = personalAccessToken;
+  }
+
   private static parseNextPageUrl(headers: Headers): string | undefined {
     const header = headers.get('Link');
 
@@ -46,13 +55,17 @@ export class GitHub {
     return firstResult;
   }
 
-  private readonly baseUrl: string;
+  async getData(): Promise<Data> {
+    const gitHubUser = await this.getGitHubUser();
+    const repos = await this.getRepos();
 
-  private readonly personalAccessToken: string;
-
-  constructor({ baseUrl, personalAccessToken }: Options) {
-    this.baseUrl = baseUrl;
-    this.personalAccessToken = personalAccessToken;
+    return {
+      homepageUrl: gitHubUser.blog,
+      login: gitHubUser.login,
+      repos,
+      timestamp: Date.now(),
+      url: gitHubUser.html_url,
+    };
   }
 
   /**
@@ -152,18 +165,5 @@ export class GitHub {
         url: repo.html_url,
       };
     });
-  }
-
-  async getData(): Promise<Data> {
-    const gitHubUser = await this.getGitHubUser();
-    const repos = await this.getRepos();
-
-    return {
-      homepageUrl: gitHubUser.blog,
-      login: gitHubUser.login,
-      repos,
-      timestamp: Date.now(),
-      url: gitHubUser.html_url,
-    };
   }
 }
