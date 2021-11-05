@@ -43,15 +43,16 @@ Basic execution role, but also `loginov-rocks-update-github-inline-policy`:
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "VisualEditor0",
       "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "cloudfront:CreateInvalidation"
-      ],
-      "Resource": [
-        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}",
-        "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
-      ]
+      "Action": "s3:PutObject",
+      "Resource": "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": "cloudfront:CreateInvalidation",
+      "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
     }
   ]
 }
@@ -74,25 +75,38 @@ AWS User is required for the Continuous Deployment done with GitHub Actions - `l
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": [
         "s3:PutObject",
         "s3:GetObject",
         "s3:ListBucket",
-        "s3:DeleteObject",
+        "s3:DeleteObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*",
+        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}"
+      ]
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
+      "Action": [
         "cloudfront:ListInvalidations",
         "cloudfront:GetInvalidation",
-        "cloudfront:CreateInvalidation",
+        "cloudfront:CreateInvalidation"
+      ],
+      "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
+    },
+    {
+      "Sid": "VisualEditor2",
+      "Effect": "Allow",
+      "Action": [
         "lambda:CreateFunction",
         "lambda:UpdateFunctionCode",
         "lambda:UpdateFunctionConfiguration"
       ],
-      "Resource": [
-        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*",
-        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}",
-        "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}",
-        "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
-      ]
+      "Resource": "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
     }
   ]
 }
