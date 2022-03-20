@@ -22,7 +22,9 @@
       "NodeMCU-Arduino-PlatformIO",
       "loginov-rocks",
       "Node-AWS-App",
-      "Cordova-Bluetooth-Terminal"
+      "Cordova-Bluetooth-Terminal",
+      "AWS-IoT-GSM-Modem",
+      "Build-Lambda-in-Docker"
     ]
   },
   "socialPresenceItems": [
@@ -58,6 +60,18 @@
     {
       "title": "npm",
       "url": "https://www.npmjs.com/~loginov-rocks"
+    },
+    {
+      "title": "Stack Overflow",
+      "url": "https://stackoverflow.com/users/5021580/danila-loginov"
+    },
+    {
+      "title": "vk",
+      "url": "https://vk.com/danilaloginov"
+    },
+    {
+      "title": "YouTube",
+      "url": "https://www.youtube.com/c/DanilaLoginov"
     }
   ]
 }

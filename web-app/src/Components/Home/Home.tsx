@@ -25,8 +25,13 @@ export const Home: React.FunctionComponent<Props> = ({ data }: Props) => {
 
   return (
     <>
-      <h1>Hi</h1>
-      <p>I am Danila, nice to meet you!</p>
+      <h1>Hello!</h1>
+      <p>
+        I am
+        {' '}
+        <strong>Danila</strong>
+        , nice to e-meet you!
+      </p>
       <>
         <h2>Social Presence</h2>
         <SocialPresence items={data.socialPresenceItems} />
