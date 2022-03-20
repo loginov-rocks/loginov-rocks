@@ -1,3 +1,5 @@
+/* eslint-disable import/no-import-module-exports */
+
 import {
   GITHUB_BASE_URL,
   GITHUB_PERSONAL_ACCESS_TOKEN,

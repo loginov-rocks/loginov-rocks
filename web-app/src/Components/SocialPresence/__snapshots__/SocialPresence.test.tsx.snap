@@ -82,5 +82,32 @@ exports[`matches snapshot 1`] = `
       npm
     </Link>
   </li>
+  <li
+    key="8"
+  >
+    <Link
+      href="https://stackoverflow.com/users/5021580/danila-loginov"
+    >
+      Stack Overflow
+    </Link>
+  </li>
+  <li
+    key="9"
+  >
+    <Link
+      href="https://vk.com/danilaloginov"
+    >
+      vk
+    </Link>
+  </li>
+  <li
+    key="10"
+  >
+    <Link
+      href="https://www.youtube.com/c/DanilaLoginov"
+    >
+      YouTube
+    </Link>
+  </li>
 </ul>
 `;

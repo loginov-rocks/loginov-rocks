@@ -3,11 +3,9 @@
 const CopyPlugin = require('copy-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    contentBase: path.join(__dirname, 'public'),
     historyApiFallback: true,
     hot: true,
     port: 3000,
@@ -57,7 +55,6 @@ module.exports = {
       scriptLoading: 'defer',
       template: 'public/index.html',
     }),
-    new webpack.HotModuleReplacementPlugin(),
   ],
   resolve: {
     extensions: ['.js', '.ts', '.tsx'],

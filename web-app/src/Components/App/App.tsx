@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { Dolph } from 'Components/Dolph';
 import { Home } from 'Components/Home';
@@ -10,18 +10,12 @@ interface Props {
   homeData: HomeData;
 }
 
-export const App: React.FunctionComponent<Props> = ({ homeData }: Props) => (
+export const App: React.FunctionComponent<Props> = ({ homeData }) => (
   <BrowserRouter>
-    <Switch>
-      <Route exact path="/">
-        <Home data={homeData} />
-      </Route>
-      <Route path="/:lang?/dolph">
-        <Dolph />
-      </Route>
-      <Route path="*">
-        <NotFound />
-      </Route>
-    </Switch>
+    <Routes>
+      <Route index element={<Home data={homeData} />} />
+      <Route path="dolph" element={<Dolph />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   </BrowserRouter>
 );

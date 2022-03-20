@@ -5,6 +5,8 @@
     "jsx": "react",
     "noEmit": true,
     "resolveJsonModule": true,
+    // TODO: Remove after `react-router-dom` fixes its TypeScript issues.
+    "skipLibCheck": true,
     "strict": true
   }
 }

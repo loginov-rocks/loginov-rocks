@@ -5,6 +5,6 @@ interface Props {
   children: React.ReactNode;
 }
 
-export const Link: React.FunctionComponent<Props> = ({ children, href }: Props) => (
+export const Link: React.FunctionComponent<Props> = ({ children, href }) => (
   <a href={href} rel="noopener noreferrer" target="_blank">{children}</a>
 );

@@ -13,7 +13,7 @@ interface Props {
   data: HomeData;
 }
 
-export const Home: React.FunctionComponent<Props> = ({ data }: Props) => {
+export const Home: React.FunctionComponent<Props> = ({ data }) => {
   const [gitHubData, setGitHubData] = React.useState<GitHubData | null>(null);
 
   React.useEffect(() => {

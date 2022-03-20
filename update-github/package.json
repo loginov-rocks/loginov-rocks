@@ -1,6 +1,6 @@
 {
   "name": "@loginov-rocks/loginov-rocks-update-github",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Update GitHub",
   "scripts": {
     "build": "npm run clean:build && webpack --mode production",
@@ -27,28 +27,28 @@
   "homepage": "https://loginov.rocks",
   "dependencies": {
     "@loginov-rocks/loginov-rocks-shared": "file:../shared",
-    "aws-sdk": "^2.1022.0",
-    "node-fetch": "^2.6.6"
+    "aws-sdk": "^2.1096.0",
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.0",
-    "@babel/preset-typescript": "^7.16.0",
-    "@types/jest": "^27.0.2",
-    "@types/node-fetch": "^2.5.12",
-    "@typescript-eslint/eslint-plugin": "^5.3.0",
-    "@typescript-eslint/parser": "^5.3.0",
-    "babel-jest": "^27.3.1",
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "@types/node-fetch": "^2.6.1",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
-    "eslint": "^8.1.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.25.2",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
     "fetch-mock-jest": "^1.5.1",
-    "jest": "^27.3.1",
+    "jest": "^27.5.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.4.4",
-    "webpack": "^5.61.0",
-    "webpack-cli": "^4.9.1"
+    "typescript": "^4.6.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
   },
   "jest": {
     "collectCoverageFrom": [

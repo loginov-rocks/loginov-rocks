@@ -8,7 +8,7 @@ interface Props {
   items: SocialPresenceItem[];
 }
 
-export const SocialPresence: React.FunctionComponent<Props> = ({ items }: Props) => (
+export const SocialPresence: React.FunctionComponent<Props> = ({ items }) => (
   <ul>
     {items.map((item, index) => {
       let content;

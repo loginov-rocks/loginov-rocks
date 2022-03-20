@@ -8,7 +8,7 @@ interface Props {
   works: string[];
 }
 
-export const WorksList: React.FunctionComponent<Props> = ({ gitHubRepos, works }: Props) => (
+export const WorksList: React.FunctionComponent<Props> = ({ gitHubRepos, works }) => (
   <ul>
     {/* eslint-disable-next-line react/no-array-index-key */}
     {works.map((work, index) => <WorksListItem gitHubRepos={gitHubRepos} key={index} work={work} />)}

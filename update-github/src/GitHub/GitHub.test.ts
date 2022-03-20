@@ -20,8 +20,10 @@ const gitHub = new GitHub({
 describe('getData', () => {
   it('gets GitHub data using API', async () => {
     fetchMock.get('https://api.github.com/user', gitHubUserMock)
-      .get('https://api.github.com/user/repos?affiliation=owner&per_page=100&sort=full_name&visibility=public',
-        gitHubReposMock)
+      .get(
+        'https://api.github.com/user/repos?affiliation=owner&per_page=100&sort=full_name&visibility=public',
+        gitHubReposMock,
+      )
       .get('https://api.github.com/repos/loginov-rocks/Angular-Gulp-Boilerplate/tags', gitHubTagsMock)
       .get('https://api.github.com/repos/loginov-rocks/Anticloud/tags', gitHubTagsMock)
       .get('https://api.github.com/repos/loginov-rocks/anticloud-server/tags', gitHubTagsMock);

@@ -12,7 +12,7 @@ interface Props {
 
 export const PhoneLink: React.FunctionComponent<Props> = ({
   first, fourth, second, third, title,
-}: Props) => {
+}) => {
   const handlePhoneClick = (): void => {
     const phone = `+${first}${second}${third}${fourth}`;
     window.location.href = `tel:${phone}`;
