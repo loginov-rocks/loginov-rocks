@@ -1,4 +1,6 @@
 # Root Directories
-/coverage/
-/dist/
+/.cache/
+# old /coverage/
+# old /dist/
 /node_modules/
+/public/
