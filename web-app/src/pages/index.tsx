@@ -1,10 +1,22 @@
+import { graphql } from 'gatsby';
 import * as React from 'react';
 
 import { Home } from 'Components/Home';
-import * as homeData from 'Data/Home.json';
 
-const IndexPage = () => (
-  <Home data={homeData} />
-);
+export const query = graphql`
+    query {
+        allSocialPresenceItem {
+            nodes {
+                title
+                url
+                url2
+            }
+        }
+        openSource {
+            projects
+            libraries
+        }
+    }
+`;
 
-export default IndexPage;
+export default Home;

@@ -19,6 +19,7 @@ const config: GatsbyConfig = {
         icon: 'src/images/icon.png',
       },
     },
+    'custom-source',
   ],
 };
 
