@@ -44,3 +44,8 @@ curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d
 docker ps
 docker exec -it <CONTAINER ID> bash
 ```
+
+## Reference
+
+* [Running Gatsby in an AWS Lambda](https://www.jameshill.dev/articles/running-gatsby-within-aws-lambda/)
+* [Creating Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)
