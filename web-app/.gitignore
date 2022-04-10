@@ -4,3 +4,6 @@
 # old /dist/
 /node_modules/
 /public/
+
+# Root Files
+/.env
