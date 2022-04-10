@@ -1,9 +1,5 @@
 import * as React from 'react';
 
-const NotFoundPage = () => (
-  <main>
-    <h1>Not Found</h1>
-  </main>
-);
+import { NotFound } from 'Components/NotFound';
 
-export default NotFoundPage;
+export default NotFound;

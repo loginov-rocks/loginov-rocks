@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import styles from './PhoneLink.styles.css';
+import * as styles from './PhoneLink.module.css';
 
 interface Props {
   first: string;

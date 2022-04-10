@@ -22,6 +22,7 @@
   },
   "homepage": "https://loginov.rocks",
   "dependencies": {
+    "@loginov-rocks/loginov-rocks-shared": "file:../shared",
     "gatsby": "^4.11.1",
     "gatsby-plugin-google-analytics": "^4.11.0",
     "gatsby-plugin-manifest": "^4.11.1",

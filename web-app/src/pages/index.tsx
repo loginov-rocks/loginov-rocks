@@ -1,9 +1,10 @@
 import * as React from 'react';
 
+import { Home } from 'Components/Home';
+import * as homeData from 'Data/Home.json';
+
 const IndexPage = () => (
-  <main>
-    <h1>Index</h1>
-  </main>
+  <Home data={homeData} />
 );
 
 export default IndexPage;

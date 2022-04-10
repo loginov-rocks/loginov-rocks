@@ -7,8 +7,10 @@
       <sourceFolder url="file://$MODULE_DIR$/web-app/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/update-github/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/update-github/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/web-app/.cache" />
       <excludeFolder url="file://$MODULE_DIR$/web-app/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/web-app/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/web-app/public" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
