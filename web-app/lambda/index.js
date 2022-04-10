@@ -1,16 +1,16 @@
 const { S3 } = require('aws-sdk');
 const path = require('path');
 
-const buildGatsby = require('./lambda/buildGatsby');
-const collectFilesPaths = require('./lambda/collectFilesPaths');
-const deployFilesToS3 = require('./lambda/deployFilesToS3');
+const buildGatsby = require('./buildGatsby');
+const collectFilesPaths = require('./collectFilesPaths');
+const deployFilesToS3 = require('./deployFilesToS3');
 
-const bucketName = process.env.WEB_APP_S3_BUCKET_NAME;
-const publicDirectoryPath = path.resolve(__dirname, process.env.PUBLIC_DIRECTORY_RELATIVE_PATH);
 const s3 = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
 });
+const bucketName = process.env.WEB_APP_S3_BUCKET_NAME;
+const publicDirectoryPath = path.resolve(__dirname, '..', process.env.PUBLIC_DIRECTORY_RELATIVE_PATH);
 
 const stdout = (data) => {
   console.log('Stdout:', data);

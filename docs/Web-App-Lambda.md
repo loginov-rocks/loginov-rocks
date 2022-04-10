@@ -45,6 +45,12 @@ docker ps
 docker exec -it <CONTAINER ID> bash
 ```
 
+## Without Docker
+
+```sh
+node lambda/without-docker
+```
+
 ## Reference
 
 * [Running Gatsby in an AWS Lambda](https://www.jameshill.dev/articles/running-gatsby-within-aws-lambda/)

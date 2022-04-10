@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { handler } = require('./lambda');
+const { handler } = require('./index');
 
 handler()
   .then((result) => {
