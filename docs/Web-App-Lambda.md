@@ -55,3 +55,4 @@ node lambda/without-docker
 
 * [Running Gatsby in an AWS Lambda](https://www.jameshill.dev/articles/running-gatsby-within-aws-lambda/)
 * [Creating Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)
+* [Creating Lambda functions defined as container images](https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html)
