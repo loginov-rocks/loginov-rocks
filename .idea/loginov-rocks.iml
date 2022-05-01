@@ -5,14 +5,13 @@
       <sourceFolder url="file://$MODULE_DIR$/shared/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/update-github/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/web-app/lambda" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/web-app/plugins" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/web-app/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/update-github/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/update-github/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/web-app/.cache" />
+      <excludeFolder url="file://$MODULE_DIR$/web-app/artifacts" />
       <excludeFolder url="file://$MODULE_DIR$/web-app/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/web-app/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/web-app/public" />
+      <excludeFolder url="file://$MODULE_DIR$/web-app/tmp" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

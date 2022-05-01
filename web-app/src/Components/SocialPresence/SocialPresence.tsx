@@ -2,13 +2,10 @@ import * as React from 'react';
 
 import { Link } from 'Components/Link';
 import { SOCIAL_PRESENCE_DRIVE2_TITLE } from 'Constants';
+import { SocialPresenceItem } from 'Data/Interfaces/SocialPresenceItem';
 
 interface Props {
-  items: Array<{
-    title: string;
-    url: string;
-    url2: string | null;
-  }>;
+  items: SocialPresenceItem[];
 }
 
 export const SocialPresence: React.FunctionComponent<Props> = ({ items }) => (

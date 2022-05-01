@@ -4,24 +4,13 @@ import * as React from 'react';
 import { SocialPresence } from 'Components/SocialPresence';
 import { WorksList } from 'Components/WorksList';
 import { WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
+import { HomeData } from 'Data/Interfaces/HomeData';
 import { GitHubData as GetGitHubData } from 'Lib/GitHubData';
 
 const getGitHubData = new GetGitHubData({ url: `/${WEB_APP_S3_GITHUB_FILE_KEY}` });
 
 interface Props {
-  data: {
-    allSocialPresenceItem: {
-      nodes: Array<{
-        title: string;
-        url: string;
-        url2: string | null;
-      }>;
-    };
-    openSource: {
-      libraries: string[];
-      projects: string[];
-    };
-  };
+  data: HomeData;
 }
 
 export const Home: React.FunctionComponent<Props> = ({ data }) => {
@@ -45,7 +34,7 @@ export const Home: React.FunctionComponent<Props> = ({ data }) => {
       </p>
       <>
         <h2>Social Presence</h2>
-        <SocialPresence items={data.allSocialPresenceItem.nodes} />
+        <SocialPresence items={data.socialPresenceItems} />
       </>
       <>
         <h2>Open Source</h2>

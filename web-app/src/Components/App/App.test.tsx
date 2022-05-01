@@ -5,10 +5,10 @@ import * as React from 'react';
 
 import * as homeData from 'Data/Home.json';
 
-import { SocialPresence } from './SocialPresence';
+import { App } from './App';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(<SocialPresence items={homeData.socialPresenceItems} />);
+  const wrapper = shallow(<App homeData={homeData} />);
 
   expect(wrapper).toMatchSnapshot();
 });

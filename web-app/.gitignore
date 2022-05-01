@@ -1,9 +1,9 @@
 # Root Directories
-/.cache/
-# old /coverage/
-# old /dist/
+/artifacts/
+/coverage/
+/dist/
 /node_modules/
-/public/
+/tmp/
 
 # Root Files
 /.env

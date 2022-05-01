@@ -1,0 +1,85 @@
+{
+  "openSource": {
+    "libraries": [
+      "UbxGps",
+      "bluetooth-terminal",
+      "canvas-heightmap",
+      "comments-extractor",
+      "gulpdoc",
+      "gulp-locales-bundler",
+      "locales-bundler",
+      "react-native-redux-form",
+      "redux-repository",
+      "three-sky",
+      "ooyala-player-component"
+    ],
+    "projects": [
+      "Web-Bluetooth-Terminal",
+      "Portfolio",
+      "Firebase-Authenticator",
+      "Angular-Gulp-Boilerplate",
+      "Connected-Espresso-Machine",
+      "NodeMCU-Arduino-PlatformIO",
+      "loginov-rocks",
+      "Node-AWS-App",
+      "Cordova-Bluetooth-Terminal",
+      "AWS-IoT-GSM-Modem",
+      "Build-Lambda-in-Docker"
+    ]
+  },
+  "socialPresenceItems": [
+    {
+      "title": "LinkedIn",
+      "url": "https://www.linkedin.com/in/loginov-rocks/"
+    },
+    {
+      "title": "GitHub",
+      "url": "https://github.com/loginov-rocks"
+    },
+    {
+      "title": "Medium",
+      "url": "https://loginov-rocks.medium.com/"
+    },
+    {
+      "title": "DRIVE2",
+      "url": "https://www.drive2.com/r/toyota/chaser/288230376151952785/",
+      "url2": "https://www.drive2.ru/r/toyota/chaser/288230376151952785/"
+    },
+    {
+      "title": "Instagram",
+      "url": "https://www.instagram.com/loginov_rocks/"
+    },
+    {
+      "title": "Facebook",
+      "url": "https://www.facebook.com/danila.rocks"
+    },
+    {
+      "title": "Twitter",
+      "url": "https://twitter.com/loginov_rocks"
+    },
+    {
+      "title": "npm",
+      "url": "https://www.npmjs.com/~loginov-rocks"
+    },
+    {
+      "title": "Stack Overflow",
+      "url": "https://stackoverflow.com/users/5021580/danila-loginov"
+    },
+    {
+      "title": "vk",
+      "url": "https://vk.com/danilaloginov"
+    },
+    {
+      "title": "YouTube",
+      "url": "https://www.youtube.com/c/DanilaLoginov"
+    },
+    {
+      "title": "about.me",
+      "url": "https://about.me/danilaloginov"
+    },
+    {
+      "title": "Habr",
+      "url": "https://habr.com/en/users/loginov/"
+    }
+  ]
+}
