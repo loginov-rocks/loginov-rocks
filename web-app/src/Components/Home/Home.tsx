@@ -1,52 +1,38 @@
 import { GitHubData } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
-import { SocialPresence } from 'Components/SocialPresence';
-import { WorksList } from 'Components/WorksList';
-import { WEB_APP_S3_GITHUB_FILE_KEY } from 'Constants';
-import { HomeData } from 'Data/Interfaces/HomeData';
-import { GitHubData as GetGitHubData } from 'Lib/GitHubData';
-
-const getGitHubData = new GetGitHubData({ url: `/${WEB_APP_S3_GITHUB_FILE_KEY}` });
+import { SocialPresence } from '../SocialPresence';
+import { WorksList } from '../WorksList';
+import { HomeData } from '../../Data/Interfaces/HomeData';
 
 interface Props {
+  gitHubData: GitHubData;
   data: HomeData;
 }
 
-export const Home: React.FunctionComponent<Props> = ({ data }) => {
-  const [gitHubData, setGitHubData] = React.useState<GitHubData | null>(null);
-
-  React.useEffect(() => {
-    getGitHubData.get()
-      .then((_gitHubData) => {
-        setGitHubData(_gitHubData);
-      });
-  }, []);
-
-  return (
+export const Home: React.FunctionComponent<Props> = ({ gitHubData, data }) => (
+  <>
+    <h1>Hello!</h1>
+    <p>
+      I am
+      {' '}
+      <strong>Danila</strong>
+      , nice to e-meet you!
+    </p>
     <>
-      <h1>Hello!</h1>
-      <p>
-        I am
-        {' '}
-        <strong>Danila</strong>
-        , nice to e-meet you!
-      </p>
+      <h2>Social Presence</h2>
+      <SocialPresence items={data.socialPresenceItems} />
+    </>
+    <>
+      <h2>Open Source</h2>
       <>
-        <h2>Social Presence</h2>
-        <SocialPresence items={data.socialPresenceItems} />
+        <h3>Projects</h3>
+        <WorksList gitHubRepos={gitHubData.repos} works={data.openSource.projects} />
       </>
       <>
-        <h2>Open Source</h2>
-        <>
-          <h3>Projects</h3>
-          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={data.openSource.projects} />
-        </>
-        <>
-          <h3>Libraries</h3>
-          <WorksList gitHubRepos={gitHubData ? gitHubData.repos : []} works={data.openSource.libraries} />
-        </>
+        <h3>Libraries</h3>
+        <WorksList gitHubRepos={gitHubData.repos} works={data.openSource.libraries} />
       </>
     </>
-  );
-};
+  </>
+);

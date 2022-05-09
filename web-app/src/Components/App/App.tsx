@@ -1,21 +1,28 @@
+import { Link, Router } from '@reach/router';
 import * as React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { addPrefetchExcludes, Root, Routes } from 'react-static';
 
-import { Dolph } from 'Components/Dolph';
-import { Home } from 'Components/Home';
-import { NotFound } from 'Components/NotFound';
-import { HomeData } from 'Data/Interfaces/HomeData';
+import { DolphContainer } from '../../containers/DolphContainer';
 
-interface Props {
-  homeData: HomeData;
-}
+addPrefetchExcludes([
+  'dolph',
+]);
 
-export const App: React.FunctionComponent<Props> = ({ homeData }) => (
-  <BrowserRouter>
-    <Routes>
-      <Route index element={<Home data={homeData} />} />
-      <Route path="dolph" element={<Dolph />} />
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </BrowserRouter>
+export const App: React.FunctionComponent = () => (
+  <Root>
+    {/* TODO: Remove */}
+    <nav>
+      <Link to="/">Home</Link>
+      <Link to="/dolph">Dolph</Link>
+    </nav>
+    {/* TODO: Refactor */}
+    <React.Suspense fallback={<em>Loading...</em>}>
+      <Router>
+        <DolphContainer path="dolph" />
+        <Routes path="*" />
+      </Router>
+    </React.Suspense>
+  </Root>
 );
+
+export default App;

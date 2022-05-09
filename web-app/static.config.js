@@ -1,33 +1,22 @@
-import axios from 'axios'
-import { tmpdir } from 'os'
-import path from 'path'
-// import { Post } from './types'
+import { tmpdir } from 'os';
+import path from 'path';
+
+import { GitHubData } from './src/Lib/GitHubData';
 
 const pathsBase = process.env.LAMBDA_USE_TMPDIR === 'true' ? tmpdir() + '/' : '';
-
-// Typescript support in static.config.js is not yet supported, but is coming in a future update!
 
 export default {
   entry: path.join(__dirname, 'src', 'index.tsx'),
   getRoutes: async () => {
-    const { data: posts } /* :{ data: Post[] } */ = await axios.get(
-      'https://jsonplaceholder.typicode.com/posts'
-    )
+    const getGitHubData = new GitHubData({ url: 'https://loginov.rocks/github.json' });
+    const gitHubData = await getGitHubData.get();
+
     return [
       {
-        path: '/blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map((post /* : Post */) => ({
-          path: `/post/${post.id}`,
-          template: 'src/containers/Post',
-          getData: () => ({
-            post,
-          }),
-        })),
+        path: '/',
+        getData: () => ({ gitHubData }),
       },
-    ]
+    ];
   },
   paths: {
     buildArtifacts: pathsBase + 'artifacts',
@@ -35,6 +24,7 @@ export default {
     temp: pathsBase + 'tmp',
   },
   plugins: [
+    'react-static-plugin-css-modules',
     'react-static-plugin-typescript',
     [
       require.resolve('react-static-plugin-source-filesystem'),
@@ -45,4 +35,4 @@ export default {
     require.resolve('react-static-plugin-reach-router'),
     require.resolve('react-static-plugin-sitemap'),
   ],
-}
+};
