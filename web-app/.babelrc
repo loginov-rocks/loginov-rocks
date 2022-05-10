@@ -1,5 +1,7 @@
 {
   "presets": [
-    "react-static/babel-preset.js"
+    "react-static/babel-preset.js",
+    // Explicitly add TypeScript preset to support running tests with Jest.
+    "@babel/preset-typescript"
   ]
 }

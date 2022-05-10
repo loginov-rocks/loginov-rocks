@@ -9,6 +9,6 @@ export default () => {
   const { gitHubData } = useRouteData<{ gitHubData: GitHubData }>();
 
   return (
-    <Home gitHubData={gitHubData} data={homeData} />
+    <Home data={homeData} gitHubData={gitHubData} />
   );
 }

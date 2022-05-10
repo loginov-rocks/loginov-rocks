@@ -109,5 +109,23 @@ exports[`matches snapshot 1`] = `
       YouTube
     </Link>
   </li>
+  <li
+    key="11"
+  >
+    <Link
+      href="https://about.me/danilaloginov"
+    >
+      about.me
+    </Link>
+  </li>
+  <li
+    key="12"
+  >
+    <Link
+      href="https://habr.com/en/users/loginov/"
+    >
+      Habr
+    </Link>
+  </li>
 </ul>
 `;
