@@ -5,8 +5,8 @@
       <sourceFolder url="file://$MODULE_DIR$/shared/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/update-github/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/web-app/lambda" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/web-app/routes" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/web-app/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/web-app/static" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/update-github/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/update-github/dist" />
       <excludeFolder url="file://$MODULE_DIR$/web-app/artifacts" />

@@ -1,4 +1,7 @@
 {
+  "env": {
+    "jest": true
+  },
   "extends": [
     "eslint:recommended",
     "airbnb"
@@ -11,6 +14,12 @@
       {
         "code": 120,
         "ignoreTemplateLiterals": true
+      }
+    ],
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": "arrow-function"
       }
     ],
     "sort-keys": [

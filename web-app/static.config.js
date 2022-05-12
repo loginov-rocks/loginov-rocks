@@ -1,11 +1,13 @@
 import os from 'os';
 import path from 'path';
 
-import routes from './routes';
+import { Document } from './static/components/Document';
+import routes from './static/routes';
 
 const pathsBase = process.env.LAMBDA_USE_TMPDIR === 'true' ? `${os.tmpdir()}/` : '';
 
 export default {
+  Document,
   entry: path.resolve('./src/index.tsx'),
   getRoutes: routes.get(),
   paths: {

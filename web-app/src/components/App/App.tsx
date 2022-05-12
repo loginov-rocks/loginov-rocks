@@ -1,7 +1,8 @@
-import { Link, Router } from '@reach/router';
+import { Router } from '@reach/router';
 import * as React from 'react';
 import { addPrefetchExcludes, Root, Routes } from 'react-static';
 
+import { Loading } from 'components/Loading';
 import { DolphContainer } from 'containers/DolphContainer';
 
 addPrefetchExcludes([
@@ -10,13 +11,7 @@ addPrefetchExcludes([
 
 export const App: React.FunctionComponent = () => (
   <Root>
-    {/* TODO: Remove */}
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/dolph">Dolph</Link>
-    </nav>
-    {/* TODO: Refactor */}
-    <React.Suspense fallback={<em>Loading...</em>}>
+    <React.Suspense fallback={<Loading />}>
       <Router>
         <DolphContainer path="dolph" />
         <Routes path="*" />
@@ -24,5 +19,3 @@ export const App: React.FunctionComponent = () => (
     </React.Suspense>
   </Root>
 );
-
-export default App;

@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<MockComponent>
+  <MockComponent>
+    <meta
+      charset="utf-8"
+    />
+    <meta
+      content="Personal Website of Danila Loginov"
+      name="description"
+    />
+    <meta
+      content="all"
+      name="robots"
+    />
+    <meta
+      content="width=device-width, initial-scale=1"
+      name="viewport"
+    />
+    <title>
+      Danila Loginov
+    </title>
+    <link
+      href="/manifest.json"
+      rel="manifest"
+    />
+  </MockComponent>
+  <MockComponent>
+    <MockComponent>
+      Hello, world!
+    </MockComponent>
+  </MockComponent>
+</MockComponent>
+`;

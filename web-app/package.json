@@ -11,7 +11,7 @@
     "start": "react-static start",
     "clean:coverage": "rimraf coverage",
     "coverage": "npm run clean:coverage && npm run test:coverage",
-    "lint": "eslint --ext js,ts,tsx lambda routes src static.config.js",
+    "lint": "eslint --ext js,jsx,ts,tsx lambda src static static.config.js",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "test:update": "npm test -- --updateSnapshot",
@@ -61,6 +61,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.5.1",
     "mime": "^3.0.0",
+    "prop-types": "^15.8.1",
     "react-static-plugin-css-modules": "^7.5.1",
     "react-static-plugin-reach-router": "^7.5.1",
     "react-static-plugin-sitemap": "^7.5.1",
@@ -73,8 +74,8 @@
   "jest": {
     "collectCoverageFrom": [
       "<rootDir>/lambda/**/*.js",
-      "<rootDir>/routes/**/*.js",
-      "<rootDir>/src/**/*.{ts,tsx}"
+      "<rootDir>/src/**/*.{ts,tsx}",
+      "<rootDir>/static/**/*.{js,jsx}"
     ],
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy"
