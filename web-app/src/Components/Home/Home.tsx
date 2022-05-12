@@ -1,9 +1,9 @@
 import { GitHubData } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
-import { SocialPresence } from '../SocialPresence';
-import { WorksList } from '../WorksList';
-import { HomeData } from '../../Data/Interfaces/HomeData';
+import { SocialPresence } from 'Components/SocialPresence';
+import { WorksList } from 'Components/WorksList';
+import { HomeData } from 'Data/Interfaces/HomeData';
 
 interface Props {
   gitHubData: GitHubData;

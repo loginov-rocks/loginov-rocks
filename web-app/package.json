@@ -3,14 +3,14 @@
   "version": "2.4.2",
   "description": "Web App",
   "scripts": {
-    "stage": "react-static build --staging",
+    "export": "react-static export",
     "build": "react-static build",
     "bundle": "react-static bundle",
-    "export": "react-static export",
     "serve": "serve dist -p 3000 -s",
+    "stage": "react-static build --staging",
+    "start": "react-static start",
     "clean:coverage": "rimraf coverage",
     "coverage": "npm run clean:coverage && npm run test:coverage",
-    "start": "react-static start",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "test:update": "npm test -- --updateSnapshot",
@@ -70,6 +70,9 @@
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy"
     },
+    "modulePaths": [
+      "<rootDir>/src/"
+    ],
     "setupFilesAfterEnv": [
       "<rootDir>/src/setupTests.ts"
     ],

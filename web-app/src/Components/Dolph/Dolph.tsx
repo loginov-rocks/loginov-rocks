@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { PhoneLink } from '../PhoneLink';
+import { PhoneLink } from 'Components/PhoneLink';
 
 export const Dolph: React.FunctionComponent = () => (
   <>
