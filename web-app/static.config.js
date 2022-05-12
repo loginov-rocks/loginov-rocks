@@ -3,15 +3,15 @@ import path from 'path';
 
 import routes from './routes';
 
-const pathsBase = process.env.LAMBDA_USE_TMPDIR === 'true' ? os.tmpdir() + '/' : '';
+const pathsBase = process.env.LAMBDA_USE_TMPDIR === 'true' ? `${os.tmpdir()}/` : '';
 
 export default {
   entry: path.resolve('./src/index.tsx'),
   getRoutes: routes.get(),
   paths: {
-    buildArtifacts: pathsBase + 'artifacts',
-    dist: pathsBase + 'dist',
-    temp: pathsBase + 'tmp',
+    buildArtifacts: `${pathsBase}artifacts`,
+    dist: `${pathsBase}dist`,
+    temp: `${pathsBase}tmp`,
   },
   plugins: [
     'react-static-plugin-css-modules',

@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "airbnb"
+  ],
+  "rules": {
+    "import/no-extraneous-dependencies": "off",
+    "import/prefer-default-export": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 120,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "sort-keys": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": false,
+        "natural": true
+      }
+    ]
+  }
+}

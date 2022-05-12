@@ -20,7 +20,7 @@ export class GitHubData {
 
   get()/* : Promise<Data> */ {
     if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line @typescript-eslint/no-var-requires, global-require
+      // eslint-disable-next-line global-require
       const gitHubMockData = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/data.json');
 
       return Promise.resolve(gitHubMockData);

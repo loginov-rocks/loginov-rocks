@@ -5,10 +5,12 @@ import { useRouteData } from 'react-static';
 import { Home } from 'components/Home';
 import * as homeData from 'data/home.json';
 
-export default () => {
+const HomePage: React.FunctionComponent = () => {
   const { gitHubData } = useRouteData<{ gitHubData: GitHubData }>();
 
   return (
     <Home data={homeData} gitHubData={gitHubData} />
   );
-}
+};
+
+export default HomePage;

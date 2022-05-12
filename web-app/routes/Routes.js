@@ -12,8 +12,8 @@ export class Routes {
       const data = await route.getData();
 
       return {
-        path,
         getData: () => data,
+        path,
       };
     }));
   }

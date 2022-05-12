@@ -1,3 +1,5 @@
+/* eslint-disable import/no-import-module-exports */
+
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
@@ -15,7 +17,7 @@ if (typeof document !== 'undefined') {
     ? ReactDOM.hydrate
     : ReactDOM.render;
 
-  const render = (Component: React.FunctionComponent) => {
+  const render = (Component: React.FunctionComponent): void => {
     renderMethod(
       <AppContainer>
         <Component />

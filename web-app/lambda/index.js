@@ -16,7 +16,7 @@ if (process.env.LAMBDA_USE_POLICY !== 'true') {
 const s3 = new S3(s3Configuration);
 
 const bucketName = process.env.LAMBDA_S3_BUCKET_NAME;
-const distDirectoryPath = process.env.LAMBDA_USE_TMPDIR === 'true' ? tmpdir() + '/dist' : path.resolve('dist');
+const distDirectoryPath = process.env.LAMBDA_USE_TMPDIR === 'true' ? `${tmpdir()}/dist` : path.resolve('dist');
 
 const stdout = (data) => {
   console.log('Stdout:', data);
@@ -43,7 +43,7 @@ exports.handler = async (event) => {
 
   console.log('Files Paths:', filesPaths);
 
-  const deployFilesToS3Results = await deployFilesToS3(s3, bucketName, distDirectoryPath, filesPaths);
+  await deployFilesToS3(s3, bucketName, distDirectoryPath, filesPaths);
 
   return {};
 };
