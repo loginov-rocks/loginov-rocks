@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { Dolph } from 'Components/Dolph';
+import { Dolph } from 'components/Dolph';
 
 interface Props {
   path?: string;

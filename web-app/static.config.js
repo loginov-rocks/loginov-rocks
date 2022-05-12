@@ -1,12 +1,12 @@
-import { tmpdir } from 'os';
+import os from 'os';
 import path from 'path';
 
 import routes from './routes';
 
-const pathsBase = process.env.LAMBDA_USE_TMPDIR === 'true' ? tmpdir() + '/' : '';
+const pathsBase = process.env.LAMBDA_USE_TMPDIR === 'true' ? os.tmpdir() + '/' : '';
 
 export default {
-  entry: path.join(__dirname, 'src', 'index.tsx'),
+  entry: path.resolve('./src/index.tsx'),
   getRoutes: routes.get(),
   paths: {
     buildArtifacts: pathsBase + 'artifacts',
@@ -15,14 +15,14 @@ export default {
   },
   plugins: [
     'react-static-plugin-css-modules',
-    'react-static-plugin-typescript',
+    'react-static-plugin-reach-router',
+    'react-static-plugin-sitemap',
     [
-      require.resolve('react-static-plugin-source-filesystem'),
+      'react-static-plugin-source-filesystem',
       {
         location: path.resolve('./src/pages'),
       },
     ],
-    require.resolve('react-static-plugin-reach-router'),
-    require.resolve('react-static-plugin-sitemap'),
+    'react-static-plugin-typescript',
   ],
 };

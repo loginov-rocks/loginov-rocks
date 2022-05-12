@@ -1,8 +1,9 @@
 import * as React from 'react';
 
-import { Link } from 'Components/Link';
 import { SOCIAL_PRESENCE_DRIVE2_TITLE } from 'Constants';
-import { SocialPresenceItem } from 'Data/Interfaces/SocialPresenceItem';
+
+import { Link } from 'components/Link';
+import { SocialPresenceItem } from 'data/SocialPresenceItem';
 
 interface Props {
   items: SocialPresenceItem[];

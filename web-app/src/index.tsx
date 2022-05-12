@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import { App } from 'Components/App';
+import { App } from 'components/App';
 
 if (typeof document !== 'undefined') {
   const target = document.getElementById('root');
@@ -28,7 +28,7 @@ if (typeof document !== 'undefined') {
 
   // Hot Module Replacement support.
   if (module && module.hot) {
-    module.hot.accept('Components/App', () => {
+    module.hot.accept('components/App', () => {
       render(App);
     });
   }

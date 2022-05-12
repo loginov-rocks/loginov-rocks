@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import * as homeData from 'Data/Home.json';
+import * as homeData from 'data/home.json';
 
 import { SocialPresence } from './SocialPresence';
 
