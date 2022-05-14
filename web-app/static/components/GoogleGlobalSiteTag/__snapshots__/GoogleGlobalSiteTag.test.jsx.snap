@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Fragment>
+  <script
+    async={true}
+    src="https://www.googletagmanager.com/gtag/js?id=test-tracking-id"
+  />
+  <script
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "
+window.dataLayer = window.dataLayer || [];
+
+function gtag() {
+  dataLayer.push(arguments);
+}
+
+gtag(\\"js\\", new Date());
+gtag(\\"config\\", \\"test-tracking-id\\");
+      ",
+      }
+    }
+  />
+</Fragment>
+`;
