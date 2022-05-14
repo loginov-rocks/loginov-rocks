@@ -1,3 +1,4 @@
+/*
 import { CloudFront } from 'aws-sdk';
 
 interface Options {
@@ -36,3 +37,4 @@ export class CloudFrontInvalidation {
     }).promise();
   }
 }
+*/

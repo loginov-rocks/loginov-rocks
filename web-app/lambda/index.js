@@ -15,6 +15,11 @@ if (process.env.LAMBDA_USE_POLICY !== 'true') {
 
 const s3 = new S3(s3Configuration);
 
+// const cloudFrontInvalidation = new CloudFrontInvalidation({
+//   distributionId: WEB_APP_CLOUDFRONT_DISTRIBUTION_ID,
+//   path: `/${WEB_APP_S3_GITHUB_FILE_KEY}`,
+// });
+
 const bucketName = process.env.LAMBDA_S3_BUCKET_NAME;
 const distDirectoryPath = process.env.LAMBDA_USE_TMPDIR === 'true' ? `${tmpdir()}/dist` : path.resolve('dist');
 
@@ -26,6 +31,8 @@ const stderr = (data) => {
   console.error('Stderr:', data);
 };
 
+// TODO: Remove unnecessary files from the S3 bucket.
+// TODO: Invalidate the CloudFront distribution.
 exports.handler = async (event) => {
   console.log('Event:', event);
 
@@ -44,6 +51,8 @@ exports.handler = async (event) => {
   console.log('Files Paths:', filesPaths);
 
   await deployFilesToS3(s3, bucketName, distDirectoryPath, filesPaths);
+
+  // await cloudFrontInvalidation.invalidate();
 
   return {};
 };

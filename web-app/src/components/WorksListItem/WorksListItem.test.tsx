@@ -6,7 +6,7 @@ import * as React from 'react';
 import { WorksListItem } from './WorksListItem';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const gitHubMockData = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/data.json');
+const gitHubMockData = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/gitHubData.json');
 
 it('matches snapshot', () => {
   const wrapper = shallow(<WorksListItem work="Some work" />);

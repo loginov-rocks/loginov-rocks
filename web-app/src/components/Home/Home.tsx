@@ -1,16 +1,15 @@
-import { GitHubData } from '@loginov-rocks/loginov-rocks-shared';
+import { GitHubData, HomeData } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 import { SocialPresence } from 'components/SocialPresence';
 import { WorksList } from 'components/WorksList';
-import { HomeData } from 'data/HomeData';
 
 interface Props {
   gitHubData: GitHubData;
-  data: HomeData;
+  homeData: HomeData;
 }
 
-export const Home: React.FunctionComponent<Props> = ({ gitHubData, data }) => (
+export const Home: React.FunctionComponent<Props> = ({ gitHubData, homeData }) => (
   <>
     <h1>Hello!</h1>
     <p>
@@ -21,17 +20,17 @@ export const Home: React.FunctionComponent<Props> = ({ gitHubData, data }) => (
     </p>
     <>
       <h2>Social Presence</h2>
-      <SocialPresence items={data.socialPresenceItems} />
+      <SocialPresence items={homeData.socialPresenceItems} />
     </>
     <>
       <h2>Open Source</h2>
       <>
         <h3>Projects</h3>
-        <WorksList gitHubRepos={gitHubData.repos} works={data.openSource.projects} />
+        <WorksList gitHubRepos={gitHubData.repos} works={homeData.openSource.projects} />
       </>
       <>
         <h3>Libraries</h3>
-        <WorksList gitHubRepos={gitHubData.repos} works={data.openSource.libraries} />
+        <WorksList gitHubRepos={gitHubData.repos} works={homeData.openSource.libraries} />
       </>
     </>
   </>

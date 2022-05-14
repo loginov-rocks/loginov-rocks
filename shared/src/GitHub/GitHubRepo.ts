@@ -1,4 +1,4 @@
-export interface Repo {
+export interface GitHubRepo {
   description: string;
   homepageUrl: string;
   isArchived: boolean;

@@ -1,9 +1,9 @@
+import { SocialPresenceItem } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 import { SOCIAL_PRESENCE_DRIVE2_TITLE } from 'Constants';
 
 import { Link } from 'components/Link';
-import { SocialPresenceItem } from 'data/SocialPresenceItem';
 
 interface Props {
   items: SocialPresenceItem[];
