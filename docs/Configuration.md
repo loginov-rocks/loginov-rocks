@@ -71,29 +71,11 @@ AWS User is required for the Continuous Deployment done with GitHub Actions - `l
     {
       "Sid": "VisualEditor0",
       "Effect": "Allow",
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:ListBucket",
-        "s3:DeleteObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*",
-        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}"
-      ]
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/*"
     },
     {
       "Sid": "VisualEditor1",
-      "Effect": "Allow",
-      "Action": [
-        "cloudfront:ListInvalidations",
-        "cloudfront:GetInvalidation",
-        "cloudfront:CreateInvalidation"
-      ],
-      "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
-    },
-    {
-      "Sid": "VisualEditor2",
       "Effect": "Allow",
       "Action": [
         "lambda:CreateFunction",
