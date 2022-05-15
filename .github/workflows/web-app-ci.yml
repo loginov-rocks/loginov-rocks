@@ -20,19 +20,26 @@ jobs:
       run:
         working-directory: web-app
 
-    runs-on: ubuntu-latest
+    env:
+      LAMBDA_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      LAMBDA_S3_BUCKET_NAME: ${{ secrets.LAMBDA_S3_BUCKET_NAME }}
+      LAMBDA_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      LAMBDA_USE_POLICY: ${{ secrets.LAMBDA_USE_POLICY }}
+      LAMBDA_USE_TMPDIR: ${{ secrets.LAMBDA_USE_TMPDIR }}
 
-    strategy:
-      matrix:
-        node-version:
-          # last version
-          - 14
+      DATA_S3_BUCKET_NAME: ${{ secrets.DATA_S3_BUCKET_NAME }}
+      DATA_S3_GITHUB_FILE_KEY: ${{ secrets.DATA_S3_GITHUB_FILE_KEY }}
+      DATA_S3_HOME_FILE_KEY: ${{ secrets.DATA_S3_HOME_FILE_KEY }}
+
+      BABEL_DISABLE_CACHE: ${{ secrets.BABEL_DISABLE_CACHE }}
+
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck

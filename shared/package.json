@@ -4,8 +4,10 @@
   "description": "Shared",
   "main": "src/index.ts",
   "scripts": {
+    "package": "npm pack && mv loginov-rocks-loginov-rocks-shared-*.tgz loginov-rocks-loginov-rocks-shared.tgz",
+    "build": "tsc",
     "lint": "eslint --ext ts src",
-    "typecheck": "tsc"
+    "typecheck": "tsc --noEmit"
   },
   "repository": {
     "type": "git",

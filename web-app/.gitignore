@@ -1,4 +1,9 @@
 # Root Directories
+/artifacts/
 /coverage/
 /dist/
 /node_modules/
+/tmp/
+
+# Root Files
+/.env
