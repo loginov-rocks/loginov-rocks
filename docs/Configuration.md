@@ -46,13 +46,7 @@ Basic execution role, but also `loginov-rocks-update-github-inline-policy`:
       "Sid": "VisualEditor0",
       "Effect": "Allow",
       "Action": "s3:PutObject",
-      "Resource": "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/${WEB_APP_S3_GITHUB_FILE_KEY}"
-    },
-    {
-      "Sid": "VisualEditor1",
-      "Effect": "Allow",
-      "Action": "cloudfront:CreateInvalidation",
-      "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
+      "Resource": "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/${DATA_S3_GITHUB_FILE_KEY}"
     }
   ]
 }
