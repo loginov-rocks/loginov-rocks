@@ -12,6 +12,7 @@
     "clean:coverage": "rimraf coverage",
     "coverage": "npm run clean:coverage && npm run test:coverage",
     "lint": "eslint --ext js,jsx,ts,tsx lambda src static static.config.js",
+    "shared:copy": "cp ../shared/loginov-rocks-loginov-rocks-shared.tgz .",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "test:update": "npm test -- --updateSnapshot",
@@ -29,7 +30,7 @@
   },
   "homepage": "https://loginov.rocks",
   "dependencies": {
-    "@loginov-rocks/loginov-rocks-shared": "file:../shared",
+    "@loginov-rocks/loginov-rocks-shared": "file:loginov-rocks-loginov-rocks-shared.tgz",
     "@reach/router": "^1.3.4",
     "react": "^16.14.0",
     "react-dom": "^16.14.0",

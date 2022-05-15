@@ -1,2 +1,6 @@
 # Root Directories
+/dist/
 /node_modules/
+
+# Root Files
+/loginov-rocks-loginov-rocks-shared*.tgz

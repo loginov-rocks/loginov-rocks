@@ -11,6 +11,12 @@
     {
       "Sid": "VisualEditor0",
       "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/*"
+    },
+    {
+      "Sid": "VisualEditor1",
+      "Effect": "Allow",
       "Action": "s3:PutObject",
       "Resource": "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*"
     }
@@ -23,13 +29,13 @@
 ### Build
 
 ```sh
-docker build -t loginov-rocks-web-app .
+docker build -t loginov-rocks-web-app-repository .
 ```
 
 ### Run
 
 ```sh
-docker run --env-file .env -p 9000:8080 loginov-rocks-web-app
+docker run --env-file .env -p 9000:8080 loginov-rocks-web-app-repository
 ```
 
 ### Test
