@@ -1,4 +1,4 @@
-import { S3Object } from './S3Object';
+import { S3Object } from '@loginov-rocks/loginov-rocks-shared';
 
 export class HomeRoute {
   constructor({
@@ -23,23 +23,18 @@ export class HomeRoute {
       });
     }
 
-    const gitHubS3Object = new S3Object({
-      bucketName: this.dataS3BucketName,
-      fileKey: this.dataS3GitHubFileKey,
-      s3: this.s3,
-    });
-    const homeS3Object = new S3Object({
-      bucketName: this.dataS3BucketName,
-      fileKey: this.dataS3HomeFileKey,
-      s3: this.s3,
-    });
-
     const [
       gitHubS3ObjectData,
       homeS3ObjectData,
-    ] = await Promise.all([
-      gitHubS3Object.read(),
-      homeS3Object.read(),
+    ] = await S3Object.batchRead(this.s3, [
+      {
+        bucketName: this.dataS3BucketName,
+        fileKey: this.dataS3GitHubFileKey,
+      },
+      {
+        bucketName: this.dataS3BucketName,
+        fileKey: this.dataS3HomeFileKey,
+      },
     ]);
 
     const gitHubData = JSON.parse(gitHubS3ObjectData);

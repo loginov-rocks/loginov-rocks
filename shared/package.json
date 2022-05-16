@@ -2,11 +2,19 @@
   "name": "@loginov-rocks/loginov-rocks-shared",
   "version": "2.4.2",
   "description": "Shared",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "npm run clean:build && webpack --mode production && npm run build:types",
+    "build:dev": "npm run clean:build && webpack --mode development && npm run build:types",
+    "build:types": "tsc --emitDeclarationOnly",
+    "clean:build": "rimraf dist",
+    "clean:coverage": "rimraf coverage",
+    "coverage": "npm run clean:coverage && npm run test:coverage",
+    "lint": "eslint --ext ts src webpack.config.js",
     "package": "npm pack && mv loginov-rocks-loginov-rocks-shared-*.tgz loginov-rocks-loginov-rocks-shared.tgz",
-    "build": "tsc",
-    "lint": "eslint --ext ts src",
+    "test": "jest",
+    "test:coverage": "npm test -- --coverage",
+    "test:update": "npm test -- --updateSnapshot",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -20,13 +28,30 @@
     "url": "https://github.com/loginov-rocks/loginov-rocks/issues"
   },
   "homepage": "https://loginov.rocks",
-  "dependencies": {},
+  "dependencies": {
+    "aws-sdk": "^2.1096.0"
+  },
   "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
+    "babel-jest": "^27.5.1",
+    "babel-loader": "^8.2.3",
     "eslint": "^8.11.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
-    "typescript": "^4.6.2"
+    "jest": "^27.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.6.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.ts"
+    ]
   }
 }
