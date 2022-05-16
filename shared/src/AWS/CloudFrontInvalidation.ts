@@ -1,7 +1,8 @@
-/*
 import { CloudFront } from 'aws-sdk';
+import { CreateInvalidationResult } from 'aws-sdk/clients/cloudfront';
 
 interface Options {
+  cloudFront: CloudFront;
   distributionId: string;
   path: string;
 }
@@ -13,17 +14,17 @@ export class CloudFrontInvalidation {
 
   private readonly cloudFront: CloudFront;
 
-  constructor({ distributionId, path }: Options) {
+  constructor({ cloudFront, distributionId, path }: Options) {
     this.distributionId = distributionId;
     this.path = path;
-    this.cloudFront = new CloudFront();
+    this.cloudFront = cloudFront;
   }
 
-  async invalidate(): Promise<void> {
+  invalidate(): Promise<CreateInvalidationResult> {
     // Create timestamp in the following format: "2021-02-22T12:40:57".
     const callerReference = new Date().toISOString().slice(0, 19);
 
-    await this.cloudFront.createInvalidation({
+    return this.cloudFront.createInvalidation({
       DistributionId: this.distributionId,
       InvalidationBatch: {
         CallerReference: callerReference,
@@ -37,4 +38,3 @@ export class CloudFrontInvalidation {
     }).promise();
   }
 }
-*/
