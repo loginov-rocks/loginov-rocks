@@ -24,7 +24,7 @@ const s3 = new S3(s3Configuration);
 const cloudFrontInvalidation = new CloudFrontInvalidation({
   cloudFront,
   distributionId: process.env.WEB_APP_CLOUDFRONT_DISTRIBUTION_ID,
-  path: '/*',
+  path: process.env.WEB_APP_CLOUDFRONT_INVALIDATION_PATH,
 });
 
 const bucketName = process.env.LAMBDA_S3_BUCKET_NAME;
@@ -38,9 +38,10 @@ const stderr = (data) => {
   console.error('Stderr:', data);
 };
 
-// TODO: Remove unnecessary files from the S3 bucket.
 exports.handler = async (event) => {
   console.log('Event:', event);
+
+  console.log('Building...');
 
   const buildResult = await build(stdout, stderr);
 
@@ -48,15 +49,21 @@ exports.handler = async (event) => {
     throw new Error('Build failed');
   }
 
+  console.log('Collecting files paths...');
+
   const filesPaths = await collectFilesPaths(distDirectoryPath);
 
   if (filesPaths.length === 0) {
     throw new Error('No files paths collected');
   }
 
-  console.log('Files Paths:', filesPaths);
+  console.log('Files paths collected:', filesPaths);
+
+  console.log('Deploying files to S3...');
 
   await deployFilesToS3(s3, bucketName, distDirectoryPath, filesPaths);
+
+  console.log('Invalidating CloudFront...');
 
   await cloudFrontInvalidation.invalidate();
 
