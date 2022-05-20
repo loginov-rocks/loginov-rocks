@@ -39,7 +39,6 @@ describe('getData', () => {
         url: 'https://github.com/loginov-rocks',
       }),
     );
-    expect(typeof data.timestamp).toBe('number');
 
     expect(Array.isArray(data.repos)).toBeTruthy();
     expect(data.repos.length).toBe(3);

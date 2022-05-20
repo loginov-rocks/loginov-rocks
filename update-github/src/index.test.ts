@@ -5,8 +5,13 @@ const { handler } = require('./index');
 jest.mock('@loginov-rocks/loginov-rocks-shared', () => ({
   S3Object: class {
     // eslint-disable-next-line class-methods-use-this
+    read(): Promise<string> {
+      return Promise.resolve('"CurrentMock"');
+    }
+
+    // eslint-disable-next-line class-methods-use-this
     write(data: string): Promise<void> {
-      if (data !== '"Mock"') {
+      if (data !== '"NewMock"') {
         return Promise.reject();
       }
 
@@ -19,7 +24,7 @@ jest.mock('GitHub/GitHub', () => ({
   GitHub: class {
     // eslint-disable-next-line class-methods-use-this
     getData(): Promise<unknown> {
-      return Promise.resolve('Mock');
+      return Promise.resolve('NewMock');
     }
   },
 }));

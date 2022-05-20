@@ -21,10 +21,23 @@ const s3Object = new S3Object({
   s3,
 });
 
-// TODO: Update S3 object only if changed to avoid unnecessary web app rebuild.
 exports.handler = async (): Promise<Record<string, never>> => {
+  console.log('Getting GitHub data...');
+
   const data = await gitHub.getData();
-  await s3Object.write(JSON.stringify(data), { contentType: 'application/json' });
+
+  console.log('Getting current GitHub data file...');
+
+  const currentData = await s3Object.read();
+
+  const newData = JSON.stringify(data);
+
+  if (newData === currentData) {
+    console.log('GitHub data has not changed, skipping');
+  } else {
+    console.log('Writing new GitHub data file...');
+    await s3Object.write(newData, { contentType: 'application/json' });
+  }
 
   return {};
 };

@@ -44,6 +44,8 @@
 }
 ```
 
+`ListBucket` permission is needed to get an error if the object is not found.
+
 ## Docker
 
 ### Build

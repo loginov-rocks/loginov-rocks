@@ -63,7 +63,6 @@ export class GitHub {
       homepageUrl: gitHubUser.blog,
       login: gitHubUser.login,
       repos,
-      timestamp: Date.now(),
       url: gitHubUser.html_url,
     };
   }
