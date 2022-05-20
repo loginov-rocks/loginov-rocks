@@ -39,7 +39,7 @@ const stderr = (data) => {
 };
 
 exports.handler = async (event) => {
-  console.log('Event:', event);
+  console.log('Event:', JSON.stringify(event));
 
   console.log('Building...');
 

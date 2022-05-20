@@ -21,7 +21,9 @@ const s3Object = new S3Object({
   s3,
 });
 
-exports.handler = async (): Promise<Record<string, never>> => {
+exports.handler = async (event: any): Promise<Record<string, never>> => {
+  console.log('Event:', JSON.stringify(event));
+
   console.log('Getting GitHub data...');
 
   const data = await gitHub.getData();
