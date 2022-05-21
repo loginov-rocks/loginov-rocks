@@ -1,0 +1,170 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "WebAppRepository": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "loginov-rocks",
+            "Value": "loginov-rocks"
+          }
+        ]
+      }
+    },
+    "UpdateGitHubRule": {
+      "Type": "AWS::Events::Rule",
+      "Properties": {
+        "ScheduleExpression": "rate(1 day)",
+        "Targets": [
+          {
+            "Arn": {
+              "Fn::GetAtt": [
+                "UpdateGitHubFunction",
+                "Arn"
+              ]
+            },
+            "Id": "UpdateGitHubRuleTarget"
+          }
+        ]
+      }
+    },
+    "UpdateGitHubFunctionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "loginov-rocks",
+            "Value": "loginov-rocks"
+          }
+        ]
+      }
+    },
+    "WebAppFunctionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Tags": [
+          {
+            "Key": "loginov-rocks",
+            "Value": "loginov-rocks"
+          }
+        ]
+      }
+    },
+    "UpdateGitHubFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Architectures": [
+          "arm64"
+        ],
+        "Code": {
+          "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "UpdateGitHubFunctionRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs16.x",
+        "Tags": [
+          {
+            "Key": "loginov-rocks",
+            "Value": "loginov-rocks"
+          }
+        ],
+        "Timeout": 60
+      }
+    },
+    "WebAppFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
+        },
+        "Handler": "index.handler",
+        "MemorySize": 2048,
+        "Role": {
+          "Fn::GetAtt": [
+            "UpdateGitHubFunctionRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs16.x",
+        "Tags": [
+          {
+            "Key": "loginov-rocks",
+            "Value": "loginov-rocks"
+          }
+        ],
+        "Timeout": 900
+      }
+    },
+    "UpdateGitHubPermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "UpdateGitHubFunction",
+            "Arn"
+          ]
+        },
+        "Principal": "events.amazonaws.com",
+        "SourceArn": {
+          "Fn::GetAtt": [
+            "UpdateGitHubRule",
+            "Arn"
+          ]
+        }
+      }
+    },
+    "DataBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "loginov-rocks",
+            "Value": "loginov-rocks"
+          }
+        ]
+      }
+    },
+    "WebAppBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "loginov-rocks",
+            "Value": "loginov-rocks"
+          }
+        ]
+      }
+    }
+  }
+}
