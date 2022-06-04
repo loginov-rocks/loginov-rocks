@@ -1,20 +1,42 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "DataS3GitHubFileKey": {
+      "Type": "String",
+      "Default": "github.json"
+    },
+    "DataS3HomeFileKey": {
+      "Type": "String",
+      "Default": "home.json"
+    },
+    "GitHubBaseUrl": {
+      "Type": "String",
+      "Default": "https://api.github.com"
+    },
+    "GitHubPersonalAccessToken": {
+      "Type": "String",
+      "Description": "TODO: Secure"
+    },
+    "WebAppCloudFrontInvalidationPath": {
+      "Type": "String",
+      "Default": "/*"
+    }
+  },
   "Resources": {
     "WebAppRepository": {
       "Type": "AWS::ECR::Repository",
       "Properties": {
-        "Tags": [
-          {
-            "Key": "loginov-rocks",
-            "Value": "loginov-rocks"
-          }
-        ]
+        "RepositoryName": {
+          "Fn::Sub": "${AWS::StackName}-web-app-repository"
+        }
       }
     },
     "UpdateGitHubRule": {
       "Type": "AWS::Events::Rule",
       "Properties": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-update-github-rule"
+        },
         "ScheduleExpression": "rate(1 day)",
         "Targets": [
           {
@@ -44,12 +66,81 @@
             }
           ]
         },
-        "Tags": [
+        "Policies": [
           {
-            "Key": "loginov-rocks",
-            "Value": "loginov-rocks"
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "logs:CreateLogGroup",
+                  "Resource": {
+                    "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": [
+                      "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*",
+                      {
+                        "FunctionName": {
+                          "Fn::Sub": "${AWS::StackName}-update-github-function"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "PolicyName": "AWSLambdaBasicExecutionRole"
+          },
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListBucket",
+                    "s3:GetObject",
+                    "s3:PutObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": [
+                        "arn:aws:s3:::${DataBucketName}",
+                        {
+                          "DataBucketName": {
+                            "Fn::Sub": "${AWS::StackName}-data-bucket"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Sub": [
+                        "arn:aws:s3:::${DataBucketName}/${DataS3GitHubFileKey}",
+                        {
+                          "DataBucketName": {
+                            "Fn::Sub": "${AWS::StackName}-data-bucket"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            "PolicyName": "CustomPolicy"
           }
-        ]
+        ],
+        "RoleName": {
+          "Fn::Sub": "${AWS::StackName}-update-github-function-role"
+        }
       }
     },
     "WebAppFunctionRole": {
@@ -67,12 +158,123 @@
             }
           ]
         },
-        "Tags": [
+        "Policies": [
           {
-            "Key": "loginov-rocks",
-            "Value": "loginov-rocks"
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "logs:CreateLogGroup",
+                  "Resource": {
+                    "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": [
+                      "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*",
+                      {
+                        "FunctionName": {
+                          "Fn::Sub": "${AWS::StackName}-web-app-function"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "PolicyName": "AWSLambdaBasicExecutionRole"
+          },
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListBucket",
+                    "s3:GetObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": [
+                        "arn:aws:s3:::${DataBucketName}",
+                        {
+                          "DataBucketName": {
+                            "Fn::Sub": "${AWS::StackName}-data-bucket"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Sub": [
+                        "arn:aws:s3:::${DataBucketName}/*",
+                        {
+                          "DataBucketName": {
+                            "Fn::Sub": "${AWS::StackName}-data-bucket"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "s3:ListBucket",
+                    "s3:GetObject",
+                    "s3:PutObject",
+                    "s3:DeleteObject"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": [
+                        "arn:aws:s3:::${WebAppBucketName}",
+                        {
+                          "WebAppBucketName": {
+                            "Fn::Sub": "${AWS::StackName}-web-app-bucket"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "Fn::Sub": [
+                        "arn:aws:s3:::${WebAppBucketName}/*",
+                        {
+                          "WebAppBucketName": {
+                            "Fn::Sub": "${AWS::StackName}-web-app-bucket"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": "cloudfront:CreateInvalidation",
+                  "Resource": {
+                    "Fn::Sub": [
+                      "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}",
+                      {
+                        "DistributionId": "TODO"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "PolicyName": "CustomPolicy"
           }
-        ]
+        ],
+        "RoleName": {
+          "Fn::Sub": "${AWS::StackName}-web-app-function-role"
+        }
       }
     },
     "UpdateGitHubFunction": {
@@ -84,6 +286,25 @@
         "Code": {
           "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
         },
+        "Environment": {
+          "Variables": {
+            "DATA_S3_BUCKET_NAME": {
+              "Fn::Sub": "${AWS::StackName}-data-bucket"
+            },
+            "DATA_S3_GITHUB_FILE_KEY": {
+              "Ref": "DataS3GitHubFileKey"
+            },
+            "GITHUB_BASE_URL": {
+              "Ref": "GitHubBaseUrl"
+            },
+            "GITHUB_PERSONAL_ACCESS_TOKEN": {
+              "Ref": "GitHubPersonalAccessToken"
+            }
+          }
+        },
+        "FunctionName": {
+          "Fn::Sub": "${AWS::StackName}-update-github-function"
+        },
         "Handler": "index.handler",
         "Role": {
           "Fn::GetAtt": [
@@ -92,12 +313,6 @@
           ]
         },
         "Runtime": "nodejs16.x",
-        "Tags": [
-          {
-            "Key": "loginov-rocks",
-            "Value": "loginov-rocks"
-          }
-        ],
         "Timeout": 60
       }
     },
@@ -107,33 +322,72 @@
         "Code": {
           "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
         },
+        "Environment": {
+          "Variables": {
+            "BABEL_DISABLE_CACHE": "1",
+            "DATA_S3_BUCKET_NAME": {
+              "Fn::Sub": "${AWS::StackName}-data-bucket"
+            },
+            "DATA_S3_GITHUB_FILE_KEY": {
+              "Ref": "DataS3GitHubFileKey"
+            },
+            "DATA_S3_HOME_FILE_KEY": {
+              "Ref": "DataS3HomeFileKey"
+            },
+            "LAMBDA_ACCESS_KEY_ID": "",
+            "LAMBDA_S3_BUCKET_NAME": {
+              "Fn::Sub": "${AWS::StackName}-web-app-bucket"
+            },
+            "LAMBDA_SECRET_ACCESS_KEY": "",
+            "LAMBDA_USE_POLICY": "true",
+            "LAMBDA_USE_TMPDIR": "true",
+            "WEB_APP_CLOUDFRONT_DISTRIBUTION_ID": "TODO",
+            "WEB_APP_CLOUDFRONT_INVALIDATION_PATH": {
+              "Ref": "WebAppCloudFrontInvalidationPath"
+            }
+          }
+        },
+        "FunctionName": {
+          "Fn::Sub": "${AWS::StackName}-web-app-function"
+        },
         "Handler": "index.handler",
         "MemorySize": 2048,
         "Role": {
           "Fn::GetAtt": [
-            "UpdateGitHubFunctionRole",
+            "WebAppFunctionRole",
             "Arn"
           ]
         },
         "Runtime": "nodejs16.x",
-        "Tags": [
-          {
-            "Key": "loginov-rocks",
-            "Value": "loginov-rocks"
-          }
-        ],
         "Timeout": 900
       }
     },
-    "UpdateGitHubPermission": {
+    "DataBucketPermission": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
-          "Fn::GetAtt": [
-            "UpdateGitHubFunction",
-            "Arn"
+          "Ref": "WebAppFunction"
+        },
+        "Principal": "s3.amazonaws.com",
+        "SourceArn": {
+          "Fn::Sub": [
+            "arn:aws:s3:::${DataBucketName}",
+            {
+              "DataBucketName": {
+                "Fn::Sub": "${AWS::StackName}-data-bucket"
+              }
+            }
           ]
+        }
+      }
+    },
+    "UpdateGitHubRulePermission": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Ref": "UpdateGitHubFunction"
         },
         "Principal": "events.amazonaws.com",
         "SourceArn": {
@@ -147,23 +401,42 @@
     "DataBucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "Tags": [
-          {
-            "Key": "loginov-rocks",
-            "Value": "loginov-rocks"
-          }
-        ]
+        "BucketName": {
+          "Fn::Sub": "${AWS::StackName}-data-bucket"
+        },
+        "NotificationConfiguration": {
+          "LambdaConfigurations": [
+            {
+              "Event": "s3:ObjectCreated:Put",
+              "Function": {
+                "Fn::GetAtt": [
+                  "WebAppFunction",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
       }
     },
     "WebAppBucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
-        "Tags": [
-          {
-            "Key": "loginov-rocks",
-            "Value": "loginov-rocks"
-          }
-        ]
+        "BucketName": {
+          "Fn::Sub": "${AWS::StackName}-web-app-bucket"
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
       }
     }
   }
