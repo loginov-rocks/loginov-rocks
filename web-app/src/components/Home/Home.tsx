@@ -3,15 +3,17 @@ import * as React from 'react';
 
 import { SocialPresence } from 'components/SocialPresence';
 import { WorksList } from 'components/WorksList';
+import { HomePage } from 'contentful/HomePage';
 
 interface Props {
   gitHubData: GitHubData;
   homeData: HomeData;
+  homePage: HomePage;
 }
 
-export const Home: React.FunctionComponent<Props> = ({ gitHubData, homeData }) => (
+export const Home: React.FunctionComponent<Props> = ({ gitHubData, homeData, homePage }) => (
   <>
-    <h1>Hello!</h1>
+    <h1>{homePage.fields.title}</h1>
     <p>
       I am
       {' '}

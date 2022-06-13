@@ -1,0 +1,71 @@
+{
+  "metadata": {
+    "tags": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "8lybfh49sufl"
+      }
+    },
+    "id": "5BzGjc5FUpv4RecG2qb7pO",
+    "type": "Entry",
+    "createdAt": "2022-06-13T15:58:14.374Z",
+    "updatedAt": "2022-06-13T15:58:14.374Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "richTextSection"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Home Page Rich Text",
+    "content": {
+      "nodeType": "document",
+      "data": {},
+      "content": [
+        {
+          "nodeType": "paragraph",
+          "data": {},
+          "content": [
+            {
+              "nodeType": "text",
+              "value": "I am ",
+              "marks": [],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": "Danila",
+              "marks": [
+                {
+                  "type": "bold"
+                }
+              ],
+              "data": {}
+            },
+            {
+              "nodeType": "text",
+              "value": ", nice to e-meet you!",
+              "marks": [],
+              "data": {}
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

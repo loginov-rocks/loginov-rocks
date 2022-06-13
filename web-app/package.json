@@ -49,6 +49,7 @@
     "aws-sdk": "^2.1119.0",
     "axios": "^0.21.1",
     "babel-jest": "^27.5.1",
+    "contentful": "^9.1.32",
     "dotenv": "^16.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",

@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "tags": []
+  },
+  "sys": {
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "8lybfh49sufl"
+      }
+    },
+    "id": "5RsE7TrrnUrQmjFGlmudAb",
+    "type": "Entry",
+    "createdAt": "2022-06-13T15:50:38.239Z",
+    "updatedAt": "2022-06-13T15:50:38.239Z",
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "revision": 1,
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "openSourceSection"
+      }
+    },
+    "locale": "en-US"
+  },
+  "fields": {
+    "title": "Open Source",
+    "blocks": [
+      {
+        "sys": {
+          "type": "Link",
+          "linkType": "Entry",
+          "id": "d6a5T3qb8yOEOoW4mty9S"
+        }
+      },
+      {
+        "sys": {
+          "type": "Link",
+          "linkType": "Entry",
+          "id": "4MZWtqJoBnRiJzx9DMi81i"
+        }
+      }
+    ]
+  }
+}
