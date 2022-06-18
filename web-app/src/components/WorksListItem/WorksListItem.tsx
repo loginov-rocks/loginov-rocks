@@ -1,18 +1,19 @@
-import { GitHubRepo } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 import { GitHubWorkDetails } from 'components/GitHubWorkDetails';
 import { Link } from 'components/Link';
+import { useGitHubContext } from 'contexts/GitHubContext';
 
 interface Props {
-  gitHubRepos?: GitHubRepo[];
-  work: string;
+  gitHubId: string;
 }
 
-export const WorksListItem: React.FC<Props> = ({ gitHubRepos, work }) => {
-  const gitHubRepo = gitHubRepos ? gitHubRepos.find((repo) => repo.name === work) : undefined;
+export const WorksListItem: React.FC<Props> = ({ gitHubId }) => {
+  const gitHubData = useGitHubContext();
+  const gitHubRepo = gitHubData && gitHubData.repos
+    ? gitHubData.repos.find((repo) => repo.name === gitHubId) : undefined;
 
-  let title = <strong>{work}</strong>;
+  let title = <strong>{gitHubId}</strong>;
   if (gitHubRepo && gitHubRepo.homepageUrl) {
     title = <Link href={gitHubRepo.homepageUrl}>{title}</Link>;
   }
@@ -21,7 +22,7 @@ export const WorksListItem: React.FC<Props> = ({ gitHubRepos, work }) => {
   }
 
   return (
-    <li>
+    <>
 
       {title}
 
@@ -41,10 +42,6 @@ export const WorksListItem: React.FC<Props> = ({ gitHubRepos, work }) => {
         </>
       )}
 
-    </li>
+    </>
   );
-};
-
-WorksListItem.defaultProps = {
-  gitHubRepos: [],
 };

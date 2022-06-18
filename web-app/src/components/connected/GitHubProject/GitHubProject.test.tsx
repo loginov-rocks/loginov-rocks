@@ -6,11 +6,7 @@ import * as React from 'react';
 import { GitHubProject } from './GitHubProject';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(
-    <GitHubProject
-      gitHubId="Web-Bluetooth-Terminal"
-    />,
-  );
+  const wrapper = shallow(<GitHubProject gitHubId="Web-Bluetooth-Terminal" />);
 
   expect(wrapper).toMatchSnapshot();
 });

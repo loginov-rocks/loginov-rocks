@@ -1,9 +1,11 @@
 import * as React from 'react';
 
+import { WorksListItem } from 'components/WorksListItem';
+
 interface Props {
   gitHubId: string;
 }
 
 export const GitHubLibrary: React.FC<Props> = ({ gitHubId }) => (
-  <strong>{gitHubId}</strong>
+  <WorksListItem gitHubId={gitHubId} />
 );

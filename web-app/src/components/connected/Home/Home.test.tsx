@@ -6,13 +6,7 @@ import * as React from 'react';
 import { Home } from './Home';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(
-    <Home
-      render={() => null}
-      sections={[]}
-      title="Hello!"
-    />,
-  );
+  const wrapper = shallow(<Home render={() => null} sections={[]} title="Hello!" />);
 
   expect(wrapper).toMatchSnapshot();
 });

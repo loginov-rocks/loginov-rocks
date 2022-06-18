@@ -6,11 +6,7 @@ import * as React from 'react';
 import { GitHubLibrary } from './GitHubLibrary';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(
-    <GitHubLibrary
-      gitHubId="UbxGps"
-    />,
-  );
+  const wrapper = shallow(<GitHubLibrary gitHubId="UbxGps" />);
 
   expect(wrapper).toMatchSnapshot();
 });

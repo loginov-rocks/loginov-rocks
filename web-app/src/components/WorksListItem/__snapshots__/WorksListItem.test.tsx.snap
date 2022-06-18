@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`matches snapshot 1`] = `
-<li>
+<Fragment>
   <strong>
     Some work
   </strong>
-</li>
+</Fragment>
 `;
 
 exports[`matches snapshot with GitHub repo 1`] = `
-<li>
+<Fragment>
   <Link
     href="https://www.npmjs.com/package/angular-gulp-boilerplate"
   >
@@ -41,5 +41,5 @@ exports[`matches snapshot with GitHub repo 1`] = `
       }
     }
   />
-</li>
+</Fragment>
 `;
