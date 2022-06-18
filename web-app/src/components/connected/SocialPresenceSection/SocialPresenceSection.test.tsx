@@ -3,14 +3,14 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { WorksList } from './WorksList';
+import { SocialPresenceSection } from './SocialPresenceSection';
 
 it('matches snapshot', () => {
   const wrapper = shallow(
-    <WorksList
-      projects={[]}
+    <SocialPresenceSection
+      items={[]}
       render={() => null}
-      title="Projects"
+      title="Social Presence"
     />,
   );
 

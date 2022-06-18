@@ -8,8 +8,7 @@ interface Props extends CmsConnectedProps {
   title: string;
 }
 
-// TODO: Rename to SocialPresenceSection to align with CMS notation.
-export const SocialPresence: React.FC<Props> = ({ items, render, title }) => {
+export const SocialPresenceSection: React.FC<Props> = ({ items, render, title }) => {
   const renderedItems = render(items);
 
   if (!Array.isArray(renderedItems)) {

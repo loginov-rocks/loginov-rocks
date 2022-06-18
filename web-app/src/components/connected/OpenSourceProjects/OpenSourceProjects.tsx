@@ -8,8 +8,7 @@ interface Props extends CmsConnectedProps {
   title: string;
 }
 
-// TODO: Rename to OpenSourceProjects to align with CMS notation.
-export const WorksList: React.FC<Props> = ({ projects, render, title }) => {
+export const OpenSourceProjects: React.FC<Props> = ({ projects, render, title }) => {
   const renderedProjects = render(projects);
 
   if (!Array.isArray(renderedProjects)) {
