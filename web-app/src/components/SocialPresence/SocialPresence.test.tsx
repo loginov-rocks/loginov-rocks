@@ -5,11 +5,14 @@ import * as React from 'react';
 
 import { SocialPresence } from './SocialPresence';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const homeMockData = require('@loginov-rocks/loginov-rocks-shared/src/Home/__fixtures__/homeData.json');
-
 it('matches snapshot', () => {
-  const wrapper = shallow(<SocialPresence items={homeMockData.socialPresenceItems} />);
+  const wrapper = shallow(
+    <SocialPresence
+      items={[]}
+      render={() => null}
+      title="Social Presence"
+    />,
+  );
 
   expect(wrapper).toMatchSnapshot();
 });

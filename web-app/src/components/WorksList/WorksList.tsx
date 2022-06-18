@@ -1,20 +1,32 @@
-import { GitHubRepo } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
-import { WorksListItem } from 'components/WorksListItem';
+import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
+import { CmsEntry } from 'cms/interfaces/CmsEntry';
 
-interface Props {
-  gitHubRepos?: GitHubRepo[];
-  works: string[];
+interface Props extends CmsConnectedProps {
+  projects: CmsEntry[];
+  title: string;
 }
 
-export const WorksList: React.FunctionComponent<Props> = ({ gitHubRepos, works }) => (
-  <ul>
-    {/* eslint-disable-next-line react/no-array-index-key */}
-    {works.map((work, index) => <WorksListItem gitHubRepos={gitHubRepos} key={index} work={work} />)}
-  </ul>
-);
+// TODO: Rename to OpenSourceProjects to align with CMS notation.
+export const WorksList: React.FC<Props> = ({ projects, render, title }) => {
+  const renderedProjects = render(projects);
 
-WorksList.defaultProps = {
-  gitHubRepos: [],
+  if (!Array.isArray(renderedProjects)) {
+    return null;
+  }
+
+  return (
+    <>
+      <h3>{title}</h3>
+      <ul>
+        {renderedProjects.map((project, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li key={index}>
+            {project}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
 };

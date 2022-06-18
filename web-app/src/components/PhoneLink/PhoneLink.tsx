@@ -10,7 +10,7 @@ interface Props {
   title: string;
 }
 
-export const PhoneLink: React.FunctionComponent<Props> = ({
+export const PhoneLink: React.FC<Props> = ({
   first, fourth, second, third, title,
 }) => {
   const handlePhoneClick = (): void => {

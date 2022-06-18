@@ -1,39 +1,16 @@
-import { GitHubData, HomeData } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
-import { SocialPresence } from 'components/SocialPresence';
-import { WorksList } from 'components/WorksList';
-import { HomePage } from 'contentful/HomePage';
+import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
+import { CmsEntry } from 'cms/interfaces/CmsEntry';
 
-interface Props {
-  gitHubData: GitHubData;
-  homeData: HomeData;
-  homePage: HomePage;
+interface Props extends CmsConnectedProps {
+  sections: CmsEntry[];
+  title: string;
 }
 
-export const Home: React.FunctionComponent<Props> = ({ gitHubData, homeData, homePage }) => (
+export const Home: React.FC<Props> = ({ render, sections, title }) => (
   <>
-    <h1>{homePage.fields.title}</h1>
-    <p>
-      I am
-      {' '}
-      <strong>Danila</strong>
-      , nice to e-meet you!
-    </p>
-    <>
-      <h2>Social Presence</h2>
-      <SocialPresence items={homeData.socialPresenceItems} />
-    </>
-    <>
-      <h2>Open Source</h2>
-      <>
-        <h3>Projects</h3>
-        <WorksList gitHubRepos={gitHubData.repos} works={homeData.openSource.projects} />
-      </>
-      <>
-        <h3>Libraries</h3>
-        <WorksList gitHubRepos={gitHubData.repos} works={homeData.openSource.libraries} />
-      </>
-    </>
+    <h1>{title}</h1>
+    {render(sections)}
   </>
 );

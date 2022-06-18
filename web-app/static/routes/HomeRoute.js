@@ -15,20 +15,21 @@ export class HomeRoute {
   async getData() {
     if (process.env.NODE_ENV !== 'production') {
       /* eslint-disable global-require */
-      const gitHubMockData = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/gitHubData.json');
-      const homeMockData = require('@loginov-rocks/loginov-rocks-shared/src/Home/__fixtures__/homeData.json');
-      const homePageMock = require('../../src/contentful/__fixtures__/homePage.json');
+      const gitHubDataMock = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/gitHubData.json');
+      const homeDataMock = require('@loginov-rocks/loginov-rocks-shared/src/Home/__fixtures__/homeData.json');
+      const homePageEntriesMock = require('./__fixtures__/homePageEntries.json');
       /* eslint-enable */
 
       return Promise.resolve({
-        gitHubData: gitHubMockData,
-        homeData: homeMockData,
-        homePage: homePageMock,
+        gitHubData: gitHubDataMock,
+        homeData: homeDataMock,
+        homePage: homePageEntriesMock.items[0],
       });
     }
 
     const homePageEntries = await this.contentful.getEntries({
       content_type: this.contentfulHomePageContentType,
+      include: 10,
       limit: 1,
     });
 

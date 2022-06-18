@@ -1,41 +1,32 @@
-import { SocialPresenceItem } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
-import { SOCIAL_PRESENCE_DRIVE2_TITLE } from 'Constants';
+import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
+import { CmsEntry } from 'cms/interfaces/CmsEntry';
 
-import { Link } from 'components/Link';
-
-interface Props {
-  items: SocialPresenceItem[];
+interface Props extends CmsConnectedProps {
+  items: CmsEntry[];
+  title: string;
 }
 
-export const SocialPresence: React.FunctionComponent<Props> = ({ items }) => (
-  <ul>
-    {items.map((item, index) => {
-      let content;
+// TODO: Rename to SocialPresenceSection to align with CMS notation.
+export const SocialPresence: React.FC<Props> = ({ items, render, title }) => {
+  const renderedItems = render(items);
 
-      if (item.title === SOCIAL_PRESENCE_DRIVE2_TITLE) {
-        content = (
-          <>
-            <Link href={item.url}>{item.title}</Link>
-            {' '}
-            &mdash; my Toyota Chaser GX71 blog, originally
-            {' '}
-            <Link href={item.url2 as string}>in Russian</Link>
-          </>
-        );
-      } else {
-        content = (
-          <Link href={item.url}>{item.title}</Link>
-        );
-      }
+  if (!Array.isArray(renderedItems)) {
+    return null;
+  }
 
-      return (
-        // eslint-disable-next-line react/no-array-index-key
-        <li key={index}>
-          {content}
-        </li>
-      );
-    })}
-  </ul>
-);
+  return (
+    <>
+      <h2>{title}</h2>
+      <ul>
+        {renderedItems.map((item, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li key={index}>
+            {item}
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+};

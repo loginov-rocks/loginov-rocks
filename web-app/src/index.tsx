@@ -17,7 +17,7 @@ if (typeof document !== 'undefined') {
     ? ReactDOM.hydrate
     : ReactDOM.render;
 
-  const render = (Component: React.FunctionComponent): void => {
+  const render = (Component: React.FC): void => {
     renderMethod(
       <AppContainer>
         <Component />

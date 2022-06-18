@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Fragment>
+  <p
+    key="0"
+  >
+    I am 
+    <b
+      key="1"
+    >
+      Danila
+    </b>
+    , nice to e-meet you!
+  </p>
+</Fragment>
+`;

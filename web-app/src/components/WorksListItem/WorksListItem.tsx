@@ -9,7 +9,7 @@ interface Props {
   work: string;
 }
 
-export const WorksListItem: React.FunctionComponent<Props> = ({ gitHubRepos, work }) => {
+export const WorksListItem: React.FC<Props> = ({ gitHubRepos, work }) => {
   const gitHubRepo = gitHubRepos ? gitHubRepos.find((repo) => repo.name === work) : undefined;
 
   let title = <strong>{work}</strong>;

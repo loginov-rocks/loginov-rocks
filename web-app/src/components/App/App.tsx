@@ -9,7 +9,7 @@ addPrefetchExcludes([
   'dolph',
 ]);
 
-export const App: React.FunctionComponent = () => (
+export const App: React.FC = () => (
   <Root>
     <React.Suspense fallback={<Loading />}>
       <Router>

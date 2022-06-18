@@ -5,7 +5,7 @@ interface Props {
   repo: GitHubRepo;
 }
 
-export const GitHubWorkDetails: React.FunctionComponent<Props> = ({ repo }) => (
+export const GitHubWorkDetails: React.FC<Props> = ({ repo }) => (
   <>
 
     {repo.description && (

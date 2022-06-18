@@ -1,18 +1,17 @@
-import { GitHubData, HomeData } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 import { useRouteData } from 'react-static';
 
-import { Home } from 'components/Home';
-import { HomePage } from 'contentful/HomePage';
+import { CmsRenderer } from 'cms/components/CmsRenderer';
+import { CmsEntry } from 'cms/interfaces/CmsEntry';
 
-const IndexPage: React.FunctionComponent = () => {
-  const {
-    gitHubData, homeData, homePage,
-  } = useRouteData<{ gitHubData: GitHubData, homeData: HomeData, homePage: HomePage }>();
+interface RouteData {
+  homePage: CmsEntry;
+}
 
-  return (
-    <Home gitHubData={gitHubData} homeData={homeData} homePage={homePage} />
-  );
+const IndexPage: React.FC = () => {
+  const { homePage } = useRouteData<RouteData>();
+
+  return <CmsRenderer cmsEntry={homePage} />;
 };
 
 export default IndexPage;

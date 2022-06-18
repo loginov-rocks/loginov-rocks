@@ -6,4 +6,4 @@ interface Props {
   path?: string;
 }
 
-export const DolphContainer: React.FunctionComponent<Props> = () => <Dolph />;
+export const DolphContainer: React.FC<Props> = () => <Dolph />;

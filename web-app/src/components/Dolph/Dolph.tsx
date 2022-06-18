@@ -2,7 +2,7 @@ import * as React from 'react';
 
 import { PhoneLink } from 'components/PhoneLink';
 
-export const Dolph: React.FunctionComponent = () => (
+export const Dolph: React.FC = () => (
   <>
     <h1>Hello!</h1>
     <p>

@@ -6,7 +6,13 @@ import * as React from 'react';
 import { WorksList } from './WorksList';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(<WorksList works={['Some work']} />);
+  const wrapper = shallow(
+    <WorksList
+      projects={[]}
+      render={() => null}
+      title="Projects"
+    />,
+  );
 
   expect(wrapper).toMatchSnapshot();
 });

@@ -150,31 +150,156 @@
               "title": "Social Presence",
               "items": [
                 {
+                  "metadata": {
+                    "tags": []
+                  },
                   "sys": {
-                    "type": "Link",
-                    "linkType": "Entry",
-                    "id": "2EStqD0brNJ53vecaKWAjY"
+                    "space": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "8lybfh49sufl"
+                      }
+                    },
+                    "id": "2EStqD0brNJ53vecaKWAjY",
+                    "type": "Entry",
+                    "createdAt": "2022-06-13T15:27:29.210Z",
+                    "updatedAt": "2022-06-13T15:27:29.210Z",
+                    "environment": {
+                      "sys": {
+                        "id": "master",
+                        "type": "Link",
+                        "linkType": "Environment"
+                      }
+                    },
+                    "revision": 1,
+                    "contentType": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "socialPresenceItem"
+                      }
+                    },
+                    "locale": "en-US"
+                  },
+                  "fields": {
+                    "title": "LinkedIn",
+                    "url": "https://www.linkedin.com/in/loginov-rocks/"
                   }
                 },
                 {
+                  "metadata": {
+                    "tags": []
+                  },
                   "sys": {
-                    "type": "Link",
-                    "linkType": "Entry",
-                    "id": "7EHcXnGWjmdWVI1ZgFG1nm"
+                    "space": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "8lybfh49sufl"
+                      }
+                    },
+                    "id": "7EHcXnGWjmdWVI1ZgFG1nm",
+                    "type": "Entry",
+                    "createdAt": "2022-06-13T15:28:19.334Z",
+                    "updatedAt": "2022-06-13T15:28:19.334Z",
+                    "environment": {
+                      "sys": {
+                        "id": "master",
+                        "type": "Link",
+                        "linkType": "Environment"
+                      }
+                    },
+                    "revision": 1,
+                    "contentType": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "socialPresenceItem"
+                      }
+                    },
+                    "locale": "en-US"
+                  },
+                  "fields": {
+                    "title": "GitHub",
+                    "url": "https://github.com/loginov-rocks"
                   }
                 },
                 {
+                  "metadata": {
+                    "tags": []
+                  },
                   "sys": {
-                    "type": "Link",
-                    "linkType": "Entry",
-                    "id": "ChgOt3Bvt4j2Ng5vS3lGk"
+                    "space": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "8lybfh49sufl"
+                      }
+                    },
+                    "id": "ChgOt3Bvt4j2Ng5vS3lGk",
+                    "type": "Entry",
+                    "createdAt": "2022-06-13T15:28:40.683Z",
+                    "updatedAt": "2022-06-13T15:28:40.683Z",
+                    "environment": {
+                      "sys": {
+                        "id": "master",
+                        "type": "Link",
+                        "linkType": "Environment"
+                      }
+                    },
+                    "revision": 1,
+                    "contentType": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "socialPresenceItem"
+                      }
+                    },
+                    "locale": "en-US"
+                  },
+                  "fields": {
+                    "title": "Medium",
+                    "url": "https://loginov-rocks.medium.com/"
                   }
                 },
                 {
+                  "metadata": {
+                    "tags": []
+                  },
                   "sys": {
-                    "type": "Link",
-                    "linkType": "Entry",
-                    "id": "7n6N6kkObF1HvPq9VWZEwI"
+                    "space": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "8lybfh49sufl"
+                      }
+                    },
+                    "id": "7n6N6kkObF1HvPq9VWZEwI",
+                    "type": "Entry",
+                    "createdAt": "2022-06-13T15:30:09.359Z",
+                    "updatedAt": "2022-06-13T15:30:09.359Z",
+                    "environment": {
+                      "sys": {
+                        "id": "master",
+                        "type": "Link",
+                        "linkType": "Environment"
+                      }
+                    },
+                    "revision": 1,
+                    "contentType": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "socialPresenceItem"
+                      }
+                    },
+                    "locale": "en-US"
+                  },
+                  "fields": {
+                    "title": "DRIVE2",
+                    "url": "https://www.drive2.com/r/toyota/chaser/288230376151952785/",
+                    "secondaryUrl": "https://www.drive2.ru/r/toyota/chaser/288230376151952785/"
                   }
                 }
               ]
@@ -217,17 +342,303 @@
               "title": "Open Source",
               "blocks": [
                 {
+                  "metadata": {
+                    "tags": []
+                  },
                   "sys": {
-                    "type": "Link",
-                    "linkType": "Entry",
-                    "id": "d6a5T3qb8yOEOoW4mty9S"
+                    "space": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "8lybfh49sufl"
+                      }
+                    },
+                    "id": "d6a5T3qb8yOEOoW4mty9S",
+                    "type": "Entry",
+                    "createdAt": "2022-06-13T15:46:06.298Z",
+                    "updatedAt": "2022-06-13T15:46:06.298Z",
+                    "environment": {
+                      "sys": {
+                        "id": "master",
+                        "type": "Link",
+                        "linkType": "Environment"
+                      }
+                    },
+                    "revision": 1,
+                    "contentType": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "openSourceProjects"
+                      }
+                    },
+                    "locale": "en-US"
+                  },
+                  "fields": {
+                    "title": "Projects",
+                    "projects": [
+                      {
+                        "metadata": {
+                          "tags": []
+                        },
+                        "sys": {
+                          "space": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "Space",
+                              "id": "8lybfh49sufl"
+                            }
+                          },
+                          "id": "6TfP117aLWvd6WgPoqHLPv",
+                          "type": "Entry",
+                          "createdAt": "2022-06-13T15:40:04.587Z",
+                          "updatedAt": "2022-06-13T15:40:04.587Z",
+                          "environment": {
+                            "sys": {
+                              "id": "master",
+                              "type": "Link",
+                              "linkType": "Environment"
+                            }
+                          },
+                          "revision": 1,
+                          "contentType": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "ContentType",
+                              "id": "gitHubProject"
+                            }
+                          },
+                          "locale": "en-US"
+                        },
+                        "fields": {
+                          "gitHubId": "Web-Bluetooth-Terminal"
+                        }
+                      },
+                      {
+                        "metadata": {
+                          "tags": []
+                        },
+                        "sys": {
+                          "space": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "Space",
+                              "id": "8lybfh49sufl"
+                            }
+                          },
+                          "id": "anxwFib4KFT4jfrI7H6mp",
+                          "type": "Entry",
+                          "createdAt": "2022-06-13T15:40:27.259Z",
+                          "updatedAt": "2022-06-13T15:40:27.259Z",
+                          "environment": {
+                            "sys": {
+                              "id": "master",
+                              "type": "Link",
+                              "linkType": "Environment"
+                            }
+                          },
+                          "revision": 1,
+                          "contentType": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "ContentType",
+                              "id": "gitHubProject"
+                            }
+                          },
+                          "locale": "en-US"
+                        },
+                        "fields": {
+                          "gitHubId": "Portfolio"
+                        }
+                      },
+                      {
+                        "metadata": {
+                          "tags": []
+                        },
+                        "sys": {
+                          "space": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "Space",
+                              "id": "8lybfh49sufl"
+                            }
+                          },
+                          "id": "2Htlj2pg8rIUV71pA4fuEW",
+                          "type": "Entry",
+                          "createdAt": "2022-06-13T15:40:45.168Z",
+                          "updatedAt": "2022-06-13T15:40:45.168Z",
+                          "environment": {
+                            "sys": {
+                              "id": "master",
+                              "type": "Link",
+                              "linkType": "Environment"
+                            }
+                          },
+                          "revision": 1,
+                          "contentType": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "ContentType",
+                              "id": "gitHubProject"
+                            }
+                          },
+                          "locale": "en-US"
+                        },
+                        "fields": {
+                          "gitHubId": "Firebase-Authenticator"
+                        }
+                      }
+                    ]
                   }
                 },
                 {
+                  "metadata": {
+                    "tags": []
+                  },
                   "sys": {
-                    "type": "Link",
-                    "linkType": "Entry",
-                    "id": "4MZWtqJoBnRiJzx9DMi81i"
+                    "space": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "Space",
+                        "id": "8lybfh49sufl"
+                      }
+                    },
+                    "id": "4MZWtqJoBnRiJzx9DMi81i",
+                    "type": "Entry",
+                    "createdAt": "2022-06-13T15:48:25.120Z",
+                    "updatedAt": "2022-06-13T15:48:25.120Z",
+                    "environment": {
+                      "sys": {
+                        "id": "master",
+                        "type": "Link",
+                        "linkType": "Environment"
+                      }
+                    },
+                    "revision": 1,
+                    "contentType": {
+                      "sys": {
+                        "type": "Link",
+                        "linkType": "ContentType",
+                        "id": "openSourceLibraries"
+                      }
+                    },
+                    "locale": "en-US"
+                  },
+                  "fields": {
+                    "title": "Libraries",
+                    "libraries": [
+                      {
+                        "metadata": {
+                          "tags": []
+                        },
+                        "sys": {
+                          "space": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "Space",
+                              "id": "8lybfh49sufl"
+                            }
+                          },
+                          "id": "gOT0Dnp9qhIHcCup1a2Nn",
+                          "type": "Entry",
+                          "createdAt": "2022-06-13T15:41:49.604Z",
+                          "updatedAt": "2022-06-13T15:41:49.604Z",
+                          "environment": {
+                            "sys": {
+                              "id": "master",
+                              "type": "Link",
+                              "linkType": "Environment"
+                            }
+                          },
+                          "revision": 1,
+                          "contentType": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "ContentType",
+                              "id": "gitHubLibrary"
+                            }
+                          },
+                          "locale": "en-US"
+                        },
+                        "fields": {
+                          "gitHubId": "UbxGps"
+                        }
+                      },
+                      {
+                        "metadata": {
+                          "tags": []
+                        },
+                        "sys": {
+                          "space": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "Space",
+                              "id": "8lybfh49sufl"
+                            }
+                          },
+                          "id": "5yjiiMmh8DoxI58ljUEtZo",
+                          "type": "Entry",
+                          "createdAt": "2022-06-13T15:42:18.441Z",
+                          "updatedAt": "2022-06-13T15:42:18.441Z",
+                          "environment": {
+                            "sys": {
+                              "id": "master",
+                              "type": "Link",
+                              "linkType": "Environment"
+                            }
+                          },
+                          "revision": 1,
+                          "contentType": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "ContentType",
+                              "id": "gitHubLibrary"
+                            }
+                          },
+                          "locale": "en-US"
+                        },
+                        "fields": {
+                          "gitHubId": "bluetooth-terminal"
+                        }
+                      },
+                      {
+                        "metadata": {
+                          "tags": []
+                        },
+                        "sys": {
+                          "space": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "Space",
+                              "id": "8lybfh49sufl"
+                            }
+                          },
+                          "id": "4QxbKn5X91uky1FBDp1EaO",
+                          "type": "Entry",
+                          "createdAt": "2022-06-13T15:42:52.569Z",
+                          "updatedAt": "2022-06-13T15:42:52.569Z",
+                          "environment": {
+                            "sys": {
+                              "id": "master",
+                              "type": "Link",
+                              "linkType": "Environment"
+                            }
+                          },
+                          "revision": 1,
+                          "contentType": {
+                            "sys": {
+                              "type": "Link",
+                              "linkType": "ContentType",
+                              "id": "gitHubLibrary"
+                            }
+                          },
+                          "locale": "en-US"
+                        },
+                        "fields": {
+                          "gitHubId": "canvas-heightmap"
+                        }
+                      }
+                    ]
                   }
                 }
               ]
@@ -239,6 +650,268 @@
   ],
   "includes": {
     "Entry": [
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "2EStqD0brNJ53vecaKWAjY",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:27:29.210Z",
+          "updatedAt": "2022-06-13T15:27:29.210Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "socialPresenceItem"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "LinkedIn",
+          "url": "https://www.linkedin.com/in/loginov-rocks/"
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "2Htlj2pg8rIUV71pA4fuEW",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:40:45.168Z",
+          "updatedAt": "2022-06-13T15:40:45.168Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "gitHubProject"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "gitHubId": "Firebase-Authenticator"
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "4MZWtqJoBnRiJzx9DMi81i",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:48:25.120Z",
+          "updatedAt": "2022-06-13T15:48:25.120Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "openSourceLibraries"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "Libraries",
+          "libraries": [
+            {
+              "metadata": {
+                "tags": []
+              },
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "gOT0Dnp9qhIHcCup1a2Nn",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:41:49.604Z",
+                "updatedAt": "2022-06-13T15:41:49.604Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "gitHubLibrary"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "gitHubId": "UbxGps"
+              }
+            },
+            {
+              "metadata": {
+                "tags": []
+              },
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "5yjiiMmh8DoxI58ljUEtZo",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:42:18.441Z",
+                "updatedAt": "2022-06-13T15:42:18.441Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "gitHubLibrary"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "gitHubId": "bluetooth-terminal"
+              }
+            },
+            {
+              "metadata": {
+                "tags": []
+              },
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "4QxbKn5X91uky1FBDp1EaO",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:42:52.569Z",
+                "updatedAt": "2022-06-13T15:42:52.569Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "gitHubLibrary"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "gitHubId": "canvas-heightmap"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "4QxbKn5X91uky1FBDp1EaO",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:42:52.569Z",
+          "updatedAt": "2022-06-13T15:42:52.569Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "gitHubLibrary"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "gitHubId": "canvas-heightmap"
+        }
+      },
       {
         "metadata": {
           "tags": []
@@ -347,20 +1020,380 @@
           "title": "Open Source",
           "blocks": [
             {
+              "metadata": {
+                "tags": []
+              },
               "sys": {
-                "type": "Link",
-                "linkType": "Entry",
-                "id": "d6a5T3qb8yOEOoW4mty9S"
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "d6a5T3qb8yOEOoW4mty9S",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:46:06.298Z",
+                "updatedAt": "2022-06-13T15:46:06.298Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "openSourceProjects"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "title": "Projects",
+                "projects": [
+                  {
+                    "metadata": {
+                      "tags": []
+                    },
+                    "sys": {
+                      "space": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "Space",
+                          "id": "8lybfh49sufl"
+                        }
+                      },
+                      "id": "6TfP117aLWvd6WgPoqHLPv",
+                      "type": "Entry",
+                      "createdAt": "2022-06-13T15:40:04.587Z",
+                      "updatedAt": "2022-06-13T15:40:04.587Z",
+                      "environment": {
+                        "sys": {
+                          "id": "master",
+                          "type": "Link",
+                          "linkType": "Environment"
+                        }
+                      },
+                      "revision": 1,
+                      "contentType": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "ContentType",
+                          "id": "gitHubProject"
+                        }
+                      },
+                      "locale": "en-US"
+                    },
+                    "fields": {
+                      "gitHubId": "Web-Bluetooth-Terminal"
+                    }
+                  },
+                  {
+                    "metadata": {
+                      "tags": []
+                    },
+                    "sys": {
+                      "space": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "Space",
+                          "id": "8lybfh49sufl"
+                        }
+                      },
+                      "id": "anxwFib4KFT4jfrI7H6mp",
+                      "type": "Entry",
+                      "createdAt": "2022-06-13T15:40:27.259Z",
+                      "updatedAt": "2022-06-13T15:40:27.259Z",
+                      "environment": {
+                        "sys": {
+                          "id": "master",
+                          "type": "Link",
+                          "linkType": "Environment"
+                        }
+                      },
+                      "revision": 1,
+                      "contentType": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "ContentType",
+                          "id": "gitHubProject"
+                        }
+                      },
+                      "locale": "en-US"
+                    },
+                    "fields": {
+                      "gitHubId": "Portfolio"
+                    }
+                  },
+                  {
+                    "metadata": {
+                      "tags": []
+                    },
+                    "sys": {
+                      "space": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "Space",
+                          "id": "8lybfh49sufl"
+                        }
+                      },
+                      "id": "2Htlj2pg8rIUV71pA4fuEW",
+                      "type": "Entry",
+                      "createdAt": "2022-06-13T15:40:45.168Z",
+                      "updatedAt": "2022-06-13T15:40:45.168Z",
+                      "environment": {
+                        "sys": {
+                          "id": "master",
+                          "type": "Link",
+                          "linkType": "Environment"
+                        }
+                      },
+                      "revision": 1,
+                      "contentType": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "ContentType",
+                          "id": "gitHubProject"
+                        }
+                      },
+                      "locale": "en-US"
+                    },
+                    "fields": {
+                      "gitHubId": "Firebase-Authenticator"
+                    }
+                  }
+                ]
               }
             },
             {
+              "metadata": {
+                "tags": []
+              },
               "sys": {
-                "type": "Link",
-                "linkType": "Entry",
-                "id": "4MZWtqJoBnRiJzx9DMi81i"
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "4MZWtqJoBnRiJzx9DMi81i",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:48:25.120Z",
+                "updatedAt": "2022-06-13T15:48:25.120Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "openSourceLibraries"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "title": "Libraries",
+                "libraries": [
+                  {
+                    "metadata": {
+                      "tags": []
+                    },
+                    "sys": {
+                      "space": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "Space",
+                          "id": "8lybfh49sufl"
+                        }
+                      },
+                      "id": "gOT0Dnp9qhIHcCup1a2Nn",
+                      "type": "Entry",
+                      "createdAt": "2022-06-13T15:41:49.604Z",
+                      "updatedAt": "2022-06-13T15:41:49.604Z",
+                      "environment": {
+                        "sys": {
+                          "id": "master",
+                          "type": "Link",
+                          "linkType": "Environment"
+                        }
+                      },
+                      "revision": 1,
+                      "contentType": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "ContentType",
+                          "id": "gitHubLibrary"
+                        }
+                      },
+                      "locale": "en-US"
+                    },
+                    "fields": {
+                      "gitHubId": "UbxGps"
+                    }
+                  },
+                  {
+                    "metadata": {
+                      "tags": []
+                    },
+                    "sys": {
+                      "space": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "Space",
+                          "id": "8lybfh49sufl"
+                        }
+                      },
+                      "id": "5yjiiMmh8DoxI58ljUEtZo",
+                      "type": "Entry",
+                      "createdAt": "2022-06-13T15:42:18.441Z",
+                      "updatedAt": "2022-06-13T15:42:18.441Z",
+                      "environment": {
+                        "sys": {
+                          "id": "master",
+                          "type": "Link",
+                          "linkType": "Environment"
+                        }
+                      },
+                      "revision": 1,
+                      "contentType": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "ContentType",
+                          "id": "gitHubLibrary"
+                        }
+                      },
+                      "locale": "en-US"
+                    },
+                    "fields": {
+                      "gitHubId": "bluetooth-terminal"
+                    }
+                  },
+                  {
+                    "metadata": {
+                      "tags": []
+                    },
+                    "sys": {
+                      "space": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "Space",
+                          "id": "8lybfh49sufl"
+                        }
+                      },
+                      "id": "4QxbKn5X91uky1FBDp1EaO",
+                      "type": "Entry",
+                      "createdAt": "2022-06-13T15:42:52.569Z",
+                      "updatedAt": "2022-06-13T15:42:52.569Z",
+                      "environment": {
+                        "sys": {
+                          "id": "master",
+                          "type": "Link",
+                          "linkType": "Environment"
+                        }
+                      },
+                      "revision": 1,
+                      "contentType": {
+                        "sys": {
+                          "type": "Link",
+                          "linkType": "ContentType",
+                          "id": "gitHubLibrary"
+                        }
+                      },
+                      "locale": "en-US"
+                    },
+                    "fields": {
+                      "gitHubId": "canvas-heightmap"
+                    }
+                  }
+                ]
               }
             }
           ]
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "5yjiiMmh8DoxI58ljUEtZo",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:42:18.441Z",
+          "updatedAt": "2022-06-13T15:42:18.441Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "gitHubLibrary"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "gitHubId": "bluetooth-terminal"
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "6TfP117aLWvd6WgPoqHLPv",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:40:04.587Z",
+          "updatedAt": "2022-06-13T15:40:04.587Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "gitHubProject"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "gitHubId": "Web-Bluetooth-Terminal"
         }
       },
       {
@@ -400,34 +1433,498 @@
           "title": "Social Presence",
           "items": [
             {
+              "metadata": {
+                "tags": []
+              },
               "sys": {
-                "type": "Link",
-                "linkType": "Entry",
-                "id": "2EStqD0brNJ53vecaKWAjY"
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "2EStqD0brNJ53vecaKWAjY",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:27:29.210Z",
+                "updatedAt": "2022-06-13T15:27:29.210Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "socialPresenceItem"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "title": "LinkedIn",
+                "url": "https://www.linkedin.com/in/loginov-rocks/"
               }
             },
             {
+              "metadata": {
+                "tags": []
+              },
               "sys": {
-                "type": "Link",
-                "linkType": "Entry",
-                "id": "7EHcXnGWjmdWVI1ZgFG1nm"
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "7EHcXnGWjmdWVI1ZgFG1nm",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:28:19.334Z",
+                "updatedAt": "2022-06-13T15:28:19.334Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "socialPresenceItem"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "title": "GitHub",
+                "url": "https://github.com/loginov-rocks"
               }
             },
             {
+              "metadata": {
+                "tags": []
+              },
               "sys": {
-                "type": "Link",
-                "linkType": "Entry",
-                "id": "ChgOt3Bvt4j2Ng5vS3lGk"
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "ChgOt3Bvt4j2Ng5vS3lGk",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:28:40.683Z",
+                "updatedAt": "2022-06-13T15:28:40.683Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "socialPresenceItem"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "title": "Medium",
+                "url": "https://loginov-rocks.medium.com/"
               }
             },
             {
+              "metadata": {
+                "tags": []
+              },
               "sys": {
-                "type": "Link",
-                "linkType": "Entry",
-                "id": "7n6N6kkObF1HvPq9VWZEwI"
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "7n6N6kkObF1HvPq9VWZEwI",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:30:09.359Z",
+                "updatedAt": "2022-06-13T15:30:09.359Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "socialPresenceItem"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "title": "DRIVE2",
+                "url": "https://www.drive2.com/r/toyota/chaser/288230376151952785/",
+                "secondaryUrl": "https://www.drive2.ru/r/toyota/chaser/288230376151952785/"
               }
             }
           ]
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "7EHcXnGWjmdWVI1ZgFG1nm",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:28:19.334Z",
+          "updatedAt": "2022-06-13T15:28:19.334Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "socialPresenceItem"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "GitHub",
+          "url": "https://github.com/loginov-rocks"
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "7n6N6kkObF1HvPq9VWZEwI",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:30:09.359Z",
+          "updatedAt": "2022-06-13T15:30:09.359Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "socialPresenceItem"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "DRIVE2",
+          "url": "https://www.drive2.com/r/toyota/chaser/288230376151952785/",
+          "secondaryUrl": "https://www.drive2.ru/r/toyota/chaser/288230376151952785/"
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "ChgOt3Bvt4j2Ng5vS3lGk",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:28:40.683Z",
+          "updatedAt": "2022-06-13T15:28:40.683Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "socialPresenceItem"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "Medium",
+          "url": "https://loginov-rocks.medium.com/"
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "anxwFib4KFT4jfrI7H6mp",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:40:27.259Z",
+          "updatedAt": "2022-06-13T15:40:27.259Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "gitHubProject"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "gitHubId": "Portfolio"
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "d6a5T3qb8yOEOoW4mty9S",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:46:06.298Z",
+          "updatedAt": "2022-06-13T15:46:06.298Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "openSourceProjects"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "title": "Projects",
+          "projects": [
+            {
+              "metadata": {
+                "tags": []
+              },
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "6TfP117aLWvd6WgPoqHLPv",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:40:04.587Z",
+                "updatedAt": "2022-06-13T15:40:04.587Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "gitHubProject"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "gitHubId": "Web-Bluetooth-Terminal"
+              }
+            },
+            {
+              "metadata": {
+                "tags": []
+              },
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "anxwFib4KFT4jfrI7H6mp",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:40:27.259Z",
+                "updatedAt": "2022-06-13T15:40:27.259Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "gitHubProject"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "gitHubId": "Portfolio"
+              }
+            },
+            {
+              "metadata": {
+                "tags": []
+              },
+              "sys": {
+                "space": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "Space",
+                    "id": "8lybfh49sufl"
+                  }
+                },
+                "id": "2Htlj2pg8rIUV71pA4fuEW",
+                "type": "Entry",
+                "createdAt": "2022-06-13T15:40:45.168Z",
+                "updatedAt": "2022-06-13T15:40:45.168Z",
+                "environment": {
+                  "sys": {
+                    "id": "master",
+                    "type": "Link",
+                    "linkType": "Environment"
+                  }
+                },
+                "revision": 1,
+                "contentType": {
+                  "sys": {
+                    "type": "Link",
+                    "linkType": "ContentType",
+                    "id": "gitHubProject"
+                  }
+                },
+                "locale": "en-US"
+              },
+              "fields": {
+                "gitHubId": "Firebase-Authenticator"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "metadata": {
+          "tags": []
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "8lybfh49sufl"
+            }
+          },
+          "id": "gOT0Dnp9qhIHcCup1a2Nn",
+          "type": "Entry",
+          "createdAt": "2022-06-13T15:41:49.604Z",
+          "updatedAt": "2022-06-13T15:41:49.604Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "revision": 1,
+          "contentType": {
+            "sys": {
+              "type": "Link",
+              "linkType": "ContentType",
+              "id": "gitHubLibrary"
+            }
+          },
+          "locale": "en-US"
+        },
+        "fields": {
+          "gitHubId": "UbxGps"
         }
       }
     ]
