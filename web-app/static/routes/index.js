@@ -28,7 +28,6 @@ const homeRoute = new HomeRoute({
   contentfulHomePageContentType: process.env.CONTENTFUL_HOME_PAGE_CONTENT_TYPE,
   dataS3BucketName: process.env.DATA_S3_BUCKET_NAME,
   dataS3GitHubFileKey: process.env.DATA_S3_GITHUB_FILE_KEY,
-  dataS3HomeFileKey: process.env.DATA_S3_HOME_FILE_KEY,
   s3,
 });
 

@@ -8,8 +8,6 @@ export * from './AWS/CloudFrontInvalidation';
 export * from './AWS/S3Object';
 export * from './GitHub/GitHubData';
 export * from './GitHub/GitHubRepo';
-export * from './Home/HomeData';
-export * from './Home/SocialPresenceItem';
 
 // Export implementation.
 exports.CloudFrontInvalidation = CloudFrontInvalidation;
