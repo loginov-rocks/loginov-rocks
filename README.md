@@ -11,6 +11,21 @@ Monorepo for my [personal website](https://loginov.rocks).
 
 ![AWS Architecture Diagram](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/AWS-Architecture-Diagram.png)
 
+### Approaches
+
+1. Serverless
+2. Cloud native
+3. Headless CMS
+4. _TODO: Infrastructure as Code_
+5. Static Site Generation
+6. Event-driven
+7. Continuous Integration
+8. Continuous Deployment
+9. Principle of Least Privilege
+10. Monorepo
+11. Quality Gates
+12. Containerization
+
 ### Workflows
 
 #### A) Contentful Update
