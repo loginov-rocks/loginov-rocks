@@ -1,0 +1,147 @@
+{
+  "metadata": {
+    "tags": []
+  },
+  "sys": {
+    "type": "Entry",
+    "id": "6UNCF094uLEpSmpn9giX0I",
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "8lybfh49sufl"
+      }
+    },
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "socialPresenceSection"
+      }
+    },
+    "createdBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "08hJNFwMeAiYHqDFuz9fNp"
+      }
+    },
+    "updatedBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "08hJNFwMeAiYHqDFuz9fNp"
+      }
+    },
+    "revision": 3,
+    "createdAt": "2022-06-13T15:36:08.207Z",
+    "updatedAt": "2022-06-19T15:47:34.064Z"
+  },
+  "fields": {
+    "title": {
+      "en-US": "Social Presence"
+    },
+    "items": {
+      "en-US": [
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "2EStqD0brNJ53vecaKWAjY"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "7EHcXnGWjmdWVI1ZgFG1nm"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "ChgOt3Bvt4j2Ng5vS3lGk"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "7n6N6kkObF1HvPq9VWZEwI"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "5sUyeEI9KQUVTit4FSBb7O"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "6Pbbus6Q5qhmMo9Ov3drq3"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "6Pfv67Wcswy9WPE8Mge5ZP"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "2HI2GPcfdminyll0O4UbE0"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "4iYhYt6folSr2KcNnOx80M"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "76Up42hnTfjW3i0xYzvDi"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "5NhbqYUjs422H9KGpY1SSO"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "6V76bfNUlVFv9F7ChGTPVd"
+          }
+        },
+        {
+          "sys": {
+            "type": "Link",
+            "linkType": "Entry",
+            "id": "3gbW6QkngO4xrRf0LDpaqN"
+          }
+        }
+      ]
+    }
+  }
+}

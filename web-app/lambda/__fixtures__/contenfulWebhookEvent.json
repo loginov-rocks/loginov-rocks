@@ -1,0 +1,21 @@
+{
+  "Records": [
+    {
+      "messageId": "da6629d7-63cb-40c3-ac18-df799c2f7d9b",
+      "receiptHandle": "AQEBE1T8X6mWXvIO7uKLs+d6+kuSY3ypzRFPEt/tO/83pcB/RbBqTw1CUsSrGBAGhRv4RIZrVr0oJ6OLfqsijlhWtB9L8fgSte04JMktypt35A4bUljAIUUmSqoJzt8YHn847as4gdpxzcY+kviY9HcwwKSwIgyZjPNFtv3erlvJC5jsHeiXeSrbmnT3Bv4++t32M4ySEVT+dKNCQBX9e5OO193mKw1iIczVPAidda52zxMAU5IE/1Az/Iy4+PUhku+NdlUgud/6tmvkzQ9BQG/L1EzsSXeE9nL0MnvbI40z2Oqzm2BZzcSPZaDcuPbChG84Fv/HHmxg0vZnzCXSrdBj0uI9J6vqcIXxGSRIWIH2EmSPg4eo0nHyIAOKkii3j06ocMPe/UupStTgl8hWlzNiFA==",
+      "body": "{\"metadata\":{\"tags\":[]},\"sys\":{\"type\":\"Entry\",\"id\":\"jMmuOvsggsKAYQrlElGhv\",\"space\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"Space\",\"id\":\"8lybfh49sufl\"}},\"environment\":{\"sys\":{\"id\":\"master\",\"type\":\"Link\",\"linkType\":\"Environment\"}},\"contentType\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"ContentType\",\"id\":\"gitHubProject\"}},\"createdBy\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"User\",\"id\":\"08hJNFwMeAiYHqDFuz9fNp\"}},\"updatedBy\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"User\",\"id\":\"08hJNFwMeAiYHqDFuz9fNp\"}},\"revision\":1,\"createdAt\":\"2022-06-19T16:18:10.966Z\",\"updatedAt\":\"2022-06-19T16:18:10.966Z\"},\"fields\":{\"gitHubId\":{\"en-US\":\"Angular-Gulp-Boilerplate\"}}}",
+      "attributes": {
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "1655655491914",
+        "SenderId": "AROAS4RNFY557LJQG4Y4W:loginov-rocks-contentful-webhook",
+        "ApproximateFirstReceiveTimestamp": "1655655491933"
+      },
+      "messageAttributes": {},
+      "md5OfMessageAttributes": null,
+      "md5OfBody": "37e36d9726f361b1fa52d64fdcfd0f04",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:us-east-1:123:loginov-rocks-queue",
+      "awsRegion": "us-east-1"
+    }
+  ]
+}

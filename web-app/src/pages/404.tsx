@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { NotFound } from 'components/NotFound';
+import { NotFound } from 'components/dumb/NotFound';
 
-const NotFoundPage: React.FunctionComponent = () => (
+const NotFoundPage: React.FC = () => (
   <NotFound />
 );
 
