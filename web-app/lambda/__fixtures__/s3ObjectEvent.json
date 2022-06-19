@@ -1,0 +1,21 @@
+{
+  "Records": [
+    {
+      "messageId": "2970ce7c-52ed-4bfa-a006-4f8ec0fd29cf",
+      "receiptHandle": "AQEBGKGCkyTALq9HOlcYrakpzg201+cxWoPb8NfHrnoS10jMGPh4r6rQJTKxVrCrPNn/+TXgzqK1VG7aTd+ImINI9KVjo7DYrjZkkIyEHBLCcv5O9PFglAaCrJP3N40cLqEhYJkB/6bSt66my4QI79D0nC/ddDXxtDhuJmGAuGdBXyVPrz3q3dm1nE/c+5WN9b0WJkmfIvikRBCbjDfssUiA93PZX3RKM0rYKV9B0oCWU1JPn+aHDdaAf0dnOpM+SjHkWkOw5gERWt6PdAWGyK1JCl6oPTRNdOnd0fISQKJXmJZ12bXhW+zJvJXVZ/Y/HQK3QBuxEuIIIfWKxGwkISqHrKl6ZgxLF99cOtdrLmo6HolEohxsAohVwJUCAydMy1OlyEbpFApxPlQx1oVs931M0Q==",
+      "body": "{\"Records\":[{\"eventVersion\":\"2.1\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"us-east-1\",\"eventTime\":\"2022-06-19T16:30:35.922Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"AWS:AROAS4RNFY55764RV2UF2:loginov-rocks-update-github\"},\"requestParameters\":{\"sourceIPAddress\":\"35.170.55.64\"},\"responseElements\":{\"x-amz-request-id\":\"QQ5P7R5WSXCD4XX7\",\"x-amz-id-2\":\"xQaFpBO/xNApASs7GKT/OakHz0+PDtt4hObDCE0r5aWsHj0RIkbXB7UTqAHuA4XhotAo2A1mXFbtWGnoVdDSmgW9nRlCdDmm\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"0f2b58be-91da-43a8-b174-c27f8561e4c2\",\"bucket\":{\"name\":\"loginov-rocks-data\",\"ownerIdentity\":{\"principalId\":\"A6NN9LJ3M9OIA\"},\"arn\":\"arn:aws:s3:::loginov-rocks-data\"},\"object\":{\"key\":\"github.json\",\"size\":10470,\"eTag\":\"0529c8615b82a252d274828b6121bd61\",\"sequencer\":\"0062AF4F2BD9BE3F1E\"}}}]}",
+      "attributes": {
+        "ApproximateReceiveCount": "1",
+        "SentTimestamp": "1655656236774",
+        "SenderId": "AIDAJHIPRHEMV73VRJEBU",
+        "ApproximateFirstReceiveTimestamp": "1655656236787"
+      },
+      "messageAttributes": {},
+      "md5OfMessageAttributes": null,
+      "md5OfBody": "4b1658d10e37b7c17774c7b7a03ca5d0",
+      "eventSource": "aws:sqs",
+      "eventSourceARN": "arn:aws:sqs:us-east-1:123:loginov-rocks-queue",
+      "awsRegion": "us-east-1"
+    }
+  ]
+}
