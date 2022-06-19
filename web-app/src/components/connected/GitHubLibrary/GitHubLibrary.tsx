@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { WorksListItem } from 'components/WorksListItem';
+import { WorksListItem } from 'components/smart/WorksListItem';
 
 interface Props {
   gitHubId: string;

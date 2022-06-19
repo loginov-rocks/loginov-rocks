@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { PhoneLink } from 'components/PhoneLink';
+import { PhoneLink } from 'components/dumb/PhoneLink';
 
 export const Dolph: React.FC = () => (
   <>

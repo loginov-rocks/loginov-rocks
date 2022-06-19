@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { GitHubWorkDetails } from 'components/GitHubWorkDetails';
-import { Link } from 'components/Link';
+import { GitHubWorkDetails } from 'components/dumb/GitHubWorkDetails';
+import { Link } from 'components/dumb/Link';
 import { useGitHubContext } from 'contexts/GitHubContext';
 
 interface Props {

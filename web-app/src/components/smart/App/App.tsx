@@ -2,8 +2,8 @@ import { Router } from '@reach/router';
 import * as React from 'react';
 import { addPrefetchExcludes, Root, Routes } from 'react-static';
 
-import { Loading } from 'components/Loading';
-import { DolphContainer } from 'containers/DolphContainer';
+import { DolphContainer } from 'components/dumb/DolphContainer';
+import { Loading } from 'components/dumb/Loading';
 
 addPrefetchExcludes([
   'dolph',
