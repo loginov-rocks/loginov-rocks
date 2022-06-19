@@ -1,4 +1,4 @@
-# Web App Lambda
+# Web App Function
 
 ## AWS
 
