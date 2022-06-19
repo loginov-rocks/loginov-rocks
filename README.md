@@ -9,7 +9,7 @@ Monorepo for my [personal website](https://loginov.rocks).
 
 ## Architecture
 
-![AWS Architecture Diagram](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/AWS%20Architecture%20Diagram.png)
+![AWS Architecture Diagram](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/AWS-Architecture-Diagram.png)
 
 ### Workflows
 
