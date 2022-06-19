@@ -22,8 +22,6 @@ export const cmsRendererFactory = (cmsConnectedRepository: CmsConnectedRepositor
     }
 
     const render = (content: CmsEntry | CmsEntry[]): React.ReactNode | React.ReactNode[] => {
-      console.log(content);
-
       if (Array.isArray(content)) {
         return content.map((child, index) => (
           // eslint-disable-next-line react/no-array-index-key
