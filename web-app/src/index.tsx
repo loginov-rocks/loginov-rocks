@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 
-import { App } from 'components/smart/App';
+import { App } from 'components/containers/App';
 
 if (typeof document !== 'undefined') {
   const target = document.getElementById('root');
@@ -30,7 +30,7 @@ if (typeof document !== 'undefined') {
 
   // Hot Module Replacement support.
   if (module && module.hot) {
-    module.hot.accept('components/smart/App', () => {
+    module.hot.accept('components/containers/App', () => {
       render(App);
     });
   }

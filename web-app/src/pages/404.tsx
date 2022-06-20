@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import { NotFound } from 'components/dumb/NotFound';
+import { NotFoundView } from 'components/views/NotFoundView';
 
 const NotFoundPage: React.FC = () => (
-  <NotFound />
+  <NotFoundView />
 );
 
 export default NotFoundPage;
