@@ -1,10 +1,10 @@
 import * as React from 'react';
 
+import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
-import { CmsEntry } from 'cms/interfaces/CmsEntry';
 
 interface Props extends CmsConnectedProps {
-  libraries: CmsEntry[];
+  libraries: CmsComponent[];
   title: string;
 }
 

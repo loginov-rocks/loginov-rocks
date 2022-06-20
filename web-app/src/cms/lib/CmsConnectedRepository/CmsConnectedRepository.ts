@@ -10,19 +10,19 @@ export class CmsConnectedRepository {
     this.repository = new Map();
   }
 
-  public registerComponent(contentTypeId: string, component: Component): void {
-    this.repository.set(contentTypeId, component);
+  public registerComponent(cmsComponentType: string, implementation: Component): void {
+    this.repository.set(cmsComponentType, implementation);
   }
 
-  public getComponent(contentTypeId: string): Component | null {
-    const component = this.repository.get(contentTypeId);
+  public getComponent(cmsComponentType: string): Component | null {
+    const implementation = this.repository.get(cmsComponentType);
 
-    if (!component) {
-      console.error('No component registered for content type ID:', contentTypeId);
+    if (!implementation) {
+      console.error('No implementation registered for type:', cmsComponentType);
 
       return null;
     }
 
-    return component;
+    return implementation;
   }
 }

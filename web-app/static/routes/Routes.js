@@ -3,11 +3,11 @@ export class Routes {
     this.routes = [];
   }
 
-  register(path, route) {
+  registerRoute(path, route) {
     this.routes.push({ path, route });
   }
 
-  get() {
+  getRoutes() {
     return () => Promise.all(this.routes.map(async ({ path, route }) => {
       const data = await route.getData();
 

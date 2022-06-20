@@ -3,20 +3,20 @@ import * as React from 'react';
 import { useRouteData } from 'react-static';
 
 import { CmsRenderer } from 'cms/components/CmsRenderer';
-import { CmsEntry } from 'cms/interfaces/CmsEntry';
+import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { GitHubContext } from 'contexts/GitHubContext';
 
 interface RouteData {
+  cmsHomePageComponent: CmsComponent;
   gitHubData: GitHubData;
-  homePage: CmsEntry;
 }
 
 const IndexPage: React.FC = () => {
-  const { gitHubData, homePage } = useRouteData<RouteData>();
+  const { cmsHomePageComponent, gitHubData } = useRouteData<RouteData>();
 
   return (
     <GitHubContext.Provider value={gitHubData}>
-      <CmsRenderer cmsEntry={homePage} />
+      <CmsRenderer cmsComponent={cmsHomePageComponent} />
     </GitHubContext.Provider>
   );
 };

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
-import { CmsEntry } from 'cms/interfaces/CmsEntry';
+import { CmsComponent } from 'cms/interfaces/CmsComponent';
 
 export interface CmsConnectedProps {
-  render: (content: CmsEntry | CmsEntry[]) => ReactNode | ReactNode[];
+  render: (content: CmsComponent | CmsComponent[]) => ReactNode | ReactNode[];
 }

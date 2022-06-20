@@ -1,0 +1,145 @@
+{
+  "type": "homePage",
+  "props": {
+    "title": "Hello!",
+    "sections": [
+      {
+        "type": "richTextSection",
+        "props": {
+          "title": "Home Page Rich Text",
+          "content": {
+            "nodeType": "document",
+            "data": {},
+            "content": [
+              {
+                "nodeType": "paragraph",
+                "data": {},
+                "content": [
+                  {
+                    "nodeType": "text",
+                    "value": "I am ",
+                    "marks": [],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "text",
+                    "value": "Danila",
+                    "marks": [
+                      {
+                        "type": "bold"
+                      }
+                    ],
+                    "data": {}
+                  },
+                  {
+                    "nodeType": "text",
+                    "value": ", nice to e-meet you!",
+                    "marks": [],
+                    "data": {}
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type": "socialPresenceSection",
+        "props": {
+          "title": "Social Presence",
+          "items": [
+            {
+              "type": "socialPresenceItem",
+              "props": {
+                "title": "LinkedIn",
+                "url": "https://www.linkedin.com/in/loginov-rocks/"
+              }
+            },
+            {
+              "type": "socialPresenceItem",
+              "props": {
+                "title": "GitHub",
+                "url": "https://github.com/loginov-rocks"
+              }
+            },
+            {
+              "type": "socialPresenceItem",
+              "props": {
+                "title": "Medium",
+                "url": "https://loginov-rocks.medium.com/"
+              }
+            },
+            {
+              "type": "socialPresenceItem",
+              "props": {
+                "title": "DRIVE2",
+                "url": "https://www.drive2.com/r/toyota/chaser/288230376151952785/",
+                "secondaryUrl": "https://www.drive2.ru/r/toyota/chaser/288230376151952785/"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "type": "openSourceSection",
+        "props": {
+          "title": "Open Source",
+          "blocks": [
+            {
+              "type": "openSourceProjects",
+              "props": {
+                "title": "Projects",
+                "projects": [
+                  {
+                    "type": "gitHubProject",
+                    "props": {
+                      "gitHubId": "Web-Bluetooth-Terminal"
+                    }
+                  },
+                  {
+                    "type": "gitHubProject",
+                    "props": {
+                      "gitHubId": "Portfolio"
+                    }
+                  },
+                  {
+                    "type": "gitHubProject",
+                    "props": {
+                      "gitHubId": "Firebase-Authenticator"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "openSourceLibraries",
+              "props": {
+                "title": "Libraries",
+                "libraries": [
+                  {
+                    "type": "gitHubLibrary",
+                    "props": {
+                      "gitHubId": "UbxGps"
+                    }
+                  },
+                  {
+                    "type": "gitHubLibrary",
+                    "props": {
+                      "gitHubId": "bluetooth-terminal"
+                    }
+                  },
+                  {
+                    "type": "gitHubLibrary",
+                    "props": {
+                      "gitHubId": "canvas-heightmap"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

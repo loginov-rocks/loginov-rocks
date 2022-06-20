@@ -1,15 +1,16 @@
 import { S3 } from 'aws-sdk';
-import * as Contentful from 'contentful';
 import { config } from 'dotenv';
+
+import { CmsClient } from '../cms/CmsClient';
 
 import { HomeRoute } from './HomeRoute';
 import { Routes } from './Routes';
 
 config();
 
-const contentful = Contentful.createClient({
-  accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  space: process.env.CONTENTFUL_SPACE,
+const cmsClient = new CmsClient({
+  accessToken: process.env.CMS_CLIENT_ACCESS_TOKEN,
+  space: process.env.CMS_CLIENT_SPACE,
 });
 
 const s3Configuration = {};
@@ -24,13 +25,13 @@ const s3 = new S3(s3Configuration);
 const routes = new Routes();
 
 const homeRoute = new HomeRoute({
-  contentful,
-  contentfulHomePageContentType: process.env.CONTENTFUL_HOME_PAGE_CONTENT_TYPE,
+  cmsClient,
+  cmsHomePageComponentType: process.env.CMS_HOME_PAGE_COMPONENT_TYPE,
   dataS3BucketName: process.env.DATA_S3_BUCKET_NAME,
   dataS3GitHubFileKey: process.env.DATA_S3_GITHUB_FILE_KEY,
   s3,
 });
 
-routes.register('/', homeRoute);
+routes.registerRoute('/', homeRoute);
 
 export default routes;

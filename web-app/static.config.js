@@ -9,7 +9,7 @@ const pathsBase = process.env.LAMBDA_USE_TMPDIR === 'true' ? `${os.tmpdir()}/` :
 export default {
   Document,
   entry: path.resolve('./src/index.tsx'),
-  getRoutes: routes.get(),
+  getRoutes: routes.getRoutes(),
   paths: {
     buildArtifacts: `${pathsBase}artifacts`,
     dist: `${pathsBase}dist`,

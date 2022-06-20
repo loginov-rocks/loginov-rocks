@@ -22,4 +22,4 @@ cmsConnectedRepository.registerComponent('richTextSection', RichTextSection);
 cmsConnectedRepository.registerComponent('socialPresenceItem', SocialPresenceItem);
 cmsConnectedRepository.registerComponent('socialPresenceSection', SocialPresenceSection);
 
-export { cmsConnectedRepository };
+export default cmsConnectedRepository;

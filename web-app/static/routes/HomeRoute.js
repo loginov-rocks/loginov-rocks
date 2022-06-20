@@ -2,10 +2,10 @@ import { S3Object } from '@loginov-rocks/loginov-rocks-shared';
 
 export class HomeRoute {
   constructor({
-    contentful, contentfulHomePageContentType, dataS3BucketName, dataS3GitHubFileKey, s3,
+    cmsClient, cmsHomePageComponentType, dataS3BucketName, dataS3GitHubFileKey, s3,
   }) {
-    this.contentful = contentful;
-    this.contentfulHomePageContentType = contentfulHomePageContentType;
+    this.cmsClient = cmsClient;
+    this.cmsHomePageComponentType = cmsHomePageComponentType;
     this.dataS3BucketName = dataS3BucketName;
     this.dataS3GitHubFileKey = dataS3GitHubFileKey;
     this.s3 = s3;
@@ -14,15 +14,17 @@ export class HomeRoute {
   async getData() {
     if (process.env.NODE_ENV !== 'production') {
       /* eslint-disable global-require */
+      const cmsHomePageComponentMock = require('../cms/__fixtures__/cmsHomePageComponent.json');
       const gitHubDataMock = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/gitHubData.json');
-      const homePageEntriesMock = require('./__fixtures__/homePageEntries.json');
       /* eslint-enable */
 
       return Promise.resolve({
+        cmsHomePageComponent: cmsHomePageComponentMock,
         gitHubData: gitHubDataMock,
-        homePage: homePageEntriesMock.items[0],
       });
     }
+
+    const cmsHomePageComponent = await this.cmsClient.getCmsComponentByType(this.cmsHomePageComponentType);
 
     const gitHubS3Object = new S3Object({
       bucketName: this.dataS3BucketName,
@@ -32,13 +34,6 @@ export class HomeRoute {
     const gitHubS3ObjectData = await gitHubS3Object.read();
     const gitHubData = JSON.parse(gitHubS3ObjectData);
 
-    const homePageEntries = await this.contentful.getEntries({
-      content_type: this.contentfulHomePageContentType,
-      include: 10,
-      limit: 1,
-    });
-    const homePage = homePageEntries.items[0];
-
-    return { gitHubData, homePage };
+    return { cmsHomePageComponent, gitHubData };
   }
 }

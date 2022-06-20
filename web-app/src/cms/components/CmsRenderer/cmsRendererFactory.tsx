@@ -1,39 +1,33 @@
 import * as React from 'react';
 
-import { CmsEntry } from 'cms/interfaces/CmsEntry';
+import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { CmsConnectedRepository } from 'cms/lib/CmsConnectedRepository/CmsConnectedRepository';
 
 interface CmsRendererProps {
-  cmsEntry: CmsEntry;
+  cmsComponent: CmsComponent;
 }
 
 export const cmsRendererFactory = (cmsConnectedRepository: CmsConnectedRepository): React.FC<CmsRendererProps> => {
-  const CmsRenderer: React.FC<CmsRendererProps> = ({ cmsEntry }) => {
-    const contentTypeId = cmsEntry.sys.contentType.sys.id;
-
-    if (!contentTypeId) {
-      throw new Error('Content type ID missing');
-    }
-
-    const component = cmsConnectedRepository.getComponent(contentTypeId);
+  const CmsRenderer: React.FC<CmsRendererProps> = ({ cmsComponent }) => {
+    const component = cmsConnectedRepository.getComponent(cmsComponent.type);
 
     if (!component) {
       return null;
     }
 
-    const render = (content: CmsEntry | CmsEntry[]): React.ReactNode | React.ReactNode[] => {
+    const render = (content: CmsComponent | CmsComponent[]): React.ReactNode | React.ReactNode[] => {
       if (Array.isArray(content)) {
         return content.map((child, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <CmsRenderer cmsEntry={child} key={index} />
+          <CmsRenderer cmsComponent={child} key={index} />
         ));
       }
 
-      return <CmsRenderer cmsEntry={content} />;
+      return <CmsRenderer cmsComponent={content} />;
     };
 
     const props = {
-      ...cmsEntry.fields,
+      ...cmsComponent.props,
       render,
     };
 
