@@ -28,6 +28,7 @@ In no particular order:
 11. Quality Gates
 12. Containerization
 13. Single Page Application
+14. Hybrid Rendering
 
 ### Workflows
 
