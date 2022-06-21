@@ -2,6 +2,8 @@ import * as React from 'react';
 
 import { PhoneLink } from 'components/shared/PhoneLink';
 
+// TODO: Refactor to CMS-provided page.
+//  @see https://github.com/react-static/react-static/issues/1667
 export const DolphView: React.FC = () => (
   <>
     <h1>Hello!</h1>
