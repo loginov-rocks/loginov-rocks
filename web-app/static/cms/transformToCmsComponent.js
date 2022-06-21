@@ -3,6 +3,7 @@ const isContentfulEntry = (value) => {
     return false;
   }
 
+  // Contentful Entry check is simplified here.
   return value.sys !== undefined;
 };
 

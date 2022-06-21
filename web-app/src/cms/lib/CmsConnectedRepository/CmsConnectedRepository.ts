@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-// Any used to describe component with random props.
+// Any used to describe components of random type.
 type Component = ComponentType<any>;
 
 export class CmsConnectedRepository {

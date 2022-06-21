@@ -6,4 +6,5 @@ const NotFoundPage: React.FC = () => (
   <NotFoundView />
 );
 
+// Default export is required by React Static.
 export default NotFoundPage;

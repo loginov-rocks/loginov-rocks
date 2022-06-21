@@ -21,4 +21,5 @@ const IndexPage: React.FC = () => {
   );
 };
 
+// Default export is required by React Static.
 export default IndexPage;

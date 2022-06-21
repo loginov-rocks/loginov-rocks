@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import * as GitHubContext from 'contexts/GitHubContext';
 
-import { WorksListItem } from './WorksListItem';
+import { GitHubRepository } from './GitHubRepository';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const gitHubDataMock = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/gitHubData.json');
@@ -13,14 +13,14 @@ const gitHubDataMock = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/_
 jest.spyOn(GitHubContext, 'useGitHubContext')
   .mockImplementation(() => gitHubDataMock);
 
-it('matches snapshot', () => {
-  const wrapper = shallow(<WorksListItem gitHubId="Some work" />);
+it('matches snapshot without GitHub details', () => {
+  const wrapper = shallow(<GitHubRepository gitHubId="Some work" />);
 
   expect(wrapper).toMatchSnapshot();
 });
 
-it('matches snapshot with GitHub repo', () => {
-  const wrapper = shallow(<WorksListItem gitHubId="Angular-Gulp-Boilerplate" />);
+it('matches snapshot with GitHub details', () => {
+  const wrapper = shallow(<GitHubRepository gitHubId="Angular-Gulp-Boilerplate" />);
 
   expect(wrapper).toMatchSnapshot();
 });

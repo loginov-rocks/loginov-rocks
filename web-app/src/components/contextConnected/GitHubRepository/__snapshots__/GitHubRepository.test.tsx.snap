@@ -1,14 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`matches snapshot 1`] = `
-<Fragment>
-  <strong>
-    Some work
-  </strong>
-</Fragment>
-`;
-
-exports[`matches snapshot with GitHub repo 1`] = `
+exports[`matches snapshot with GitHub details 1`] = `
 <Fragment>
   <ExternalLink
     href="https://www.npmjs.com/package/angular-gulp-boilerplate"
@@ -26,8 +18,8 @@ exports[`matches snapshot with GitHub repo 1`] = `
     GitHub
   </ExternalLink>
   <br />
-  <GitHubWorkDetails
-    repo={
+  <GitHubRepositoryDetails
+    repository={
       Object {
         "description": "Clean but full featured AngularJS boilerplate using Gulp workflow and best practices",
         "homepageUrl": "https://www.npmjs.com/package/angular-gulp-boilerplate",
@@ -41,5 +33,13 @@ exports[`matches snapshot with GitHub repo 1`] = `
       }
     }
   />
+</Fragment>
+`;
+
+exports[`matches snapshot without GitHub details 1`] = `
+<Fragment>
+  <strong>
+    Some work
+  </strong>
 </Fragment>
 `;

@@ -2,33 +2,33 @@ import { GitHubRepo } from '@loginov-rocks/loginov-rocks-shared';
 import * as React from 'react';
 
 interface Props {
-  repo: GitHubRepo;
+  repository: GitHubRepo;
 }
 
-export const GitHubWorkDetails: React.FC<Props> = ({ repo }) => (
+export const GitHubRepositoryDetails: React.FC<Props> = ({ repository }) => (
   <>
 
-    {repo.description && (
+    {repository.description && (
       <>
-        {repo.description}
+        {repository.description}
         <br />
       </>
     )}
 
-    {repo.language && (
+    {repository.language && (
       <>
-        <span title="Language">{repo.language}</span>
+        <span title="Language">{repository.language}</span>
         {' '}
         /
         {' '}
       </>
     )}
 
-    {repo.stars > 0 && (
+    {repository.stars > 0 && (
       <>
         <span title="GitHub Stars">
           &#x2B50;
-          {repo.stars}
+          {repository.stars}
         </span>
         {' '}
         /
@@ -37,19 +37,19 @@ export const GitHubWorkDetails: React.FC<Props> = ({ repo }) => (
     )}
 
     <span title="Last Updated">
-      {new Date(repo.updatedAt).toLocaleDateString(undefined, {
+      {new Date(repository.updatedAt).toLocaleDateString(undefined, {
         day: 'numeric',
         month: 'short',
         year: 'numeric',
       })}
     </span>
 
-    {repo.latestTag && (
+    {repository.latestTag && (
       <>
         {' '}
         /
         {' '}
-        <span title="Latest Tag">{repo.latestTag}</span>
+        <span title="Latest Tag">{repository.latestTag}</span>
       </>
     )}
 

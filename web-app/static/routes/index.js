@@ -6,6 +6,7 @@ import { CmsClient } from '../cms/CmsClient';
 import { HomeRoute } from './HomeRoute';
 import { Routes } from './Routes';
 
+// Load environment variables configuration.
 config();
 
 const cmsClient = new CmsClient({
@@ -34,4 +35,5 @@ const homeRoute = new HomeRoute({
 
 routes.registerRoute('/', homeRoute);
 
+// Default export used to highlight singleton pattern.
 export default routes;

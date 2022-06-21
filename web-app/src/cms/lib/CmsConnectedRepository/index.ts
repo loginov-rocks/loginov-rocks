@@ -22,4 +22,5 @@ cmsConnectedRepository.registerComponent('richTextSection', RichTextSection);
 cmsConnectedRepository.registerComponent('socialPresenceItem', SocialPresenceItem);
 cmsConnectedRepository.registerComponent('socialPresenceSection', SocialPresenceSection);
 
+// Default export is used to highlight singleton pattern.
 export default cmsConnectedRepository;

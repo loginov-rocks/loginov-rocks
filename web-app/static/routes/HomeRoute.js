@@ -12,6 +12,7 @@ export class HomeRoute {
   }
 
   async getData() {
+    // Use mocks in non-production environment.
     if (process.env.NODE_ENV !== 'production') {
       /* eslint-disable global-require */
       const cmsHomePageComponentMock = require('../cms/__fixtures__/cmsHomePageComponent.json');
