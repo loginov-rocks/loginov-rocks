@@ -1,13 +1,29 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
+    "AuthPassword": {
+      "Type": "String",
+      "Description": "TODO: Secure"
+    },
+    "AuthUser": {
+      "Type": "String",
+      "Description": "TODO: Secure"
+    },
+    "CmsClientAccessToken": {
+      "Type": "String",
+      "Description": "TODO: Secure"
+    },
+    "CmsClientSpace": {
+      "Type": "String",
+      "Description": "TODO: Secure"
+    },
+    "CmsHomePageComponentType": {
+      "Type": "String",
+      "Default": "homePage"
+    },
     "DataS3GitHubFileKey": {
       "Type": "String",
       "Default": "github.json"
-    },
-    "DataS3HomeFileKey": {
-      "Type": "String",
-      "Default": "home.json"
     },
     "GitHubBaseUrl": {
       "Type": "String",
@@ -49,6 +65,82 @@
             "Id": "UpdateGitHubRuleTarget"
           }
         ]
+      }
+    },
+    "ContentfulWebhookRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "logs:CreateLogGroup",
+                  "Resource": {
+                    "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": [
+                      "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*",
+                      {
+                        "FunctionName": {
+                          "Fn::Sub": "${AWS::StackName}-contentful-webhook"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "PolicyName": "AWSLambdaBasicExecutionRole"
+          },
+          {
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "sqs:SendMessage",
+                  "Resource": {
+                    "Fn::Sub": [
+                      "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:${QueueName}",
+                      {
+                        "QueueName": {
+                          "Fn::Sub": "${AWS::StackName}-queue"
+                        }
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "PolicyName": "CustomPolicy"
+          }
+        ],
+        "RoleName": {
+          "Fn::Sub": "${AWS::StackName}-contentful-webhook-role"
+        }
       }
     },
     "UpdateGitHubFunctionRole": {
@@ -198,6 +290,24 @@
                 {
                   "Effect": "Allow",
                   "Action": [
+                    "sqs:GetQueueAttributes",
+                    "sqs:ReceiveMessage",
+                    "sqs:DeleteMessage"
+                  ],
+                  "Resource": {
+                    "Fn::Sub": [
+                      "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:${QueueName}",
+                      {
+                        "QueueName": {
+                          "Fn::Sub": "${AWS::StackName}-queue"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
                     "s3:ListBucket",
                     "s3:GetObject"
                   ],
@@ -277,6 +387,58 @@
         }
       }
     },
+    "WebAppFunctionEventSourceMapping": {
+      "Type": "AWS::Lambda::EventSourceMapping",
+      "Properties": {
+        "BatchSize": 10000,
+        "EventSourceArn": {
+          "Fn::GetAtt": [
+            "Queue",
+            "Arn"
+          ]
+        },
+        "FunctionName": {
+          "Ref": "WebAppFunction"
+        },
+        "MaximumBatchingWindowInSeconds": 300
+      }
+    },
+    "ContentfulWebhook": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Architectures": [
+          "arm64"
+        ],
+        "Code": {
+          "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
+        },
+        "Environment": {
+          "Variables": {
+            "AUTH_PASSWORD": {
+              "Ref": "AuthPassword"
+            },
+            "AUTH_USER": {
+              "Ref": "AuthUser"
+            },
+            "SQS_QUEUE_URL": {
+              "Ref": "Queue"
+            }
+          }
+        },
+        "FunctionName": {
+          "Fn::Sub": "${AWS::StackName}-contentful-webhook"
+        },
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "ContentfulWebhookRole",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs16.x",
+        "Timeout": 60
+      }
+    },
     "UpdateGitHubFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
@@ -325,14 +487,20 @@
         "Environment": {
           "Variables": {
             "BABEL_DISABLE_CACHE": "1",
+            "CMS_CLIENT_ACCESS_TOKEN": {
+              "Ref": "CmsClientAccessToken"
+            },
+            "CMS_CLIENT_SPACE": {
+              "Ref": "CmsClientSpace"
+            },
+            "CMS_HOME_PAGE_COMPONENT_TYPE": {
+              "Ref": "CmsHomePageComponentType"
+            },
             "DATA_S3_BUCKET_NAME": {
               "Fn::Sub": "${AWS::StackName}-data-bucket"
             },
             "DATA_S3_GITHUB_FILE_KEY": {
               "Ref": "DataS3GitHubFileKey"
-            },
-            "DATA_S3_HOME_FILE_KEY": {
-              "Ref": "DataS3HomeFileKey"
             },
             "LAMBDA_ACCESS_KEY_ID": "",
             "LAMBDA_S3_BUCKET_NAME": {
@@ -362,24 +530,15 @@
         "Timeout": 900
       }
     },
-    "DataBucketPermission": {
+    "ContentfulWebhookPermission": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
-        "Action": "lambda:InvokeFunction",
+        "Action": "lambda:InvokeFunctionUrl",
         "FunctionName": {
-          "Ref": "WebAppFunction"
+          "Ref": "ContentfulWebhook"
         },
-        "Principal": "s3.amazonaws.com",
-        "SourceArn": {
-          "Fn::Sub": [
-            "arn:aws:s3:::${DataBucketName}",
-            {
-              "DataBucketName": {
-                "Fn::Sub": "${AWS::StackName}-data-bucket"
-              }
-            }
-          ]
-        }
+        "FunctionUrlAuthType": "NONE",
+        "Principal": "*"
       }
     },
     "UpdateGitHubRulePermission": {
@@ -398,6 +557,15 @@
         }
       }
     },
+    "ContentfulWebhookUrl": {
+      "Type": "AWS::Lambda::Url",
+      "Properties": {
+        "AuthType": "NONE",
+        "TargetFunctionArn": {
+          "Ref": "ContentfulWebhook"
+        }
+      }
+    },
     "DataBucket": {
       "Type": "AWS::S3::Bucket",
       "Properties": {
@@ -405,12 +573,12 @@
           "Fn::Sub": "${AWS::StackName}-data-bucket"
         },
         "NotificationConfiguration": {
-          "LambdaConfigurations": [
+          "QueueConfigurations": [
             {
               "Event": "s3:ObjectCreated:Put",
-              "Function": {
+              "Queue": {
                 "Fn::GetAtt": [
-                  "WebAppFunction",
+                  "Queue",
                   "Arn"
                 ]
               }
@@ -437,6 +605,60 @@
           "IgnorePublicAcls": true,
           "RestrictPublicBuckets": true
         }
+      }
+    },
+    "Queue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": {
+          "Fn::Sub": "${AWS::StackName}-queue"
+        },
+        "VisibilityTimeout": 900
+      }
+    },
+    "QueuePolicy": {
+      "Type": "AWS::SQS::QueuePolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "s3.amazonaws.com"
+            },
+            "Action": "SQS:SendMessage",
+            "Resource": {
+              "Fn::GetAtt": [
+                "Queue",
+                "Arn"
+              ]
+            },
+            "Condition": {
+              "StringEquals": {
+                "aws:SourceAccount": {
+                  "Fn::Sub": "${AWS::AccountId}"
+                }
+              },
+              "ArnLike": {
+                "aws:SourceArn": {
+                  "Fn::Sub": [
+                    "arn:aws:s3:::${DataBucketName}",
+                    {
+                      "DataBucketName": {
+                        "Fn::Sub": "${AWS::StackName}-data-bucket"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "Queues": [
+          {
+            "Ref": "Queue"
+          }
+        ]
       }
     }
   }
