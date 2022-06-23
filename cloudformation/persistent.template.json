@@ -1,0 +1,216 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Outputs": {
+    "DataBucketArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "DataBucket",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-DataBucketArn"
+        }
+      }
+    },
+    "DataBucketName": {
+      "Value": {
+        "Ref": "DataBucket"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-DataBucketName"
+        }
+      }
+    },
+    "DeploymentBucketName": {
+      "Value": {
+        "Ref": "DeploymentBucket"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-DeploymentBucketName"
+        }
+      }
+    },
+    "QueueArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "Queue",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-QueueArn"
+        }
+      }
+    },
+    "QueueUrl": {
+      "Value": {
+        "Ref": "Queue"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-QueueUrl"
+        }
+      }
+    },
+    "WebAppBucketArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "WebAppBucket",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppBucketArn"
+        }
+      }
+    },
+    "WebAppBucketName": {
+      "Value": {
+        "Ref": "WebAppBucket"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppBucketName"
+        }
+      }
+    },
+    "WebAppRepositoryUri": {
+      "Value": {
+        "Fn::GetAtt": [
+          "WebAppRepository",
+          "RepositoryUri"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppRepositoryUri"
+        }
+      }
+    }
+  },
+  "Resources": {
+    "WebAppRepository": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "RepositoryName": {
+          "Fn::Sub": "${AWS::StackName}-web-app-repository"
+        }
+      }
+    },
+    "DataBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Sub": "${AWS::StackName}-data-bucket"
+        },
+        "NotificationConfiguration": {
+          "QueueConfigurations": [
+            {
+              "Event": "s3:ObjectCreated:Put",
+              "Queue": {
+                "Fn::GetAtt": [
+                  "Queue",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
+      }
+    },
+    "DeploymentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Sub": "${AWS::StackName}-deployment-bucket"
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
+      }
+    },
+    "WebAppBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Sub": "${AWS::StackName}-web-app-bucket"
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
+      }
+    },
+    "Queue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": {
+          "Fn::Sub": "${AWS::StackName}-queue"
+        },
+        "VisibilityTimeout": 900
+      }
+    },
+    "QueuePolicy": {
+      "Type": "AWS::SQS::QueuePolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "s3.amazonaws.com"
+            },
+            "Action": "SQS:SendMessage",
+            "Resource": {
+              "Fn::GetAtt": [
+                "Queue",
+                "Arn"
+              ]
+            },
+            "Condition": {
+              "StringEquals": {
+                "aws:SourceAccount": {
+                  "Fn::Sub": "${AWS::AccountId}"
+                }
+              },
+              "ArnLike": {
+                "aws:SourceArn": {
+                  "Fn::Sub": [
+                    "arn:aws:s3:::${DataBucketName}",
+                    {
+                      "DataBucketName": {
+                        "Fn::Sub": "${AWS::StackName}-data-bucket"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "Queues": [
+          {
+            "Ref": "Queue"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -2,20 +2,16 @@
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
     "AuthPassword": {
-      "Type": "String",
-      "Description": "TODO: Secure"
+      "Type": "String"
     },
     "AuthUser": {
-      "Type": "String",
-      "Description": "TODO: Secure"
+      "Type": "String"
     },
     "CmsClientAccessToken": {
-      "Type": "String",
-      "Description": "TODO: Secure"
+      "Type": "String"
     },
     "CmsClientSpace": {
-      "Type": "String",
-      "Description": "TODO: Secure"
+      "Type": "String"
     },
     "CmsHomePageComponentType": {
       "Type": "String",
@@ -30,8 +26,10 @@
       "Default": "https://api.github.com"
     },
     "GitHubPersonalAccessToken": {
-      "Type": "String",
-      "Description": "TODO: Secure"
+      "Type": "String"
+    },
+    "PersistentStackName": {
+      "Type": "String"
     },
     "WebAppCloudFrontInvalidationPath": {
       "Type": "String",
@@ -39,11 +37,58 @@
     }
   },
   "Resources": {
-    "WebAppRepository": {
-      "Type": "AWS::ECR::Repository",
+    "WebAppBucketOriginAccessIdentity": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
       "Properties": {
-        "RepositoryName": {
-          "Fn::Sub": "${AWS::StackName}-web-app-repository"
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": {
+            "Fn::Sub": "${AWS::StackName}-WebAppBucketOriginAccessIdentity"
+          }
+        }
+      }
+    },
+    "WebAppDistribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "CustomErrorResponses": [
+            {
+              "ErrorCode": 403,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+            "Compress": true,
+            "TargetOriginId": "WebAppBucketOrigin",
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::Sub": [
+                  "${WebAppBucketName}.s3.${AWS::Region}.amazonaws.com",
+                  {
+                    "WebAppBucketName": {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
+                      }
+                    }
+                  }
+                ]
+              },
+              "Id": "WebAppBucketOrigin",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Sub": "origin-access-identity/cloudfront/${WebAppBucketOriginAccessIdentity}"
+                }
+              }
+            }
+          ]
         }
       }
     },
@@ -123,14 +168,9 @@
                   "Effect": "Allow",
                   "Action": "sqs:SendMessage",
                   "Resource": {
-                    "Fn::Sub": [
-                      "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:${QueueName}",
-                      {
-                        "QueueName": {
-                          "Fn::Sub": "${AWS::StackName}-queue"
-                        }
-                      }
-                    ]
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${PersistentStackName}-QueueArn"
+                    }
                   }
                 }
               ]
@@ -204,21 +244,18 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": [
-                        "arn:aws:s3:::${DataBucketName}",
-                        {
-                          "DataBucketName": {
-                            "Fn::Sub": "${AWS::StackName}-data-bucket"
-                          }
-                        }
-                      ]
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-DataBucketArn"
+                      }
                     },
                     {
                       "Fn::Sub": [
-                        "arn:aws:s3:::${DataBucketName}/${DataS3GitHubFileKey}",
+                        "${DataBucketArn}/${DataS3GitHubFileKey}",
                         {
-                          "DataBucketName": {
-                            "Fn::Sub": "${AWS::StackName}-data-bucket"
+                          "DataBucketArn": {
+                            "Fn::ImportValue": {
+                              "Fn::Sub": "${PersistentStackName}-DataBucketArn"
+                            }
                           }
                         }
                       ]
@@ -295,14 +332,9 @@
                     "sqs:DeleteMessage"
                   ],
                   "Resource": {
-                    "Fn::Sub": [
-                      "arn:aws:sqs:${AWS::Region}:${AWS::AccountId}:${QueueName}",
-                      {
-                        "QueueName": {
-                          "Fn::Sub": "${AWS::StackName}-queue"
-                        }
-                      }
-                    ]
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${PersistentStackName}-QueueArn"
+                    }
                   }
                 },
                 {
@@ -313,21 +345,18 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": [
-                        "arn:aws:s3:::${DataBucketName}",
-                        {
-                          "DataBucketName": {
-                            "Fn::Sub": "${AWS::StackName}-data-bucket"
-                          }
-                        }
-                      ]
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-DataBucketArn"
+                      }
                     },
                     {
                       "Fn::Sub": [
-                        "arn:aws:s3:::${DataBucketName}/*",
+                        "${DataBucketArn}/*",
                         {
-                          "DataBucketName": {
-                            "Fn::Sub": "${AWS::StackName}-data-bucket"
+                          "DataBucketArn": {
+                            "Fn::ImportValue": {
+                              "Fn::Sub": "${PersistentStackName}-DataBucketArn"
+                            }
                           }
                         }
                       ]
@@ -344,21 +373,18 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": [
-                        "arn:aws:s3:::${WebAppBucketName}",
-                        {
-                          "WebAppBucketName": {
-                            "Fn::Sub": "${AWS::StackName}-web-app-bucket"
-                          }
-                        }
-                      ]
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-WebAppBucketArn"
+                      }
                     },
                     {
                       "Fn::Sub": [
-                        "arn:aws:s3:::${WebAppBucketName}/*",
+                        "${WebAppBucketArn}/*",
                         {
-                          "WebAppBucketName": {
-                            "Fn::Sub": "${AWS::StackName}-web-app-bucket"
+                          "WebAppBucketArn": {
+                            "Fn::ImportValue": {
+                              "Fn::Sub": "${PersistentStackName}-WebAppBucketArn"
+                            }
                           }
                         }
                       ]
@@ -369,12 +395,7 @@
                   "Effect": "Allow",
                   "Action": "cloudfront:CreateInvalidation",
                   "Resource": {
-                    "Fn::Sub": [
-                      "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}",
-                      {
-                        "DistributionId": "TODO"
-                      }
-                    ]
+                    "Fn::Sub": "arn:aws:cloudfront::${AWS::AccountId}:distribution/${WebAppDistribution}"
                   }
                 }
               ]
@@ -392,10 +413,9 @@
       "Properties": {
         "BatchSize": 10000,
         "EventSourceArn": {
-          "Fn::GetAtt": [
-            "Queue",
-            "Arn"
-          ]
+          "Fn::ImportValue": {
+            "Fn::Sub": "${PersistentStackName}-QueueArn"
+          }
         },
         "FunctionName": {
           "Ref": "WebAppFunction"
@@ -410,7 +430,12 @@
           "arm64"
         ],
         "Code": {
-          "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
+          "S3Bucket": {
+            "Fn::ImportValue": {
+              "Fn::Sub": "${PersistentStackName}-DeploymentBucketName"
+            }
+          },
+          "S3Key": "contentful-webhook.zip"
         },
         "Environment": {
           "Variables": {
@@ -421,7 +446,9 @@
               "Ref": "AuthUser"
             },
             "SQS_QUEUE_URL": {
-              "Ref": "Queue"
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-QueueUrl"
+              }
             }
           }
         },
@@ -446,12 +473,19 @@
           "arm64"
         ],
         "Code": {
-          "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
+          "S3Bucket": {
+            "Fn::ImportValue": {
+              "Fn::Sub": "${PersistentStackName}-DeploymentBucketName"
+            }
+          },
+          "S3Key": "update-github-function.zip"
         },
         "Environment": {
           "Variables": {
             "DATA_S3_BUCKET_NAME": {
-              "Fn::Sub": "${AWS::StackName}-data-bucket"
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-DataBucketName"
+              }
             },
             "DATA_S3_GITHUB_FILE_KEY": {
               "Ref": "DataS3GitHubFileKey"
@@ -482,7 +516,18 @@
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
-          "ZipFile": "exports.handler = async (event) => { console.log(JSON.stringify(event)); };"
+          "ImageUri": {
+            "Fn::Sub": [
+              "${WebAppRepositoryUri}:latest",
+              {
+                "WebAppRepositoryUri": {
+                  "Fn::ImportValue": {
+                    "Fn::Sub": "${PersistentStackName}-WebAppRepositoryUri"
+                  }
+                }
+              }
+            ]
+          }
         },
         "Environment": {
           "Variables": {
@@ -497,19 +542,25 @@
               "Ref": "CmsHomePageComponentType"
             },
             "DATA_S3_BUCKET_NAME": {
-              "Fn::Sub": "${AWS::StackName}-data-bucket"
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-DataBucketName"
+              }
             },
             "DATA_S3_GITHUB_FILE_KEY": {
               "Ref": "DataS3GitHubFileKey"
             },
             "LAMBDA_ACCESS_KEY_ID": "",
             "LAMBDA_S3_BUCKET_NAME": {
-              "Fn::Sub": "${AWS::StackName}-web-app-bucket"
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
+              }
             },
             "LAMBDA_SECRET_ACCESS_KEY": "",
             "LAMBDA_USE_POLICY": "true",
             "LAMBDA_USE_TMPDIR": "true",
-            "WEB_APP_CLOUDFRONT_DISTRIBUTION_ID": "TODO",
+            "WEB_APP_CLOUDFRONT_DISTRIBUTION_ID": {
+              "Ref": "WebAppDistribution"
+            },
             "WEB_APP_CLOUDFRONT_INVALIDATION_PATH": {
               "Ref": "WebAppCloudFrontInvalidationPath"
             }
@@ -518,15 +569,14 @@
         "FunctionName": {
           "Fn::Sub": "${AWS::StackName}-web-app-function"
         },
-        "Handler": "index.handler",
         "MemorySize": 2048,
+        "PackageType": "Image",
         "Role": {
           "Fn::GetAtt": [
             "WebAppFunctionRole",
             "Arn"
           ]
         },
-        "Runtime": "nodejs16.x",
         "Timeout": 900
       }
     },
@@ -566,99 +616,40 @@
         }
       }
     },
-    "DataBucket": {
-      "Type": "AWS::S3::Bucket",
+    "WebAppBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
       "Properties": {
-        "BucketName": {
-          "Fn::Sub": "${AWS::StackName}-data-bucket"
+        "Bucket": {
+          "Fn::ImportValue": {
+            "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
+          }
         },
-        "NotificationConfiguration": {
-          "QueueConfigurations": [
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
             {
-              "Event": "s3:ObjectCreated:Put",
-              "Queue": {
-                "Fn::GetAtt": [
-                  "Queue",
-                  "Arn"
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Sub": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${WebAppBucketOriginAccessIdentity}"
+                }
+              },
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Sub": [
+                  "${WebAppBucketArn}/*",
+                  {
+                    "WebAppBucketArn": {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-WebAppBucketArn"
+                      }
+                    }
+                  }
                 ]
               }
             }
           ]
-        },
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": true,
-          "BlockPublicPolicy": true,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": true
         }
-      }
-    },
-    "WebAppBucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": {
-        "BucketName": {
-          "Fn::Sub": "${AWS::StackName}-web-app-bucket"
-        },
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": true,
-          "BlockPublicPolicy": true,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": true
-        }
-      }
-    },
-    "Queue": {
-      "Type": "AWS::SQS::Queue",
-      "Properties": {
-        "QueueName": {
-          "Fn::Sub": "${AWS::StackName}-queue"
-        },
-        "VisibilityTimeout": 900
-      }
-    },
-    "QueuePolicy": {
-      "Type": "AWS::SQS::QueuePolicy",
-      "Properties": {
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": {
-            "Effect": "Allow",
-            "Principal": {
-              "Service": "s3.amazonaws.com"
-            },
-            "Action": "SQS:SendMessage",
-            "Resource": {
-              "Fn::GetAtt": [
-                "Queue",
-                "Arn"
-              ]
-            },
-            "Condition": {
-              "StringEquals": {
-                "aws:SourceAccount": {
-                  "Fn::Sub": "${AWS::AccountId}"
-                }
-              },
-              "ArnLike": {
-                "aws:SourceArn": {
-                  "Fn::Sub": [
-                    "arn:aws:s3:::${DataBucketName}",
-                    {
-                      "DataBucketName": {
-                        "Fn::Sub": "${AWS::StackName}-data-bucket"
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "Queues": [
-          {
-            "Ref": "Queue"
-          }
-        ]
       }
     }
   }
