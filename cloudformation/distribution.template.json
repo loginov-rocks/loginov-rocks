@@ -1,0 +1,255 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Outputs": {
+    "DistributionId": {
+      "Value": {
+        "Ref": "Distribution"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-DistributionId"
+        }
+      }
+    }
+  },
+  "Parameters": {
+    "DomainName": {
+      "Description": "Domain Name for Route 53",
+      "Type": "String"
+    },
+    "PersistentStackName": {
+      "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "Certificate": {
+      "Type": "AWS::CertificateManager::Certificate",
+      "Properties": {
+        "DomainName": {
+          "Ref": "DomainName"
+        },
+        "DomainValidationOptions": [
+          {
+            "DomainName": {
+              "Ref": "DomainName"
+            },
+            "HostedZoneId": {
+              "Ref": "HostedZone"
+            }
+          },
+          {
+            "DomainName": {
+              "Fn::Sub": "www.${DomainName}"
+            },
+            "HostedZoneId": {
+              "Ref": "HostedZone"
+            }
+          }
+        ],
+        "SubjectAlternativeNames": [
+          {
+            "Fn::Sub": "www.${DomainName}"
+          }
+        ],
+        "ValidationMethod": "DNS"
+      }
+    },
+    "WebAppBucketOriginAccessIdentity": {
+      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
+      "Properties": {
+        "CloudFrontOriginAccessIdentityConfig": {
+          "Comment": {
+            "Fn::Sub": "${AWS::StackName}-WebAppBucketOriginAccessIdentity"
+          }
+        }
+      }
+    },
+    "Distribution": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            {
+              "Ref": "DomainName"
+            },
+            {
+              "Fn::Sub": "www.${DomainName}"
+            }
+          ],
+          "CustomErrorResponses": [
+            {
+              "ErrorCode": 403,
+              "ResponseCode": 200,
+              "ResponsePagePath": "/index.html"
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+            "Compress": true,
+            "TargetOriginId": "WebAppBucketOrigin",
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::Sub": [
+                  "${WebAppBucketName}.s3.${AWS::Region}.amazonaws.com",
+                  {
+                    "WebAppBucketName": {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
+                      }
+                    }
+                  }
+                ]
+              },
+              "Id": "WebAppBucketOrigin",
+              "S3OriginConfig": {
+                "OriginAccessIdentity": {
+                  "Fn::Sub": "origin-access-identity/cloudfront/${WebAppBucketOriginAccessIdentity}"
+                }
+              }
+            }
+          ],
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Ref": "Certificate"
+            },
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only"
+          }
+        }
+      }
+    },
+    "HostedZone": {
+      "Type": "AWS::Route53::HostedZone",
+      "Properties": {
+        "Name": {
+          "Ref": "DomainName"
+        }
+      }
+    },
+    "ARecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "Distribution",
+              "DomainName"
+            ]
+          },
+          "HostedZoneId": "Z2FDTNDATAQYW2"
+        },
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Ref": "DomainName"
+        },
+        "Type": "A"
+      }
+    },
+    "AAAARecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "Distribution",
+              "DomainName"
+            ]
+          },
+          "HostedZoneId": "Z2FDTNDATAQYW2"
+        },
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Ref": "DomainName"
+        },
+        "Type": "AAAA"
+      }
+    },
+    "WwwARecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Ref": "ARecordSet"
+          },
+          "HostedZoneId": {
+            "Ref": "HostedZone"
+          }
+        },
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Fn::Sub": "www.${DomainName}"
+        },
+        "Type": "A"
+      }
+    },
+    "WwwAAAARecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Ref": "AAAARecordSet"
+          },
+          "HostedZoneId": {
+            "Ref": "HostedZone"
+          }
+        },
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Fn::Sub": "www.${DomainName}"
+        },
+        "Type": "AAAA"
+      }
+    },
+    "WebAppBucketPolicy": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Fn::ImportValue": {
+            "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
+          }
+        },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Sub": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${WebAppBucketOriginAccessIdentity}"
+                }
+              },
+              "Action": "s3:GetObject",
+              "Resource": {
+                "Fn::Sub": [
+                  "${WebAppBucketArn}/*",
+                  {
+                    "WebAppBucketArn": {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-WebAppBucketArn"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

@@ -1,97 +1,56 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
-    "AuthPassword": {
+    "ContentfulWebhookAuthPassword": {
+      "Description": "Password for Contentful Webhook HTTP Basic Auth",
       "Type": "String"
     },
-    "AuthUser": {
+    "ContentfulWebhookAuthUsername": {
+      "Description": "Username for Contentful Webhook HTTP Basic Auth",
       "Type": "String"
-    },
-    "CmsClientAccessToken": {
-      "Type": "String"
-    },
-    "CmsClientSpace": {
-      "Type": "String"
-    },
-    "CmsHomePageComponentType": {
-      "Type": "String",
-      "Default": "homePage"
     },
     "DataS3GitHubFileKey": {
-      "Type": "String",
-      "Default": "github.json"
+      "Description": "S3 GitHub File Key in Data bucket",
+      "Default": "github.json",
+      "Type": "String"
     },
-    "GitHubBaseUrl": {
-      "Type": "String",
-      "Default": "https://api.github.com"
-    },
-    "GitHubPersonalAccessToken": {
+    "DistributionStackName": {
+      "Description": "Name of previously deployed \"Distribution\" CloudFormation Stack",
       "Type": "String"
     },
     "PersistentStackName": {
+      "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
+      "Type": "String"
+    },
+    "UpdateGitHubGitHubBaseUrl": {
+      "Description": "GitHub Base URL for Update GitHub function",
+      "Default": "https://api.github.com",
+      "Type": "String"
+    },
+    "UpdateGitHubGitHubPersonalAccessToken": {
+      "Description": "GitHub Personal Access Token for Update GitHub function",
       "Type": "String"
     },
     "WebAppCloudFrontInvalidationPath": {
-      "Type": "String",
-      "Default": "/*"
+      "Description": "Invalidation Path for Web App CloudFront Distribution to invalidate after static site generation done by Web App function ",
+      "Default": "/*",
+      "Type": "String"
+    },
+    "WebAppCmsClientAccessToken": {
+      "Description": "CMS Client Access Token for Web App function",
+      "Type": "String"
+    },
+    "WebAppCmsClientSpace": {
+      "Description": "CMS Client Space for Web App function",
+      "Type": "String"
+    },
+    "WebAppCmsHomePageComponentType": {
+      "Description": "CMS Home Page Component Type for Web App function",
+      "Default": "homePage",
+      "Type": "String"
     }
   },
   "Resources": {
-    "WebAppBucketOriginAccessIdentity": {
-      "Type": "AWS::CloudFront::CloudFrontOriginAccessIdentity",
-      "Properties": {
-        "CloudFrontOriginAccessIdentityConfig": {
-          "Comment": {
-            "Fn::Sub": "${AWS::StackName}-WebAppBucketOriginAccessIdentity"
-          }
-        }
-      }
-    },
-    "WebAppDistribution": {
-      "Type": "AWS::CloudFront::Distribution",
-      "Properties": {
-        "DistributionConfig": {
-          "CustomErrorResponses": [
-            {
-              "ErrorCode": 403,
-              "ResponseCode": 200,
-              "ResponsePagePath": "/index.html"
-            }
-          ],
-          "DefaultCacheBehavior": {
-            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
-            "Compress": true,
-            "TargetOriginId": "WebAppBucketOrigin",
-            "ViewerProtocolPolicy": "redirect-to-https"
-          },
-          "DefaultRootObject": "index.html",
-          "Enabled": true,
-          "HttpVersion": "http2",
-          "Origins": [
-            {
-              "DomainName": {
-                "Fn::Sub": [
-                  "${WebAppBucketName}.s3.${AWS::Region}.amazonaws.com",
-                  {
-                    "WebAppBucketName": {
-                      "Fn::ImportValue": {
-                        "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
-                      }
-                    }
-                  }
-                ]
-              },
-              "Id": "WebAppBucketOrigin",
-              "S3OriginConfig": {
-                "OriginAccessIdentity": {
-                  "Fn::Sub": "origin-access-identity/cloudfront/${WebAppBucketOriginAccessIdentity}"
-                }
-              }
-            }
-          ]
-        }
-      }
-    },
     "UpdateGitHubRule": {
       "Type": "AWS::Events::Rule",
       "Properties": {
@@ -395,7 +354,16 @@
                   "Effect": "Allow",
                   "Action": "cloudfront:CreateInvalidation",
                   "Resource": {
-                    "Fn::Sub": "arn:aws:cloudfront::${AWS::AccountId}:distribution/${WebAppDistribution}"
+                    "Fn::Sub": [
+                      "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}",
+                      {
+                        "DistributionId": {
+                          "Fn::ImportValue": {
+                            "Fn::Sub": "${DistributionStackName}-DistributionId"
+                          }
+                        }
+                      }
+                    ]
                   }
                 }
               ]
@@ -440,10 +408,10 @@
         "Environment": {
           "Variables": {
             "AUTH_PASSWORD": {
-              "Ref": "AuthPassword"
+              "Ref": "ContentfulWebhookAuthPassword"
             },
             "AUTH_USER": {
-              "Ref": "AuthUser"
+              "Ref": "ContentfulWebhookAuthUsername"
             },
             "SQS_QUEUE_URL": {
               "Fn::ImportValue": {
@@ -491,10 +459,10 @@
               "Ref": "DataS3GitHubFileKey"
             },
             "GITHUB_BASE_URL": {
-              "Ref": "GitHubBaseUrl"
+              "Ref": "UpdateGitHubGitHubBaseUrl"
             },
             "GITHUB_PERSONAL_ACCESS_TOKEN": {
-              "Ref": "GitHubPersonalAccessToken"
+              "Ref": "UpdateGitHubGitHubPersonalAccessToken"
             }
           }
         },
@@ -533,13 +501,13 @@
           "Variables": {
             "BABEL_DISABLE_CACHE": "1",
             "CMS_CLIENT_ACCESS_TOKEN": {
-              "Ref": "CmsClientAccessToken"
+              "Ref": "WebAppCmsClientAccessToken"
             },
             "CMS_CLIENT_SPACE": {
-              "Ref": "CmsClientSpace"
+              "Ref": "WebAppCmsClientSpace"
             },
             "CMS_HOME_PAGE_COMPONENT_TYPE": {
-              "Ref": "CmsHomePageComponentType"
+              "Ref": "WebAppCmsHomePageComponentType"
             },
             "DATA_S3_BUCKET_NAME": {
               "Fn::ImportValue": {
@@ -559,7 +527,9 @@
             "LAMBDA_USE_POLICY": "true",
             "LAMBDA_USE_TMPDIR": "true",
             "WEB_APP_CLOUDFRONT_DISTRIBUTION_ID": {
-              "Ref": "WebAppDistribution"
+              "Fn::ImportValue": {
+                "Fn::Sub": "${DistributionStackName}-DistributionId"
+              }
             },
             "WEB_APP_CLOUDFRONT_INVALIDATION_PATH": {
               "Ref": "WebAppCloudFrontInvalidationPath"
@@ -613,42 +583,6 @@
         "AuthType": "NONE",
         "TargetFunctionArn": {
           "Ref": "ContentfulWebhook"
-        }
-      }
-    },
-    "WebAppBucketPolicy": {
-      "Type": "AWS::S3::BucketPolicy",
-      "Properties": {
-        "Bucket": {
-          "Fn::ImportValue": {
-            "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
-          }
-        },
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": [
-            {
-              "Effect": "Allow",
-              "Principal": {
-                "AWS": {
-                  "Fn::Sub": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${WebAppBucketOriginAccessIdentity}"
-                }
-              },
-              "Action": "s3:GetObject",
-              "Resource": {
-                "Fn::Sub": [
-                  "${WebAppBucketArn}/*",
-                  {
-                    "WebAppBucketArn": {
-                      "Fn::ImportValue": {
-                        "Fn::Sub": "${PersistentStackName}-WebAppBucketArn"
-                      }
-                    }
-                  }
-                ]
-              }
-            }
-          ]
         }
       }
     }
