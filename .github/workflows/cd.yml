@@ -28,39 +28,39 @@ jobs:
       - run: npm test
       - run: npm run package
 
-# TODO: Deploy a container to ECR and update the Lambda.
-#  web-app-cd:
-#    name: Web App CD
-#
-#    defaults:
-#      run:
-#        working-directory: web-app
-#
-#    env:
-#      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-node@v2
-#        with:
-#          node-version: 16
-#      - run: npm ci
-#      - run: npm run lint
-#      - run: npm run typecheck
-#      - run: npm test
-#      - run: npm run build
-#      - uses: reggionick/s3-deploy@v3
-#        with:
-#          folder: web-app/dist
-#          bucket: ${{ secrets.WEB_APP_S3_BUCKET_NAME }}
-#          bucket-region: ${{ secrets.AWS_REGION }}
-#          delete-removed: true
-#          dist-id: ${{ secrets.WEB_APP_CLOUDFRONT_DISTRIBUTION_ID }}
-#          invalidation: /*
-#          private: true
+  # TODO: Deploy a container to ECR and update the Lambda.
+  #  web-app-cd:
+  #    name: Web App CD
+  #
+  #    defaults:
+  #      run:
+  #        working-directory: web-app
+  #
+  #    env:
+  #      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #
+  #    runs-on: ubuntu-latest
+  #
+  #    steps:
+  #      - uses: actions/checkout@v2
+  #      - uses: actions/setup-node@v2
+  #        with:
+  #          node-version: 16
+  #      - run: npm ci
+  #      - run: npm run lint
+  #      - run: npm run typecheck
+  #      - run: npm test
+  #      - run: npm run build
+  #      - uses: reggionick/s3-deploy@v3
+  #        with:
+  #          folder: web-app/dist
+  #          bucket: ${{ secrets.WEB_APP_S3_BUCKET_NAME }}
+  #          bucket-region: ${{ secrets.AWS_REGION }}
+  #          delete-removed: true
+  #          dist-id: ${{ secrets.WEB_APP_CLOUDFRONT_DISTRIBUTION_ID }}
+  #          invalidation: /*
+  #          private: true
 
   update-github-cd:
     name: Update GitHub CD

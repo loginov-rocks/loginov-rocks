@@ -30,8 +30,6 @@ AWS User is required for the Continuous Deployment done with GitHub Actions - `l
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "VisualEditor0",
-      "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
         "s3:GetObject"
@@ -39,17 +37,17 @@ AWS User is required for the Continuous Deployment done with GitHub Actions - `l
       "Resource": [
         "arn:aws:s3:::${DATA_S3_BUCKET_NAME}",
         "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/*"
-      ]
+      ],
+      "Effect": "Allow"
     },
     {
-      "Sid": "VisualEditor1",
-      "Effect": "Allow",
       "Action": [
         "lambda:CreateFunction",
         "lambda:UpdateFunctionCode",
         "lambda:UpdateFunctionConfiguration"
       ],
-      "Resource": "arn:aws:lambda:${AWS_REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}"
+      "Resource": "arn:aws:lambda:${REGION}:${ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}",
+      "Effect": "Allow"
     }
   ]
 }
