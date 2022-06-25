@@ -4,13 +4,18 @@
 
 ### User Policy
 
+User to test Web App Lambda locally and push Docker image.
+
 ```json
 {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "VisualEditor0",
-      "Effect": "Allow",
+      "Action": "ecr:*",
+      "Resource": "*",
+      "Effect": "Allow"
+    },
+    {
       "Action": [
         "s3:ListBucket",
         "s3:GetObject"
@@ -18,11 +23,10 @@
       "Resource": [
         "arn:aws:s3:::${DATA_S3_BUCKET_NAME}",
         "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/*"
-      ]
+      ],
+      "Effect": "Allow"
     },
     {
-      "Sid": "VisualEditor1",
-      "Effect": "Allow",
       "Action": [
         "s3:ListBucket",
         "s3:GetObject",
@@ -30,15 +34,15 @@
         "s3:DeleteObject"
       ],
       "Resource": [
-        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}",
-        "arn:aws:s3:::${WEB_APP_S3_BUCKET_NAME}/*"
-      ]
+        "arn:aws:s3:::${LAMBDA_WEB_APP_S3_BUCKET_NAME}",
+        "arn:aws:s3:::${LAMBDA_WEB_APP_S3_BUCKET_NAME}/*"
+      ],
+      "Effect": "Allow"
     },
     {
-      "Sid": "VisualEditor2",
-      "Effect": "Allow",
       "Action": "cloudfront:CreateInvalidation",
-      "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${WEB_APP_CLOUDFRONT_DISTRIBUTION_ID}"
+      "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${LAMBDA_CLOUDFRONT_DISTRIBUTION_ID}",
+      "Effect": "Allow"
     }
   ]
 }
@@ -51,13 +55,13 @@
 ### Build
 
 ```sh
-docker build -t loginov-rocks-web-app-repository .
+docker build -t loginov-rocks-persistent-web-app-repository .
 ```
 
 ### Run
 
 ```sh
-docker run --env-file .env -p 9000:8080 loginov-rocks-web-app-repository
+docker run --env-file .env -p 9000:8080 loginov-rocks-persistent-web-app-repository
 ```
 
 ### Test

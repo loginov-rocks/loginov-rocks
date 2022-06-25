@@ -1,7 +1,7 @@
 const { SQS } = require('aws-sdk');
 
 const authPassword = process.env.AUTH_PASSWORD;
-const authUser = process.env.AUTH_USER;
+const authUsername = process.env.AUTH_USERNAME;
 const sqsQueueUrl = process.env.SQS_QUEUE_URL;
 
 const sqs = new SQS();
@@ -30,7 +30,7 @@ exports.handler = async (event) => {
     };
   }
 
-  const credentials = `${authUser}:${authPassword}`;
+  const credentials = `${authUsername}:${authPassword}`;
   const credentialsEncoded = new Buffer(credentials).toString('base64');
   const authString = `Basic ${credentialsEncoded}`;
 

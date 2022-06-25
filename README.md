@@ -18,7 +18,7 @@ In no particular order:
 1. Serverless
 2. Cloud Native
 3. Headless CMS
-4. _TODO: Infrastructure as Code_
+4. Infrastructure as Code
 5. Static Site Generation
 6. Event Driven
 7. Continuous Integration
