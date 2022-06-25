@@ -17,8 +17,20 @@
       "Description": "Domain Name for Route 53",
       "Type": "String"
     },
+    "MxRecordValue": {
+      "Default": "10 mx.yandex.net.",
+      "Type": "String"
+    },
     "PersistentStackName": {
       "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
+      "Type": "String"
+    },
+    "TxtGoogleRecordValue": {
+      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
+      "Type": "String"
+    },
+    "TxtMailRecordValue": {
+      "Default": "\"v=DKIM1; k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnicxEVZ/GtonNcMzkUqwyuAQhCZ2nqRK5x/g1ECGbYmyU5lMebihLOiX3S9F1dRRFgvgDsPotyda0KJy+Z/LOwEWcHwVT6KkG1g1UweMq6/2qHunCHloO5bDSOitA3iWVYmukjEIlA/kBefGa6YA7JolkIEr0SftA2zA6RCryJwIDAQAB\"",
       "Type": "String"
     }
   },
@@ -173,6 +185,60 @@
           "Ref": "DomainName"
         },
         "Type": "AAAA"
+      }
+    },
+    "MxRecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Ref": "DomainName"
+        },
+        "ResourceRecords": [
+          {
+            "Ref": "MxRecordValue"
+          }
+        ],
+        "TTL": "21600",
+        "Type": "MX"
+      }
+    },
+    "TxtGoogleRecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Ref": "DomainName"
+        },
+        "ResourceRecords": [
+          {
+            "Ref": "TxtGoogleRecordValue"
+          }
+        ],
+        "TTL": "300",
+        "Type": "TXT"
+      }
+    },
+    "TxtMailRecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Fn::Sub": "mail._domainkey.${DomainName}"
+        },
+        "ResourceRecords": [
+          {
+            "Ref": "TxtMailRecordValue"
+          }
+        ],
+        "TTL": "21600",
+        "Type": "TXT"
       }
     },
     "WwwARecordSet": {
