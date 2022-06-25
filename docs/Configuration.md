@@ -18,13 +18,6 @@
 AWS User is required for the Continuous Deployment done with GitHub Actions - `loginov-rocks-github-cd` user with the
 `loginov-rocks-github-cd-inline-policy`:
 
-* S3: ListBucket, GetObject, PutObject, DeleteObject for a specific resource matching `WEB_APP_S3_BUCKET_NAME` and any
-  object in it
-* CloudFront: ListInvalidations, GetInvalidation, CreateInvalidation for a specific resource matching
-  `WEB_APP_CLOUDFRONT_DISTRIBUTION_ID`
-* Lambda: CreateFunction, UpdateFunctionCode, UpdateFunctionConfiguration for a specific matching `AWS_REGION` and
-  `UPDATE_GITHUB_LAMBDA_NAME`
-
 ```json
 {
   "Version": "2012-10-17",
