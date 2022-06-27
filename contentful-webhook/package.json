@@ -1,0 +1,57 @@
+{
+  "name": "@loginov-rocks/loginov-rocks-contentful-webhook",
+  "version": "2.4.2",
+  "description": "Contentful Webhook",
+  "scripts": {
+    "build": "npm run clean:build && webpack --mode production",
+    "build:dev": "npm run clean:build && webpack --mode development",
+    "clean:build": "rimraf dist",
+    "clean:coverage": "rimraf coverage",
+    "coverage": "npm run clean:coverage && npm run test:coverage",
+    "lint": "eslint --ext ts src webpack.config.js",
+    "test": "jest",
+    "test:coverage": "npm test -- --coverage",
+    "test:update": "npm test -- --updateSnapshot",
+    "typecheck": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loginov-rocks/loginov-rocks.git"
+  },
+  "author": "Danila Loginov <danila@loginov.rocks> (https://loginov.rocks)",
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/loginov-rocks/loginov-rocks/issues"
+  },
+  "homepage": "https://loginov.rocks",
+  "dependencies": {
+    "aws-sdk": "^2.1096.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.8",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-typescript": "^7.16.7",
+    "@types/jest": "^27.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.15.0",
+    "@typescript-eslint/parser": "^5.15.0",
+    "babel-jest": "^27.5.1",
+    "babel-loader": "^8.2.3",
+    "eslint": "^8.11.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "jest": "^27.5.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.6.2",
+    "webpack": "^5.70.0",
+    "webpack-cli": "^4.9.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.ts"
+    ],
+    "modulePaths": [
+      "<rootDir>/src/"
+    ]
+  }
+}
