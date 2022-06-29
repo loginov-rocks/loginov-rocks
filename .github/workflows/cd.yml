@@ -7,26 +7,26 @@ on:
 
 jobs:
 
-  shared-cd:
-    name: Shared CD
-
-    defaults:
-      run:
-        working-directory: shared
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run typecheck
-      - run: npm run build
-      - run: npm test
-      - run: npm run package
+  #  shared-cd:
+  #    name: Shared CD
+  #
+  #    defaults:
+  #      run:
+  #        working-directory: shared
+  #
+  #    runs-on: ubuntu-latest
+  #
+  #    steps:
+  #      - uses: actions/checkout@v2
+  #      - uses: actions/setup-node@v2
+  #        with:
+  #          node-version: 16
+  #      - run: npm ci
+  #      - run: npm run lint
+  #      - run: npm run typecheck
+  #      - run: npm run build
+  #      - run: npm test
+  #      - run: npm run package
 
   # TODO: Deploy a container to ECR and update the Lambda.
   #  web-app-cd:
@@ -81,10 +81,12 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - uses: appleboy/lambda-action@master
-        with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: ${{ secrets.AWS_REGION }}
-          function_name: ${{ secrets.UPDATE_GITHUB_LAMBDA_NAME }}
-          source: update-github/dist/index.js
+      - name: Create function deployment package
+        run: zip -j update-github-function.zip dist/index.js
+      - name: Upload function deployment package to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
+        run: aws s3 cp update-github-function.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
