@@ -16,12 +16,11 @@ on:
 jobs:
   ci:
     name: CI
-
     defaults:
       run:
         working-directory: web-app
-
     env:
+      # TODO: Review and document.
       LAMBDA_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       LAMBDA_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       LAMBDA_USE_POLICY: false
@@ -36,9 +35,7 @@ jobs:
       DATA_S3_BUCKET_NAME: ${{ secrets.DATA_S3_BUCKET_NAME }}
       DATA_S3_GITHUB_FILE_KEY: ${{ secrets.DATA_S3_GITHUB_FILE_KEY }}
       BABEL_DISABLE_CACHE: 1
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

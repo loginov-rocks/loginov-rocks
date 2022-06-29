@@ -16,13 +16,10 @@ on:
 jobs:
   ci:
     name: CI
-
     defaults:
       run:
         working-directory: contentful-webhook
-
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

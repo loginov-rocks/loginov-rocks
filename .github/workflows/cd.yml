@@ -8,15 +8,12 @@ on:
 
 jobs:
 
-  update-github-cd:
-    name: Update GitHub CD
-
+  contentful-webhook-cd:
+    name: Contentful Webhook CD
     defaults:
       run:
-        working-directory: update-github
-
+        working-directory: contentful-webhook
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -28,19 +25,53 @@ jobs:
       - run: npm test
       - run: npm run build
       - name: Create function deployment package
-        run: zip -j update-github-function.zip dist/index.js
+        run: zip -j contentful-webhook.zip dist/index.js
       - name: Upload function deployment package to S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
-        run: aws s3 cp update-github-function.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
+        run: aws s3 cp contentful-webhook.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
       - name: Update function code
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
-          UPDATE_GITHUB_FUNCTION_NAME: ${{ secrets.UPDATE_GITHUB_FUNCTION_NAME }}
-        run: aws lambda update-function-code --function-name $UPDATE_GITHUB_FUNCTION_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key update-github-function.zip
+          CONTENTFUL_WEBHOOK_LAMBDA_NAME: ${{ secrets.CONTENTFUL_WEBHOOK_LAMBDA_NAME }}
+        run: aws lambda update-function-code --function-name $CONTENTFUL_WEBHOOK_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key contentful-webhook.zip
+
+  update-github-cd:
+    name: Update GitHub CD
+    defaults:
+      run:
+        working-directory: update-github
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run build
+      - name: Create function deployment package
+        run: zip -j update-github.zip dist/index.js
+      - name: Upload function deployment package to S3
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
+        run: aws s3 cp update-github.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
+      - name: Update function code
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
+          UPDATE_GITHUB_LAMBDA_NAME: ${{ secrets.UPDATE_GITHUB_LAMBDA_NAME }}
+        run: aws lambda update-function-code --function-name $UPDATE_GITHUB_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key update-github.zip
