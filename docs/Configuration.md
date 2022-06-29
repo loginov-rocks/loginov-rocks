@@ -66,7 +66,13 @@ AWS User is required for the Continuous Deployment done with GitHub Actions - `l
       "Effect": "Allow"
     },
     {
-      "Action": "ecr:PutImage",
+      "Action": [
+        "ecr:CompleteLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:InitiateLayerUpload",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:PutImage"
+      ],
       "Resource": "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT}:repository/${WEB_APP_REPOSITORY}",
       "Effect": "Allow"
     }
