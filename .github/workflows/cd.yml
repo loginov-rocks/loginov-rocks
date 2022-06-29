@@ -130,3 +130,12 @@ jobs:
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
           WEB_APP_REPOSITORY: ${{ secrets.WEB_APP_REPOSITORY }}
+      - name: Update function code
+        run: aws lambda update-function-code --function-name $WEB_APP_LAMBDA_NAME --image-uri $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$WEB_APP_REPOSITORY:latest > /dev/null
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          WEB_APP_REPOSITORY: ${{ secrets.WEB_APP_REPOSITORY }}
+          WEB_APP_LAMBDA_NAME: ${{ secrets.WEB_APP_LAMBDA_NAME }}

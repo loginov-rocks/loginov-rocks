@@ -33,7 +33,7 @@ User to test Web App Lambda locally and push Docker image.
       ],
       "Resource": [
         "arn:aws:s3:::${DATA_S3_BUCKET_NAME}",
-        "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/*"
+        "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/${DATA_S3_GITHUB_FILE_KEY}"
       ],
       "Effect": "Allow"
     },
