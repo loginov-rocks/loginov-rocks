@@ -11,12 +11,13 @@
 5. `DEPLOYMENT_S3_BUCKET_NAME`
 6. `CONTENTFUL_WEBHOOK_LAMBDA_NAME`
 7. `UPDATE_GITHUB_LAMBDA_NAME`
-8. `WEB_APP_CMS_CLIENT_ACCESS_TOKEN`
-9. `WEB_APP_CMS_CLIENT_SPACE`
-10. `WEB_APP_CMS_DOLPH_PAGE_COMPONENT_TYPE`
-11. `WEB_APP_CMS_HOME_PAGE_COMPONENT_TYPE`
-12. `DATA_S3_BUCKET_NAME`
-13. `DATA_S3_GITHUB_FILE_KEY`
+8. `WEB_APP_REPOSITORY`
+9. `WEB_APP_CMS_CLIENT_ACCESS_TOKEN`
+10. `WEB_APP_CMS_CLIENT_SPACE`
+11. `WEB_APP_CMS_DOLPH_PAGE_COMPONENT_TYPE`
+12. `WEB_APP_CMS_HOME_PAGE_COMPONENT_TYPE`
+13. `DATA_S3_BUCKET_NAME`
+14. `DATA_S3_GITHUB_FILE_KEY`
 
 ## Permissions
 
@@ -57,6 +58,16 @@ AWS User is required for the Continuous Deployment done with GitHub Actions - `l
         "arn:aws:s3:::${DATA_S3_BUCKET_NAME}",
         "arn:aws:s3:::${DATA_S3_BUCKET_NAME}/${DATA_S3_GITHUB_FILE_KEY}"
       ],
+      "Effect": "Allow"
+    },
+    {
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": "ecr:PutImage",
+      "Resource": "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT}:repository/${WEB_APP_REPOSITORY}",
       "Effect": "Allow"
     }
   ]

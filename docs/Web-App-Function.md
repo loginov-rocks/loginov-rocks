@@ -11,8 +11,13 @@ User to test Web App Lambda locally and push Docker image.
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Action": "ecr:*",
+      "Action": "ecr:GetAuthorizationToken",
       "Resource": "*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": "ecr:PutImage",
+      "Resource": "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT}:repository/${WEB_APP_REPOSITORY}",
       "Effect": "Allow"
     },
     {
