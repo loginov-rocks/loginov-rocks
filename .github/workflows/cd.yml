@@ -40,7 +40,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
           CONTENTFUL_WEBHOOK_LAMBDA_NAME: ${{ secrets.CONTENTFUL_WEBHOOK_LAMBDA_NAME }}
-        run: aws lambda update-function-code --function-name $CONTENTFUL_WEBHOOK_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key contentful-webhook.zip
+        run: aws lambda update-function-code --function-name $CONTENTFUL_WEBHOOK_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key contentful-webhook.zip > /dev/null
 
   update-github-cd:
     name: Update GitHub CD
@@ -74,4 +74,4 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
           UPDATE_GITHUB_LAMBDA_NAME: ${{ secrets.UPDATE_GITHUB_LAMBDA_NAME }}
-        run: aws lambda update-function-code --function-name $UPDATE_GITHUB_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key update-github.zip
+        run: aws lambda update-function-code --function-name $UPDATE_GITHUB_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key update-github.zip > /dev/null

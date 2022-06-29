@@ -451,7 +451,7 @@
               "Fn::Sub": "${PersistentStackName}-DeploymentBucketName"
             }
           },
-          "S3Key": "update-github-function.zip"
+          "S3Key": "update-github.zip"
         },
         "Environment": {
           "Variables": {
