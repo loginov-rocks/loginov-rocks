@@ -6,26 +6,12 @@
 
 User to test Web App Lambda locally and push Docker image.
 
+Variables are relevant to what configured for Web App Lambda environment variables and ECR.
+
 ```json
 {
   "Version": "2012-10-17",
   "Statement": [
-    {
-      "Action": "ecr:GetAuthorizationToken",
-      "Resource": "*",
-      "Effect": "Allow"
-    },
-    {
-      "Action": [
-        "ecr:CompleteLayerUpload",
-        "ecr:UploadLayerPart",
-        "ecr:InitiateLayerUpload",
-        "ecr:BatchCheckLayerAvailability",
-        "ecr:PutImage"
-      ],
-      "Resource": "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT}:repository/${WEB_APP_REPOSITORY}",
-      "Effect": "Allow"
-    },
     {
       "Action": [
         "s3:ListBucket",
@@ -52,7 +38,23 @@ User to test Web App Lambda locally and push Docker image.
     },
     {
       "Action": "cloudfront:CreateInvalidation",
-      "Resource": "arn:aws:cloudfront::${ACCOUNT}:distribution/${LAMBDA_CLOUDFRONT_DISTRIBUTION_ID}",
+      "Resource": "arn:aws:cloudfront::${AWS_ACCOUNT}:distribution/${LAMBDA_CLOUDFRONT_DISTRIBUTION_ID}",
+      "Effect": "Allow"
+    },
+    {
+      "Action": "ecr:GetAuthorizationToken",
+      "Resource": "*",
+      "Effect": "Allow"
+    },
+    {
+      "Action": [
+        "ecr:CompleteLayerUpload",
+        "ecr:UploadLayerPart",
+        "ecr:InitiateLayerUpload",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:PutImage"
+      ],
+      "Resource": "arn:aws:ecr:${AWS_REGION}:${AWS_ACCOUNT}:repository/${WEB_APP_REPOSITORY}",
       "Effect": "Allow"
     }
   ]

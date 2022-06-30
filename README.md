@@ -25,7 +25,7 @@ In no particular order:
 6. Event Driven
 7. Continuous Integration
 8. Continuous Deployment
-9. Principle of Least Privilege
+9. Principle of the Least Privilege
 10. Monorepo
 11. Quality Gates
 12. Containerization

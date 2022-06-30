@@ -27,6 +27,8 @@
 AWS User is required for the Continuous Deployment done with GitHub Actions - `loginov-rocks-github-cd` user with the
 `InlinePolicy`:
 
+Variables are relevant to what configured in GitHub Actions.
+
 ```json
 {
   "Version": "2012-10-17",
