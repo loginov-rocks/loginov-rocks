@@ -1,14 +1,6 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Parameters": {
-    "ContentfulWebhookAuthPassword": {
-      "Description": "Password for Contentful Webhook HTTP Basic Auth",
-      "Type": "String"
-    },
-    "ContentfulWebhookAuthUsername": {
-      "Description": "Username for Contentful Webhook HTTP Basic Auth",
-      "Type": "String"
-    },
     "DataS3GitHubFileKey": {
       "Description": "S3 GitHub File Key in Data bucket",
       "Default": "github.json",
@@ -128,6 +120,15 @@
             "PolicyDocument": {
               "Version": "2012-10-17",
               "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": "secretsmanager:GetSecretValue",
+                  "Resource": {
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${PersistentStackName}-SecretArn"
+                    }
+                  }
+                },
                 {
                   "Effect": "Allow",
                   "Action": "sqs:SendMessage",
@@ -412,12 +413,13 @@
         },
         "Environment": {
           "Variables": {
-            "AUTH_PASSWORD": {
-              "Ref": "ContentfulWebhookAuthPassword"
+            "SECRET_ARN": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-SecretArn"
+              }
             },
-            "AUTH_USERNAME": {
-              "Ref": "ContentfulWebhookAuthUsername"
-            },
+            "SECRET_AUTH_PASSWORD_KEY": "CONTENTFUL_WEBHOOK_AUTH_PASSWORD",
+            "SECRET_AUTH_USERNAME_KEY": "CONTENTFUL_WEBHOOK_AUTH_USERNAME",
             "SQS_QUEUE_URL": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-QueueUrl"

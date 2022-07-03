@@ -1,12 +1,21 @@
 /* eslint-disable import/no-import-module-exports */
 
-import { SQS } from 'aws-sdk';
+import { SecretsManager, SQS } from 'aws-sdk';
 
-import { AUTH_PASSWORD, AUTH_USERNAME, SQS_QUEUE_URL } from 'Constants';
+import {
+  SECRET_ARN, SECRET_AUTH_PASSWORD_KEY, SECRET_AUTH_USERNAME_KEY, SQS_QUEUE_URL,
+} from 'Constants';
 
 import { authorize } from './authorize';
+import { KeyValueSecret } from './KeyValueSecret';
 
+const secretsManager = new SecretsManager();
 const sqs = new SQS();
+
+const keyValueSecret = new KeyValueSecret({
+  secretArn: SECRET_ARN,
+  secretsManager,
+});
 
 exports.handler = async (event: any) => {
   console.log('Event:', JSON.stringify(event));
@@ -25,7 +34,10 @@ exports.handler = async (event: any) => {
     };
   }
 
-  if (!authorize(authHeader, AUTH_USERNAME, AUTH_PASSWORD)) {
+  const authUsername = await keyValueSecret.getValue(SECRET_AUTH_USERNAME_KEY);
+  const authPassword = await keyValueSecret.getValue(SECRET_AUTH_PASSWORD_KEY);
+
+  if (!authorize(authHeader, authUsername, authPassword)) {
     return {
       body: 'Unauthorized',
       statusCode: 401,
