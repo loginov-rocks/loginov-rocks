@@ -1,19 +1,24 @@
 /* eslint-disable import/no-import-module-exports */
 
-import { S3Object } from '@loginov-rocks/loginov-rocks-shared';
-import { S3 } from 'aws-sdk';
+import { KeyValueSecret, S3Object } from '@loginov-rocks/loginov-rocks-shared';
+import { S3, SecretsManager } from 'aws-sdk';
 
 import {
-  GITHUB_BASE_URL, GITHUB_PERSONAL_ACCESS_TOKEN, DATA_S3_BUCKET_NAME, DATA_S3_GITHUB_FILE_KEY,
+  DATA_S3_BUCKET_NAME, DATA_S3_GITHUB_FILE_KEY, GITHUB_BASE_URL, SECRET_ARN, SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY,
 } from 'Constants';
 import { GitHub } from 'GitHub/GitHub';
 
+const s3 = new S3();
+const secretsManager = new SecretsManager();
+
 const gitHub = new GitHub({
   baseUrl: GITHUB_BASE_URL,
-  personalAccessToken: GITHUB_PERSONAL_ACCESS_TOKEN,
 });
 
-const s3 = new S3();
+const keyValueSecret = new KeyValueSecret({
+  secretArn: SECRET_ARN,
+  secretsManager,
+});
 
 const s3Object = new S3Object({
   bucketName: DATA_S3_BUCKET_NAME,
@@ -23,6 +28,9 @@ const s3Object = new S3Object({
 
 exports.handler = async (event: any): Promise<Record<string, never>> => {
   console.log('Event:', JSON.stringify(event));
+
+  const personalAccessToken = await keyValueSecret.getValue(SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY);
+  gitHub.setPersonalAccessToken(personalAccessToken);
 
   console.log('Getting GitHub data...');
 

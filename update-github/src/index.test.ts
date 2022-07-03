@@ -3,6 +3,12 @@
 const { handler } = require('./index');
 
 jest.mock('@loginov-rocks/loginov-rocks-shared', () => ({
+  KeyValueSecret: class {
+    // eslint-disable-next-line class-methods-use-this
+    getValue(): Promise<string> {
+      return Promise.resolve('personalAccessToken');
+    }
+  },
   S3Object: class {
     // eslint-disable-next-line class-methods-use-this
     read(): Promise<string> {
@@ -25,6 +31,11 @@ jest.mock('GitHub/GitHub', () => ({
     // eslint-disable-next-line class-methods-use-this
     getData(): Promise<unknown> {
       return Promise.resolve('NewMock');
+    }
+
+    // eslint-disable-next-line class-methods-use-this
+    setPersonalAccessToken(): void {
+      // Mock
     }
   },
 }));

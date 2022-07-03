@@ -7,13 +7,13 @@ import { GitHubUser } from './GitHubUser';
 
 interface Options {
   baseUrl: string;
-  personalAccessToken: string;
+  personalAccessToken?: string;
 }
 
 export class GitHub {
   private readonly baseUrl: string;
 
-  private readonly personalAccessToken: string;
+  private personalAccessToken: string | undefined;
 
   constructor({ baseUrl, personalAccessToken }: Options) {
     this.baseUrl = baseUrl;
@@ -55,6 +55,10 @@ export class GitHub {
     return firstResult;
   }
 
+  public setPersonalAccessToken(personalAccessToken: string): void {
+    this.personalAccessToken = personalAccessToken;
+  }
+
   async getData(): Promise<Data> {
     const gitHubUser = await this.getGitHubUser();
     const repos = await this.getRepos();
@@ -71,6 +75,10 @@ export class GitHub {
    * @see https://docs.github.com/en/rest/overview/resources-in-the-rest-api#oauth2-token-sent-in-a-header
    */
   private apiGet(url: string): Promise<Response> {
+    if (!this.personalAccessToken) {
+      throw new Error('Personal access token missing');
+    }
+
     const apiUrl = url.startsWith(this.baseUrl) ? url : `${this.baseUrl}${url}`;
 
     return fetch(apiUrl, {
