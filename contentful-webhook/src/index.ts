@@ -1,5 +1,6 @@
 /* eslint-disable import/no-import-module-exports */
 
+import { KeyValueSecret } from '@loginov-rocks/loginov-rocks-shared';
 import { SecretsManager, SQS } from 'aws-sdk';
 
 import {
@@ -7,7 +8,6 @@ import {
 } from 'Constants';
 
 import { authorize } from './authorize';
-import { KeyValueSecret } from './KeyValueSecret';
 
 const secretsManager = new SecretsManager();
 const sqs = new SQS();

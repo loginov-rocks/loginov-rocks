@@ -9,6 +9,7 @@
     "clean:coverage": "rimraf coverage",
     "coverage": "npm run clean:coverage && npm run test:coverage",
     "lint": "eslint --ext ts src webpack.config.js",
+    "shared:copy": "cp ../shared/loginov-rocks-loginov-rocks-shared.tgz .",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "test:update": "npm test -- --updateSnapshot",
@@ -26,6 +27,7 @@
   },
   "homepage": "https://loginov.rocks",
   "dependencies": {
+    "@loginov-rocks/loginov-rocks-shared": "file:loginov-rocks-loginov-rocks-shared.tgz",
     "aws-sdk": "^2.1096.0"
   },
   "devDependencies": {
