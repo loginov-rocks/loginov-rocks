@@ -24,14 +24,6 @@
       "Default": "/*",
       "Type": "String"
     },
-    "WebAppCmsClientAccessToken": {
-      "Description": "CMS Client Access Token for Web App function",
-      "Type": "String"
-    },
-    "WebAppCmsClientSpace": {
-      "Description": "CMS Client Space for Web App function",
-      "Type": "String"
-    },
     "WebAppCmsDolphPageComponentType": {
       "Description": "CMS \"Dolph Page\" Component Type for Web App function",
       "Default": "dolphPage",
@@ -296,6 +288,15 @@
               "Statement": [
                 {
                   "Effect": "Allow",
+                  "Action": "secretsmanager:GetSecretValue",
+                  "Resource": {
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${PersistentStackName}-SecretArn"
+                    }
+                  }
+                },
+                {
+                  "Effect": "Allow",
                   "Action": [
                     "sqs:GetQueueAttributes",
                     "sqs:ReceiveMessage",
@@ -321,7 +322,7 @@
                     },
                     {
                       "Fn::Sub": [
-                        "${DataBucketArn}/*",
+                        "${DataBucketArn}/${DataS3GitHubFileKey}",
                         {
                           "DataBucketArn": {
                             "Fn::ImportValue": {
@@ -516,6 +517,9 @@
           "Variables": {
             "LAMBDA_ACCESS_KEY_ID": "",
             "LAMBDA_SECRET_ACCESS_KEY": "",
+            "LAMBDA_REGION": {
+              "Ref": "AWS::Region"
+            },
             "LAMBDA_USE_POLICY": "true",
             "LAMBDA_USE_TMPDIR": "true",
             "LAMBDA_CLOUDFRONT_DISTRIBUTION_ID": {
@@ -531,12 +535,6 @@
                 "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
               }
             },
-            "CMS_CLIENT_ACCESS_TOKEN": {
-              "Ref": "WebAppCmsClientAccessToken"
-            },
-            "CMS_CLIENT_SPACE": {
-              "Ref": "WebAppCmsClientSpace"
-            },
             "CMS_DOLPH_PAGE_COMPONENT_TYPE": {
               "Ref": "WebAppCmsDolphPageComponentType"
             },
@@ -551,6 +549,13 @@
             "DATA_S3_GITHUB_FILE_KEY": {
               "Ref": "DataS3GitHubFileKey"
             },
+            "SECRET_ARN": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-SecretArn"
+              }
+            },
+            "SECRET_CMS_CLIENT_ACCESS_TOKEN_KEY": "WEB_APP_CMS_CLIENT_ACCESS_TOKEN",
+            "SECRET_CMS_CLIENT_SPACE_KEY": "WEB_APP_CMS_CLIENT_SPACE",
             "BABEL_DISABLE_CACHE": "1"
           }
         },

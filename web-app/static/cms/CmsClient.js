@@ -3,15 +3,28 @@ import * as Contentful from 'contentful';
 import { transformToCmsComponent } from './transformToCmsComponent';
 
 export class CmsClient {
-  constructor({ accessToken, space }) {
-    this.contentfulClient = Contentful.createClient({
-      accessToken,
-      space,
-    });
+  constructor({ accessTokenResolver, spaceResolver }) {
+    this.accessTokenResolver = accessTokenResolver;
+    this.spaceResolver = spaceResolver;
+  }
+
+  async getContentfulClient() {
+    if (!this.contentfulClient) {
+      const accessToken = await this.accessTokenResolver();
+      const space = await this.spaceResolver();
+
+      this.contentfulClient = Contentful.createClient({
+        accessToken,
+        space,
+      });
+    }
+
+    return this.contentfulClient;
   }
 
   async getCmsComponentByType(type) {
-    const entries = await this.contentfulClient.getEntries({
+    const contentfulClient = await this.getContentfulClient();
+    const entries = await contentfulClient.getEntries({
       content_type: type,
       include: 10,
       limit: 1,

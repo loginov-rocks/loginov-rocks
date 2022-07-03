@@ -13,6 +13,11 @@ Variables are relevant to what configured for Web App Lambda environment variabl
   "Version": "2012-10-17",
   "Statement": [
     {
+      "Action": "secretsmanager:GetSecretValue",
+      "Resource": "${SECRET_ARN}",
+      "Effect": "Allow"
+    },
+    {
       "Action": [
         "s3:ListBucket",
         "s3:GetObject"

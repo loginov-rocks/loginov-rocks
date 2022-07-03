@@ -13,12 +13,11 @@
 7. `UPDATE_GITHUB_LAMBDA_NAME`
 8. `WEB_APP_REPOSITORY`
 9. `WEB_APP_LAMBDA_NAME`
-10. `WEB_APP_CMS_CLIENT_ACCESS_TOKEN`
-11. `WEB_APP_CMS_CLIENT_SPACE`
-12. `WEB_APP_CMS_DOLPH_PAGE_COMPONENT_TYPE`
-13. `WEB_APP_CMS_HOME_PAGE_COMPONENT_TYPE`
-14. `DATA_S3_BUCKET_NAME`
-15. `DATA_S3_GITHUB_FILE_KEY`
+10. `WEB_APP_CMS_DOLPH_PAGE_COMPONENT_TYPE`
+11. `WEB_APP_CMS_HOME_PAGE_COMPONENT_TYPE`
+12. `DATA_S3_BUCKET_NAME`
+13. `DATA_S3_GITHUB_FILE_KEY`
+14. `SECRET_ARN`
 
 ## Permissions
 
@@ -51,6 +50,11 @@ Variables are relevant to what configured in GitHub Actions.
         "arn:aws:lambda:${AWS_REGION}:${AWS_ACCOUNT}:function:${UPDATE_GITHUB_LAMBDA_NAME}",
         "arn:aws:lambda:${AWS_REGION}:${AWS_ACCOUNT}:function:${WEB_APP_LAMBDA_NAME}"
       ],
+      "Effect": "Allow"
+    },
+    {
+      "Action": "secretsmanager:GetSecretValue",
+      "Resource": "${SECRET_ARN}",
       "Effect": "Allow"
     },
     {
