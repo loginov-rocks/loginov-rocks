@@ -16,7 +16,7 @@ export class HomeRoute {
     if (process.env.NODE_ENV !== 'production') {
       /* eslint-disable global-require */
       const cmsHomePageComponentMock = require('../cms/__fixtures__/cmsHomePageComponent.json');
-      const gitHubDataMock = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/gitHubData.json');
+      const gitHubDataMock = require('../../../shared/src/GitHub/__fixtures__/gitHubData.json');
       /* eslint-enable */
 
       return Promise.resolve({

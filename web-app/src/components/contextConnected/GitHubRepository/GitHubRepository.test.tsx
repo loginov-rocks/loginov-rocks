@@ -8,7 +8,7 @@ import * as GitHubContext from 'contexts/GitHubContext';
 import { GitHubRepository } from './GitHubRepository';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const gitHubDataMock = require('@loginov-rocks/loginov-rocks-shared/src/GitHub/__fixtures__/gitHubData.json');
+const gitHubDataMock = require('../../../../../shared/src/GitHub/__fixtures__/gitHubData.json');
 
 jest.spyOn(GitHubContext, 'useGitHubContext')
   .mockImplementation(() => gitHubDataMock);
