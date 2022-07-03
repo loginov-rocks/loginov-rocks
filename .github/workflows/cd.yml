@@ -95,7 +95,7 @@ jobs:
         env:
           LAMBDA_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           LAMBDA_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          LAMBDA_REGION: ${{ secrets.AWS_ACCOUNT }}
+          LAMBDA_REGION: ${{ secrets.AWS_REGION }}
           LAMBDA_USE_POLICY: false
           LAMBDA_USE_TMPDIR: false
           LAMBDA_CLOUDFRONT_DISTRIBUTION_ID: distributionId
