@@ -4,6 +4,7 @@ import { config } from 'dotenv';
 
 import { CmsClient } from '../cms/CmsClient';
 
+import { DolphRoute } from './DolphRoute';
 import { HomeRoute } from './HomeRoute';
 import { Routes } from './Routes';
 
@@ -44,6 +45,12 @@ const homeRoute = new HomeRoute({
   dataS3BucketName: process.env.DATA_S3_BUCKET_NAME,
   dataS3GitHubFileKey: process.env.DATA_S3_GITHUB_FILE_KEY,
   s3,
+});
+
+// Export to use in `siteData` since no static route exists for this page.
+export const dolphRoute = new DolphRoute({
+  cmsClient,
+  cmsDolphPageComponentType: process.env.CMS_DOLPH_PAGE_COMPONENT_TYPE,
 });
 
 routes.registerRoute('/', homeRoute);

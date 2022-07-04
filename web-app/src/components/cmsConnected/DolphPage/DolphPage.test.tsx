@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { DolphView } from './DolphView';
+import { DolphPage } from './DolphPage';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(<DolphView />);
+  const wrapper = shallow(<DolphPage render={() => null} sections={[]} title="Hello!" />);
 
   expect(wrapper).toMatchSnapshot();
 });
