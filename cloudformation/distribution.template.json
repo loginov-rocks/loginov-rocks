@@ -25,12 +25,12 @@
       "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
       "Type": "String"
     },
-    "TxtRecordValue": {
-      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
-      "Type": "String"
-    },
     "TxtMailRecordValue": {
       "Default": "\"v=DKIM1; k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnicxEVZ/GtonNcMzkUqwyuAQhCZ2nqRK5x/g1ECGbYmyU5lMebihLOiX3S9F1dRRFgvgDsPotyda0KJy+Z/LOwEWcHwVT6KkG1g1UweMq6/2qHunCHloO5bDSOitA3iWVYmukjEIlA/kBefGa6YA7JolkIEr0SftA2zA6RCryJwIDAQAB\"",
+      "Type": "String"
+    },
+    "TxtRecordValue": {
+      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
       "Type": "String"
     }
   },
@@ -145,27 +145,6 @@
         }
       }
     },
-    "ARecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Fn::GetAtt": [
-              "Distribution",
-              "DomainName"
-            ]
-          },
-          "HostedZoneId": "Z2FDTNDATAQYW2"
-        },
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Ref": "DomainName"
-        },
-        "Type": "A"
-      }
-    },
     "AAAARecordSet": {
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
@@ -187,6 +166,27 @@
         "Type": "AAAA"
       }
     },
+    "ARecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Fn::GetAtt": [
+              "Distribution",
+              "DomainName"
+            ]
+          },
+          "HostedZoneId": "Z2FDTNDATAQYW2"
+        },
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Ref": "DomainName"
+        },
+        "Type": "A"
+      }
+    },
     "MxRecordSet": {
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
@@ -203,24 +203,6 @@
         ],
         "TTL": "21600",
         "Type": "MX"
-      }
-    },
-    "TxtRecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Ref": "DomainName"
-        },
-        "ResourceRecords": [
-          {
-            "Ref": "TxtRecordValue"
-          }
-        ],
-        "TTL": "300",
-        "Type": "TXT"
       }
     },
     "TxtMailRecordSet": {
@@ -241,24 +223,22 @@
         "Type": "TXT"
       }
     },
-    "WwwARecordSet": {
+    "TxtRecordSet": {
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Ref": "ARecordSet"
-          },
-          "HostedZoneId": {
-            "Ref": "HostedZone"
-          }
-        },
         "HostedZoneId": {
           "Ref": "HostedZone"
         },
         "Name": {
-          "Fn::Sub": "www.${DomainName}"
+          "Ref": "DomainName"
         },
-        "Type": "A"
+        "ResourceRecords": [
+          {
+            "Ref": "TxtRecordValue"
+          }
+        ],
+        "TTL": "300",
+        "Type": "TXT"
       }
     },
     "WwwAAAARecordSet": {
@@ -279,6 +259,26 @@
           "Fn::Sub": "www.${DomainName}"
         },
         "Type": "AAAA"
+      }
+    },
+    "WwwARecordSet": {
+      "Type": "AWS::Route53::RecordSet",
+      "Properties": {
+        "AliasTarget": {
+          "DNSName": {
+            "Ref": "ARecordSet"
+          },
+          "HostedZoneId": {
+            "Ref": "HostedZone"
+          }
+        },
+        "HostedZoneId": {
+          "Ref": "HostedZone"
+        },
+        "Name": {
+          "Fn::Sub": "www.${DomainName}"
+        },
+        "Type": "A"
       }
     },
     "WebAppBucketPolicy": {

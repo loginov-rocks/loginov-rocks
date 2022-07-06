@@ -34,16 +34,6 @@
         }
       }
     },
-    "SecretArn": {
-      "Value": {
-        "Ref": "Secret"
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "${AWS::StackName}-SecretArn"
-        }
-      }
-    },
     "QueueArn": {
       "Value": {
         "Fn::GetAtt": [
@@ -64,6 +54,16 @@
       "Export": {
         "Name": {
           "Fn::Sub": "${AWS::StackName}-QueueUrl"
+        }
+      }
+    },
+    "SecretArn": {
+      "Value": {
+        "Ref": "Secret"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-SecretArn"
         }
       }
     },
@@ -168,15 +168,6 @@
         }
       }
     },
-    "Secret": {
-      "Type": "AWS::SecretsManager::Secret",
-      "Properties": {
-        "Name": {
-          "Fn::Sub": "${AWS::StackName}-secret"
-        },
-        "SecretString": "{\"CONTENTFUL_WEBHOOK_AUTH_PASSWORD\":\"\",\"CONTENTFUL_WEBHOOK_AUTH_USERNAME\":\"\",\"UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_SPACE\":\"\"}"
-      }
-    },
     "Queue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
@@ -229,6 +220,15 @@
             "Ref": "Queue"
           }
         ]
+      }
+    },
+    "Secret": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-secret"
+        },
+        "SecretString": "{\"CONTENTFUL_WEBHOOK_AUTH_PASSWORD\":\"\",\"CONTENTFUL_WEBHOOK_AUTH_USERNAME\":\"\",\"UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_SPACE\":\"\"}"
       }
     }
   }
