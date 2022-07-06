@@ -1,5 +1,20 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
+  "Outputs": {
+    "ContentfulWebhookUrl": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ContentfulWebhookUrl",
+          "FunctionUrl"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookUrl"
+        }
+      }
+    }
+  },
   "Parameters": {
     "DataS3GitHubFileKey": {
       "Description": "S3 GitHub File Key in Data bucket",
