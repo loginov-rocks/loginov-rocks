@@ -209,11 +209,11 @@
         "PolicyDocument": {
           "Version": "2012-10-17",
           "Statement": {
-            "Effect": "Allow",
+            "Action": "SQS:SendMessage",
             "Principal": {
               "Service": "s3.amazonaws.com"
             },
-            "Action": "SQS:SendMessage",
+            "Effect": "Allow",
             "Resource": {
               "Fn::GetAtt": [
                 "Queue",

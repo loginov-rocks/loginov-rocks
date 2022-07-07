@@ -293,13 +293,13 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Effect": "Allow",
+              "Action": "s3:GetObject",
               "Principal": {
                 "AWS": {
                   "Fn::Sub": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${WebAppBucketOriginAccessIdentity}"
                 }
               },
-              "Action": "s3:GetObject",
+              "Effect": "Allow",
               "Resource": {
                 "Fn::Sub": [
                   "${WebAppBucketArn}/*",

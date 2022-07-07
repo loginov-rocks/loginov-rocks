@@ -67,7 +67,6 @@ In no particular order:
 ## Docs
 
 * [Configuration](https://github.com/loginov-rocks/loginov-rocks/blob/main/docs/Configuration.md)
-* [Web App Function](https://github.com/loginov-rocks/loginov-rocks/blob/main/docs/Web-App-Function.md)
 
 ## Reference
 
