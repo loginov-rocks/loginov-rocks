@@ -71,6 +71,131 @@
         ]
       }
     },
+    "CdPolicy": {
+      "Type": "AWS::IAM::ManagedPolicy",
+      "Properties": {
+        "ManagedPolicyName": {
+          "Fn::Sub": "${AWS::StackName}-cd-policy"
+        },
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject",
+                "s3:PutObject"
+              ],
+              "Resource": [
+                {
+                  "Fn::Sub": [
+                    "${DeploymentBucketArn}/contentful-webhook.zip",
+                    {
+                      "DeploymentBucketArn": {
+                        "Fn::ImportValue": {
+                          "Fn::Sub": "${PersistentStackName}-DeploymentBucketArn"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "Fn::Sub": [
+                    "${DeploymentBucketArn}/update-github.zip",
+                    {
+                      "DeploymentBucketArn": {
+                        "Fn::ImportValue": {
+                          "Fn::Sub": "${PersistentStackName}-DeploymentBucketArn"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "Effect": "Allow"
+            },
+            {
+              "Action": "lambda:UpdateFunctionCode",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ContentfulWebhook",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::GetAtt": [
+                    "UpdateGitHubFunction",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::GetAtt": [
+                    "WebAppFunction",
+                    "Arn"
+                  ]
+                }
+              ],
+              "Effect": "Allow"
+            },
+            {
+              "Action": "secretsmanager:GetSecretValue",
+              "Resource": {
+                "Fn::ImportValue": {
+                  "Fn::Sub": "${PersistentStackName}-SecretArn"
+                }
+              },
+              "Effect": "Allow"
+            },
+            {
+              "Effect": "Allow",
+              "Action": [
+                "s3:ListBucket",
+                "s3:GetObject"
+              ],
+              "Resource": [
+                {
+                  "Fn::ImportValue": {
+                    "Fn::Sub": "${PersistentStackName}-DataBucketArn"
+                  }
+                },
+                {
+                  "Fn::Sub": [
+                    "${DataBucketArn}/${DataS3GitHubFileKey}",
+                    {
+                      "DataBucketArn": {
+                        "Fn::ImportValue": {
+                          "Fn::Sub": "${PersistentStackName}-DataBucketArn"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": "ecr:GetAuthorizationToken",
+              "Resource": "*",
+              "Effect": "Allow"
+            },
+            {
+              "Action": [
+                "ecr:CompleteLayerUpload",
+                "ecr:UploadLayerPart",
+                "ecr:InitiateLayerUpload",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:PutImage"
+              ],
+              "Resource": {
+                "Fn::ImportValue": {
+                  "Fn::Sub": "${PersistentStackName}-WebAppRepositoryArn"
+                }
+              },
+              "Effect": "Allow"
+            }
+          ]
+        }
+      }
+    },
     "ContentfulWebhookRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -400,6 +525,19 @@
         ],
         "RoleName": {
           "Fn::Sub": "${AWS::StackName}-web-app-function-role"
+        }
+      }
+    },
+    "CdUser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "ManagedPolicyArns": [
+          {
+            "Ref": "CdPolicy"
+          }
+        ],
+        "UserName": {
+          "Fn::Sub": "${AWS::StackName}-cd-user"
         }
       }
     },

@@ -24,6 +24,19 @@
         }
       }
     },
+    "DeploymentBucketArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "DeploymentBucket",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-DeploymentBucketArn"
+        }
+      }
+    },
     "DeploymentBucketName": {
       "Value": {
         "Ref": "DeploymentBucket"
@@ -87,6 +100,19 @@
       "Export": {
         "Name": {
           "Fn::Sub": "${AWS::StackName}-WebAppBucketName"
+        }
+      }
+    },
+    "WebAppRepositoryArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "WebAppRepository",
+          "Arn"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppRepositoryArn"
         }
       }
     },
