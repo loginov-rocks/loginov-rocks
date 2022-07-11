@@ -24,8 +24,7 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - name: Create function deployment package
-        run: zip -j contentful-webhook.zip dist/index.js
+      - run: npm run package
       - name: Upload function deployment package to S3
         run: aws s3 cp contentful-webhook.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
         env:
@@ -58,8 +57,7 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-      - name: Create function deployment package
-        run: zip -j update-github.zip dist/index.js
+      - run: npm run package
       - name: Upload function deployment package to S3
         run: aws s3 cp update-github.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
         env:

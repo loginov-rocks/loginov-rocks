@@ -9,6 +9,7 @@
     "clean:coverage": "rimraf coverage",
     "coverage": "npm run clean:coverage && npm run test:coverage",
     "lint": "eslint --ext ts src webpack.config.js",
+    "package": "rimraf contentful-webhook.zip && zip -j contentful-webhook.zip dist/index.js",
     "shared:copy": "cp ../shared/loginov-rocks-loginov-rocks-shared.tgz .",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
