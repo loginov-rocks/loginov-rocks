@@ -72,7 +72,7 @@
       "Properties": {
         "CloudFrontOriginAccessIdentityConfig": {
           "Comment": {
-            "Fn::Sub": "${AWS::StackName}-WebAppBucketOriginAccessIdentity"
+            "Fn::Sub": "${AWS::StackName}-web-app-bucket-origin-access-identity"
           }
         }
       }
