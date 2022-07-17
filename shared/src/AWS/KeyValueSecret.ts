@@ -38,6 +38,10 @@ export class KeyValueSecret {
   public async getValue(key: string): Promise<string> {
     const secret = await this.getSecretPromise();
 
+    if (secret[key] === undefined) {
+      throw new Error(`Secret does not have "${key}" key or it is undefined`);
+    }
+
     return secret[key];
   }
 }
