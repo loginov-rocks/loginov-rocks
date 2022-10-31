@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getData gets GitHub data using API 1`] = `
-Array [
-  Object {
+[
+  {
     "description": "Clean but full featured AngularJS boilerplate using Gulp workflow and best practices",
     "homepageUrl": "https://www.npmjs.com/package/angular-gulp-boilerplate",
     "isArchived": false,
@@ -13,7 +13,7 @@ Array [
     "updatedAt": 1614276648000,
     "url": "https://github.com/loginov-rocks/Angular-Gulp-Boilerplate",
   },
-  Object {
+  {
     "description": "Training Repository",
     "homepageUrl": "",
     "isArchived": false,
@@ -24,7 +24,7 @@ Array [
     "updatedAt": 1614278791000,
     "url": "https://github.com/loginov-rocks/Anticloud",
   },
-  Object {
+  {
     "description": "Training Repository",
     "homepageUrl": "",
     "isArchived": false,
