@@ -13,15 +13,19 @@
     }
   },
   "Parameters": {
+    "GoogleVerificationResourceRecord": {
+      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
+      "Type": "String"
+    },
     "DomainName": {
       "Description": "Domain Name for Route 53",
       "Type": "String"
     },
-    "MxRecordFirstValue": {
+    "MxFirstResourceRecord": {
       "Default": "10 mx1.improvmx.com.",
       "Type": "String"
     },
-    "MxRecordSecondValue": {
+    "MxSecondResourceRecord": {
       "Default": "20 mx2.improvmx.com.",
       "Type": "String"
     },
@@ -29,15 +33,7 @@
       "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
       "Type": "String"
     },
-    "TxtMailRecordValue": {
-      "Default": "\"v=DKIM1; k=rsa; t=s; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnicxEVZ/GtonNcMzkUqwyuAQhCZ2nqRK5x/g1ECGbYmyU5lMebihLOiX3S9F1dRRFgvgDsPotyda0KJy+Z/LOwEWcHwVT6KkG1g1UweMq6/2qHunCHloO5bDSOitA3iWVYmukjEIlA/kBefGa6YA7JolkIEr0SftA2zA6RCryJwIDAQAB\"",
-      "Type": "String"
-    },
-    "TxtRecordFirstValue": {
-      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
-      "Type": "String"
-    },
-    "TxtRecordSecondValue": {
+    "SpfResourceRecord": {
       "Default": "\"v=spf1 redirect=_spf.yandex.net include:spf.improvmx.com ~all\"",
       "Type": "String"
     }
@@ -206,32 +202,14 @@
         },
         "ResourceRecords": [
           {
-            "Ref": "MxRecordFirstValue"
+            "Ref": "MxFirstResourceRecord"
           },
           {
-            "Ref": "MxRecordSecondValue"
+            "Ref": "MxSecondResourceRecord"
           }
         ],
         "TTL": "21600",
         "Type": "MX"
-      }
-    },
-    "TxtMailRecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Fn::Sub": "mail._domainkey.${DomainName}"
-        },
-        "ResourceRecords": [
-          {
-            "Ref": "TxtMailRecordValue"
-          }
-        ],
-        "TTL": "21600",
-        "Type": "TXT"
       }
     },
     "TxtRecordSet": {
@@ -245,10 +223,10 @@
         },
         "ResourceRecords": [
           {
-            "Ref": "TxtRecordFirstValue"
+            "Ref": "GoogleVerificationResourceRecord"
           },
           {
-            "Ref": "TxtRecordSecondValue"
+            "Ref": "SpfResourceRecord"
           }
         ],
         "TTL": "300",

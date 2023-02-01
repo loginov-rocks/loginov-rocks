@@ -7,11 +7,13 @@
 
 [![CD](https://github.com/loginov-rocks/loginov-rocks/actions/workflows/cd.yml/badge.svg)](https://github.com/loginov-rocks/loginov-rocks/actions/workflows/cd.yml)
 
-Monorepo for my [personal website](https://loginov.rocks).
+Monorepo for my personal website: https://loginov.rocks
 
 ## Architecture
 
-![AWS Architecture Diagram](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/AWS-Architecture-Diagram.png)
+### Deployment View
+
+![Deployment View](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/Deployment-View.png)
 
 ### Concepts
 
@@ -62,7 +64,8 @@ In no particular order:
 
 1. _Developer_ pushes tag to **GitHub Repository**
 2. **GitHub Repository** triggers **GitHub CD Action**
-3. **GitHub CD Action** builds artifacts and deploys them to AWS Infrastructure
+3. **GitHub CD Action** builds artifacts and uploads them to AWS Infrastructure
+4. **GitHub CD Action** deploys Lambdas from artifacts uploaded
 
 ## Docs
 
