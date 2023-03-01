@@ -34,7 +34,7 @@
       "Type": "String"
     },
     "SpfResourceRecord": {
-      "Default": "\"v=spf1 redirect=_spf.yandex.net include:spf.improvmx.com ~all\"",
+      "Default": "\"v=spf1 include:spf.improvmx.com ~all\"",
       "Type": "String"
     }
   },
