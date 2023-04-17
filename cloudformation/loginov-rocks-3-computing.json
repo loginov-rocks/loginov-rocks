@@ -834,7 +834,8 @@
             },
             "SECRET_CMS_CLIENT_ACCESS_TOKEN_KEY": "WEB_APP_CMS_CLIENT_ACCESS_TOKEN",
             "SECRET_CMS_CLIENT_SPACE_KEY": "WEB_APP_CMS_CLIENT_SPACE",
-            "BABEL_DISABLE_CACHE": "1"
+            "BABEL_DISABLE_CACHE": "1",
+            "NPM_CONFIG_CACHE": "/tmp/.npm"
           }
         },
         "FunctionName": {

@@ -41,7 +41,7 @@ const stderr = (data) => {
 exports.handler = async (event) => {
   console.log('Event:', JSON.stringify(event));
 
-  console.log('Building...');
+  console.log('Building to:', distDirectoryPath);
 
   const buildResult = await build(stdout, stderr);
 
