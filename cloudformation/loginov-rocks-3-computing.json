@@ -764,6 +764,7 @@
           "Fn::Sub": "${AWS::StackName}-update-github-function"
         },
         "Handler": "index.handler",
+        "ReservedConcurrentExecutions": 1,
         "Role": {
           "Fn::GetAtt": [
             "UpdateGitHubFunctionRole",
