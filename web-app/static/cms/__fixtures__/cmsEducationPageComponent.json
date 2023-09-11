@@ -1,0 +1,656 @@
+{
+  "props": {
+    "title": "Education",
+    "sections": [
+      {
+        "props": {
+          "title": "Learning",
+          "blocks": [
+            {
+              "props": {
+                "title": "Architecture",
+                "items": [
+                  {
+                    "props": {
+                      "title": "Chief Technology Officer Career Guide",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/chief-technology-officer-career-guide",
+                      "completed": "2023-03-20",
+                      "timeToComplete": 153,
+                      "credentialId": "AS7MNFOrVPKdBsXeK5RwH56UmXAI",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/c722fc4584eefb6c435c8e3cf58f3f1c18d331164ff278462e86eba7869eb5a3"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Digital Transformation",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/digital-transformation-2",
+                      "completed": "2023-03-08",
+                      "timeToComplete": 47,
+                      "credentialId": "AZJ-twGKuElIbLxT6fHGit3fblCi",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/3d0f6557a7a77a5e16b0c6813a25de7d3c30de2a58b31a106d7ae346c433fe94"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Google Cloud Platform (GCP) Essential Training for Developers",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/google-cloud-platform-gcp-essential-training-for-developers",
+                      "completed": "2022-03-16",
+                      "timeToComplete": 123,
+                      "credentialId": "AdIGLemneo9cdxm94qfCAmsUuF5t",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/5cecb774c9661d4aa118762a46864812fdab210f55e3051ef47828b8c0274860"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Azure Essential Training for Developers",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/azure-essential-training-for-developers",
+                      "completed": "2021-11-01",
+                      "timeToComplete": 122,
+                      "credentialId": "AaBvDmJf5Db5PQuttPS3m72Yv0ID",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/2f3e6986fa327743a572ae83d0ee97b2837e8b2c33865ffdbf2ea141cfaef0eb"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Sustainable Software Architecture",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/sustainable-software-architecture",
+                      "completed": "2023-03-08",
+                      "timeToComplete": 69,
+                      "credentialId": "Ac4nMGThOO2WpK79jRleIHUd15NE",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/995cf5936b6792a12f7ff5d09fa546728b881fa84f59999f6c13a07ee20d079c"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Systems Thinking",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/systems-thinking",
+                      "completed": "2023-03-08",
+                      "timeToComplete": 35,
+                      "credentialId": "AbkyCsWhKeTdzdxM2GDhOtzwPYjG",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/a6b80336e9f21192ac7eb91092d9c9a673107c6699ceebc11da861492290ec65"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Jeff Weiner on Leading like a CEO",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/jeff-weiner-on-leading-like-a-ceo",
+                      "completed": "2023-04-22",
+                      "timeToComplete": 189,
+                      "credentialId": "AabNGzuHf6QS-TanxFZVz0V2t3Qm",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/e7d2efba7485e6830f11952c8ba9fec48453774837e873bc152e5ca5b9e0bc7a"
+                    },
+                    "type": "learningItem"
+                  }
+                ]
+              },
+              "type": "learningBlock"
+            },
+            {
+              "props": {
+                "title": "Internet of Things",
+                "items": [
+                  {
+                    "props": {
+                      "title": "IoT Foundations: Fundamentals",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/iot-foundations-fundamentals",
+                      "completed": "2023-03-30",
+                      "timeToComplete": 38,
+                      "credentialId": "AZvvtQjmxH-dLjjeVWjn7QbfsYaT",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/95d1b3d31689c491e28727a04991144857960899c26bf273a32c5f96bcefc159"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "IoT Foundations: Standards and Ecosystems",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/iot-foundations-standards-and-ecosystems-14427225",
+                      "completed": "2023-03-30",
+                      "timeToComplete": 60,
+                      "credentialId": "AQ_PDhObJYoOpZQkWVui9dDuScFC",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/206750899db868b77633e555f74ea597771e3332d445fceabc537d2fcdb53839"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "IoT Foundations: Operating Systems Fundamentals",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/iot-foundations-operating-systems-fundamentals",
+                      "completed": "2023-04-13",
+                      "timeToComplete": 119,
+                      "credentialId": "AUOz42LN78cLwrwzI4gvfLkd3AV2",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/30d50c35cdb33f3f65391620974c82c3729ca9f4002053dd6e89b6890a7bda68"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "IoT Foundations: Low-Power Wireless Networking",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/iot-foundations-low-power-wireless-networking",
+                      "completed": "2023-04-15",
+                      "timeToComplete": 167,
+                      "credentialId": "AW-H23B0l4_UEIPz53myazOHuSMQ",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/a920fa83c1f911127cb2d789aaaecfb8fd404c8027481143fe3d078582fc6fba"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "IoT Foundations: Device Management",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/iot-foundations-device-management",
+                      "completed": "2023-04-17",
+                      "timeToComplete": 147,
+                      "credentialId": "AZr0eurW_i6enBU7fZ_VGMt62Xlt",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/033a796a13a730eb34529d00a3113f27df301fdc42166e37f7153d4a118618ea"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "IoT Foundations: Operating System Applications",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/iot-foundations-operating-system-applications",
+                      "completed": "2023-04-20",
+                      "timeToComplete": 121,
+                      "credentialId": "AQoTfelXNc9Jq74QRThOn1-ax9vv",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/59849db22d02918eaaa542ee9cf0549ad7bdd6f9afb83ce8883e3a8c7dc01774"
+                    },
+                    "type": "learningItem"
+                  }
+                ]
+              },
+              "type": "learningBlock"
+            },
+            {
+              "props": {
+                "title": "Technologies",
+                "items": [
+                  {
+                    "props": {
+                      "title": "Learning Kubernetes",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-kubernetes-16086900",
+                      "completed": "2023-03-17",
+                      "timeToComplete": 87,
+                      "credentialId": "ARRzd5SdzRvYiRx-m-ZqZw7kBzfc",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/bc0625d9d4b65ef0533d68ae04ea0b15113ca9e0179f4837a976104d78d63a83"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Cloud NoSQL for SQL Professionals",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/cloud-nosql-for-sql-professionals",
+                      "completed": "2021-07-12",
+                      "timeToComplete": 160,
+                      "credentialId": "AXeq51XPxJzLSFPw0hvftVZpfjeI",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/ed7570a0eb8bff4b5bc1fd3391de712d92554ce69f75de3e5b1109aeb5dbc3eb"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Learning Google Flutter for Mobile Developers",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-google-flutter-for-mobile-developers",
+                      "completed": "2019-02-09",
+                      "timeToComplete": 85,
+                      "credentialId": "AeEuMd79a4d4YwVTBxOSC8F3dwAe",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/2328493681f533385d230672f899359707e356c8ddf3ec6a7e3dc37b87894bdb"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Learning Web Components",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-web-components",
+                      "completed": "2018-08-05",
+                      "timeToComplete": 84,
+                      "credentialId": "AdMN2oSrbxB6Uv1mNo9hpTeLY9s0",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/79a9ebf220d4c1dd2ebc94508415949a21614443b37b7e2fc02de3a1a164d420"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "AR for Mobile Developers",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/ar-for-mobile-developers",
+                      "completed": "2018-02-15",
+                      "timeToComplete": 31,
+                      "credentialId": "AfMukBpRGCiM3E1jGtkIyeuc-_2f",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/ba7609e6bcb956b5647a77b1426872d294e2be1053080b18fb6ca973a75fd0f0"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Node.js Essential Training",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/node-js-essential-training-2017",
+                      "completed": "2018-02-02",
+                      "timeToComplete": 383,
+                      "credentialId": "ASsTMXdDdwqC4jF2TkYDvGeiWt6S",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/394300958900baf411b7105fa9c779f04004ba8095a1ffeac715e1e1a95e8182"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Electron: Building Cross Platform Desktop Apps",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/electron-building-cross-platform-desktop-apps-2016",
+                      "completed": "2017-11-26",
+                      "timeToComplete": 180,
+                      "credentialId": "AUYknOyTYU80efNnaA_ojo3v3QHa",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/4b1f654f6cbd9cd5338711402ecec7071bf6ac1ffb217d6c1e209f6abda27e40"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Create a CRM Mobile Application with React Native",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/create-a-crm-mobile-application-with-react-native-2017",
+                      "completed": "2017-11-22",
+                      "timeToComplete": 241,
+                      "credentialId": "AX4Q1h1oTSr24-5chAQtZQvyOwKx",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/014643cec4aff918694af779ff6b3f83b250b91965d55a3c0eea825c62425b21"
+                    },
+                    "type": "learningItem"
+                  }
+                ]
+              },
+              "type": "learningBlock"
+            },
+            {
+              "props": {
+                "title": "Tools",
+                "items": [
+                  {
+                    "props": {
+                      "title": "Learning Azure Kubernetes Service (AKS)",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-azure-kubernetes-service-aks-17453148",
+                      "completed": "2023-03-23",
+                      "timeToComplete": 78,
+                      "credentialId": "AV8dm0WrGNbam_vE1eBCDjUEEfcn",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/577bd5cd7ffbe1c7fba7084baf2b6f74153123ead914c5c4abec7dfc73abe881"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "React: Software Architecture",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/react-software-architecture",
+                      "completed": "2021-09-14",
+                      "timeToComplete": 159,
+                      "credentialId": "AeSai7s0T2Xk88I8OQy5Fa_p-RaP",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/620f2f8d3ea1d36b3a2475ceb1e3819271e73536a95bf9c8d258e1fe9f9e5680"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "React: Building Large Apps",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/react-building-large-apps",
+                      "completed": "2021-09-13",
+                      "timeToComplete": 54,
+                      "credentialId": "AVI70h9XwZN0n5YUStBGGDbt4BN6",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/6a1c9ce70f511763c3913a809b34b248a311b870bab6c5f400ee2cb210a88f37"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "React: Server-Side Rendering",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/react-server-side-rendering-8539269",
+                      "completed": "2021-09-20",
+                      "timeToComplete": 73,
+                      "credentialId": "AVRrm72ZBsmJPGjoksIiMxSfqw_C",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/e11e4db4daee67847598009c87f7c96e14f0850cd8fa239c7433a7c8c574c18d"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Angular Essential Training",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/angular-essential-training-2018",
+                      "completed": "2018-03-14",
+                      "timeToComplete": 168,
+                      "credentialId": "AdAYsgDPhmoHkjGTumwIbWN7he8Q",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/139b4d7456762f7d9c90c8995d37413e439aea928be000c07185a67043e8b68f"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Learning 3D Graphics on the Web with Three.js",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-3d-graphics-on-the-web-with-three-js",
+                      "completed": "2018-02-14",
+                      "timeToComplete": 172,
+                      "credentialId": "ATif-k8y6wGh7LDjrmTlVkz7ltjB",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/66c1a59c7fe5dd5377114f41ca34c28f13ffb7a0dd43db58980a4c96271ef7d2"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Learning React VR",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-react-vr",
+                      "completed": "2018-02-07",
+                      "timeToComplete": 70,
+                      "credentialId": "ARyJSfz8IMGEnJB6D9FPup27RyIz",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/8074d066d16619579d0b4adc395337f7dd858b31dec6d12cb072d4ee5ef093bf"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "React VR: Interactive Multimedia",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/react-vr-interactive-multimedia",
+                      "completed": "2018-02-06",
+                      "timeToComplete": 83,
+                      "credentialId": "AfrEbjw9cKnK2v_Q0eQMzaAgK-9p",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/6aa9dd6517000a336fbfa2b8b2ff7326473269db5d5bb101d15702776ed7688d"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "Learning Redux",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-redux",
+                      "completed": "2017-12-09",
+                      "timeToComplete": 179,
+                      "credentialId": "Ad0JKggPENtzfhxQi3m4B-X1HwkZ",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/5bf3ada04a6bdf9bcea3ac458aa508d691e6d4f9802b74bc19cf680ea4b38dc8"
+                    },
+                    "type": "learningItem"
+                  },
+                  {
+                    "props": {
+                      "title": "React: Testing and Debugging",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/react-testing-and-debugging-2017",
+                      "completed": "2017-11-26",
+                      "timeToComplete": 77,
+                      "credentialId": "AZiiE33i84D3Jp-dxHT-iKZXv_ze",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/333bfbfe0513a2d14f3e43e01d165fb9d8b4874b341f6738f71ac0dbb5ed808a"
+                    },
+                    "type": "learningItem"
+                  }
+                ]
+              },
+              "type": "learningBlock"
+            },
+            {
+              "props": {
+                "title": "Languages",
+                "items": [
+                  {
+                    "props": {
+                      "title": "Learning Functional Programming with JavaScript (ES5)",
+                      "provider": {
+                        "props": {
+                          "title": "LinkedIn Learning",
+                          "website": "https://www.linkedin.com/learning/"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.linkedin.com/learning/learning-functional-programming-with-javascript-es5",
+                      "completed": "2018-02-15",
+                      "timeToComplete": 59,
+                      "credentialId": "Aa_9W9UVQTJED925q5EnSK83ECHc",
+                      "credentialLink": "https://www.linkedin.com/learning/certificates/384adaf77afe020d482fb94daae6768ada8457f7fc8018ffb086cbf5ec216001"
+                    },
+                    "type": "learningItem"
+                  }
+                ]
+              },
+              "type": "learningBlock"
+            },
+            {
+              "props": {
+                "title": "Hobbies",
+                "items": [
+                  {
+                    "props": {
+                      "title": "Petersen Auto Design and Sketching",
+                      "provider": {
+                        "props": {
+                          "title": "Yellowbrick",
+                          "website": "https://www.yellowbrick.co"
+                        },
+                        "type": "learningProvider"
+                      },
+                      "providerLink": "https://www.yellowbrick.co/autodesign",
+                      "completed": "2023-03-25",
+                      "timeToComplete": 148
+                    },
+                    "type": "learningItem"
+                  }
+                ]
+              },
+              "type": "learningBlock"
+            }
+          ]
+        },
+        "type": "learningSection"
+      }
+    ]
+  },
+  "type": "educationPage"
+}

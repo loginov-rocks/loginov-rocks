@@ -1,4 +1,5 @@
 import { DolphPage } from 'components/cmsConnected/DolphPage';
+import { EducationPage } from 'components/cmsConnected/EducationPage';
 import { GitHubLibrary } from 'components/cmsConnected/GitHubLibrary';
 import { GitHubProject } from 'components/cmsConnected/GitHubProject';
 import { HomePage } from 'components/cmsConnected/HomePage';
@@ -14,6 +15,7 @@ import { CmsConnectedRepository } from './CmsConnectedRepository';
 const cmsConnectedRepository = new CmsConnectedRepository();
 
 cmsConnectedRepository.registerComponent('dolphPage', DolphPage);
+cmsConnectedRepository.registerComponent('educationPage', EducationPage);
 cmsConnectedRepository.registerComponent('gitHubLibrary', GitHubLibrary);
 cmsConnectedRepository.registerComponent('gitHubProject', GitHubProject);
 cmsConnectedRepository.registerComponent('homePage', HomePage);

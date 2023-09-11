@@ -5,6 +5,7 @@ import { config } from 'dotenv';
 import { CmsClient } from '../cms/CmsClient';
 
 import { DolphRoute } from './DolphRoute';
+import { EducationRoute } from './EducationRoute';
 import { HomeRoute } from './HomeRoute';
 import { Routes } from './Routes';
 
@@ -47,6 +48,11 @@ const homeRoute = new HomeRoute({
   s3,
 });
 
+const educationRoute = new EducationRoute({
+  cmsClient,
+  cmsEducationPageComponentType: process.env.CMS_EDUCATION_PAGE_COMPONENT_TYPE,
+});
+
 // Export to use in `siteData` since no static route exists for this page.
 export const dolphRoute = new DolphRoute({
   cmsClient,
@@ -54,6 +60,7 @@ export const dolphRoute = new DolphRoute({
 });
 
 routes.registerRoute('/', homeRoute);
+routes.registerRoute('/education', educationRoute);
 
 // Default export used to highlight singleton pattern.
 export default routes;
