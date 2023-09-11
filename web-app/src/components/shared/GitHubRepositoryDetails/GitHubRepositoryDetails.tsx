@@ -40,6 +40,7 @@ export const GitHubRepositoryDetails: React.FC<Props> = ({ repository }) => (
       {new Date(repository.updatedAt).toLocaleDateString(undefined, {
         day: 'numeric',
         month: 'short',
+        timeZone: 'UTC',
         year: 'numeric',
       })}
     </span>

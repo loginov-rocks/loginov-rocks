@@ -57,6 +57,7 @@ export const LearningItem: React.FC<Props> = ({
               {new Date(completed).toLocaleDateString(undefined, {
                 day: 'numeric',
                 month: 'short',
+                timeZone: 'UTC',
                 year: 'numeric',
               })}
             </span>
