@@ -44,6 +44,11 @@
       "Default": "dolphPage",
       "Type": "String"
     },
+    "WebAppCmsEducationPageComponentType": {
+      "Description": "CMS \"Education Page\" Component Type for Web App function",
+      "Default": "educationPage",
+      "Type": "String"
+    },
     "WebAppCmsHomePageComponentType": {
       "Description": "CMS \"Home Page\" Component Type for Web App function",
       "Default": "homePage",
@@ -816,6 +821,9 @@
             },
             "CMS_DOLPH_PAGE_COMPONENT_TYPE": {
               "Ref": "WebAppCmsDolphPageComponentType"
+            },
+            "CMS_EDUCATION_PAGE_COMPONENT_TYPE": {
+              "Ref": "WebAppCmsEducationPageComponentType"
             },
             "CMS_HOME_PAGE_COMPONENT_TYPE": {
               "Ref": "WebAppCmsHomePageComponentType"

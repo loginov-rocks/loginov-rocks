@@ -1,6 +1,6 @@
 {
   "name": "@loginov-rocks/loginov-rocks-contentful-webhook",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "description": "Contentful Webhook",
   "engines": {
     "node": "16",
