@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot when 0 minutes passed 1`] = `""`;
+
+exports[`matches snapshot when 1 minute passed 1`] = `
+<span
+  title="Time to Complete"
+>
+  1 minute
+</span>
+`;
+
+exports[`matches snapshot when 12 minutes passed 1`] = `
+<span
+  title="Time to Complete"
+>
+  12 minutes
+</span>
+`;
+
+exports[`matches snapshot when 60 minutes passed 1`] = `
+<span
+  title="Time to Complete"
+>
+  1 hour
+</span>
+`;
+
+exports[`matches snapshot when 120 minutes passed 1`] = `
+<span
+  title="Time to Complete"
+>
+  2 hours
+</span>
+`;
+
+exports[`matches snapshot when 121 minutes passed 1`] = `
+<span
+  title="Time to Complete"
+>
+  2 hours, 1 minute
+</span>
+`;
+
+exports[`matches snapshot when 123 minutes passed 1`] = `
+<span
+  title="Time to Complete"
+>
+  2 hours, 3 minutes
+</span>
+`;

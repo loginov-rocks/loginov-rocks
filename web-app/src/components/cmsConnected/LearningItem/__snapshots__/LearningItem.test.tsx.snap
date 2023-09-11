@@ -21,11 +21,10 @@ exports[`matches snapshot 1`] = `
    
   /
    
-  <span
-    title="Time to Complete"
-  >
-    1 hour, 24 minutes
-  </span>
+  <Time
+    label="Time to Complete"
+    minutes={84}
+  />
   <em>
     <br />
     Credential:

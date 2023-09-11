@@ -3,8 +3,7 @@ import * as React from 'react';
 import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
 import { ExternalLink } from 'components/shared/ExternalLink';
-
-import { renderTimeToComplete } from './renderTimeToComplete';
+import { Time } from 'components/shared/Time';
 
 interface Props extends CmsConnectedProps {
   completed?: string;
@@ -72,7 +71,7 @@ export const LearningItem: React.FC<Props> = ({
           )}
 
           {timeToComplete && (
-            <span title="Time to Complete">{renderTimeToComplete(timeToComplete)}</span>
+            <Time label="Time to Complete" minutes={timeToComplete} />
           )}
 
         </>

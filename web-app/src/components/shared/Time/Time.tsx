@@ -1,4 +1,11 @@
-export const renderTimeToComplete = (minutes: number): string => {
+import * as React from 'react';
+
+interface Props {
+  label: string;
+  minutes: number;
+}
+
+export const Time: React.FC<Props> = ({ label, minutes }) => {
   const hours = Math.floor(minutes / 60);
   const remainingMinutes = minutes % 60;
 
@@ -16,5 +23,9 @@ export const renderTimeToComplete = (minutes: number): string => {
     string += `${remainingMinutes} minute${remainingMinutes !== 1 ? 's' : ''}`;
   }
 
-  return string;
+  if (string === '') {
+    return null;
+  }
+
+  return <span title={label}>{string}</span>;
 };
