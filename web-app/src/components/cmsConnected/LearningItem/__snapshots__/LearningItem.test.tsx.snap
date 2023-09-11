@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Fragment>
+  <ExternalLink
+    href="https://www.linkedin.com/learning/learning-web-components"
+  >
+    <strong>
+      Learning Web Components
+    </strong>
+  </ExternalLink>
+   
+  /
+   
+  <br />
+  <span
+    title="Completed"
+  >
+    Aug 4, 2018
+  </span>
+   
+  /
+   
+  <span
+    title="Time to Complete"
+  >
+    1 hour, 24 minutes
+  </span>
+  <em>
+    <br />
+    Credential:
+     
+    <ExternalLink
+      href="https://www.linkedin.com/learning/certificates/79a9ebf220d4c1dd2ebc94508415949a21614443b37b7e2fc02de3a1a164d420"
+    >
+      AdMN2oSrbxB6Uv1mNo9hpTeLY9s0
+    </ExternalLink>
+  </em>
+</Fragment>
+`;
+
+exports[`matches snapshot with optional fields 1`] = `
+<Fragment>
+  <strong>
+    Learning Web Components
+  </strong>
+</Fragment>
+`;

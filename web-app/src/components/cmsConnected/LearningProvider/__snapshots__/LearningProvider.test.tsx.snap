@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<ExternalLink
+  href="https://www.linkedin.com/learning/"
+>
+  LinkedIn Learning
+</ExternalLink>
+`;
+
+exports[`matches snapshot with optional fields 1`] = `
+<span>
+  LinkedIn Learning
+</span>
+`;
