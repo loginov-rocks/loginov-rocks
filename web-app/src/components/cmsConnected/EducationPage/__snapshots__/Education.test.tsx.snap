@@ -5,5 +5,16 @@ exports[`matches snapshot 1`] = `
   <h1>
     Education
   </h1>
+  <nav>
+    <Link
+      to="/"
+    >
+      Home
+    </Link>
+     
+    /
+     
+    Education
+  </nav>
 </Fragment>
 `;

@@ -1,3 +1,4 @@
+import { Link } from '@reach/router';
 import * as React from 'react';
 
 import { CmsComponent } from 'cms/interfaces/CmsComponent';
@@ -11,6 +12,13 @@ interface Props extends CmsConnectedProps {
 export const HomePage: React.FC<Props> = ({ render, sections, title }) => (
   <>
     <h1>{title}</h1>
+    <nav>
+      Home
+      {' '}
+      /
+      {' '}
+      <Link to="/education">Education</Link>
+    </nav>
     {render(sections)}
   </>
 );
