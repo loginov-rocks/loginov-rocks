@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { useMemo, useState } from 'react';
 
 import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
 import { Time } from 'components/shared/Time';
+import { LearningBlockContext } from 'contexts/LearningBlockContext';
 
 interface Props extends CmsConnectedProps {
   items: CmsComponent[];
@@ -10,15 +12,15 @@ interface Props extends CmsConnectedProps {
 }
 
 export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
+  const [totalTimeToComplete, setTotalTimeToComplete] = useState(0);
+
+  const contextValue = useMemo(() => ({
+    addTimeToComplete: (timeToComplete: number): void => {
+      setTotalTimeToComplete((prev) => prev + timeToComplete);
+    },
+  }), []);
+
   const renderedItems = render(items);
-
-  let effort = 0;
-
-  items.forEach((item) => {
-    if (item.type === 'learningItem' && item.props.timeToComplete) {
-      effort += item.props.timeToComplete as number;
-    }
-  });
 
   if (!Array.isArray(renderedItems)) {
     return null;
@@ -28,20 +30,22 @@ export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
     <>
       <h3>{title}</h3>
 
-      {effort > 0 && (
+      {totalTimeToComplete > 0 && (
         <p>
-          <Time label="Effort" minutes={effort} />
+          <Time label="Total Time to Complete" minutes={totalTimeToComplete} />
         </p>
       )}
 
-      <ul>
-        {renderedItems.map((item, index) => (
-          // eslint-disable-next-line react/no-array-index-key
-          <li key={index}>
-            {item}
-          </li>
-        ))}
-      </ul>
+      <LearningBlockContext.Provider value={contextValue}>
+        <ul>
+          {renderedItems.map((item, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <li key={index}>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </LearningBlockContext.Provider>
     </>
   );
 };
