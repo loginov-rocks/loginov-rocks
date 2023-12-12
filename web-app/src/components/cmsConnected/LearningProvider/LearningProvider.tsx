@@ -8,7 +8,9 @@ interface Props {
 }
 
 export const LearningProvider: React.FC<Props> = ({ title, website }) => (
-  website ? <ExternalLink href={website}>{title}</ExternalLink> : <span>{title}</span>
+  website
+    ? (<ExternalLink href={website} label="Link to Provider">{title}</ExternalLink>)
+    : (<span title="Provider">{title}</span>)
 );
 
 LearningProvider.defaultProps = {

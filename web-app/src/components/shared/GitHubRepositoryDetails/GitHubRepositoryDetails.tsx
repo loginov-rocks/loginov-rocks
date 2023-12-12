@@ -17,7 +17,7 @@ export const GitHubRepositoryDetails: React.FC<Props> = ({ repository }) => (
 
     {repository.language && (
       <>
-        <span title="Language">{repository.language}</span>
+        <span title="Primary Language">{repository.language}</span>
         {' '}
         /
         {' '}
@@ -28,6 +28,7 @@ export const GitHubRepositoryDetails: React.FC<Props> = ({ repository }) => (
       <>
         <span title="GitHub Stars">
           &#x2B50;
+          {' '}
           {repository.stars}
         </span>
         {' '}

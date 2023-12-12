@@ -16,7 +16,7 @@ export const GitHubRepository: React.FC<Props> = ({ gitHubId }) => {
   let title = <strong>{gitHubId}</strong>;
 
   if (repository && repository.homepageUrl) {
-    title = <ExternalLink href={repository.homepageUrl}>{title}</ExternalLink>;
+    title = <ExternalLink href={repository.homepageUrl} label="Link to Project Homepage">{title}</ExternalLink>;
   }
 
   if (repository && repository.isArchived) {
@@ -33,7 +33,7 @@ export const GitHubRepository: React.FC<Props> = ({ gitHubId }) => {
           {' '}
           /
           {' '}
-          <ExternalLink href={repository.url}>GitHub</ExternalLink>
+          <ExternalLink href={repository.url} label="Link to Repository">GitHub</ExternalLink>
         </>
       )}
 

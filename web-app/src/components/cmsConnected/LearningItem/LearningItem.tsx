@@ -21,17 +21,19 @@ export const LearningItem: React.FC<Props> = ({
   let renderTitle = <strong>{title}</strong>;
 
   if (providerLink) {
-    renderTitle = <ExternalLink href={providerLink}>{renderTitle}</ExternalLink>;
+    renderTitle = (
+      <ExternalLink href={providerLink} label="Link to Certification or Training">{renderTitle}</ExternalLink>
+    );
   }
 
   let renderCredential = null;
 
   if (credentialId && credentialLink) {
-    renderCredential = <ExternalLink href={credentialLink}>{credentialId}</ExternalLink>;
+    renderCredential = <ExternalLink href={credentialLink} label="Link to Credential">{credentialId}</ExternalLink>;
   } else if (credentialId) {
     renderCredential = credentialId;
   } else if (credentialLink) {
-    renderCredential = <ExternalLink href={credentialLink}>Link</ExternalLink>;
+    renderCredential = <ExternalLink href={credentialLink} label="Link to Credential">Link</ExternalLink>;
   }
 
   return (

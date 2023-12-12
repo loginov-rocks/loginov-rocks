@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props {
-  label: string;
+  label?: string;
   minutes: number;
 }
 
@@ -28,4 +28,8 @@ export const Time: React.FC<Props> = ({ label, minutes }) => {
   }
 
   return <span title={label}>{string}</span>;
+};
+
+Time.defaultProps = {
+  label: undefined,
 };
