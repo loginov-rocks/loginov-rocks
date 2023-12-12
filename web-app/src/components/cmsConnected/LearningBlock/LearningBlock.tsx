@@ -16,7 +16,7 @@ export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
 
   const contextValue = useMemo(() => ({
     addTimeToComplete: (timeToComplete: number): void => {
-      setTotalTimeToComplete((prev) => prev + timeToComplete);
+      setTotalTimeToComplete((prevTotalTimeToComplete) => prevTotalTimeToComplete + timeToComplete);
     },
   }), []);
 
@@ -40,9 +40,7 @@ export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
         <ul>
           {renderedItems.map((item, index) => (
             // eslint-disable-next-line react/no-array-index-key
-            <li key={index}>
-              {item}
-            </li>
+            <li key={index}>{item}</li>
           ))}
         </ul>
       </LearningBlockContext.Provider>

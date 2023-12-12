@@ -21,9 +21,7 @@ export const SocialPresenceSection: React.FC<Props> = ({ items, render, title })
       <ul>
         {renderedItems.map((item, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li key={index}>
-            {item}
-          </li>
+          <li key={index}>{item}</li>
         ))}
       </ul>
     </>
