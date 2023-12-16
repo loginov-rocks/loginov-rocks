@@ -1,6 +1,6 @@
 {
   "name": "@loginov-rocks/loginov-rocks-web-app",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "description": "Web App",
   "engines": {
     "node": "16",
@@ -17,6 +17,8 @@
     "coverage": "npm run clean:coverage && npm run test:coverage",
     "lint": "eslint --ext js,jsx,ts,tsx lambda src static static.config.js",
     "shared:copy": "cp ../shared/loginov-rocks-loginov-rocks-shared.tgz .",
+    "shared:install": "npm install loginov-rocks-loginov-rocks-shared.tgz",
+    "shared:update": "npm run shared:copy && npm run shared:install",
     "test": "jest",
     "test:coverage": "npm test -- --coverage",
     "test:update": "npm test -- --updateSnapshot",
