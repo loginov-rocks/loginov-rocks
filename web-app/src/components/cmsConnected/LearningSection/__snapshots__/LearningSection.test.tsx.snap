@@ -5,5 +5,18 @@ exports[`matches snapshot 1`] = `
   <h2>
     Learning
   </h2>
+  <LearningSectionFilter
+    filterYear={null}
+    onSelectYear={[Function]}
+    years={Array []}
+  />
+  <ContextProvider
+    value={
+      Object {
+        "addCompleted": [Function],
+        "filterYear": null,
+      }
+    }
+  />
 </Fragment>
 `;

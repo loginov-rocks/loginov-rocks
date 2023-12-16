@@ -1,10 +1,9 @@
 import * as React from 'react';
-import { useMemo, useState } from 'react';
 
 import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
 import { Time } from 'components/shared/Time';
-import { LearningBlockContext } from 'contexts/LearningBlockContext';
+import { useLearningSectionContext } from 'contexts/LearningSectionContext';
 
 interface Props extends CmsConnectedProps {
   items: CmsComponent[];
@@ -12,22 +11,43 @@ interface Props extends CmsConnectedProps {
 }
 
 export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
-  const [totalTimeToComplete, setTotalTimeToComplete] = useState(0);
+  const { filterYear } = useLearningSectionContext();
 
-  const contextValue = useMemo(() => ({
-    addTimeToComplete: (timeToComplete: number): void => {
-      setTotalTimeToComplete((prev) => prev + timeToComplete);
-    },
-  }), []);
+  let totalTimeToComplete = 0;
 
-  const renderedItems = render(items);
+  const filteredItems = items.map((item) => {
+    // Keep the item if not of the "learningItem" type.
+    if (item.type !== 'learningItem') {
+      return item;
+    }
 
-  if (!Array.isArray(renderedItems)) {
+    // Extract the year of completion.
+    const completedYear = typeof item.props.completed === 'string' ? item.props.completed.substring(0, 4) : null;
+
+    // Avoid rendering the learning item if filtered by year, but the year of completion does not match it.
+    if (filterYear !== null && completedYear !== filterYear) {
+      return null;
+    }
+
+    // Add time to complete to total.
+    if (typeof item.props.timeToComplete === 'number') {
+      totalTimeToComplete += item.props.timeToComplete;
+    }
+
+    return item;
+  })
+    // Filter out null items to prevent blank renders.
+    .filter((item) => item !== null) as CmsComponent[];
+
+  const renderedItems = render(filteredItems);
+
+  if (!Array.isArray(renderedItems) || renderedItems.length === 0) {
     return null;
   }
 
   return (
     <>
+
       <h3>{title}</h3>
 
       {totalTimeToComplete > 0 && (
@@ -36,16 +56,13 @@ export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
         </p>
       )}
 
-      <LearningBlockContext.Provider value={contextValue}>
-        <ul>
-          {renderedItems.map((item, index) => (
-            // eslint-disable-next-line react/no-array-index-key
-            <li key={index}>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </LearningBlockContext.Provider>
+      <ul>
+        {renderedItems.map((item, index) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <li key={index}>{item}</li>
+        ))}
+      </ul>
+
     </>
   );
 };

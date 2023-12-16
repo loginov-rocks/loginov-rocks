@@ -4,6 +4,7 @@ exports[`matches snapshot 1`] = `
 <Fragment>
   <ExternalLink
     href="https://www.linkedin.com/learning/learning-web-components"
+    label="Link to Certification or Training"
   >
     <strong>
       Learning Web Components
@@ -31,6 +32,7 @@ exports[`matches snapshot 1`] = `
      
     <ExternalLink
       href="https://www.linkedin.com/learning/certificates/79a9ebf220d4c1dd2ebc94508415949a21614443b37b7e2fc02de3a1a164d420"
+      label="Link to Credential"
     >
       AdMN2oSrbxB6Uv1mNo9hpTeLY9s0
     </ExternalLink>

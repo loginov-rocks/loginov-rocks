@@ -21,9 +21,7 @@ export const OpenSourceLibraries: React.FC<Props> = ({ libraries, render, title 
       <ul>
         {renderedLibraries.map((library, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li key={index}>
-            {library}
-          </li>
+          <li key={index}>{library}</li>
         ))}
       </ul>
     </>

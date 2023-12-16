@@ -5,7 +5,7 @@ import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
 import { ExternalLink } from 'components/shared/ExternalLink';
 import { Time } from 'components/shared/Time';
-import { useLearningBlockContext } from 'contexts/LearningBlockContext';
+import { useLearningSectionContext } from 'contexts/LearningSectionContext';
 
 interface Props extends CmsConnectedProps {
   completed?: string;
@@ -20,11 +20,11 @@ interface Props extends CmsConnectedProps {
 export const LearningItem: React.FC<Props> = ({
   completed, credentialId, credentialLink, provider, providerLink, render, timeToComplete, title,
 }) => {
-  const { addTimeToComplete } = useLearningBlockContext();
+  const { addCompleted } = useLearningSectionContext();
 
   useEffect(() => {
-    if (timeToComplete) {
-      addTimeToComplete(timeToComplete);
+    if (completed) {
+      addCompleted(completed);
     }
   }, []);
 

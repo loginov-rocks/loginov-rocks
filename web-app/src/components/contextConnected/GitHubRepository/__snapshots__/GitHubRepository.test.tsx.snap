@@ -4,6 +4,7 @@ exports[`matches snapshot with GitHub details 1`] = `
 <Fragment>
   <ExternalLink
     href="https://www.npmjs.com/package/angular-gulp-boilerplate"
+    label="Link to Project Homepage"
   >
     <strong>
       Angular-Gulp-Boilerplate
@@ -14,6 +15,7 @@ exports[`matches snapshot with GitHub details 1`] = `
    
   <ExternalLink
     href="https://github.com/loginov-rocks/Angular-Gulp-Boilerplate"
+    label="Link to Repository"
   >
     GitHub
   </ExternalLink>

@@ -5,7 +5,7 @@ exports[`matches snapshot 1`] = `
   Clean but full featured AngularJS boilerplate using Gulp workflow and best practices
   <br />
   <span
-    title="Language"
+    title="Primary Language"
   >
     JavaScript
   </span>
@@ -16,6 +16,7 @@ exports[`matches snapshot 1`] = `
     title="GitHub Stars"
   >
     ⭐
+     
     29
   </span>
    

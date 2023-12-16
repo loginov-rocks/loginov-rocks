@@ -21,9 +21,7 @@ export const OpenSourceProjects: React.FC<Props> = ({ projects, render, title })
       <ul>
         {renderedProjects.map((project, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <li key={index}>
-            {project}
-          </li>
+          <li key={index}>{project}</li>
         ))}
       </ul>
     </>

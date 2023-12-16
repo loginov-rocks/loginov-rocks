@@ -3,13 +3,16 @@
 exports[`matches snapshot 1`] = `
 <ExternalLink
   href="https://www.linkedin.com/learning/"
+  label="Link to Provider"
 >
   LinkedIn Learning
 </ExternalLink>
 `;
 
 exports[`matches snapshot with optional fields 1`] = `
-<span>
+<span
+  title="Provider"
+>
   LinkedIn Learning
 </span>
 `;
