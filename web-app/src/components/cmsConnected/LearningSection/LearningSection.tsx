@@ -3,8 +3,9 @@ import { useMemo, useState } from 'react';
 
 import { CmsComponent } from 'cms/interfaces/CmsComponent';
 import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
-import { LearningFilter } from 'components/shared/LearningFilter';
 import { LearningSectionContext } from 'contexts/LearningSectionContext';
+
+import { LearningSectionFilter } from './LearningSectionFilter';
 
 interface Props extends CmsConnectedProps {
   blocks: CmsComponent[];
@@ -12,9 +13,10 @@ interface Props extends CmsConnectedProps {
 }
 
 export const LearningSection: React.FC<Props> = ({ blocks, render, title }) => {
-  const [selectedYear, setSelectedYear] = useState<string | null>(null);
+  const [filterYear, setFilterYear] = useState<string | null>(null);
   const [years, setYears] = useState<string[]>([]);
 
+  // Using memo to avoid unnecessary re-renderings.
   const contextValue = useMemo(() => ({
     addCompleted: (completed: string): void => {
       const year = completed.substring(0, 4);
@@ -30,10 +32,11 @@ export const LearningSection: React.FC<Props> = ({ blocks, render, title }) => {
         ];
       });
     },
-  }), []);
+    filterYear,
+  }), [filterYear]);
 
   const handleSelectYear = (year: string | null): void => {
-    setSelectedYear(year);
+    setFilterYear(year);
   };
 
   return (
@@ -41,7 +44,7 @@ export const LearningSection: React.FC<Props> = ({ blocks, render, title }) => {
 
       <h2>{title}</h2>
 
-      <LearningFilter onSelectYear={handleSelectYear} selectedYear={selectedYear} years={years} />
+      <LearningSectionFilter filterYear={filterYear} onSelectYear={handleSelectYear} years={years} />
 
       <LearningSectionContext.Provider value={contextValue}>
         {render(blocks)}

@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<Fragment>
+  <button
+    disabled={false}
+    key="0"
+    onClick={[Function]}
+    type="button"
+  >
+    2023
+  </button>
+  <button
+    disabled={false}
+    key="1"
+    onClick={[Function]}
+    type="button"
+  >
+    2022
+  </button>
+  <button
+    disabled={false}
+    key="2"
+    onClick={[Function]}
+    type="button"
+  >
+    2021
+  </button>
+</Fragment>
+`;
