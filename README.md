@@ -7,32 +7,41 @@
 
 [![CD](https://github.com/loginov-rocks/loginov-rocks/actions/workflows/cd.yml/badge.svg)](https://github.com/loginov-rocks/loginov-rocks/actions/workflows/cd.yml)
 
-Monorepo for my personal website: https://loginov.rocks
+This open-source project introduces a monorepo tailored for the development, management, and deployment of
+[my website](https://loginov.rocks), serving as a showcase for various web development concepts, it is an embodiment of
+efficiency, automation, and scalability.
 
 ## Architecture
+
+### Overview
+
+At its core, the **monorepo** architecture consolidates the code of different services, the website itself, and
+configurations within a single repository, simplifying versioning and dependency management. Embracing **serverless**
+architecture, powered by AWS Lambda functions, ensures a cost-effective approach to handling tasks triggered by events
+like content updates or scheduled GitHub data retrieval.
+
+**Cloud-native** principles drive the utilization of AWS services such as SQS and S3, optimizing scalability and
+integration. The project also adheres to **Infrastructure as Code** (IaC) practices, defining the entire infrastructure
+for reproducibility and simplified change management. **Static site generation** enhances website performance, and
+pre-rendering content to boost user experience and search engine visibility.
+
+The project's **event-driven** approach adeptly responds to changes in content or the codebase.
+**Continuous Integration** and **Continuous Deployment** (CI/CD) pipelines, incorporating **quality gates** like build,
+test, and deployment processes, automate workflows seamlessly. Security remains paramount through the implementation of
+the **Principle of Least Privilege**, effectively minimizing potential risks.
+
+Notably, the project also incorporates a **Headless CMS** approach for flexible content management and
+**containerization** for efficient deployment and scalability. Website implemented as **Single Page Application** (SPA)
+architecture supporting **hybrid rendering** to a balance between server-side generation and client-side rendering for
+optimal performance.
+
+This simplified yet comprehensive project benefits from efficient content management, automated workflows, and a
+scalable, cost-effective infrastructure. It stands as a practical template, showcasing best practices in modern web
+development, and provides an inclusive solution for developers seeking to elevate their projects.
 
 ### Deployment View
 
 ![Deployment View](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/Deployment-View.png)
-
-### Concepts
-
-In no particular order:
-
-1. Serverless
-2. Cloud Native
-3. Headless CMS
-4. Infrastructure as Code
-5. Static Site Generation
-6. Event Driven
-7. Continuous Integration
-8. Continuous Deployment
-9. Principle of the Least Privilege
-10. Monorepo
-11. Quality Gates
-12. Containerization
-13. Single Page Application
-14. Hybrid Rendering
 
 ### Workflows
 
