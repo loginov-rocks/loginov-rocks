@@ -11,7 +11,7 @@ interface Props extends CmsConnectedProps {
 export const OpenSourceProjects: React.FC<Props> = ({ projects, render, title }) => {
   const renderedProjects = render(projects);
 
-  if (!Array.isArray(renderedProjects)) {
+  if (!Array.isArray(renderedProjects) || renderedProjects.length === 0) {
     return null;
   }
 

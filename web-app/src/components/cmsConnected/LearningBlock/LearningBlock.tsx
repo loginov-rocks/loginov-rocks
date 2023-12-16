@@ -5,20 +5,25 @@ import { CmsConnectedProps } from 'cms/interfaces/CmsConnectedProps';
 import { Time } from 'components/shared/Time';
 import { useLearningSectionContext } from 'contexts/LearningSectionContext';
 
-interface Props extends CmsConnectedProps {
-  items: CmsComponent[];
-  title: string;
-}
-
-export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
-  const { filterYear } = useLearningSectionContext();
-
+const filterItems = (items: CmsComponent[], filterProvider: string | null, filterYear: string | null): {
+  filteredItems: CmsComponent[];
+  totalTimeToComplete: number;
+} => {
   let totalTimeToComplete = 0;
 
   const filteredItems = items.map((item) => {
     // Keep the item if not of the "learningItem" type.
     if (item.type !== 'learningItem') {
       return item;
+    }
+
+    // Extract provider title.
+    const providerProps = item.props.provider ? (item.props.provider as CmsComponent).props : null;
+    const providerTitle = providerProps && typeof providerProps.title === 'string' ? providerProps.title : null;
+
+    // Avoid rendering the learning item if filtered by the provider, but the provider title does not match it.
+    if (filterProvider !== null && providerTitle !== filterProvider) {
+      return null;
     }
 
     // Extract the year of completion.
@@ -39,6 +44,21 @@ export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
     // Filter out null items to prevent blank renders.
     .filter((item) => item !== null) as CmsComponent[];
 
+  return {
+    filteredItems,
+    totalTimeToComplete,
+  };
+};
+
+interface Props extends CmsConnectedProps {
+  items: CmsComponent[];
+  title: string;
+}
+
+export const LearningBlock: React.FC<Props> = ({ items, render, title }) => {
+  const { filterProvider, filterYear } = useLearningSectionContext();
+
+  const { filteredItems, totalTimeToComplete } = filterItems(items, filterProvider, filterYear);
   const renderedItems = render(filteredItems);
 
   if (!Array.isArray(renderedItems) || renderedItems.length === 0) {

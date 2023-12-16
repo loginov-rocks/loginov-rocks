@@ -7,7 +7,14 @@ import { LearningSectionFilter } from './LearningSectionFilter';
 
 it('matches snapshot', () => {
   const wrapper = shallow(
-    <LearningSectionFilter filterYear={null} onSelectYear={() => undefined} years={['2021', '2022', '2023']} />,
+    <LearningSectionFilter
+      filterProvider={null}
+      filterYear={null}
+      onSelectProvider={() => undefined}
+      onSelectYear={() => undefined}
+      providers={[]}
+      years={[]}
+    />,
   );
 
   expect(wrapper).toMatchSnapshot();

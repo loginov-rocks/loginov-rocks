@@ -1,12 +1,6 @@
 import * as React from 'react';
 
-interface Props {
-  filterYear: string | null;
-  onSelectYear: (year: string | null) => void;
-  years: string[];
-}
-
-export const LearningSectionFilter: React.FC<Props> = ({ filterYear, onSelectYear, years }) => {
+const prepareYears = (years: string[]): string[] => {
   const numericYears = years.map((year) => parseInt(year, 10));
   const minYear = Math.min(...numericYears);
   const maxYear = Math.max(...numericYears);
@@ -17,26 +11,62 @@ export const LearningSectionFilter: React.FC<Props> = ({ filterYear, onSelectYea
     }
   }
 
-  const displayedYears = numericYears.sort().reverse().map((year) => year.toString());
+  return numericYears.sort().reverse().map((year) => year.toString());
+};
+
+interface Props {
+  filterProvider: string | null;
+  filterYear: string | null;
+  onSelectProvider: (providerTitle: string | null) => void;
+  onSelectYear: (year: string | null) => void;
+  providers: string[];
+  years: string[];
+}
+
+export const LearningSectionFilter: React.FC<Props> = ({
+  filterProvider, filterYear, onSelectProvider, onSelectYear, providers, years,
+}) => {
+  const handleSelectProvider = (event: React.FormEvent<HTMLSelectElement>): void => {
+    onSelectProvider(event.currentTarget.value !== 'undefined' ? event.currentTarget.value : null);
+  };
+
+  const displayedProviders = providers.sort();
+  const displayedYears = prepareYears(years);
 
   return (
     <>
 
-      {displayedYears.map((year, index) => (
-        <button
-          disabled={year === filterYear}
-          // eslint-disable-next-line react/no-array-index-key
-          key={index}
-          onClick={() => onSelectYear(year)}
-          type="button"
-        >
-          {year}
-        </button>
-      ))}
+      <p>
+        {displayedYears.map((year, index) => (
+          <button
+            disabled={year === filterYear}
+            // eslint-disable-next-line react/no-array-index-key
+            key={index}
+            onClick={() => onSelectYear(year)}
+            type="button"
+          >
+            {year}
+          </button>
+        ))}
 
-      {filterYear !== null && (
-        <button onClick={() => onSelectYear(null)} type="button">Clear</button>
-      )}
+        {filterYear !== null && (
+          <button onClick={() => onSelectYear(null)} type="button">Clear</button>
+        )}
+      </p>
+
+      <p>
+        <select onChange={handleSelectProvider} value={filterProvider !== null ? filterProvider : 'undefined'}>
+          <option value="undefined">All providers</option>
+          {displayedProviders.map((title, index) => (
+            // eslint-disable-next-line react/no-array-index-key
+            <option key={index}>{title}</option>
+          ))}
+        </select>
+
+        {filterProvider !== null && (
+          <button onClick={() => onSelectProvider(null)} type="button">Clear</button>
+        )}
+      </p>
 
     </>
   );

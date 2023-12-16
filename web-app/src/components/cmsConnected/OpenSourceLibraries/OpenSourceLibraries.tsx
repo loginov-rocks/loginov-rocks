@@ -11,7 +11,7 @@ interface Props extends CmsConnectedProps {
 export const OpenSourceLibraries: React.FC<Props> = ({ libraries, render, title }) => {
   const renderedLibraries = render(libraries);
 
-  if (!Array.isArray(renderedLibraries)) {
+  if (!Array.isArray(renderedLibraries) || renderedLibraries.length === 0) {
     return null;
   }
 

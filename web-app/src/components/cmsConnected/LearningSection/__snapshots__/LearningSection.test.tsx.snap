@@ -6,14 +6,19 @@ exports[`matches snapshot 1`] = `
     Learning
   </h2>
   <LearningSectionFilter
+    filterProvider={null}
     filterYear={null}
+    onSelectProvider={[Function]}
     onSelectYear={[Function]}
+    providers={Array []}
     years={Array []}
   />
   <ContextProvider
     value={
       Object {
         "addCompleted": [Function],
+        "addProvider": [Function],
+        "filterProvider": null,
         "filterYear": null,
       }
     }

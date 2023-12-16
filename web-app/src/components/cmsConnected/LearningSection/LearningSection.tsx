@@ -13,7 +13,9 @@ interface Props extends CmsConnectedProps {
 }
 
 export const LearningSection: React.FC<Props> = ({ blocks, render, title }) => {
+  const [filterProvider, setFilterProvider] = useState<string | null>(null);
   const [filterYear, setFilterYear] = useState<string | null>(null);
+  const [providers, setProviders] = useState<string[]>([]);
   const [years, setYears] = useState<string[]>([]);
 
   // Using memo to avoid unnecessary re-renderings.
@@ -32,8 +34,25 @@ export const LearningSection: React.FC<Props> = ({ blocks, render, title }) => {
         ];
       });
     },
+    addProvider: (providerTitle: string): void => {
+      setProviders((prevProviders) => {
+        if (prevProviders.includes(providerTitle)) {
+          return prevProviders;
+        }
+
+        return [
+          ...prevProviders,
+          providerTitle,
+        ];
+      });
+    },
+    filterProvider,
     filterYear,
-  }), [filterYear]);
+  }), [filterProvider, filterYear]);
+
+  const handleSelectProvider = (providerTitle: string | null): void => {
+    setFilterProvider(providerTitle);
+  };
 
   const handleSelectYear = (year: string | null): void => {
     setFilterYear(year);
@@ -44,7 +63,14 @@ export const LearningSection: React.FC<Props> = ({ blocks, render, title }) => {
 
       <h2>{title}</h2>
 
-      <LearningSectionFilter filterYear={filterYear} onSelectYear={handleSelectYear} years={years} />
+      <LearningSectionFilter
+        filterProvider={filterProvider}
+        filterYear={filterYear}
+        onSelectProvider={handleSelectProvider}
+        onSelectYear={handleSelectYear}
+        providers={providers}
+        years={years}
+      />
 
       <LearningSectionContext.Provider value={contextValue}>
         {render(blocks)}

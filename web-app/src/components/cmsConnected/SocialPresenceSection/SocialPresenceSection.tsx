@@ -11,7 +11,7 @@ interface Props extends CmsConnectedProps {
 export const SocialPresenceSection: React.FC<Props> = ({ items, render, title }) => {
   const renderedItems = render(items);
 
-  if (!Array.isArray(renderedItems)) {
+  if (!Array.isArray(renderedItems) || renderedItems.length === 0) {
     return null;
   }
 
