@@ -850,7 +850,7 @@
         "FunctionName": {
           "Fn::Sub": "${AWS::StackName}-web-app-function"
         },
-        "MemorySize": 2048,
+        "MemorySize": 3008,
         "PackageType": "Image",
         "ReservedConcurrentExecutions": 1,
         "Role": {
