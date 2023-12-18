@@ -16,8 +16,8 @@ function gtag() {
   dataLayer.push(arguments);
 }
 
-gtag(\\"js\\", new Date());
-gtag(\\"config\\", \\"test-tracking-id\\");
+gtag('js', new Date());
+gtag('config', 'test-tracking-id');
       ",
       }
     }

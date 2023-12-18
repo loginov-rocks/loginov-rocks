@@ -16,7 +16,7 @@ export const Document = ({
       <title>Danila Loginov</title>
       <link href="/manifest.json" rel="manifest" />
       {process.env.NODE_ENV === 'production' && (
-        <GoogleGlobalSiteTag trackingId="UA-22946119-2" />
+        <GoogleGlobalSiteTag trackingId="G-DHX4J0KXV1" />
       )}
     </Head>
     <Body>
