@@ -143,7 +143,7 @@
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketName": {
-          "Fn::Sub": "${AWS::StackName}-data-bucket-${AWS::AccountId}-${AWS::Region}"
+          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-data-bucket"
         },
         "NotificationConfiguration": {
           "QueueConfigurations": [
@@ -170,7 +170,7 @@
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketName": {
-          "Fn::Sub": "${AWS::StackName}-deployment-bucket-${AWS::AccountId}-${AWS::Region}"
+          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-deployment-bucket"
         },
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": true,
@@ -184,7 +184,7 @@
       "Type": "AWS::S3::Bucket",
       "Properties": {
         "BucketName": {
-          "Fn::Sub": "${AWS::StackName}-web-app-bucket-${AWS::AccountId}-${AWS::Region}"
+          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-web-app-bucket"
         },
         "PublicAccessBlockConfiguration": {
           "BlockPublicAcls": true,
@@ -194,13 +194,32 @@
         }
       }
     },
+    "DeadLetterQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "MessageRetentionPeriod": 1209600,
+        "QueueName": {
+          "Fn::Sub": "${AWS::StackName}-dlq"
+        }
+      }
+    },
     "Queue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
         "QueueName": {
           "Fn::Sub": "${AWS::StackName}-queue"
         },
-        "VisibilityTimeout": 900
+        "ReceiveMessageWaitTimeSeconds": 20,
+        "RedrivePolicy": {
+          "deadLetterTargetArn": {
+            "Fn::GetAtt": [
+              "DeadLetterQueue",
+              "Arn"
+            ]
+          },
+          "maxReceiveCount": 5
+        },
+        "VisibilityTimeout": 5700
       }
     },
     "QueuePolicy": {
@@ -232,7 +251,7 @@
                     "arn:aws:s3:::${DataBucketName}",
                     {
                       "DataBucketName": {
-                        "Fn::Sub": "${AWS::StackName}-data-bucket-${AWS::AccountId}-${AWS::Region}"
+                        "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-data-bucket"
                       }
                     }
                   ]
