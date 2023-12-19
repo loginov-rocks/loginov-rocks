@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-const prepareYears = (years: string[]): string[] => {
+const displayProviders = (providers: string[]): string[] => (
+  [...providers].sort((a, b) => a.localeCompare(b, 'en', { sensitivity: 'base' }))
+);
+
+const displayYears = (years: string[]): string[] => {
   const numericYears = years.map((year) => parseInt(year, 10));
   const minYear = Math.min(...numericYears);
   const maxYear = Math.max(...numericYears);
@@ -30,8 +34,8 @@ export const LearningSectionFilter: React.FC<Props> = ({
     onSelectProvider(event.currentTarget.value !== 'undefined' ? event.currentTarget.value : null);
   };
 
-  const displayedProviders = providers.sort();
-  const displayedYears = prepareYears(years);
+  const displayedProviders = displayProviders(providers);
+  const displayedYears = displayYears(years);
 
   return (
     <>
