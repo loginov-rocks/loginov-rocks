@@ -1,24 +1,27 @@
 /* eslint-disable import/no-import-module-exports */
 
-import { KeyValueSecret } from '@loginov-rocks/loginov-rocks-shared';
-import { SecretsManager, SQS } from 'aws-sdk';
+import { SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
+import { SendMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
+import { CachedSecretsManagerClient } from '@loginov-rocks/loginov-rocks-shared';
 
 import {
   SECRET_ARN, SECRET_AUTH_PASSWORD_KEY, SECRET_AUTH_USERNAME_KEY, SQS_QUEUE_URL,
 } from 'Constants';
+import { Event } from 'Event';
+import { Response } from 'Response';
 
 import { authorize } from './authorize';
 
-const secretsManager = new SecretsManager();
-const sqs = new SQS();
+const secretsManagerClient = new SecretsManagerClient();
+const sqsClient = new SQSClient();
 
-const keyValueSecret = new KeyValueSecret({
+const cachedSecretsManagerClient = new CachedSecretsManagerClient({
   secretArn: SECRET_ARN,
-  secretsManager,
+  secretsManagerClient,
 });
 
-exports.handler = async (event: any) => {
-  console.log('Event:', JSON.stringify(event));
+exports.handler = async (event: Event): Promise<Response> => {
+  console.log('event', JSON.stringify(event));
 
   const {
     body,
@@ -34,8 +37,8 @@ exports.handler = async (event: any) => {
     };
   }
 
-  const authUsername = await keyValueSecret.getValue(SECRET_AUTH_USERNAME_KEY);
-  const authPassword = await keyValueSecret.getValue(SECRET_AUTH_PASSWORD_KEY);
+  const authUsername = await cachedSecretsManagerClient.getValue(SECRET_AUTH_USERNAME_KEY);
+  const authPassword = await cachedSecretsManagerClient.getValue(SECRET_AUTH_PASSWORD_KEY);
 
   if (!authorize(authHeader, authUsername, authPassword)) {
     return {
@@ -53,11 +56,17 @@ exports.handler = async (event: any) => {
 
   const message = isBase64Encoded ? Buffer.from(body, 'base64').toString() : body;
 
+  console.log('message', message);
+
+  const sendMessageCommand = new SendMessageCommand({
+    MessageBody: message,
+    QueueUrl: SQS_QUEUE_URL,
+  });
+
+  let sendMessageResponse;
+
   try {
-    await sqs.sendMessage({
-      MessageBody: message,
-      QueueUrl: SQS_QUEUE_URL,
-    }).promise();
+    sendMessageResponse = await sqsClient.send(sendMessageCommand);
   } catch (error) {
     console.error(error);
 
@@ -66,6 +75,8 @@ exports.handler = async (event: any) => {
       statusCode: 500,
     };
   }
+
+  console.log('sendMessageResponse', JSON.stringify(sendMessageResponse));
 
   return {
     body: 'OK',

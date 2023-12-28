@@ -726,8 +726,8 @@
             "Arn"
           ]
         },
-        "Runtime": "nodejs16.x",
-        "Timeout": 60
+        "Runtime": "nodejs18.x",
+        "Timeout": 20
       }
     },
     "UpdateGitHubFunction": {

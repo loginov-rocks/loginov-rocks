@@ -2,48 +2,6 @@
   "metadata": {
     "tags": []
   },
-  "sys": {
-    "type": "Entry",
-    "id": "6UNCF094uLEpSmpn9giX0I",
-    "space": {
-      "sys": {
-        "type": "Link",
-        "linkType": "Space",
-        "id": "8lybfh49sufl"
-      }
-    },
-    "environment": {
-      "sys": {
-        "id": "master",
-        "type": "Link",
-        "linkType": "Environment"
-      }
-    },
-    "contentType": {
-      "sys": {
-        "type": "Link",
-        "linkType": "ContentType",
-        "id": "socialPresenceSection"
-      }
-    },
-    "createdBy": {
-      "sys": {
-        "type": "Link",
-        "linkType": "User",
-        "id": "08hJNFwMeAiYHqDFuz9fNp"
-      }
-    },
-    "updatedBy": {
-      "sys": {
-        "type": "Link",
-        "linkType": "User",
-        "id": "08hJNFwMeAiYHqDFuz9fNp"
-      }
-    },
-    "revision": 3,
-    "createdAt": "2022-06-13T15:36:08.207Z",
-    "updatedAt": "2022-06-19T15:47:34.064Z"
-  },
   "fields": {
     "title": {
       "en-US": "Social Presence"
@@ -131,17 +89,52 @@
           "sys": {
             "type": "Link",
             "linkType": "Entry",
-            "id": "6V76bfNUlVFv9F7ChGTPVd"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
             "id": "3gbW6QkngO4xrRf0LDpaqN"
           }
         }
       ]
     }
+  },
+  "sys": {
+    "type": "Entry",
+    "id": "6UNCF094uLEpSmpn9giX0I",
+    "space": {
+      "sys": {
+        "type": "Link",
+        "linkType": "Space",
+        "id": "xyz"
+      }
+    },
+    "environment": {
+      "sys": {
+        "id": "master",
+        "type": "Link",
+        "linkType": "Environment"
+      }
+    },
+    "contentType": {
+      "sys": {
+        "type": "Link",
+        "linkType": "ContentType",
+        "id": "socialPresenceSection"
+      }
+    },
+    "createdBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "08hJNFwMeAiYHqDFuz9fNp"
+      }
+    },
+    "updatedBy": {
+      "sys": {
+        "type": "Link",
+        "linkType": "User",
+        "id": "08hJNFwMeAiYHqDFuz9fNp"
+      }
+    },
+    "revision": 5,
+    "createdAt": "2022-06-13T15:36:08.207Z",
+    "updatedAt": "2023-12-28T04:34:02.674Z"
   }
 }
