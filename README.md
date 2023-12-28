@@ -39,9 +39,9 @@ This simplified yet comprehensive project benefits from efficient content manage
 scalable, cost-effective infrastructure. It stands as a practical template, showcasing best practices in modern web
 development, and provides an inclusive solution for developers seeking to elevate their projects.
 
-### Deployment View
+### Infrastructure View
 
-![Deployment View](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/Deployment-View.png)
+![Infrastructure View](https://raw.githubusercontent.com/loginov-rocks/loginov-rocks/main/docs/Infrastructure-View.png)
 
 ### Workflows
 

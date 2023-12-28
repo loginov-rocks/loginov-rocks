@@ -5,9 +5,12 @@ const path = require('path');
 module.exports = {
   devtool: false,
   entry: './src/index.ts',
-  externals: {
-    'aws-sdk': 'commonjs aws-sdk',
-  },
+  externals: [
+    '@aws-sdk/client-cloudfront',
+    '@aws-sdk/client-s3',
+    '@aws-sdk/client-secrets-manager',
+  ],
+  externalsType: 'node-commonjs',
   module: {
     rules: [
       {
