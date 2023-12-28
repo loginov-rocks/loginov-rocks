@@ -1,14 +1,14 @@
 {
   "name": "@loginov-rocks/loginov-rocks-shared",
-  "version": "2.7.1",
-  "description": "Shared",
+  "version": "2.8.0",
+  "description": "Loginov Rocks - Shared",
   "main": "dist/index.js",
   "files": [
     "dist/*"
   ],
   "engines": {
-    "node": "16",
-    "npm": "8"
+    "node": "18",
+    "npm": "10"
   },
   "scripts": {
     "build": "npm run clean:build && webpack --mode production && npm run build:types",
@@ -19,7 +19,7 @@
     "coverage": "npm run clean:coverage && npm run test:coverage",
     "lint": "eslint --ext ts src webpack.config.js",
     "package": "npm pack && mv loginov-rocks-loginov-rocks-shared-*.tgz loginov-rocks-loginov-rocks-shared.tgz",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:coverage": "npm test -- --coverage",
     "test:update": "npm test -- --updateSnapshot",
     "typecheck": "tsc --noEmit"
@@ -35,16 +35,17 @@
     "url": "https://github.com/loginov-rocks/loginov-rocks/issues"
   },
   "homepage": "https://loginov.rocks",
-  "dependencies": {
-    "aws-sdk": "^2.1520.0"
+  "peerDependencies": {
+    "@aws-sdk/client-cloudfront": "^3.0.0",
+    "@aws-sdk/client-secrets-manager": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.23.6",
     "@babel/preset-env": "^7.23.6",
     "@babel/preset-typescript": "^7.23.3",
     "@types/jest": "^29.5.11",
-    "@typescript-eslint/eslint-plugin": "^6.14.0",
-    "@typescript-eslint/parser": "^6.14.0",
+    "@typescript-eslint/eslint-plugin": "^6.16.0",
+    "@typescript-eslint/parser": "^6.16.0",
     "babel-jest": "^29.7.0",
     "babel-loader": "^9.1.3",
     "eslint": "^8.56.0",

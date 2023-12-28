@@ -1,17 +1,14 @@
 /* eslint-disable import/no-import-module-exports */
 
-import { CloudFrontInvalidation } from './AWS/CloudFrontInvalidation';
-import { KeyValueSecret } from './AWS/KeyValueSecret';
-import { S3Object } from './AWS/S3Object';
+import { CachedSecretsManagerClient } from './Aws/CachedSecretsManagerClient';
+import { CloudFrontInvalidation } from './Aws/CloudFrontInvalidation';
 
 // Export types.
-export * from './AWS/CloudFrontInvalidation';
-export * from './AWS/KeyValueSecret';
-export * from './AWS/S3Object';
+export * from './Aws/CachedSecretsManagerClient';
+export * from './Aws/CloudFrontInvalidation';
 export * from './GitHub/GitHubData';
 export * from './GitHub/GitHubRepo';
 
-// Export implementation.
+// Export implementations.
+exports.CachedSecretsManagerClient = CachedSecretsManagerClient;
 exports.CloudFrontInvalidation = CloudFrontInvalidation;
-exports.KeyValueSecret = KeyValueSecret;
-exports.S3Object = S3Object;

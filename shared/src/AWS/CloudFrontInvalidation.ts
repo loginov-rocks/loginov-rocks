@@ -1,40 +1,41 @@
-import { CloudFront } from 'aws-sdk';
-import { CreateInvalidationResult } from 'aws-sdk/clients/cloudfront';
+import {
+  CloudFrontClient, CreateInvalidationCommand, CreateInvalidationCommandOutput,
+} from '@aws-sdk/client-cloudfront';
 
 interface Options {
-  cloudFront: CloudFront;
+  cloudFrontClient: CloudFrontClient;
   distributionId: string;
-  path: string;
+  paths: string[];
 }
 
 export class CloudFrontInvalidation {
+  private readonly cloudFrontClient: CloudFrontClient;
+
   private readonly distributionId: string;
 
-  private readonly path: string;
+  private readonly paths: string[];
 
-  private readonly cloudFront: CloudFront;
-
-  constructor({ cloudFront, distributionId, path }: Options) {
+  public constructor({ cloudFrontClient, distributionId, paths }: Options) {
+    this.cloudFrontClient = cloudFrontClient;
     this.distributionId = distributionId;
-    this.path = path;
-    this.cloudFront = cloudFront;
+    this.paths = paths;
   }
 
-  invalidate(): Promise<CreateInvalidationResult> {
+  public invalidate(): Promise<CreateInvalidationCommandOutput> {
     // Create timestamp in the following format: "2021-02-22T12:40:57".
     const callerReference = new Date().toISOString().slice(0, 19);
 
-    return this.cloudFront.createInvalidation({
+    const createInvalidationCommand = new CreateInvalidationCommand({
       DistributionId: this.distributionId,
       InvalidationBatch: {
         CallerReference: callerReference,
         Paths: {
-          Items: [
-            this.path,
-          ],
-          Quantity: 1,
+          Items: this.paths,
+          Quantity: this.paths.length,
         },
       },
-    }).promise();
+    });
+
+    return this.cloudFrontClient.send(createInvalidationCommand);
   }
 }
