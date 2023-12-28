@@ -1,11 +1,11 @@
 /* eslint-disable import/no-import-module-exports */
 
-import { CachedSecretsManagerClient } from './Aws/CachedSecretsManagerClient';
-import { CloudFrontInvalidation } from './Aws/CloudFrontInvalidation';
+import { CachedSecretsManagerClient } from './AwsTemp/CachedSecretsManagerClient';
+import { CloudFrontInvalidation } from './AwsTemp/CloudFrontInvalidation';
 
 // Export types.
-export * from './Aws/CachedSecretsManagerClient';
-export * from './Aws/CloudFrontInvalidation';
+export * from './AwsTemp/CachedSecretsManagerClient';
+export * from './AwsTemp/CloudFrontInvalidation';
 export * from './GitHub/GitHubData';
 export * from './GitHub/GitHubRepo';
 
