@@ -1,6 +1,8 @@
 # Configuration
 
-## Queue
+## Infrastructure
+
+### Queue
 
 * `ReceiveMessageWaitTimeSeconds` = 20 seconds (maximum)
 * `VisibilityTimeout` = 6 * `WebAppFunction.Timeout` + `WebAppFunctionEventSourceMapping.MaximumBatchingWindowInSeconds`
