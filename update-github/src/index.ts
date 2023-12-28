@@ -1,35 +1,30 @@
 /* eslint-disable import/no-import-module-exports */
 
-import { KeyValueSecret, S3Object } from '@loginov-rocks/loginov-rocks-shared';
-import { S3, SecretsManager } from 'aws-sdk';
+import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
+import { CachedSecretsManagerClient } from '@loginov-rocks/loginov-rocks-shared';
 
 import {
   DATA_S3_BUCKET_NAME, DATA_S3_GITHUB_FILE_KEY, GITHUB_BASE_URL, SECRET_ARN, SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY,
 } from 'Constants';
 import { GitHub } from 'GitHub/GitHub';
 
-const s3 = new S3();
-const secretsManager = new SecretsManager();
+const s3Client = new S3Client();
+const secretsManagerClient = new SecretsManagerClient();
+
+const cachedSecretsManagerClient = new CachedSecretsManagerClient({
+  secretArn: SECRET_ARN,
+  secretsManagerClient,
+});
 
 const gitHub = new GitHub({
   baseUrl: GITHUB_BASE_URL,
 });
 
-const keyValueSecret = new KeyValueSecret({
-  secretArn: SECRET_ARN,
-  secretsManager,
-});
+exports.handler = async (event: unknown): Promise<void> => {
+  console.log('event', JSON.stringify(event));
 
-const s3Object = new S3Object({
-  bucketName: DATA_S3_BUCKET_NAME,
-  fileKey: DATA_S3_GITHUB_FILE_KEY,
-  s3,
-});
-
-exports.handler = async (event: any): Promise<Record<string, never>> => {
-  console.log('Event:', JSON.stringify(event));
-
-  const personalAccessToken = await keyValueSecret.getValue(SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY);
+  const personalAccessToken = await cachedSecretsManagerClient.getValue(SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY);
   gitHub.setPersonalAccessToken(personalAccessToken);
 
   console.log('Getting GitHub data...');
@@ -38,16 +33,41 @@ exports.handler = async (event: any): Promise<Record<string, never>> => {
 
   console.log('Getting current GitHub data file...');
 
-  const currentData = await s3Object.read();
+  const getObjectCommand = new GetObjectCommand({
+    Bucket: DATA_S3_BUCKET_NAME,
+    Key: DATA_S3_GITHUB_FILE_KEY,
+  });
+
+  let s3Object;
+
+  try {
+    s3Object = await s3Client.send(getObjectCommand);
+  } catch (error: any) {
+    if (error.name !== 'NoSuchKey') {
+      throw error;
+    }
+  }
+
+  const currentData = s3Object && s3Object.Body ? await s3Object.Body.transformToString() : '';
 
   const newData = JSON.stringify(data);
 
   if (newData === currentData) {
-    console.log('GitHub data has not changed, skipping');
-  } else {
-    console.log('Writing new GitHub data file...');
-    await s3Object.write(newData, { contentType: 'application/json' });
+    console.log('GitHub data has not changed, skipping.');
+
+    return;
   }
 
-  return {};
+  console.log('Writing new GitHub data file...');
+
+  const putObjectCommand = new PutObjectCommand({
+    Body: newData,
+    Bucket: DATA_S3_BUCKET_NAME,
+    ContentType: 'application/json',
+    Key: DATA_S3_GITHUB_FILE_KEY,
+  });
+
+  const putObjectResponse = await s3Client.send(putObjectCommand);
+
+  console.log('putObjectResponse', JSON.stringify(putObjectResponse));
 };

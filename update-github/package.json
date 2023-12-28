@@ -17,7 +17,7 @@
     "shared:copy": "cp ../shared/loginov-rocks-loginov-rocks-shared.tgz .",
     "shared:install": "npm install loginov-rocks-loginov-rocks-shared.tgz",
     "shared:update": "npm run shared:copy && npm run shared:install",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:coverage": "npm test -- --coverage",
     "test:update": "npm test -- --updateSnapshot",
     "typecheck": "tsc"

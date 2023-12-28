@@ -1,5 +1,4 @@
 import { GitHubData as Data, GitHubRepo as Repo } from '@loginov-rocks/loginov-rocks-shared';
-import fetch, { Headers, Response } from 'node-fetch';
 
 import { GitHubRepo } from './GitHubRepo';
 import { GitHubTag } from './GitHubTag';
@@ -15,9 +14,22 @@ export class GitHub {
 
   private personalAccessToken: string | undefined;
 
-  constructor({ baseUrl, personalAccessToken }: Options) {
-    this.baseUrl = baseUrl;
-    this.personalAccessToken = personalAccessToken;
+  private static async mergeArrayResponses<T>(responsesStack: Response[]): Promise<T> {
+    const results = await Promise.all(responsesStack.map((response) => {
+      if (!response.ok) {
+        throw new Error('GitHub: one of the requests in the merge array responses stack failed.');
+      }
+
+      return response.json();
+    }));
+
+    const [firstResult, ...otherResults] = results;
+
+    if (otherResults) {
+      return firstResult.concat(...otherResults);
+    }
+
+    return firstResult;
   }
 
   private static parseNextPageUrl(headers: Headers): string | undefined {
@@ -37,29 +49,12 @@ export class GitHub {
     return link.trim().substring(1).replace('>; rel="next"', '');
   }
 
-  private static async mergeArrayResponses<T>(responsesStack: Response[]): Promise<T> {
-    const results = await Promise.all(responsesStack.map((response) => {
-      if (!response.ok) {
-        throw new Error('GitHub one of the requests in merge array responses stack failed');
-      }
-
-      return response.json();
-    }));
-
-    const [firstResult, ...otherResults] = results;
-
-    if (otherResults) {
-      return firstResult.concat(...otherResults);
-    }
-
-    return firstResult;
-  }
-
-  public setPersonalAccessToken(personalAccessToken: string): void {
+  public constructor({ baseUrl, personalAccessToken }: Options) {
+    this.baseUrl = baseUrl;
     this.personalAccessToken = personalAccessToken;
   }
 
-  async getData(): Promise<Data> {
+  public async getData(): Promise<Data> {
     const gitHubUser = await this.getGitHubUser();
     const repos = await this.getRepos();
 
@@ -71,12 +66,16 @@ export class GitHub {
     };
   }
 
+  public setPersonalAccessToken(personalAccessToken: string): void {
+    this.personalAccessToken = personalAccessToken;
+  }
+
   /**
    * @see https://docs.github.com/en/rest/overview/resources-in-the-rest-api#oauth2-token-sent-in-a-header
    */
   private apiGet(url: string): Promise<Response> {
     if (!this.personalAccessToken) {
-      throw new Error('Personal access token missing');
+      throw new Error('A personal access token is undefined.');
     }
 
     const apiUrl = url.startsWith(this.baseUrl) ? url : `${this.baseUrl}${url}`;
@@ -106,19 +105,6 @@ export class GitHub {
   }
 
   /**
-   * @see https://docs.github.com/en/rest/reference/users#get-the-authenticated-user
-   */
-  private async getGitHubUser(): Promise<GitHubUser> {
-    const response = await this.apiGet('/user');
-
-    if (!response.ok) {
-      throw new Error('GitHub get user request failed');
-    }
-
-    return response.json();
-  }
-
-  /**
    * @see https://docs.github.com/en/rest/reference/repos#list-repositories-for-the-authenticated-user
    */
   private async getGitHubRepos(): Promise<GitHubRepo[]> {
@@ -136,7 +122,20 @@ export class GitHub {
     const response = await this.apiGet(`/repos/${ownerLogin}/${repoName}/tags`);
 
     if (!response.ok) {
-      throw new Error('GitHub get tags request failed');
+      throw new Error('Get GitHub tags request failed.');
+    }
+
+    return response.json();
+  }
+
+  /**
+   * @see https://docs.github.com/en/rest/reference/users#get-the-authenticated-user
+   */
+  private async getGitHubUser(): Promise<GitHubUser> {
+    const response = await this.apiGet('/user');
+
+    if (!response.ok) {
+      throw new Error('Get GitHub user request failed.');
     }
 
     return response.json();
