@@ -5,7 +5,7 @@ import { SendMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
 import { CachedSecretsManagerClient } from '@loginov-rocks/loginov-rocks-shared';
 
 import {
-  SECRET_ARN, SECRET_AUTH_PASSWORD_KEY, SECRET_AUTH_USERNAME_KEY, SQS_QUEUE_URL,
+  SECRET_ARN, SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY, SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY, SQS_QUEUE_URL,
 } from 'Constants';
 import { Event } from 'Event';
 import { Response } from 'Response';
@@ -37,8 +37,8 @@ exports.handler = async (event: Event): Promise<Response> => {
     };
   }
 
-  const authUsername = await cachedSecretsManagerClient.getValue(SECRET_AUTH_USERNAME_KEY);
-  const authPassword = await cachedSecretsManagerClient.getValue(SECRET_AUTH_PASSWORD_KEY);
+  const authUsername = await cachedSecretsManagerClient.getValue(SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY);
+  const authPassword = await cachedSecretsManagerClient.getValue(SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY);
 
   if (!authorize(authHeader, authUsername, authPassword)) {
     return {

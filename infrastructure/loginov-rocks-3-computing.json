@@ -16,8 +16,8 @@
     }
   },
   "Parameters": {
-    "DataS3GitHubFileKey": {
-      "Description": "S3 GitHub File Key in Data bucket",
+    "DataGitHubFileKey": {
+      "Description": "GitHub File Key in Data bucket",
       "Default": "github.json",
       "Type": "String"
     },
@@ -34,11 +34,6 @@
       "Default": "https://api.github.com",
       "Type": "String"
     },
-    "WebAppCloudFrontInvalidationPath": {
-      "Description": "Invalidation Path for Web App CloudFront Distribution to invalidate after static site generation done by Web App function ",
-      "Default": "/*",
-      "Type": "String"
-    },
     "WebAppCmsDolphPageComponentType": {
       "Description": "CMS \"Dolph Page\" Component Type for Web App function",
       "Default": "dolphPage",
@@ -52,6 +47,11 @@
     "WebAppCmsHomePageComponentType": {
       "Description": "CMS \"Home Page\" Component Type for Web App function",
       "Default": "homePage",
+      "Type": "String"
+    },
+    "WebAppLambdaInvalidationPath": {
+      "Description": "Invalidation Path for Web App CloudFront Distribution to invalidate after static site generation done by Web App function",
+      "Default": "/*",
       "Type": "String"
     }
   },
@@ -165,7 +165,7 @@
                 },
                 {
                   "Fn::Sub": [
-                    "${DataBucketArn}/${DataS3GitHubFileKey}",
+                    "${DataBucketArn}/${DataGitHubFileKey}",
                     {
                       "DataBucketArn": {
                         "Fn::ImportValue": {
@@ -233,7 +233,7 @@
                 },
                 {
                   "Fn::Sub": [
-                    "${DataBucketArn}/${DataS3GitHubFileKey}",
+                    "${DataBucketArn}/${DataGitHubFileKey}",
                     {
                       "DataBucketArn": {
                         "Fn::ImportValue": {
@@ -469,7 +469,7 @@
                     },
                     {
                       "Fn::Sub": [
-                        "${DataBucketArn}/${DataS3GitHubFileKey}",
+                        "${DataBucketArn}/${DataGitHubFileKey}",
                         {
                           "DataBucketArn": {
                             "Fn::ImportValue": {
@@ -579,7 +579,7 @@
                     },
                     {
                       "Fn::Sub": [
-                        "${DataBucketArn}/${DataS3GitHubFileKey}",
+                        "${DataBucketArn}/${DataGitHubFileKey}",
                         {
                           "DataBucketArn": {
                             "Fn::ImportValue": {
@@ -707,8 +707,8 @@
                 "Fn::Sub": "${PersistentStackName}-SecretArn"
               }
             },
-            "SECRET_AUTH_PASSWORD_KEY": "CONTENTFUL_WEBHOOK_AUTH_PASSWORD",
-            "SECRET_AUTH_USERNAME_KEY": "CONTENTFUL_WEBHOOK_AUTH_USERNAME",
+            "SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY": "CONTENTFUL_WEBHOOK_AUTH_PASSWORD",
+            "SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY": "CONTENTFUL_WEBHOOK_AUTH_USERNAME",
             "SQS_QUEUE_URL": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-QueueUrl"
@@ -746,13 +746,13 @@
         },
         "Environment": {
           "Variables": {
-            "DATA_S3_BUCKET_NAME": {
+            "DATA_BUCKET_NAME": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-DataBucketName"
               }
             },
-            "DATA_S3_GITHUB_FILE_KEY": {
-              "Ref": "DataS3GitHubFileKey"
+            "DATA_GITHUB_FILE_KEY": {
+              "Ref": "DataGitHubFileKey"
             },
             "GITHUB_BASE_URL": {
               "Ref": "UpdateGitHubGitHubBaseUrl"
@@ -762,7 +762,7 @@
                 "Fn::Sub": "${PersistentStackName}-SecretArn"
               }
             },
-            "SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY": "UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN"
+            "SECRET_UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN_KEY": "UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN"
           }
         },
         "FunctionName": {
@@ -806,15 +806,15 @@
             },
             "LAMBDA_USE_POLICY": "true",
             "LAMBDA_USE_TMPDIR": "true",
-            "LAMBDA_CLOUDFRONT_DISTRIBUTION_ID": {
+            "LAMBDA_DISTRIBUTION_ID": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${DistributionStackName}-DistributionId"
               }
             },
-            "LAMBDA_CLOUDFRONT_INVALIDATION_PATH": {
-              "Ref": "WebAppCloudFrontInvalidationPath"
+            "LAMBDA_INVALIDATION_PATH": {
+              "Ref": "WebAppLambdaInvalidationPath"
             },
-            "LAMBDA_WEB_APP_S3_BUCKET_NAME": {
+            "LAMBDA_WEB_APP_BUCKET_NAME": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
               }
@@ -828,21 +828,21 @@
             "CMS_HOME_PAGE_COMPONENT_TYPE": {
               "Ref": "WebAppCmsHomePageComponentType"
             },
-            "DATA_S3_BUCKET_NAME": {
+            "DATA_BUCKET_NAME": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-DataBucketName"
               }
             },
-            "DATA_S3_GITHUB_FILE_KEY": {
-              "Ref": "DataS3GitHubFileKey"
+            "DATA_GITHUB_FILE_KEY": {
+              "Ref": "DataGitHubFileKey"
             },
             "SECRET_ARN": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-SecretArn"
               }
             },
-            "SECRET_CMS_CLIENT_ACCESS_TOKEN_KEY": "WEB_APP_CMS_CLIENT_ACCESS_TOKEN",
-            "SECRET_CMS_CLIENT_SPACE_KEY": "WEB_APP_CMS_CLIENT_SPACE",
+            "SECRET_WEB_APP_CMS_CLIENT_ACCESS_TOKEN_KEY": "WEB_APP_CMS_CLIENT_ACCESS_TOKEN",
+            "SECRET_WEB_APP_CMS_CLIENT_SPACE_KEY": "WEB_APP_CMS_CLIENT_SPACE",
             "BABEL_DISABLE_CACHE": "1",
             "NPM_CONFIG_CACHE": "/tmp/.npm"
           }

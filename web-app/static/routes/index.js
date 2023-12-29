@@ -41,8 +41,10 @@ const cachedSecretsManagerClient = new CachedSecretsManagerClient({
 });
 
 const cmsClient = new CmsClient({
-  accessTokenResolver: () => cachedSecretsManagerClient.getValue(process.env.SECRET_CMS_CLIENT_ACCESS_TOKEN_KEY),
-  spaceResolver: () => cachedSecretsManagerClient.getValue(process.env.SECRET_CMS_CLIENT_SPACE_KEY),
+  accessTokenResolver: () => cachedSecretsManagerClient.getValue(
+    process.env.SECRET_WEB_APP_CMS_CLIENT_ACCESS_TOKEN_KEY,
+  ),
+  spaceResolver: () => cachedSecretsManagerClient.getValue(process.env.SECRET_WEB_APP_CMS_CLIENT_SPACE_KEY),
 });
 
 // Set up app routes.
@@ -51,8 +53,8 @@ const routes = new Routes();
 const homeRoute = new HomeRoute({
   cmsClient,
   cmsHomePageComponentType: process.env.CMS_HOME_PAGE_COMPONENT_TYPE,
-  dataS3BucketName: process.env.DATA_S3_BUCKET_NAME,
-  dataS3GitHubFileKey: process.env.DATA_S3_GITHUB_FILE_KEY,
+  dataS3BucketName: process.env.DATA_BUCKET_NAME,
+  dataS3GitHubFileKey: process.env.DATA_GITHUB_FILE_KEY,
   s3Client,
 });
 

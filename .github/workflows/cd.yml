@@ -26,20 +26,20 @@ jobs:
       - run: npm run build
       - run: npm run package
       - name: Upload function deployment package to S3
-        run: aws s3 cp contentful-webhook.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
+        run: aws s3 cp contentful-webhook.zip s3://$DEPLOYMENT_BUCKET_NAME
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
+          DEPLOYMENT_BUCKET_NAME: ${{ secrets.DEPLOYMENT_BUCKET_NAME }}
       - name: Update function code
-        run: aws lambda update-function-code --function-name $CONTENTFUL_WEBHOOK_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key contentful-webhook.zip > /dev/null
+        run: aws lambda update-function-code --function-name $CONTENTFUL_WEBHOOK_FUNCTION_NAME --s3-bucket $DEPLOYMENT_BUCKET_NAME --s3-key contentful-webhook.zip > /dev/null
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
-          CONTENTFUL_WEBHOOK_LAMBDA_NAME: ${{ secrets.CONTENTFUL_WEBHOOK_LAMBDA_NAME }}
+          CONTENTFUL_WEBHOOK_FUNCTION_NAME: ${{ secrets.CONTENTFUL_WEBHOOK_FUNCTION_NAME }}
+          DEPLOYMENT_BUCKET_NAME: ${{ secrets.DEPLOYMENT_BUCKET_NAME }}
 
   update-github-cd:
     name: Update GitHub CD
@@ -59,20 +59,20 @@ jobs:
       - run: npm run build
       - run: npm run package
       - name: Upload function deployment package to S3
-        run: aws s3 cp update-github.zip s3://$DEPLOYMENT_S3_BUCKET_NAME
+        run: aws s3 cp update-github.zip s3://$DEPLOYMENT_BUCKET_NAME
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
+          DEPLOYMENT_BUCKET_NAME: ${{ secrets.DEPLOYMENT_BUCKET_NAME }}
       - name: Update function code
-        run: aws lambda update-function-code --function-name $UPDATE_GITHUB_LAMBDA_NAME --s3-bucket $DEPLOYMENT_S3_BUCKET_NAME --s3-key update-github.zip > /dev/null
+        run: aws lambda update-function-code --function-name $UPDATE_GITHUB_FUNCTION_NAME --s3-bucket $DEPLOYMENT_BUCKET_NAME --s3-key update-github.zip > /dev/null
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
-          DEPLOYMENT_S3_BUCKET_NAME: ${{ secrets.DEPLOYMENT_S3_BUCKET_NAME }}
-          UPDATE_GITHUB_LAMBDA_NAME: ${{ secrets.UPDATE_GITHUB_LAMBDA_NAME }}
+          DEPLOYMENT_BUCKET_NAME: ${{ secrets.DEPLOYMENT_BUCKET_NAME }}
+          UPDATE_GITHUB_FUNCTION_NAME: ${{ secrets.UPDATE_GITHUB_FUNCTION_NAME }}
 
   web-app-cd:
     name: Web App CD
@@ -96,17 +96,17 @@ jobs:
           LAMBDA_REGION: ${{ secrets.AWS_REGION }}
           LAMBDA_USE_POLICY: false
           LAMBDA_USE_TMPDIR: false
-          LAMBDA_CLOUDFRONT_DISTRIBUTION_ID: distributionId
-          LAMBDA_CLOUDFRONT_INVALIDATION_PATH: /*
-          LAMBDA_WEB_APP_S3_BUCKET_NAME: webAppBucketName
+          LAMBDA_DISTRIBUTION_ID: distributionId
+          LAMBDA_INVALIDATION_PATH: /*
+          LAMBDA_WEB_APP_BUCKET_NAME: webAppBucketName
           CMS_DOLPH_PAGE_COMPONENT_TYPE: ${{ secrets.WEB_APP_CMS_DOLPH_PAGE_COMPONENT_TYPE }}
           CMS_EDUCATION_PAGE_COMPONENT_TYPE: ${{ secrets.WEB_APP_CMS_EDUCATION_PAGE_COMPONENT_TYPE }}
           CMS_HOME_PAGE_COMPONENT_TYPE: ${{ secrets.WEB_APP_CMS_HOME_PAGE_COMPONENT_TYPE }}
-          DATA_S3_BUCKET_NAME: ${{ secrets.DATA_S3_BUCKET_NAME }}
-          DATA_S3_GITHUB_FILE_KEY: ${{ secrets.DATA_S3_GITHUB_FILE_KEY }}
+          DATA_BUCKET_NAME: ${{ secrets.DATA_BUCKET_NAME }}
+          DATA_GITHUB_FILE_KEY: ${{ secrets.DATA_GITHUB_FILE_KEY }}
           SECRET_ARN: ${{ secrets.SECRET_ARN }}
-          SECRET_CMS_CLIENT_ACCESS_TOKEN_KEY: WEB_APP_CMS_CLIENT_ACCESS_TOKEN
-          SECRET_CMS_CLIENT_SPACE_KEY: WEB_APP_CMS_CLIENT_SPACE
+          SECRET_WEB_APP_CMS_CLIENT_ACCESS_TOKEN_KEY: WEB_APP_CMS_CLIENT_ACCESS_TOKEN
+          SECRET_WEB_APP_CMS_CLIENT_SPACE_KEY: WEB_APP_CMS_CLIENT_SPACE
           BABEL_DISABLE_CACHE: 1
       - name: Retrieve authentication token and authenticate Docker client to registry
         run: aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com
@@ -132,11 +132,11 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
           WEB_APP_REPOSITORY: ${{ secrets.WEB_APP_REPOSITORY }}
       - name: Update function code
-        run: aws lambda update-function-code --function-name $WEB_APP_LAMBDA_NAME --image-uri $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$WEB_APP_REPOSITORY:latest > /dev/null
+        run: aws lambda update-function-code --function-name $WEB_APP_FUNCTION_NAME --image-uri $AWS_ACCOUNT.dkr.ecr.$AWS_REGION.amazonaws.com/$WEB_APP_REPOSITORY:latest > /dev/null
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
+          WEB_APP_FUNCTION_NAME: ${{ secrets.WEB_APP_FUNCTION_NAME }}
           WEB_APP_REPOSITORY: ${{ secrets.WEB_APP_REPOSITORY }}
-          WEB_APP_LAMBDA_NAME: ${{ secrets.WEB_APP_LAMBDA_NAME }}

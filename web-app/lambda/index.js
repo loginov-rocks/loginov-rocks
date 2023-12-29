@@ -32,13 +32,13 @@ const s3Client = new S3Client(s3ClientConfig);
 
 const cloudFrontInvalidation = new CloudFrontInvalidation({
   cloudFrontClient,
-  distributionId: process.env.LAMBDA_CLOUDFRONT_DISTRIBUTION_ID,
+  distributionId: process.env.LAMBDA_DISTRIBUTION_ID,
   paths: [
-    process.env.LAMBDA_CLOUDFRONT_INVALIDATION_PATH,
+    process.env.LAMBDA_INVALIDATION_PATH,
   ],
 });
 
-const bucketName = process.env.LAMBDA_WEB_APP_S3_BUCKET_NAME;
+const bucketName = process.env.LAMBDA_WEB_APP_BUCKET_NAME;
 const distDirectoryPath = process.env.LAMBDA_USE_TMPDIR === 'true' ? `${tmpdir()}/dist` : path.resolve('dist');
 
 const stdout = (data) => {

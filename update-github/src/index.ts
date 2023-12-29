@@ -5,7 +5,8 @@ import { SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
 import { CachedSecretsManagerClient } from '@loginov-rocks/loginov-rocks-shared';
 
 import {
-  DATA_S3_BUCKET_NAME, DATA_S3_GITHUB_FILE_KEY, GITHUB_BASE_URL, SECRET_ARN, SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY,
+  DATA_BUCKET_NAME, DATA_GITHUB_FILE_KEY, GITHUB_BASE_URL, SECRET_ARN,
+  SECRET_UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN_KEY,
 } from 'Constants';
 import { GitHub } from 'GitHub/GitHub';
 
@@ -24,7 +25,9 @@ const gitHub = new GitHub({
 exports.handler = async (event: unknown): Promise<void> => {
   console.log('event', JSON.stringify(event));
 
-  const personalAccessToken = await cachedSecretsManagerClient.getValue(SECRET_GITHUB_PERSONAL_ACCESS_TOKEN_KEY);
+  const personalAccessToken = await cachedSecretsManagerClient.getValue(
+    SECRET_UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN_KEY,
+  );
   gitHub.setPersonalAccessToken(personalAccessToken);
 
   console.log('Getting GitHub data...');
@@ -34,8 +37,8 @@ exports.handler = async (event: unknown): Promise<void> => {
   console.log('Getting current GitHub data file...');
 
   const getObjectCommand = new GetObjectCommand({
-    Bucket: DATA_S3_BUCKET_NAME,
-    Key: DATA_S3_GITHUB_FILE_KEY,
+    Bucket: DATA_BUCKET_NAME,
+    Key: DATA_GITHUB_FILE_KEY,
   });
 
   let s3Object;
@@ -62,9 +65,9 @@ exports.handler = async (event: unknown): Promise<void> => {
 
   const putObjectCommand = new PutObjectCommand({
     Body: newData,
-    Bucket: DATA_S3_BUCKET_NAME,
+    Bucket: DATA_BUCKET_NAME,
     ContentType: 'application/json',
-    Key: DATA_S3_GITHUB_FILE_KEY,
+    Key: DATA_GITHUB_FILE_KEY,
   });
 
   const putObjectResponse = await s3Client.send(putObjectCommand);
