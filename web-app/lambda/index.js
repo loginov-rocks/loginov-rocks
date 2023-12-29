@@ -1,5 +1,6 @@
+const { CloudFrontClient } = require('@aws-sdk/client-cloudfront');
+const { S3Client } = require('@aws-sdk/client-s3');
 const { CloudFrontInvalidation } = require('@loginov-rocks/loginov-rocks-shared');
-const { CloudFront, S3 } = require('aws-sdk');
 const { tmpdir } = require('os');
 const path = require('path');
 
@@ -7,24 +8,34 @@ const build = require('./build');
 const collectFilesPaths = require('./collectFilesPaths');
 const deployFilesToS3 = require('./deployFilesToS3');
 
-const cloudFrontConfiguration = {};
-const s3Configuration = {};
+// Set up AWS clients.
+const cloudFrontClientConfig = {
+  region: process.env.LAMBDA_REGION,
+};
+const s3ClientConfig = {
+  region: process.env.LAMBDA_REGION,
+};
 
+// Unless in the AWS runtime, use AWS credentials from the environment variables.
 if (process.env.LAMBDA_USE_POLICY !== 'true') {
-  cloudFrontConfiguration.accessKeyId = process.env.LAMBDA_ACCESS_KEY_ID;
-  cloudFrontConfiguration.secretAccessKey = process.env.LAMBDA_SECRET_ACCESS_KEY;
+  const credentials = {
+    accessKeyId: process.env.LAMBDA_ACCESS_KEY_ID,
+    secretAccessKey: process.env.LAMBDA_SECRET_ACCESS_KEY,
+  };
 
-  s3Configuration.accessKeyId = process.env.LAMBDA_ACCESS_KEY_ID;
-  s3Configuration.secretAccessKey = process.env.LAMBDA_SECRET_ACCESS_KEY;
+  cloudFrontClientConfig.credentials = credentials;
+  s3ClientConfig.credentials = credentials;
 }
 
-const cloudFront = new CloudFront(cloudFrontConfiguration);
-const s3 = new S3(s3Configuration);
+const cloudFrontClient = new CloudFrontClient(cloudFrontClientConfig);
+const s3Client = new S3Client(s3ClientConfig);
 
 const cloudFrontInvalidation = new CloudFrontInvalidation({
-  cloudFront,
+  cloudFrontClient,
   distributionId: process.env.LAMBDA_CLOUDFRONT_DISTRIBUTION_ID,
-  path: process.env.LAMBDA_CLOUDFRONT_INVALIDATION_PATH,
+  paths: [
+    process.env.LAMBDA_CLOUDFRONT_INVALIDATION_PATH,
+  ],
 });
 
 const bucketName = process.env.LAMBDA_WEB_APP_S3_BUCKET_NAME;
@@ -39,14 +50,15 @@ const stderr = (data) => {
 };
 
 exports.handler = async (event) => {
-  console.log('Event:', JSON.stringify(event));
-
-  console.log('Building to:', distDirectoryPath);
+  console.log('event', JSON.stringify(event));
+  console.log('bucketName', bucketName);
+  console.log('distDirectoryPath', distDirectoryPath);
+  console.log('Building...');
 
   const buildResult = await build(stdout, stderr);
 
   if (buildResult !== 0) {
-    throw new Error('Build failed');
+    throw new Error('Build failed.');
   }
 
   console.log('Collecting files paths...');
@@ -54,18 +66,18 @@ exports.handler = async (event) => {
   const filesPaths = await collectFilesPaths(distDirectoryPath);
 
   if (filesPaths.length === 0) {
-    throw new Error('No files paths collected');
+    throw new Error('No files paths collected.');
   }
 
-  console.log('Files paths collected:', filesPaths);
-
+  console.log('filesPaths', filesPaths.length, JSON.stringify(filesPaths));
   console.log('Deploying files to S3...');
 
-  await deployFilesToS3(s3, bucketName, distDirectoryPath, filesPaths);
+  const deployResponses = await deployFilesToS3(s3Client, bucketName, distDirectoryPath, filesPaths);
 
+  console.log('deployResponses', deployResponses.length, JSON.stringify(deployResponses));
   console.log('Invalidating CloudFront...');
 
-  await cloudFrontInvalidation.invalidate();
+  const invalidateResponse = await cloudFrontInvalidation.invalidate();
 
-  return {};
+  console.log('invalidateResponse', JSON.stringify(invalidateResponse));
 };

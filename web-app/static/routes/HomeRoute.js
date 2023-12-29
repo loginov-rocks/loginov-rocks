@@ -1,14 +1,14 @@
-import { S3Object } from '@loginov-rocks/loginov-rocks-shared';
+import { GetObjectCommand } from '@aws-sdk/client-s3';
 
 export class HomeRoute {
   constructor({
-    cmsClient, cmsHomePageComponentType, dataS3BucketName, dataS3GitHubFileKey, s3,
+    cmsClient, cmsHomePageComponentType, dataS3BucketName, dataS3GitHubFileKey, s3Client,
   }) {
     this.cmsClient = cmsClient;
     this.cmsHomePageComponentType = cmsHomePageComponentType;
     this.dataS3BucketName = dataS3BucketName;
     this.dataS3GitHubFileKey = dataS3GitHubFileKey;
-    this.s3 = s3;
+    this.s3Client = s3Client;
   }
 
   async getData() {
@@ -26,15 +26,33 @@ export class HomeRoute {
     }
 
     const cmsHomePageComponent = await this.cmsClient.getCmsComponentByType(this.cmsHomePageComponentType);
-
-    const gitHubS3Object = new S3Object({
-      bucketName: this.dataS3BucketName,
-      fileKey: this.dataS3GitHubFileKey,
-      s3: this.s3,
-    });
-    const gitHubS3ObjectData = await gitHubS3Object.read();
-    const gitHubData = JSON.parse(gitHubS3ObjectData);
+    const gitHubData = await this.getGitHubData();
 
     return { cmsHomePageComponent, gitHubData };
+  }
+
+  async getGitHubData() {
+    const getObjectCommand = new GetObjectCommand({
+      Bucket: this.dataS3BucketName,
+      Key: this.dataS3GitHubFileKey,
+    });
+
+    let s3Object;
+
+    try {
+      s3Object = await this.s3Client.send(getObjectCommand);
+    } catch (error) {
+      if (error.name !== 'NoSuchKey') {
+        throw error;
+      }
+    }
+
+    if (!s3Object || !s3Object.Body) {
+      throw new Error('GitHub data S3 object not found or empty.');
+    }
+
+    const data = await s3Object.Body.transformToString();
+
+    return JSON.parse(data);
   }
 }

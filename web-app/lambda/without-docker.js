@@ -1,3 +1,4 @@
+// Load environment variables configuration.
 require('dotenv').config();
 
 const { handler } = require('./index');

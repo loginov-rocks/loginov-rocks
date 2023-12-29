@@ -1,33 +1,78 @@
-const { S3Object } = require('@loginov-rocks/loginov-rocks-shared');
+const { DeleteObjectsCommand, ListObjectsV2Command, PutObjectCommand } = require('@aws-sdk/client-s3');
 const fs = require('fs');
 const mime = require('mime');
 
-module.exports = async (s3, bucketName, rootDirectoryPath, filesPaths) => {
-  const s3ListObjects = await s3.listObjects({ Bucket: bucketName }).promise();
-  const filesKeys = s3ListObjects.Contents.map(({ Key }) => Key);
-  const filesKeysToWrite = [];
-
-  const writeOperations = filesPaths.map((filePath) => {
-    const fileKey = filePath.substring(rootDirectoryPath.length + 1);
-    filesKeysToWrite.push(fileKey);
-
-    const data = fs.readFileSync(filePath);
-    const contentType = mime.getType(filePath);
-    const s3Object = new S3Object({ bucketName, fileKey, s3 });
-
-    return s3Object.write(data, { contentType });
+const s3DeleteObjects = (s3Client, bucketName, fileKeys) => {
+  const deleteObjectsCommand = new DeleteObjectsCommand({
+    Bucket: bucketName,
+    Delete: {
+      Objects: fileKeys.map((fileKey) => ({ Key: fileKey })),
+    },
   });
 
-  console.log('Files keys to write:', filesKeysToWrite);
+  return s3Client.send(deleteObjectsCommand);
+};
 
-  const filesKeysToDelete = filesKeys.filter((fileKey) => !filesKeysToWrite.includes(fileKey));
-  const batchDeleteOptions = filesKeysToDelete.map((fileKey) => ({ bucketName, fileKey }));
-  const batchDeleteOperation = S3Object.batchDelete(s3, batchDeleteOptions);
+const s3ListObjects = async (s3Client, bucketName) => {
+  const listObjectsCommand = new ListObjectsV2Command({
+    Bucket: bucketName,
+    MaxKeys: 1000,
+  });
 
-  console.log('Files keys to delete:', filesKeysToDelete);
+  const listObjectsResponse = await s3Client.send(listObjectsCommand);
+
+  if (!listObjectsResponse.KeyCount || listObjectsResponse.KeyCount === 0
+    || !listObjectsResponse.Contents || !Array.isArray(listObjectsResponse.Contents)) {
+    return [];
+  }
+
+  return listObjectsResponse.Contents.map(({ Key }) => Key);
+};
+
+const s3PutObject = (s3Client, bucketName, fileKey, data, contentType) => {
+  const putObjectCommand = new PutObjectCommand({
+    Body: data,
+    Bucket: bucketName,
+    ContentType: contentType,
+    Key: fileKey,
+  });
+
+  return s3Client.send(putObjectCommand);
+};
+
+const deployFilesToS3 = async (s3Client, bucketName, rootDirectoryPath, filesPaths) => {
+  const existingFilesKeys = await s3ListObjects(s3Client, bucketName);
+
+  console.log('existingFilesKeys', existingFilesKeys.length, JSON.stringify(existingFilesKeys));
+
+  const putFilesKeys = [];
+
+  const putOperations = filesPaths.map((filePath) => {
+    const fileKey = filePath.substring(rootDirectoryPath.length + 1);
+    const data = fs.readFileSync(filePath);
+    const contentType = mime.getType(filePath);
+
+    putFilesKeys.push(fileKey);
+
+    return s3PutObject(s3Client, bucketName, fileKey, data, contentType);
+  });
+
+  console.log('putFilesKeys', putFilesKeys.length, JSON.stringify(putFilesKeys));
+
+  const deleteFilesKeys = existingFilesKeys.filter((fileKey) => !putFilesKeys.includes(fileKey));
+
+  console.log('deleteFilesKeys', deleteFilesKeys.length, JSON.stringify(deleteFilesKeys));
+
+  if (deleteFilesKeys.length === 0) {
+    return Promise.all(putOperations);
+  }
+
+  const deleteOperation = s3DeleteObjects(s3Client, bucketName, deleteFilesKeys);
 
   return Promise.all([
-    ...writeOperations,
-    batchDeleteOperation,
+    ...putOperations,
+    deleteOperation,
   ]);
 };
+
+module.exports = deployFilesToS3;

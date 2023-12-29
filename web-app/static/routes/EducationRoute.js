@@ -7,9 +7,8 @@ export class EducationRoute {
   async getData() {
     // Use mocks in non-production environment.
     if (process.env.NODE_ENV !== 'production') {
-      /* eslint-disable global-require */
+      // eslint-disable-next-line global-require
       const cmsEducationPageComponentMock = require('../cms/__fixtures__/cmsEducationPageComponent.json');
-      /* eslint-enable */
 
       return Promise.resolve({
         cmsEducationPageComponent: cmsEducationPageComponentMock,

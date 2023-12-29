@@ -1,6 +1,6 @@
 const { spawn } = require('child_process');
 
-module.exports = (stdout, stderr) => new Promise((resolve, reject) => {
+const build = (stdout, stderr) => new Promise((resolve, reject) => {
   const buildProcess = spawn('npm', ['run', 'build']);
 
   buildProcess.stdout.on('data', (data) => {
@@ -15,3 +15,5 @@ module.exports = (stdout, stderr) => new Promise((resolve, reject) => {
 
   buildProcess.on('close', resolve);
 });
+
+module.exports = build;

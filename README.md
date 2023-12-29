@@ -79,6 +79,7 @@ development, and provides an inclusive solution for developers seeking to elevat
 ## Docs
 
 * [Configuration](https://github.com/loginov-rocks/loginov-rocks/blob/main/docs/Configuration.md)
+* [Development](https://github.com/loginov-rocks/loginov-rocks/blob/main/docs/Development.md)
 
 ## Reference
 
