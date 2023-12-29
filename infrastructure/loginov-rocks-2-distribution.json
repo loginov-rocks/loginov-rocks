@@ -149,128 +149,102 @@
         }
       }
     },
-    "AAAARecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Fn::GetAtt": [
-              "Distribution",
-              "DomainName"
-            ]
-          },
-          "HostedZoneId": "Z2FDTNDATAQYW2"
-        },
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Ref": "DomainName"
-        },
-        "Type": "AAAA"
-      }
-    },
-    "ARecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Fn::GetAtt": [
-              "Distribution",
-              "DomainName"
-            ]
-          },
-          "HostedZoneId": "Z2FDTNDATAQYW2"
-        },
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Ref": "DomainName"
-        },
-        "Type": "A"
-      }
-    },
-    "MxRecordSet": {
-      "Type": "AWS::Route53::RecordSet",
+    "RecordSetGroup": {
+      "Type": "AWS::Route53::RecordSetGroup",
       "Properties": {
         "HostedZoneId": {
           "Ref": "HostedZone"
         },
-        "Name": {
-          "Ref": "DomainName"
-        },
-        "ResourceRecords": [
+        "RecordSets": [
           {
-            "Ref": "MxFirstResourceRecord"
+            "AliasTarget": {
+              "DNSName": {
+                "Fn::GetAtt": [
+                  "Distribution",
+                  "DomainName"
+                ]
+              },
+              "HostedZoneId": "Z2FDTNDATAQYW2"
+            },
+            "Name": {
+              "Ref": "DomainName"
+            },
+            "Type": "A"
           },
           {
-            "Ref": "MxSecondResourceRecord"
-          }
-        ],
-        "TTL": "21600",
-        "Type": "MX"
-      }
-    },
-    "TxtRecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Ref": "DomainName"
-        },
-        "ResourceRecords": [
-          {
-            "Ref": "GoogleVerificationResourceRecord"
+            "AliasTarget": {
+              "DNSName": {
+                "Fn::GetAtt": [
+                  "Distribution",
+                  "DomainName"
+                ]
+              },
+              "HostedZoneId": "Z2FDTNDATAQYW2"
+            },
+            "Name": {
+              "Ref": "DomainName"
+            },
+            "Type": "AAAA"
           },
           {
-            "Ref": "SpfResourceRecord"
-          }
-        ],
-        "TTL": "300",
-        "Type": "TXT"
-      }
-    },
-    "WwwAAAARecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Ref": "AAAARecordSet"
+            "AliasTarget": {
+              "DNSName": {
+                "Ref": "DomainName"
+              },
+              "HostedZoneId": {
+                "Ref": "HostedZone"
+              }
+            },
+            "Name": {
+              "Fn::Sub": "www.${DomainName}"
+            },
+            "Type": "A"
           },
-          "HostedZoneId": {
-            "Ref": "HostedZone"
-          }
-        },
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Fn::Sub": "www.${DomainName}"
-        },
-        "Type": "AAAA"
-      }
-    },
-    "WwwARecordSet": {
-      "Type": "AWS::Route53::RecordSet",
-      "Properties": {
-        "AliasTarget": {
-          "DNSName": {
-            "Ref": "ARecordSet"
+          {
+            "AliasTarget": {
+              "DNSName": {
+                "Ref": "DomainName"
+              },
+              "HostedZoneId": {
+                "Ref": "HostedZone"
+              }
+            },
+            "Name": {
+              "Fn::Sub": "www.${DomainName}"
+            },
+            "Type": "AAAA"
           },
-          "HostedZoneId": {
-            "Ref": "HostedZone"
+          {
+            "Name": {
+              "Ref": "DomainName"
+            },
+            "ResourceRecords": [
+              {
+                "Ref": "MxFirstResourceRecord"
+              },
+              {
+                "Ref": "MxSecondResourceRecord"
+              }
+            ],
+            "TTL": "21600",
+            "Type": "MX"
+          },
+          {
+            "Name": {
+              "Ref": "DomainName"
+            },
+            "ResourceRecords": [
+              {
+                "Ref": "GoogleVerificationResourceRecord"
+              },
+              {
+                "Ref": "SpfResourceRecord"
+              }
+            ],
+            "TTL": "300",
+            "Type": "TXT"
           }
-        },
-        "HostedZoneId": {
-          "Ref": "HostedZone"
-        },
-        "Name": {
-          "Fn::Sub": "www.${DomainName}"
-        },
-        "Type": "A"
+        ]
       }
     },
     "WebAppBucketPolicy": {
