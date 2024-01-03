@@ -28,7 +28,13 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm test
+      - run: npm run coverage
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_WEB_APP }}
+        with:
+          projectBaseDir: web-app
       - run: npm run build
         env:
           LAMBDA_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
