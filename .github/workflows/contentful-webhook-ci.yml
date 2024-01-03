@@ -28,5 +28,11 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-      - run: npm test
+      - run: npm run coverage
+      - uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN_CONTENTFUL_WEBHOOK }}
+        with:
+          projectBaseDir: contentful-webhook
       - run: npm run build
