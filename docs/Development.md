@@ -1,40 +1,36 @@
 # Development
 
-## Without Docker
+## Web App
 
-```sh
-node lambda/without-docker
-```
+* `npm start` - start in development mode
+* `npm run build` - build in production mode
+* `npm run serve` - serve production build
+* `node lambda/without-docker` - test Lambda function code locally that builds and deploys Web App without Docker (make
+sure to set up environment variables in the `.env` file, see `.env.example`)
 
-## With Docker
+### Docker
 
-### Build
+#### Build
 
 ```sh
 docker build -t loginov-rocks-persistent-web-app-repository .
 ```
 
-### Run
+#### Run
 
 ```sh
 docker run --env-file .env -p 9000:8080 loginov-rocks-persistent-web-app-repository
 ```
 
-### Test
+#### Test
 
 ```sh
 curl -XPOST "http://localhost:9000/2015-03-31/functions/function/invocations" -d '{}'
 ```
 
-### Enter container
+#### Explore Container
 
 ```sh
 docker ps
 docker exec -it <CONTAINER ID> bash
 ```
-
-## Reference
-
-* [Creating Lambda container images](https://docs.aws.amazon.com/lambda/latest/dg/images-create.html)
-* [Creating Lambda functions defined as container images](https://docs.aws.amazon.com/lambda/latest/dg/configuration-images.html)
-* [Running Gatsby in an AWS Lambda](https://www.jameshill.dev/articles/running-gatsby-within-aws-lambda/)

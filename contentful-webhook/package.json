@@ -3,7 +3,7 @@
   "version": "2.8.0",
   "description": "Loginov Rocks - Contentful Webhook",
   "engines": {
-    "node": "18",
+    "node": "20",
     "npm": "10"
   },
   "scripts": {
