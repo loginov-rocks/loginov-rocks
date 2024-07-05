@@ -21,20 +21,32 @@
       "Description": "Domain Name for Route 53",
       "Type": "String"
     },
-    "MxFirstResourceRecord": {
-      "Default": "10 mx1.improvmx.com.",
+    "ICloudDkimHost": {
+      "Default": "sig1._domainkey",
       "Type": "String"
     },
-    "MxSecondResourceRecord": {
-      "Default": "20 mx2.improvmx.com.",
+    "ICloudDkimResourceRecord": {
+      "Default": "sig1.dkim.loginov.rocks.at.icloudmailadmin.com.",
+      "Type": "String"
+    },
+    "ICloudMxFirstResourceRecord": {
+      "Default": "10 mx01.mail.icloud.com.",
+      "Type": "String"
+    },
+    "ICloudMxSecondResourceRecord": {
+      "Default": "20 mx02.mail.icloud.com.",
+      "Type": "String"
+    },
+    "ICloudSpfResourceRecord": {
+      "Default": "\"v=spf1 include:icloud.com ~all\"",
+      "Type": "String"
+    },
+    "ICloudTxtResourceRecord": {
+      "Default": "\"apple-domain=QLgz0KV1deSKUhlC\"",
       "Type": "String"
     },
     "PersistentStackName": {
       "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
-      "Type": "String"
-    },
-    "SpfResourceRecord": {
-      "Default": "\"v=spf1 include:spf.improvmx.com ~all\"",
       "Type": "String"
     }
   },
@@ -216,17 +228,29 @@
           },
           {
             "Name": {
+              "Fn::Sub": "${ICloudDkimHost}.${DomainName}"
+            },
+            "ResourceRecords": [
+              {
+                "Ref": "ICloudDkimResourceRecord"
+              }
+            ],
+            "TTL": "86400",
+            "Type": "CNAME"
+          },
+          {
+            "Name": {
               "Ref": "DomainName"
             },
             "ResourceRecords": [
               {
-                "Ref": "MxFirstResourceRecord"
+                "Ref": "ICloudMxFirstResourceRecord"
               },
               {
-                "Ref": "MxSecondResourceRecord"
+                "Ref": "ICloudMxSecondResourceRecord"
               }
             ],
-            "TTL": "21600",
+            "TTL": "86400",
             "Type": "MX"
           },
           {
@@ -238,10 +262,13 @@
                 "Ref": "GoogleVerificationResourceRecord"
               },
               {
-                "Ref": "SpfResourceRecord"
+                "Ref": "ICloudSpfResourceRecord"
+              },
+              {
+                "Ref": "ICloudTxtResourceRecord"
               }
             ],
-            "TTL": "300",
+            "TTL": "86400",
             "Type": "TXT"
           }
         ]
