@@ -1,20 +1,21 @@
 {
   "Records": [
     {
-      "messageId": "da6629d7-63cb-40c3-ac18-df799c2f7d9b",
-      "receiptHandle": "AQEBE1T8X6mWXvIO7uKLs+d6+kuSY3ypzRFPEt/tO/83pcB/RbBqTw1CUsSrGBAGhRv4RIZrVr0oJ6OLfqsijlhWtB9L8fgSte04JMktypt35A4bUljAIUUmSqoJzt8YHn847as4gdpxzcY+kviY9HcwwKSwIgyZjPNFtv3erlvJC5jsHeiXeSrbmnT3Bv4++t32M4ySEVT+dKNCQBX9e5OO193mKw1iIczVPAidda52zxMAU5IE/1Az/Iy4+PUhku+NdlUgud/6tmvkzQ9BQG/L1EzsSXeE9nL0MnvbI40z2Oqzm2BZzcSPZaDcuPbChG84Fv/HHmxg0vZnzCXSrdBj0uI9J6vqcIXxGSRIWIH2EmSPg4eo0nHyIAOKkii3j06ocMPe/UupStTgl8hWlzNiFA==",
-      "body": "{\"metadata\":{\"tags\":[]},\"sys\":{\"type\":\"Entry\",\"id\":\"jMmuOvsggsKAYQrlElGhv\",\"space\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"Space\",\"id\":\"8lybfh49sufl\"}},\"environment\":{\"sys\":{\"id\":\"master\",\"type\":\"Link\",\"linkType\":\"Environment\"}},\"contentType\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"ContentType\",\"id\":\"gitHubProject\"}},\"createdBy\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"User\",\"id\":\"08hJNFwMeAiYHqDFuz9fNp\"}},\"updatedBy\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"User\",\"id\":\"08hJNFwMeAiYHqDFuz9fNp\"}},\"revision\":1,\"createdAt\":\"2022-06-19T16:18:10.966Z\",\"updatedAt\":\"2022-06-19T16:18:10.966Z\"},\"fields\":{\"gitHubId\":{\"en-US\":\"Angular-Gulp-Boilerplate\"}}}",
+      "messageId": "4b519880-ee9c-4ceb-8ac5-027f71540858",
+      "receiptHandle": "AQEBP5fCXzCIuUFwAmxPvy5leeFndQanzg0iHEfcGaxxX/+rJDwB3FHiiXlickN3kQMvF0fZfgU0f5UaYSbsyn7ri8GGmgxJDrYq4WTK/ZM98k76iO4//8pSzFBDbVJE1iIgfvQtVHrm2wsQfo2QmS9pYX+H3OYJP0FEhhj23eIjENRxDM9WQm3LaislfGRcVszw67Pb/1Cp+0c7aaQ++mPVWUEBCTiZ7BuSmArF57PIB6pIS2oz5ll7tNUYRmUsuDN7++JwfCkHrPwDuvoDGJRswj4vJcPq5gxTkO8ZuM7xlJzS8foIvCRQYeIqto1x60Ood9gNo4ggWW3aCmel/wH6fJR+JOgptJtr3+MMtwxB7sr4DLXe1ghtl0E9GhVixWezk2I6/HDKS1EfR83/RWoeUA==",
+      "body": "{\"metadata\":{\"tags\":[]},\"fields\":{\"title\":{\"en-US\":\"Microsoft Azure Administrator AZ-104\"},\"provider\":{\"en-US\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"Entry\",\"id\":\"5Js6KA61Djs0v0EIZ9LKvN\"}}},\"providerLink\":{\"en-US\":\"https://learn.cloudlee.io/p/az-104-microsoft-azure-administrator\"}},\"sys\":{\"type\":\"Entry\",\"id\":\"5ay7paXku2n7mOK6shGjdV\",\"space\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"Space\",\"id\":\"xyz\"}},\"environment\":{\"sys\":{\"id\":\"master\",\"type\":\"Link\",\"linkType\":\"Environment\"}},\"contentType\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"ContentType\",\"id\":\"learningItem\"}},\"createdBy\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"User\",\"id\":\"08hJNFwMeAiYHqDFuz9fNp\"}},\"updatedBy\":{\"sys\":{\"type\":\"Link\",\"linkType\":\"User\",\"id\":\"08hJNFwMeAiYHqDFuz9fNp\"}},\"revision\":2,\"createdAt\":\"2024-01-05T21:27:48.859Z\",\"updatedAt\":\"2024-02-22T04:44:06.827Z\"}}",
       "attributes": {
         "ApproximateReceiveCount": "1",
-        "SentTimestamp": "1655655491914",
-        "SenderId": "AROAS4RNFY557LJQG4Y4W:loginov-rocks-contentful-webhook",
-        "ApproximateFirstReceiveTimestamp": "1655655491933"
+        "AWSTraceHeader": "Root=1-65d6d117-4af4d11558c20cc275cea330;Parent=0b9fadec5bf1dfd8;Sampled=0;Lineage=abf1c924:0",
+        "SentTimestamp": "1708577049321",
+        "SenderId": "AROA3KGZQOJUOLBAFRRGD:computing-contentful-webhook",
+        "ApproximateFirstReceiveTimestamp": "1708577049330"
       },
       "messageAttributes": {},
       "md5OfMessageAttributes": null,
-      "md5OfBody": "37e36d9726f361b1fa52d64fdcfd0f04",
+      "md5OfBody": "4040602b03ef106d135c0268e66b8e5e",
       "eventSource": "aws:sqs",
-      "eventSourceARN": "arn:aws:sqs:us-east-1:123:loginov-rocks-queue",
+      "eventSourceARN": "arn:aws:sqs:us-east-1:123:persistent-queue",
       "awsRegion": "us-east-1"
     }
   ]

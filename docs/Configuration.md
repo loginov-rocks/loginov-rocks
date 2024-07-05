@@ -1,13 +1,5 @@
 # Configuration
 
-## Infrastructure
-
-### Queue
-
-* `ReceiveMessageWaitTimeSeconds` = 20 seconds (maximum)
-* `VisibilityTimeout` = 6 * `WebAppFunction.Timeout` + `WebAppFunctionEventSourceMapping.MaximumBatchingWindowInSeconds`
-* Move to DLQ after 5 attempts, store for 2 weeks.
-
 ## GitHub Actions
 
 1. `AWS_ACCESS_KEY_ID`
@@ -29,3 +21,11 @@
 ## GitHub Personal Access Token
 
 No additional scopes, just public access.
+
+## Infrastructure
+
+### Queue
+
+* `ReceiveMessageWaitTimeSeconds` = 20 seconds (maximum)
+* `VisibilityTimeout` = 6 * `WebAppFunction.Timeout` + `WebAppFunctionEventSourceMapping.MaximumBatchingWindowInSeconds`
+* Move to DLQ after 5 attempts, store for 2 weeks.

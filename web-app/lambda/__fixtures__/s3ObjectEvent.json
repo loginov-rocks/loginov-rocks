@@ -1,20 +1,21 @@
 {
   "Records": [
     {
-      "messageId": "2970ce7c-52ed-4bfa-a006-4f8ec0fd29cf",
-      "receiptHandle": "AQEBGKGCkyTALq9HOlcYrakpzg201+cxWoPb8NfHrnoS10jMGPh4r6rQJTKxVrCrPNn/+TXgzqK1VG7aTd+ImINI9KVjo7DYrjZkkIyEHBLCcv5O9PFglAaCrJP3N40cLqEhYJkB/6bSt66my4QI79D0nC/ddDXxtDhuJmGAuGdBXyVPrz3q3dm1nE/c+5WN9b0WJkmfIvikRBCbjDfssUiA93PZX3RKM0rYKV9B0oCWU1JPn+aHDdaAf0dnOpM+SjHkWkOw5gERWt6PdAWGyK1JCl6oPTRNdOnd0fISQKJXmJZ12bXhW+zJvJXVZ/Y/HQK3QBuxEuIIIfWKxGwkISqHrKl6ZgxLF99cOtdrLmo6HolEohxsAohVwJUCAydMy1OlyEbpFApxPlQx1oVs931M0Q==",
-      "body": "{\"Records\":[{\"eventVersion\":\"2.1\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"us-east-1\",\"eventTime\":\"2022-06-19T16:30:35.922Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"AWS:AROAS4RNFY55764RV2UF2:loginov-rocks-update-github\"},\"requestParameters\":{\"sourceIPAddress\":\"35.170.55.64\"},\"responseElements\":{\"x-amz-request-id\":\"QQ5P7R5WSXCD4XX7\",\"x-amz-id-2\":\"xQaFpBO/xNApASs7GKT/OakHz0+PDtt4hObDCE0r5aWsHj0RIkbXB7UTqAHuA4XhotAo2A1mXFbtWGnoVdDSmgW9nRlCdDmm\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"0f2b58be-91da-43a8-b174-c27f8561e4c2\",\"bucket\":{\"name\":\"loginov-rocks-data\",\"ownerIdentity\":{\"principalId\":\"A6NN9LJ3M9OIA\"},\"arn\":\"arn:aws:s3:::loginov-rocks-data\"},\"object\":{\"key\":\"github.json\",\"size\":10470,\"eTag\":\"0529c8615b82a252d274828b6121bd61\",\"sequencer\":\"0062AF4F2BD9BE3F1E\"}}}]}",
+      "messageId": "982f1cde-6297-47ea-a4d1-806fb0835c6c",
+      "receiptHandle": "AQEBn4mDKYeYii9AD/NWC/FSPR3f+MaD620xB+UBygjghv1MmRGof34UzXKyrJs7YIuigPbOcMkQfgP4TiSORbEli/hz6lKNA8Hh9BaThLoZiRn+2/BQTRotPfZNjaGjI56H/Ax6ZZMBAJMBhzYC5jFU+qAzgsWKueAJEaGJbwF4rymxh5qix1J803TuhtfS/b9NNsK4dLTtSqQvJhXzhH31Fo/fz8zoHDdhp+t3KbB1Ah1ljVpF4rC8rOLpu3M7HYSODxdXKN9afGmDFEBEy4Lw802WOvGvZneXzQ0PripOF0HUaFuvENxuOOC7WkB/xPOS0f0dNZ3eO2VdUEvVe1xXocnqRd5J1OjhHoXjI3KB/BL7a59wkSXOmKPaHN9qmhknBXl+Uj9fwFGTAfCEyEfU2w==",
+      "body": "{\"Records\":[{\"eventVersion\":\"2.1\",\"eventSource\":\"aws:s3\",\"awsRegion\":\"us-east-1\",\"eventTime\":\"2024-02-22T04:44:28.323Z\",\"eventName\":\"ObjectCreated:Put\",\"userIdentity\":{\"principalId\":\"AWS:AROA3KGZQOJUDAWC7EAOH:computing-update-github-function\"},\"requestParameters\":{\"sourceIPAddress\":\"44.204.136.35\"},\"responseElements\":{\"x-amz-request-id\":\"2JX2XPDNG7J9PAPG\",\"x-amz-id-2\":\"OMg/SQcf3GyoYSCcwgcvbOA2RIRPVjLDb1oAdeudREdZxgspxZIc1XZvTrMWPElyiCTxwXYcxrJYtfHT9XutV+r8a7OH2M+f\"},\"s3\":{\"s3SchemaVersion\":\"1.0\",\"configurationId\":\"8714eb52-5819-4ddd-a1db-5fe5f204c325\",\"bucket\":{\"name\":\"persistent-data-bucket\",\"ownerIdentity\":{\"principalId\":\"A1PNIX35GG25ZB\"},\"arn\":\"arn:aws:s3:::persistent-data-bucket\"},\"object\":{\"key\":\"github.json\",\"size\":12058,\"eTag\":\"82f3a40dbec03181a8a9b5c0cd84a016\",\"sequencer\":\"0065D6D12C32502439\"}}}]}",
       "attributes": {
         "ApproximateReceiveCount": "1",
-        "SentTimestamp": "1655656236774",
-        "SenderId": "AIDAJHIPRHEMV73VRJEBU",
-        "ApproximateFirstReceiveTimestamp": "1655656236787"
+        "AWSTraceHeader": "Root=1-65d6d11f-63dd5d3059ae21c0744a81a7;Parent=40a1a9152f1d4ee0;Sampled=0",
+        "SentTimestamp": "1708577069323",
+        "SenderId": "AROA4R74ZO52XAB5OD7T4:S3-PROD-END",
+        "ApproximateFirstReceiveTimestamp": "1708577069333"
       },
       "messageAttributes": {},
+      "md5OfBody": "a7143659341136d2e28bdccf4750241e",
       "md5OfMessageAttributes": null,
-      "md5OfBody": "4b1658d10e37b7c17774c7b7a03ca5d0",
       "eventSource": "aws:sqs",
-      "eventSourceARN": "arn:aws:sqs:us-east-1:123:loginov-rocks-queue",
+      "eventSourceARN": "arn:aws:sqs:us-east-1:123:persistent-queue",
       "awsRegion": "us-east-1"
     }
   ]

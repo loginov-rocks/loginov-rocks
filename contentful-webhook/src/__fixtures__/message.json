@@ -4,100 +4,24 @@
   },
   "fields": {
     "title": {
-      "en-US": "Social Presence"
+      "en-US": "Microsoft Azure Administrator AZ-104"
     },
-    "items": {
-      "en-US": [
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "2EStqD0brNJ53vecaKWAjY"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "7EHcXnGWjmdWVI1ZgFG1nm"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "ChgOt3Bvt4j2Ng5vS3lGk"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "7n6N6kkObF1HvPq9VWZEwI"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "5sUyeEI9KQUVTit4FSBb7O"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "6Pbbus6Q5qhmMo9Ov3drq3"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "6Pfv67Wcswy9WPE8Mge5ZP"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "2HI2GPcfdminyll0O4UbE0"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "4iYhYt6folSr2KcNnOx80M"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "76Up42hnTfjW3i0xYzvDi"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "5NhbqYUjs422H9KGpY1SSO"
-          }
-        },
-        {
-          "sys": {
-            "type": "Link",
-            "linkType": "Entry",
-            "id": "3gbW6QkngO4xrRf0LDpaqN"
-          }
+    "provider": {
+      "en-US": {
+        "sys": {
+          "type": "Link",
+          "linkType": "Entry",
+          "id": "5Js6KA61Djs0v0EIZ9LKvN"
         }
-      ]
+      }
+    },
+    "providerLink": {
+      "en-US": "https://learn.cloudlee.io/p/az-104-microsoft-azure-administrator"
     }
   },
   "sys": {
     "type": "Entry",
-    "id": "6UNCF094uLEpSmpn9giX0I",
+    "id": "5ay7paXku2n7mOK6shGjdV",
     "space": {
       "sys": {
         "type": "Link",
@@ -116,7 +40,7 @@
       "sys": {
         "type": "Link",
         "linkType": "ContentType",
-        "id": "socialPresenceSection"
+        "id": "learningItem"
       }
     },
     "createdBy": {
@@ -133,8 +57,8 @@
         "id": "08hJNFwMeAiYHqDFuz9fNp"
       }
     },
-    "revision": 5,
-    "createdAt": "2022-06-13T15:36:08.207Z",
-    "updatedAt": "2023-12-28T04:34:02.674Z"
+    "revision": 2,
+    "createdAt": "2024-01-05T21:27:48.859Z",
+    "updatedAt": "2024-02-22T04:44:06.827Z"
   }
 }

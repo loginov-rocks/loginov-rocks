@@ -1,0 +1,13 @@
+{
+  "version": "0",
+  "id": "58718a6e-b6ad-4ec2-ded5-a3e6ebd13650",
+  "detail-type": "Scheduled Event",
+  "source": "aws.events",
+  "account": "123",
+  "time": "2024-02-21T06:18:15Z",
+  "region": "us-east-1",
+  "resources": [
+    "arn:aws:events:us-east-1:123:rule/computing-update-github-rule"
+  ],
+  "detail": {}
+}
