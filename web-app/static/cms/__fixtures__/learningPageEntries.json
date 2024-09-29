@@ -34,13 +34,13 @@
           "sys": {
             "type": "Link",
             "linkType": "ContentType",
-            "id": "educationPage"
+            "id": "learningPage"
           }
         },
         "locale": "en-US"
       },
       "fields": {
-        "title": "Education",
+        "title": "Learning",
         "sections": [
           {
             "metadata": {

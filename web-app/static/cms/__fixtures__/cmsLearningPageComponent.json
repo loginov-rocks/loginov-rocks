@@ -1,6 +1,6 @@
 {
   "props": {
-    "title": "Education",
+    "title": "Learning",
     "sections": [
       {
         "props": {
@@ -652,5 +652,5 @@
       }
     ]
   },
-  "type": "educationPage"
+  "type": "learningPage"
 }

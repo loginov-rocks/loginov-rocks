@@ -5,16 +5,16 @@ import { CmsRenderer } from 'cms/components/CmsRenderer';
 import { CmsComponent } from 'cms/interfaces/CmsComponent';
 
 interface RouteData {
-  cmsEducationPageComponent: CmsComponent;
+  cmsLearningPageComponent: CmsComponent;
 }
 
-const EducationPage: React.FC = () => {
-  const { cmsEducationPageComponent } = useRouteData<RouteData>();
+const LearningPage: React.FC = () => {
+  const { cmsLearningPageComponent } = useRouteData<RouteData>();
 
   return (
-    <CmsRenderer cmsComponent={cmsEducationPageComponent} />
+    <CmsRenderer cmsComponent={cmsLearningPageComponent} />
   );
 };
 
 // Default export is required by React Static.
-export default EducationPage;
+export default LearningPage;

@@ -6,8 +6,8 @@ import { config } from 'dotenv';
 import { CmsClient } from '../cms/CmsClient';
 
 import { DolphRoute } from './DolphRoute';
-import { EducationRoute } from './EducationRoute';
 import { HomeRoute } from './HomeRoute';
+import { LearningRoute } from './LearningRoute';
 import { Routes } from './Routes';
 
 // Load environment variables configuration.
@@ -58,18 +58,18 @@ const homeRoute = new HomeRoute({
   s3Client,
 });
 
-const educationRoute = new EducationRoute({
-  cmsClient,
-  cmsEducationPageComponentType: process.env.CMS_EDUCATION_PAGE_COMPONENT_TYPE,
-});
-
 // Exporting the route to use in `siteData` since no static route exists for this page.
 export const dolphRoute = new DolphRoute({
   cmsClient,
   cmsDolphPageComponentType: process.env.CMS_DOLPH_PAGE_COMPONENT_TYPE,
 });
 
+const learningRoute = new LearningRoute({
+  cmsClient,
+  cmsLearningPageComponentType: process.env.CMS_LEARNING_PAGE_COMPONENT_TYPE,
+});
+
 routes.registerRoute('/', homeRoute);
-routes.registerRoute('/education', educationRoute);
+routes.registerRoute('/learning', learningRoute);
 
 export default routes;

@@ -3,7 +3,7 @@
 exports[`matches snapshot 1`] = `
 <Fragment>
   <h1>
-    Education
+    Learning
   </h1>
   <nav>
     <Link
@@ -14,7 +14,7 @@ exports[`matches snapshot 1`] = `
      
     /
      
-    Education
+    Learning
   </nav>
 </Fragment>
 `;

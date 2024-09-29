@@ -9,7 +9,7 @@ interface Props extends CmsConnectedProps {
   title: string;
 }
 
-export const EducationPage: React.FC<Props> = ({ render, sections, title }) => (
+export const LearningPage: React.FC<Props> = ({ render, sections, title }) => (
   <>
     <h1>{title}</h1>
     <nav>
@@ -17,7 +17,7 @@ export const EducationPage: React.FC<Props> = ({ render, sections, title }) => (
       {' '}
       /
       {' '}
-      Education
+      Learning
     </nav>
     {render(sections)}
   </>

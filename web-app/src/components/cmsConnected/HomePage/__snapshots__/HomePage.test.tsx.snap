@@ -11,9 +11,9 @@ exports[`matches snapshot 1`] = `
     /
      
     <Link
-      to="/education"
+      to="/learning"
     >
-      Education
+      Learning
     </Link>
   </nav>
 </Fragment>

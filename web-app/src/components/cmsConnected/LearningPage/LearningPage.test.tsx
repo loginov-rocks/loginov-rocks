@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { EducationPage } from './EducationPage';
+import { LearningPage } from './LearningPage';
 
 it('matches snapshot', () => {
-  const wrapper = shallow(<EducationPage render={() => null} sections={[]} title="Education" />);
+  const wrapper = shallow(<LearningPage render={() => null} sections={[]} title="Learning" />);
 
   expect(wrapper).toMatchSnapshot();
 });

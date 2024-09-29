@@ -17,7 +17,7 @@ export const HomePage: React.FC<Props> = ({ render, sections, title }) => (
       {' '}
       /
       {' '}
-      <Link to="/education">Education</Link>
+      <Link to="/learning">Learning</Link>
     </nav>
     {render(sections)}
   </>
