@@ -1,4 +1,4 @@
-export const authorize = (header: string | undefined, username: string, password: string): boolean => {
+export function authorize(header: string | undefined, username: string, password: string): boolean {
   if (!header) {
     return false;
   }

@@ -24,7 +24,7 @@ describe('CachedSecretsManagerClient', () => {
     cachedSecretsManagerClient = new CachedSecretsManagerClient({ secretArn, secretsManagerClient });
   });
 
-  it('should request the secret by ARN and return the value for the key', async () => {
+  it('requests the secret by ARN and returns the value for the key', async () => {
     const value = await cachedSecretsManagerClient.getValue('plain');
 
     expect(GetSecretValueCommandMock).toHaveBeenCalledTimes(1);
@@ -34,30 +34,30 @@ describe('CachedSecretsManagerClient', () => {
     expect(value).toBe('plain-value');
   });
 
-  it('should decode the value from base64 when requested', async () => {
+  it('decodes the value from base64 when requested', async () => {
     const value = await cachedSecretsManagerClient.getValue('encoded', { decodeBase64: true });
 
     expect(value).toBe('decoded-value');
   });
 
-  it('should fetch the secret only once across multiple calls', async () => {
+  it('fetches the secret only once across multiple calls', async () => {
     await cachedSecretsManagerClient.getValue('plain');
     await cachedSecretsManagerClient.getValue('encoded', { decodeBase64: true });
 
     expect(send).toHaveBeenCalledTimes(1);
   });
 
-  it('should throw when the key is missing', async () => {
+  it('throws when the key is missing', async () => {
     await expect(cachedSecretsManagerClient.getValue('missing')).rejects.toThrow('The secret has no "missing" key');
   });
 
-  it('should throw when the secret string is missing', async () => {
+  it('throws when the secret string is missing', async () => {
     send.mockResolvedValue({});
 
     await expect(cachedSecretsManagerClient.getValue('plain')).rejects.toThrow('The secret string is missing');
   });
 
-  it('should throw when the secret string is not valid JSON', async () => {
+  it('throws when the secret string is not valid JSON', async () => {
     send.mockResolvedValue({ SecretString: 'not-json' });
 
     await expect(cachedSecretsManagerClient.getValue('plain')).rejects

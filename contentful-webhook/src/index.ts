@@ -1,16 +1,13 @@
-/* eslint-disable import/no-import-module-exports */
+import type { APIGatewayProxyEventV2, APIGatewayProxyStructuredResultV2 } from 'aws-lambda';
 
 import { SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
 import { SendMessageCommand, SQSClient } from '@aws-sdk/client-sqs';
 import { CachedSecretsManagerClient } from '@loginov-rocks/loginov-rocks-shared';
 
+import { authorize } from './authorize.ts';
 import {
   SECRET_ARN, SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY, SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY, SQS_QUEUE_URL,
-} from 'Constants';
-import { Event } from 'Event';
-import { Response } from 'Response';
-
-import { authorize } from './authorize';
+} from './constants.ts';
 
 const secretsManagerClient = new SecretsManagerClient();
 const sqsClient = new SQSClient();
@@ -20,7 +17,7 @@ const cachedSecretsManagerClient = new CachedSecretsManagerClient({
   secretsManagerClient,
 });
 
-exports.handler = async (event: Event): Promise<Response> => {
+export async function handler(event: APIGatewayProxyEventV2): Promise<APIGatewayProxyStructuredResultV2> {
   console.log('event', JSON.stringify(event));
 
   const {
@@ -30,7 +27,7 @@ exports.handler = async (event: Event): Promise<Response> => {
     requestContext: { http: { method } },
   } = event;
 
-  if (method !== 'POST') {
+  if (method.toLowerCase() !== 'post') {
     return {
       body: 'Method Not Allowed',
       statusCode: 405,
@@ -56,7 +53,7 @@ exports.handler = async (event: Event): Promise<Response> => {
 
   const message = isBase64Encoded ? Buffer.from(body, 'base64').toString() : body;
 
-  console.log('message', message);
+  console.log('message', JSON.stringify(message));
 
   const sendMessageCommand = new SendMessageCommand({
     MessageBody: message,
@@ -64,7 +61,6 @@ exports.handler = async (event: Event): Promise<Response> => {
   });
 
   let sendMessageResponse;
-
   try {
     sendMessageResponse = await sqsClient.send(sendMessageCommand);
   } catch (error) {

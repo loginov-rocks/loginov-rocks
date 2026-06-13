@@ -19,10 +19,8 @@
     "dist/*"
   ],
   "scripts": {
-    "build": "npm run clean:build && tsc --project tsconfig.build.json",
-    "clean:build": "rimraf dist",
-    "clean:coverage": "rimraf coverage",
-    "coverage": "npm run clean:coverage && npm run test:coverage",
+    "build": "rimraf dist && tsc --project tsconfig.build.json",
+    "coverage": "rimraf coverage && npm run test:coverage",
     "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",
     "package": "npm pack && mv loginov-rocks-loginov-rocks-shared-*.tgz loginov-rocks-loginov-rocks-shared.tgz",

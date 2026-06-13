@@ -30,7 +30,7 @@ describe('CloudFrontInvalidation', () => {
     jest.useRealTimers();
   });
 
-  it('should create the invalidation command with the expected batch', async () => {
+  it('creates the invalidation command with the expected batch', async () => {
     await cloudFrontInvalidation.invalidate();
 
     expect(CreateInvalidationCommandMock).toHaveBeenCalledTimes(1);
@@ -46,7 +46,7 @@ describe('CloudFrontInvalidation', () => {
     });
   });
 
-  it('should send the invalidation command and return the result', async () => {
+  it('sends the invalidation command and returns the result', async () => {
     const result = await cloudFrontInvalidation.invalidate();
 
     expect(send).toHaveBeenCalledTimes(1);
