@@ -1,4 +1,4 @@
-import { authorize } from './authorize';
+import { authorize } from './authorize.ts';
 
 describe('authorize', () => {
   const username = 'username';

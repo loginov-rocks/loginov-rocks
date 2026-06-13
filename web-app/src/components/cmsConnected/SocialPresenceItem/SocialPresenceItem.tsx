@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { ExternalLink } from 'components/shared/ExternalLink';
-import { SOCIAL_PRESENCE_DRIVE2_TITLE } from 'Constants';
+import { SOCIAL_PRESENCE_DRIVE2_TITLE } from 'constants.ts';
 
 interface Props {
   secondaryUrl?: string;

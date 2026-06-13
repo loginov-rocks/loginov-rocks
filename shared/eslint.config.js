@@ -31,7 +31,7 @@ export default defineConfig([
   unicorn.configs.recommended,
   {
     rules: {
-      '@stylistic/max-len': ['error', { code: 120 }],
+      '@stylistic/max-len': ['error', { code: 120, ignoreUrls: true }],
       'unicorn/filename-case': ['error', { cases: { camelCase: true, pascalCase: true } }],
       'unicorn/no-null': 'off',
     },

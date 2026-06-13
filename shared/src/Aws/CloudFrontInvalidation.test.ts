@@ -1,6 +1,6 @@
 import { type CloudFrontClient, CreateInvalidationCommand } from '@aws-sdk/client-cloudfront';
 
-import { CloudFrontInvalidation } from './CloudFrontInvalidation';
+import { CloudFrontInvalidation } from './CloudFrontInvalidation.ts';
 
 jest.mock('@aws-sdk/client-cloudfront', () => ({
   CreateInvalidationCommand: jest.fn(),

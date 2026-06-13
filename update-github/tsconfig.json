@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "allowImportingTsExtensions": true,
+    "erasableSyntaxOnly": true,
     "noEmit": true,
-    "strict": true
+    "types": [
+      "jest",
+      "node"
+    ],
+    "verbatimModuleSyntax": true
   }
 }

@@ -1,4 +1,4 @@
-/* eslint-disable import/no-import-module-exports */
+import type { ScheduledEvent } from 'aws-lambda';
 
 import { GetObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 import { SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
@@ -7,8 +7,8 @@ import { CachedSecretsManagerClient } from '@loginov-rocks/loginov-rocks-shared'
 import {
   DATA_BUCKET_NAME, DATA_GITHUB_FILE_KEY, GITHUB_BASE_URL, SECRET_ARN,
   SECRET_UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN_KEY,
-} from 'Constants';
-import { GitHub } from 'GitHub/GitHub';
+} from './constants.ts';
+import { GitHubClient } from './GitHubClient.ts';
 
 const s3Client = new S3Client();
 const secretsManagerClient = new SecretsManagerClient();
@@ -18,21 +18,21 @@ const cachedSecretsManagerClient = new CachedSecretsManagerClient({
   secretsManagerClient,
 });
 
-const gitHub = new GitHub({
+const gitHubClient = new GitHubClient({
   baseUrl: GITHUB_BASE_URL,
 });
 
-exports.handler = async (event: unknown): Promise<void> => {
+export async function handler(event: ScheduledEvent): Promise<void> {
   console.log('event', JSON.stringify(event));
 
   const personalAccessToken = await cachedSecretsManagerClient.getValue(
     SECRET_UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN_KEY,
   );
-  gitHub.setPersonalAccessToken(personalAccessToken);
+  gitHubClient.setPersonalAccessToken(personalAccessToken);
 
   console.log('Getting GitHub data...');
 
-  const data = await gitHub.getData();
+  const data = await gitHubClient.getData();
 
   console.log('Getting current GitHub data file...');
 
@@ -42,21 +42,19 @@ exports.handler = async (event: unknown): Promise<void> => {
   });
 
   let s3Object;
-
   try {
     s3Object = await s3Client.send(getObjectCommand);
-  } catch (error: any) {
-    if (error.name !== 'NoSuchKey') {
+  } catch (error) {
+    if (!(error instanceof Error) || error.name !== 'NoSuchKey') {
       throw error;
     }
   }
 
-  const currentData = s3Object && s3Object.Body ? await s3Object.Body.transformToString() : '';
-
+  const currentData = s3Object?.Body ? await s3Object.Body.transformToString() : '';
   const newData = JSON.stringify(data);
 
   if (newData === currentData) {
-    console.log('GitHub data has not changed, skipping.');
+    console.log('GitHub data has not changed, skipping the update');
 
     return;
   }
@@ -73,4 +71,4 @@ exports.handler = async (event: unknown): Promise<void> => {
   const putObjectResponse = await s3Client.send(putObjectCommand);
 
   console.log('putObjectResponse', JSON.stringify(putObjectResponse));
-};
+}

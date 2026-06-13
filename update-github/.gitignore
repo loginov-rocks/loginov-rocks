@@ -1,6 +1,5 @@
 # Root Directories
 /coverage/
-/dist/
 /node_modules/
 
 # Root Files

@@ -1,6 +1,6 @@
 import { GetSecretValueCommand, type SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
 
-import { CachedSecretsManagerClient } from './CachedSecretsManagerClient';
+import { CachedSecretsManagerClient } from './CachedSecretsManagerClient.ts';
 
 jest.mock('@aws-sdk/client-secrets-manager', () => ({
   GetSecretValueCommand: jest.fn(),
