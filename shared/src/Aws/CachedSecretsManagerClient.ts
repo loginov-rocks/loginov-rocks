@@ -21,7 +21,7 @@ export class CachedSecretsManagerClient {
     this.secretsManagerClient = secretsManagerClient;
   }
 
-  public async getValue(key: string, { decodeBase64 = false }: GetValueOptions): Promise<string> {
+  public async getValue(key: string, { decodeBase64 = false }: GetValueOptions = {}): Promise<string> {
     const secret = await this.getSecretPromise();
 
     if (!secret[key]) {
