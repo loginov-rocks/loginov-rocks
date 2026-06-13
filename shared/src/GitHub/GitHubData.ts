@@ -1,4 +1,4 @@
-import { GitHubRepo } from './GitHubRepo';
+import type { GitHubRepo } from './GitHubRepo.ts';
 
 export interface GitHubData {
   homepageUrl: string;

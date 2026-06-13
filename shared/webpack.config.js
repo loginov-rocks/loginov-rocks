@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
+import path from 'node:path';
 
-const path = require('path');
-
-module.exports = {
+export default {
   devtool: false,
   entry: './src/index.ts',
   externals: [
@@ -21,7 +19,7 @@ module.exports = {
   },
   output: {
     filename: 'index.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(import.meta.dirname, 'dist'),
   },
   resolve: {
     extensions: ['.js', '.ts'],

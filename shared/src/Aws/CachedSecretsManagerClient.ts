@@ -1,41 +1,41 @@
-import { GetSecretValueCommand, SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
+import { GetSecretValueCommand, type SecretsManagerClient } from '@aws-sdk/client-secrets-manager';
+
+interface GetValueOptions {
+  decodeBase64?: boolean;
+}
 
 interface Options {
   secretArn: string;
   secretsManagerClient: SecretsManagerClient;
 }
 
-interface GetValueOptions {
-  decodeBase64: boolean;
-}
+type Secret = Record<string, string>;
 
 export class CachedSecretsManagerClient {
   private readonly secretArn: string;
-
+  private secretPromise: null | Promise<Secret> = null;
   private readonly secretsManagerClient: SecretsManagerClient;
-
-  private secretPromise: Promise<Record<string, string>> | null = null;
 
   constructor({ secretArn, secretsManagerClient }: Options) {
     this.secretArn = secretArn;
     this.secretsManagerClient = secretsManagerClient;
   }
 
-  public async getValue(key: string, options: GetValueOptions = { decodeBase64: false }): Promise<string> {
+  public async getValue(key: string, { decodeBase64 = false }: GetValueOptions): Promise<string> {
     const secret = await this.getSecretPromise();
 
-    if (secret[key] === undefined) {
-      throw new Error(`The secret has no "${key}" key, or its value is undefined`);
+    if (!secret[key]) {
+      throw new Error(`The secret has no "${key}" key`);
     }
 
-    if (options.decodeBase64) {
+    if (decodeBase64) {
       return atob(secret[key]);
     }
 
     return secret[key];
   }
 
-  private async getSecret(): Promise<Record<string, string>> {
+  private async getSecret(): Promise<Secret> {
     const getSecretValueCommand = new GetSecretValueCommand({ SecretId: this.secretArn });
     const secretsManagerResponse = await this.secretsManagerClient.send(getSecretValueCommand);
 
@@ -43,13 +43,15 @@ export class CachedSecretsManagerClient {
       throw new Error('The secret string is missing');
     }
 
-    return JSON.parse(secretsManagerResponse.SecretString);
+    try {
+      return JSON.parse(secretsManagerResponse.SecretString) as Secret;
+    } catch (error) {
+      throw new Error('Failed to parse the secret string as JSON', { cause: error });
+    }
   }
 
-  private getSecretPromise(): Promise<Record<string, string>> {
-    if (!this.secretPromise) {
-      this.secretPromise = this.getSecret();
-    }
+  private getSecretPromise(): Promise<Secret> {
+    this.secretPromise ??= this.getSecret();
 
     return this.secretPromise;
   }
