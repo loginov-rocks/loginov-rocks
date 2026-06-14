@@ -5,10 +5,12 @@ describe('constants', () => {
     jest.resetModules();
     process.env = {
       ...originalEnvironment,
+      PASSWORD_PARAMETER_NAME: 'password',
       SECRET_ARN: 'secret-arn',
       SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY: 'password-key',
       SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY: 'username-key',
       SQS_QUEUE_URL: 'sqs-queue-url',
+      USERNAME_PARAMETER_NAME: 'username',
     };
   });
 
@@ -19,15 +21,18 @@ describe('constants', () => {
   it('exports the values from the environment', async () => {
     const constants = await import('./constants.ts');
 
+    expect(constants.PASSWORD_PARAMETER_NAME).toBe('password');
     expect(constants.SECRET_ARN).toBe('secret-arn');
     expect(constants.SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY).toBe('password-key');
     expect(constants.SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY).toBe('username-key');
     expect(constants.SQS_QUEUE_URL).toBe('sqs-queue-url');
+    expect(constants.USERNAME_PARAMETER_NAME).toBe('username');
   });
 
   it('throws when a required environment variable is missing', async () => {
-    delete process.env.SECRET_ARN;
+    delete process.env.PASSWORD_PARAMETER_NAME;
 
-    await expect(import('./constants.ts')).rejects.toThrow('Missing required environment variable "SECRET_ARN"');
+    await expect(import('./constants.ts')).rejects
+      .toThrow('Missing required environment variable "PASSWORD_PARAMETER_NAME"');
   });
 });

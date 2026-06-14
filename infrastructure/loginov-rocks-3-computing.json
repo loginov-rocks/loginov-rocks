@@ -1,23 +1,23 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Outputs": {
-    "ContentfulWebhookUrl": {
+    "ContentfulWebhookFunctionUrl": {
       "Value": {
         "Fn::GetAtt": [
-          "ContentfulWebhookUrl",
+          "ContentfulWebhookFunctionUrl",
           "FunctionUrl"
         ]
       },
       "Export": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookUrl"
+          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookFunctionUrl"
         }
       }
     }
   },
   "Parameters": {
-    "DataGitHubFileKey": {
-      "Description": "GitHub File Key in Data bucket",
+    "DataGithubFileKey": {
+      "Description": "GitHub file key in Data bucket",
       "Default": "github.json",
       "Type": "String"
     },
@@ -29,34 +29,19 @@
       "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
       "Type": "String"
     },
-    "UpdateGitHubGitHubBaseUrl": {
-      "Description": "GitHub Base URL for Update GitHub function",
+    "UpdateGithubGithubBaseUrl": {
+      "Description": "GitHub base URL for Update Github",
       "Default": "https://api.github.com",
       "Type": "String"
     },
-    "WebAppCmsDolphPageComponentType": {
-      "Description": "CMS \"Dolph Page\" Component Type for Web App function",
-      "Default": "dolphPage",
-      "Type": "String"
-    },
-    "WebAppCmsHomePageComponentType": {
-      "Description": "CMS \"Home Page\" Component Type for Web App function",
-      "Default": "homePage",
-      "Type": "String"
-    },
-    "WebAppCmsLearningPageComponentType": {
-      "Description": "CMS \"Learning Page\" Component Type for Web App function",
-      "Default": "learningPage",
-      "Type": "String"
-    },
     "WebAppLambdaInvalidationPath": {
-      "Description": "Invalidation Path for Web App CloudFront Distribution to invalidate after static site generation done by Web App function",
+      "Description": "Invalidation path for Web App CloudFront Distribution to invalidate after static site generation done by Web App",
       "Default": "/*",
       "Type": "String"
     }
   },
   "Resources": {
-    "UpdateGitHubRule": {
+    "UpdateGithubRule": {
       "Type": "AWS::Events::Rule",
       "Properties": {
         "Name": {
@@ -67,11 +52,11 @@
           {
             "Arn": {
               "Fn::GetAtt": [
-                "UpdateGitHubFunction",
+                "UpdateGithubFunction",
                 "Arn"
               ]
             },
-            "Id": "UpdateGitHubRuleTarget"
+            "Id": "UpdateGithubRuleTarget"
           }
         ]
       }
@@ -124,13 +109,13 @@
               "Resource": [
                 {
                   "Fn::GetAtt": [
-                    "ContentfulWebhook",
+                    "ContentfulWebhookFunction",
                     "Arn"
                   ]
                 },
                 {
                   "Fn::GetAtt": [
-                    "UpdateGitHubFunction",
+                    "UpdateGithubFunction",
                     "Arn"
                   ]
                 },
@@ -165,7 +150,7 @@
                 },
                 {
                   "Fn::Sub": [
-                    "${DataBucketArn}/${DataGitHubFileKey}",
+                    "${DataBucketArn}/${DataGithubFileKey}",
                     {
                       "DataBucketArn": {
                         "Fn::ImportValue": {
@@ -233,7 +218,7 @@
                 },
                 {
                   "Fn::Sub": [
-                    "${DataBucketArn}/${DataGitHubFileKey}",
+                    "${DataBucketArn}/${DataGithubFileKey}",
                     {
                       "DataBucketArn": {
                         "Fn::ImportValue": {
@@ -313,7 +298,7 @@
         }
       }
     },
-    "ContentfulWebhookRole": {
+    "ContentfulWebhookFunctionRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -351,7 +336,7 @@
                       "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*",
                       {
                         "FunctionName": {
-                          "Fn::Sub": "${AWS::StackName}-contentful-webhook"
+                          "Fn::Sub": "${AWS::StackName}-contentful-webhook-function"
                         }
                       }
                     ]
@@ -382,6 +367,22 @@
                       "Fn::Sub": "${PersistentStackName}-QueueArn"
                     }
                   }
+                },
+                {
+                  "Action": "ssm:GetParameter",
+                  "Effect": "Allow",
+                  "Resource": [
+                    {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-ContentfulWebhookPasswordParameterArn"
+                      }
+                    },
+                    {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-ContentfulWebhookUsernameParameterArn"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -389,11 +390,11 @@
           }
         ],
         "RoleName": {
-          "Fn::Sub": "${AWS::StackName}-contentful-webhook-role"
+          "Fn::Sub": "${AWS::StackName}-contentful-webhook-function-role"
         }
       }
     },
-    "UpdateGitHubFunctionRole": {
+    "UpdateGithubFunctionRole": {
       "Type": "AWS::IAM::Role",
       "Properties": {
         "AssumeRolePolicyDocument": {
@@ -469,7 +470,7 @@
                     },
                     {
                       "Fn::Sub": [
-                        "${DataBucketArn}/${DataGitHubFileKey}",
+                        "${DataBucketArn}/${DataGithubFileKey}",
                         {
                           "DataBucketArn": {
                             "Fn::ImportValue": {
@@ -480,6 +481,15 @@
                       ]
                     }
                   ]
+                },
+                {
+                  "Action": "ssm:GetParameter",
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::ImportValue": {
+                      "Fn::Sub": "${PersistentStackName}-UpdateGithubPersonalAccessTokenParameterArn"
+                    }
+                  }
                 }
               ]
             },
@@ -544,6 +554,22 @@
               "Version": "2012-10-17",
               "Statement": [
                 {
+                  "Action": "cloudfront:CreateInvalidation",
+                  "Effect": "Allow",
+                  "Resource": {
+                    "Fn::Sub": [
+                      "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}",
+                      {
+                        "DistributionId": {
+                          "Fn::ImportValue": {
+                            "Fn::Sub": "${DistributionStackName}-DistributionId"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
                   "Action": "secretsmanager:GetSecretValue",
                   "Effect": "Allow",
                   "Resource": {
@@ -579,7 +605,7 @@
                     },
                     {
                       "Fn::Sub": [
-                        "${DataBucketArn}/${DataGitHubFileKey}",
+                        "${DataBucketArn}/${DataGithubFileKey}",
                         {
                           "DataBucketArn": {
                             "Fn::ImportValue": {
@@ -620,20 +646,20 @@
                   ]
                 },
                 {
-                  "Action": "cloudfront:CreateInvalidation",
+                  "Action": "ssm:GetParameter",
                   "Effect": "Allow",
-                  "Resource": {
-                    "Fn::Sub": [
-                      "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}",
-                      {
-                        "DistributionId": {
-                          "Fn::ImportValue": {
-                            "Fn::Sub": "${DistributionStackName}-DistributionId"
-                          }
-                        }
+                  "Resource": [
+                    {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-WebAppCmsAccessTokenParameterArn"
                       }
-                    ]
-                  }
+                    },
+                    {
+                      "Fn::ImportValue": {
+                        "Fn::Sub": "${PersistentStackName}-WebAppCmsSpaceParameterArn"
+                      }
+                    }
+                  ]
                 }
               ]
             },
@@ -686,7 +712,7 @@
         "MaximumBatchingWindowInSeconds": 300
       }
     },
-    "ContentfulWebhook": {
+    "ContentfulWebhookFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Architectures": [
@@ -702,6 +728,11 @@
         },
         "Environment": {
           "Variables": {
+            "PASSWORD_PARAMETER_NAME": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-ContentfulWebhookPasswordParameterName"
+              }
+            },
             "SECRET_ARN": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-SecretArn"
@@ -713,16 +744,21 @@
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-QueueUrl"
               }
+            },
+            "USERNAME_PARAMETER_NAME": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-ContentfulWebhookUsernameParameterName"
+              }
             }
           }
         },
         "FunctionName": {
-          "Fn::Sub": "${AWS::StackName}-contentful-webhook"
+          "Fn::Sub": "${AWS::StackName}-contentful-webhook-function"
         },
         "Handler": "index.handler",
         "Role": {
           "Fn::GetAtt": [
-            "ContentfulWebhookRole",
+            "ContentfulWebhookFunctionRole",
             "Arn"
           ]
         },
@@ -730,7 +766,7 @@
         "Timeout": 20
       }
     },
-    "UpdateGitHubFunction": {
+    "UpdateGithubFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Architectures": [
@@ -752,10 +788,15 @@
               }
             },
             "DATA_GITHUB_FILE_KEY": {
-              "Ref": "DataGitHubFileKey"
+              "Ref": "DataGithubFileKey"
             },
             "GITHUB_BASE_URL": {
-              "Ref": "UpdateGitHubGitHubBaseUrl"
+              "Ref": "UpdateGithubGithubBaseUrl"
+            },
+            "PERSONAL_ACCESS_TOKEN_PARAMETER_NAME": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-UpdateGithubPersonalAccessTokenParameterName"
+              }
             },
             "SECRET_ARN": {
               "Fn::ImportValue": {
@@ -772,7 +813,7 @@
         "ReservedConcurrentExecutions": 1,
         "Role": {
           "Fn::GetAtt": [
-            "UpdateGitHubFunctionRole",
+            "UpdateGithubFunctionRole",
             "Arn"
           ]
         },
@@ -799,6 +840,16 @@
         },
         "Environment": {
           "Variables": {
+            "CMS_ACCESS_TOKEN_PARAMETER_NAME": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-WebAppCmsAccessTokenParameterName"
+              }
+            },
+            "CMS_SPACE_PARAMETER_NAME": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-WebAppCmsSpaceParameterName"
+              }
+            },
             "LAMBDA_ACCESS_KEY_ID": "",
             "LAMBDA_SECRET_ACCESS_KEY": "",
             "LAMBDA_REGION": {
@@ -819,22 +870,13 @@
                 "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
               }
             },
-            "CMS_DOLPH_PAGE_COMPONENT_TYPE": {
-              "Ref": "WebAppCmsDolphPageComponentType"
-            },
-            "CMS_HOME_PAGE_COMPONENT_TYPE": {
-              "Ref": "WebAppCmsHomePageComponentType"
-            },
-            "CMS_LEARNING_PAGE_COMPONENT_TYPE": {
-              "Ref": "WebAppCmsLearningPageComponentType"
-            },
             "DATA_BUCKET_NAME": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-DataBucketName"
               }
             },
             "DATA_GITHUB_FILE_KEY": {
-              "Ref": "DataGitHubFileKey"
+              "Ref": "DataGithubFileKey"
             },
             "SECRET_ARN": {
               "Fn::ImportValue": {
@@ -862,39 +904,39 @@
         "Timeout": 900
       }
     },
-    "ContentfulWebhookPermission": {
+    "ContentfulWebhookFunctionPermission": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunctionUrl",
         "FunctionName": {
-          "Ref": "ContentfulWebhook"
+          "Ref": "ContentfulWebhookFunction"
         },
         "FunctionUrlAuthType": "NONE",
         "Principal": "*"
       }
     },
-    "UpdateGitHubRulePermission": {
+    "UpdateGithubRulePermission": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "Action": "lambda:InvokeFunction",
         "FunctionName": {
-          "Ref": "UpdateGitHubFunction"
+          "Ref": "UpdateGithubFunction"
         },
         "Principal": "events.amazonaws.com",
         "SourceArn": {
           "Fn::GetAtt": [
-            "UpdateGitHubRule",
+            "UpdateGithubRule",
             "Arn"
           ]
         }
       }
     },
-    "ContentfulWebhookUrl": {
+    "ContentfulWebhookFunctionUrl": {
       "Type": "AWS::Lambda::Url",
       "Properties": {
         "AuthType": "NONE",
         "TargetFunctionArn": {
-          "Ref": "ContentfulWebhook"
+          "Ref": "ContentfulWebhookFunction"
         }
       }
     }

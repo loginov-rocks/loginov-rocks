@@ -13,12 +13,12 @@
     }
   },
   "Parameters": {
-    "GoogleVerificationResourceRecord": {
-      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
-      "Type": "String"
-    },
     "DomainName": {
       "Description": "Domain Name for Route 53",
+      "Type": "String"
+    },
+    "GoogleVerificationResourceRecord": {
+      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
       "Type": "String"
     },
     "ICloudDkimHost": {

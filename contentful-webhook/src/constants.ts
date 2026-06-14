@@ -8,6 +8,9 @@ function requireValue(name: string): string {
   return value;
 }
 
+export const PASSWORD_PARAMETER_NAME = requireValue('PASSWORD_PARAMETER_NAME');
+export const USERNAME_PARAMETER_NAME = requireValue('USERNAME_PARAMETER_NAME');
+
 export const SECRET_ARN = requireValue('SECRET_ARN');
 export const SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY = requireValue('SECRET_CONTENTFUL_WEBHOOK_AUTH_PASSWORD_KEY');
 export const SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY = requireValue('SECRET_CONTENTFUL_WEBHOOK_AUTH_USERNAME_KEY');

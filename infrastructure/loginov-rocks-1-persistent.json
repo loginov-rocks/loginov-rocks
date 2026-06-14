@@ -1,6 +1,46 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Outputs": {
+    "ContentfulWebhookPasswordParameterArn": {
+      "Value": {
+        "Fn::Sub": "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${ContentfulWebhookPasswordParameter}"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookPasswordParameterArn"
+        }
+      }
+    },
+    "ContentfulWebhookPasswordParameterName": {
+      "Value": {
+        "Ref": "ContentfulWebhookPasswordParameter"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookPasswordParameterName"
+        }
+      }
+    },
+    "ContentfulWebhookUsernameParameterArn": {
+      "Value": {
+        "Fn::Sub": "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${ContentfulWebhookUsernameParameter}"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookUsernameParameterArn"
+        }
+      }
+    },
+    "ContentfulWebhookUsernameParameterName": {
+      "Value": {
+        "Ref": "ContentfulWebhookUsernameParameter"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookUsernameParameterName"
+        }
+      }
+    },
     "DataBucketArn": {
       "Value": {
         "Fn::GetAtt": [
@@ -80,6 +120,26 @@
         }
       }
     },
+    "UpdateGithubPersonalAccessTokenParameterArn": {
+      "Value": {
+        "Fn::Sub": "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${UpdateGithubPersonalAccessTokenParameter}"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-UpdateGithubPersonalAccessTokenParameterArn"
+        }
+      }
+    },
+    "UpdateGithubPersonalAccessTokenParameterName": {
+      "Value": {
+        "Ref": "UpdateGithubPersonalAccessTokenParameter"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-UpdateGithubPersonalAccessTokenParameterName"
+        }
+      }
+    },
     "WebAppBucketArn": {
       "Value": {
         "Fn::GetAtt": [
@@ -100,6 +160,46 @@
       "Export": {
         "Name": {
           "Fn::Sub": "${AWS::StackName}-WebAppBucketName"
+        }
+      }
+    },
+    "WebAppCmsAccessTokenParameterArn": {
+      "Value": {
+        "Fn::Sub": "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${WebAppCmsAccessTokenParameter}"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppCmsAccessTokenParameterArn"
+        }
+      }
+    },
+    "WebAppCmsAccessTokenParameterName": {
+      "Value": {
+        "Ref": "WebAppCmsAccessTokenParameter"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppCmsAccessTokenParameterName"
+        }
+      }
+    },
+    "WebAppCmsSpaceParameterArn": {
+      "Value": {
+        "Fn::Sub": "arn:aws:ssm:${AWS::Region}:${AWS::AccountId}:parameter${WebAppCmsSpaceParameter}"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppCmsSpaceParameterArn"
+        }
+      }
+    },
+    "WebAppCmsSpaceParameterName": {
+      "Value": {
+        "Ref": "WebAppCmsSpaceParameter"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-WebAppCmsSpaceParameterName"
         }
       }
     },
@@ -194,6 +294,15 @@
         }
       }
     },
+    "Secret": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-secret"
+        },
+        "SecretString": "{\"CONTENTFUL_WEBHOOK_AUTH_PASSWORD\":\"\",\"CONTENTFUL_WEBHOOK_AUTH_USERNAME\":\"\",\"UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_SPACE\":\"\"}"
+      }
+    },
     "DeadLetterQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
@@ -267,13 +376,54 @@
         ]
       }
     },
-    "Secret": {
-      "Type": "AWS::SecretsManager::Secret",
+    "ContentfulWebhookPasswordParameter": {
+      "Type": "AWS::SSM::Parameter",
       "Properties": {
         "Name": {
-          "Fn::Sub": "${AWS::StackName}-secret"
+          "Fn::Sub": "/${AWS::StackName}/contentful-webhook-password"
         },
-        "SecretString": "{\"CONTENTFUL_WEBHOOK_AUTH_PASSWORD\":\"\",\"CONTENTFUL_WEBHOOK_AUTH_USERNAME\":\"\",\"UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_SPACE\":\"\"}"
+        "Type": "String",
+        "Value": "CONTENTFUL_WEBHOOK_PASSWORD"
+      }
+    },
+    "ContentfulWebhookUsernameParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/contentful-webhook-username"
+        },
+        "Type": "String",
+        "Value": "CONTENTFUL_WEBHOOK_USERNAME"
+      }
+    },
+    "UpdateGithubPersonalAccessTokenParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/update-github-personal-access-token"
+        },
+        "Type": "String",
+        "Value": "UPDATE_GITHUB_PERSONAL_ACCESS_TOKEN"
+      }
+    },
+    "WebAppCmsAccessTokenParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/web-app-cms-access-token"
+        },
+        "Type": "String",
+        "Value": "WEB_APP_CMS_ACCESS_TOKEN"
+      }
+    },
+    "WebAppCmsSpaceParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/web-app-cms-space"
+        },
+        "Type": "String",
+        "Value": "WEB_APP_CMS_SPACE"
       }
     }
   }
