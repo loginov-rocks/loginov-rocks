@@ -4,7 +4,6 @@
     "erasableSyntaxOnly": true,
     "noEmit": true,
     "types": [
-      "jest",
       "node"
     ],
     "verbatimModuleSyntax": true

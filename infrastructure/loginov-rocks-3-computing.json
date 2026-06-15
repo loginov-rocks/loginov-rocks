@@ -1,43 +1,28 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Outputs": {
-    "ContentfulWebhookFunctionUrl": {
-      "Value": {
-        "Fn::GetAtt": [
-          "ContentfulWebhookFunctionUrl",
-          "FunctionUrl"
-        ]
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookFunctionUrl"
-        }
-      }
-    }
-  },
   "Parameters": {
     "DataGithubFileKey": {
+      "Type": "String",
       "Description": "GitHub file key in Data bucket",
-      "Default": "github.json",
-      "Type": "String"
+      "Default": "github.json"
     },
     "DistributionStackName": {
-      "Description": "Name of previously deployed \"Distribution\" CloudFormation Stack",
-      "Type": "String"
+      "Type": "String",
+      "Description": "Name of previously deployed \"Distribution\" CloudFormation Stack"
     },
     "PersistentStackName": {
-      "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
-      "Type": "String"
+      "Type": "String",
+      "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack"
     },
     "UpdateGithubGithubBaseUrl": {
+      "Type": "String",
       "Description": "GitHub base URL for Update Github",
-      "Default": "https://api.github.com",
-      "Type": "String"
+      "Default": "https://api.github.com"
     },
     "WebAppLambdaInvalidationPath": {
+      "Type": "String",
       "Description": "Invalidation path for Web App CloudFront Distribution to invalidate after static site generation done by Web App",
-      "Default": "/*",
-      "Type": "String"
+      "Default": "/*"
     }
   },
   "Resources": {
@@ -71,11 +56,11 @@
           "Version": "2012-10-17",
           "Statement": [
             {
+              "Effect": "Allow",
               "Action": [
                 "s3:GetObject",
                 "s3:PutObject"
               ],
-              "Effect": "Allow",
               "Resource": [
                 {
                   "Fn::Sub": [
@@ -104,8 +89,8 @@
               ]
             },
             {
-              "Action": "lambda:UpdateFunctionCode",
               "Effect": "Allow",
+              "Action": "lambda:UpdateFunctionCode",
               "Resource": [
                 {
                   "Fn::GetAtt": [
@@ -128,8 +113,8 @@
               ]
             },
             {
-              "Action": "secretsmanager:GetSecretValue",
               "Effect": "Allow",
+              "Action": "secretsmanager:GetSecretValue",
               "Resource": {
                 "Fn::ImportValue": {
                   "Fn::Sub": "${PersistentStackName}-SecretArn"
@@ -137,11 +122,11 @@
               }
             },
             {
+              "Effect": "Allow",
               "Action": [
                 "s3:ListBucket",
                 "s3:GetObject"
               ],
-              "Effect": "Allow",
               "Resource": [
                 {
                   "Fn::ImportValue": {
@@ -163,11 +148,12 @@
               ]
             },
             {
-              "Action": "ecr:GetAuthorizationToken",
               "Effect": "Allow",
+              "Action": "ecr:GetAuthorizationToken",
               "Resource": "*"
             },
             {
+              "Effect": "Allow",
               "Action": [
                 "ecr:CompleteLayerUpload",
                 "ecr:UploadLayerPart",
@@ -175,7 +161,6 @@
                 "ecr:BatchCheckLayerAvailability",
                 "ecr:PutImage"
               ],
-              "Effect": "Allow",
               "Resource": {
                 "Fn::ImportValue": {
                   "Fn::Sub": "${PersistentStackName}-WebAppRepositoryArn"
@@ -196,8 +181,8 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Action": "secretsmanager:GetSecretValue",
               "Effect": "Allow",
+              "Action": "secretsmanager:GetSecretValue",
               "Resource": {
                 "Fn::ImportValue": {
                   "Fn::Sub": "${PersistentStackName}-SecretArn"
@@ -205,11 +190,11 @@
               }
             },
             {
+              "Effect": "Allow",
               "Action": [
                 "s3:ListBucket",
                 "s3:GetObject"
               ],
-              "Effect": "Allow",
               "Resource": [
                 {
                   "Fn::ImportValue": {
@@ -231,11 +216,12 @@
               ]
             },
             {
-              "Action": "ecr:GetAuthorizationToken",
               "Effect": "Allow",
+              "Action": "ecr:GetAuthorizationToken",
               "Resource": "*"
             },
             {
+              "Effect": "Allow",
               "Action": [
                 "ecr:CompleteLayerUpload",
                 "ecr:UploadLayerPart",
@@ -243,7 +229,6 @@
                 "ecr:BatchCheckLayerAvailability",
                 "ecr:PutImage"
               ],
-              "Effect": "Allow",
               "Resource": {
                 "Fn::ImportValue": {
                   "Fn::Sub": "${PersistentStackName}-WebAppRepositoryArn"
@@ -251,13 +236,13 @@
               }
             },
             {
+              "Effect": "Allow",
               "Action": [
                 "s3:ListBucket",
                 "s3:GetObject",
                 "s3:PutObject",
                 "s3:DeleteObject"
               ],
-              "Effect": "Allow",
               "Resource": [
                 {
                   "Fn::ImportValue": {
@@ -279,8 +264,8 @@
               ]
             },
             {
-              "Action": "cloudfront:CreateInvalidation",
               "Effect": "Allow",
+              "Action": "cloudfront:CreateInvalidation",
               "Resource": {
                 "Fn::Sub": [
                   "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}",
@@ -305,11 +290,11 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
               "Principal": {
                 "Service": "lambda.amazonaws.com"
               },
-              "Effect": "Allow"
+              "Action": "sts:AssumeRole"
             }
           ]
         },
@@ -319,18 +304,18 @@
               "Version": "2012-10-17",
               "Statement": [
                 {
-                  "Action": "logs:CreateLogGroup",
                   "Effect": "Allow",
+                  "Action": "logs:CreateLogGroup",
                   "Resource": {
                     "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
                   }
                 },
                 {
+                  "Effect": "Allow",
                   "Action": [
                     "logs:CreateLogStream",
                     "logs:PutLogEvents"
                   ],
-                  "Effect": "Allow",
                   "Resource": {
                     "Fn::Sub": [
                       "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*",
@@ -351,8 +336,8 @@
               "Version": "2012-10-17",
               "Statement": [
                 {
-                  "Action": "secretsmanager:GetSecretValue",
                   "Effect": "Allow",
+                  "Action": "secretsmanager:GetSecretValue",
                   "Resource": {
                     "Fn::ImportValue": {
                       "Fn::Sub": "${PersistentStackName}-SecretArn"
@@ -360,8 +345,8 @@
                   }
                 },
                 {
-                  "Action": "sqs:SendMessage",
                   "Effect": "Allow",
+                  "Action": "sqs:SendMessage",
                   "Resource": {
                     "Fn::ImportValue": {
                       "Fn::Sub": "${PersistentStackName}-QueueArn"
@@ -369,8 +354,8 @@
                   }
                 },
                 {
-                  "Action": "ssm:GetParameter",
                   "Effect": "Allow",
+                  "Action": "ssm:GetParameter",
                   "Resource": [
                     {
                       "Fn::ImportValue": {
@@ -401,11 +386,11 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
               "Principal": {
                 "Service": "lambda.amazonaws.com"
               },
-              "Effect": "Allow"
+              "Action": "sts:AssumeRole"
             }
           ]
         },
@@ -415,18 +400,18 @@
               "Version": "2012-10-17",
               "Statement": [
                 {
-                  "Action": "logs:CreateLogGroup",
                   "Effect": "Allow",
+                  "Action": "logs:CreateLogGroup",
                   "Resource": {
                     "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
                   }
                 },
                 {
+                  "Effect": "Allow",
                   "Action": [
                     "logs:CreateLogStream",
                     "logs:PutLogEvents"
                   ],
-                  "Effect": "Allow",
                   "Resource": {
                     "Fn::Sub": [
                       "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*",
@@ -447,8 +432,8 @@
               "Version": "2012-10-17",
               "Statement": [
                 {
-                  "Action": "secretsmanager:GetSecretValue",
                   "Effect": "Allow",
+                  "Action": "secretsmanager:GetSecretValue",
                   "Resource": {
                     "Fn::ImportValue": {
                       "Fn::Sub": "${PersistentStackName}-SecretArn"
@@ -456,12 +441,12 @@
                   }
                 },
                 {
+                  "Effect": "Allow",
                   "Action": [
                     "s3:ListBucket",
                     "s3:GetObject",
                     "s3:PutObject"
                   ],
-                  "Effect": "Allow",
                   "Resource": [
                     {
                       "Fn::ImportValue": {
@@ -483,8 +468,8 @@
                   ]
                 },
                 {
-                  "Action": "ssm:GetParameter",
                   "Effect": "Allow",
+                  "Action": "ssm:GetParameter",
                   "Resource": {
                     "Fn::ImportValue": {
                       "Fn::Sub": "${PersistentStackName}-UpdateGithubPersonalAccessTokenParameterArn"
@@ -508,11 +493,11 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
               "Principal": {
                 "Service": "lambda.amazonaws.com"
               },
-              "Effect": "Allow"
+              "Action": "sts:AssumeRole"
             }
           ]
         },
@@ -522,18 +507,18 @@
               "Version": "2012-10-17",
               "Statement": [
                 {
-                  "Action": "logs:CreateLogGroup",
                   "Effect": "Allow",
+                  "Action": "logs:CreateLogGroup",
                   "Resource": {
                     "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*"
                   }
                 },
                 {
+                  "Effect": "Allow",
                   "Action": [
                     "logs:CreateLogStream",
                     "logs:PutLogEvents"
                   ],
-                  "Effect": "Allow",
                   "Resource": {
                     "Fn::Sub": [
                       "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${FunctionName}:*",
@@ -554,8 +539,8 @@
               "Version": "2012-10-17",
               "Statement": [
                 {
-                  "Action": "cloudfront:CreateInvalidation",
                   "Effect": "Allow",
+                  "Action": "cloudfront:CreateInvalidation",
                   "Resource": {
                     "Fn::Sub": [
                       "arn:aws:cloudfront::${AWS::AccountId}:distribution/${DistributionId}",
@@ -570,8 +555,8 @@
                   }
                 },
                 {
-                  "Action": "secretsmanager:GetSecretValue",
                   "Effect": "Allow",
+                  "Action": "secretsmanager:GetSecretValue",
                   "Resource": {
                     "Fn::ImportValue": {
                       "Fn::Sub": "${PersistentStackName}-SecretArn"
@@ -579,12 +564,12 @@
                   }
                 },
                 {
+                  "Effect": "Allow",
                   "Action": [
                     "sqs:GetQueueAttributes",
                     "sqs:ReceiveMessage",
                     "sqs:DeleteMessage"
                   ],
-                  "Effect": "Allow",
                   "Resource": {
                     "Fn::ImportValue": {
                       "Fn::Sub": "${PersistentStackName}-QueueArn"
@@ -592,11 +577,11 @@
                   }
                 },
                 {
+                  "Effect": "Allow",
                   "Action": [
                     "s3:ListBucket",
                     "s3:GetObject"
                   ],
-                  "Effect": "Allow",
                   "Resource": [
                     {
                       "Fn::ImportValue": {
@@ -618,13 +603,13 @@
                   ]
                 },
                 {
+                  "Effect": "Allow",
                   "Action": [
                     "s3:ListBucket",
                     "s3:GetObject",
                     "s3:PutObject",
                     "s3:DeleteObject"
                   ],
-                  "Effect": "Allow",
                   "Resource": [
                     {
                       "Fn::ImportValue": {
@@ -646,8 +631,8 @@
                   ]
                 },
                 {
-                  "Action": "ssm:GetParameter",
                   "Effect": "Allow",
+                  "Action": "ssm:GetParameter",
                   "Resource": [
                     {
                       "Fn::ImportValue": {
@@ -840,6 +825,7 @@
         },
         "Environment": {
           "Variables": {
+            "BABEL_DISABLE_CACHE": "1",
             "CMS_ACCESS_TOKEN_PARAMETER_NAME": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-WebAppCmsAccessTokenParameterName"
@@ -850,26 +836,6 @@
                 "Fn::Sub": "${PersistentStackName}-WebAppCmsSpaceParameterName"
               }
             },
-            "LAMBDA_ACCESS_KEY_ID": "",
-            "LAMBDA_SECRET_ACCESS_KEY": "",
-            "LAMBDA_REGION": {
-              "Ref": "AWS::Region"
-            },
-            "LAMBDA_USE_POLICY": "true",
-            "LAMBDA_USE_TMPDIR": "true",
-            "LAMBDA_DISTRIBUTION_ID": {
-              "Fn::ImportValue": {
-                "Fn::Sub": "${DistributionStackName}-DistributionId"
-              }
-            },
-            "LAMBDA_INVALIDATION_PATH": {
-              "Ref": "WebAppLambdaInvalidationPath"
-            },
-            "LAMBDA_WEB_APP_BUCKET_NAME": {
-              "Fn::ImportValue": {
-                "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
-              }
-            },
             "DATA_BUCKET_NAME": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-DataBucketName"
@@ -878,15 +844,34 @@
             "DATA_GITHUB_FILE_KEY": {
               "Ref": "DataGithubFileKey"
             },
+            "LAMBDA_ACCESS_KEY_ID": "",
+            "LAMBDA_DISTRIBUTION_ID": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${DistributionStackName}-DistributionId"
+              }
+            },
+            "LAMBDA_INVALIDATION_PATH": {
+              "Ref": "WebAppLambdaInvalidationPath"
+            },
+            "LAMBDA_REGION": {
+              "Ref": "AWS::Region"
+            },
+            "LAMBDA_SECRET_ACCESS_KEY": "",
+            "LAMBDA_USE_POLICY": "true",
+            "LAMBDA_USE_TMPDIR": "true",
+            "LAMBDA_WEB_APP_BUCKET_NAME": {
+              "Fn::ImportValue": {
+                "Fn::Sub": "${PersistentStackName}-WebAppBucketName"
+              }
+            },
+            "NPM_CONFIG_CACHE": "/tmp/.npm",
             "SECRET_ARN": {
               "Fn::ImportValue": {
                 "Fn::Sub": "${PersistentStackName}-SecretArn"
               }
             },
             "SECRET_WEB_APP_CMS_CLIENT_ACCESS_TOKEN_KEY": "WEB_APP_CMS_CLIENT_ACCESS_TOKEN",
-            "SECRET_WEB_APP_CMS_CLIENT_SPACE_KEY": "WEB_APP_CMS_CLIENT_SPACE",
-            "BABEL_DISABLE_CACHE": "1",
-            "NPM_CONFIG_CACHE": "/tmp/.npm"
+            "SECRET_WEB_APP_CMS_CLIENT_SPACE_KEY": "WEB_APP_CMS_CLIENT_SPACE"
           }
         },
         "FunctionName": {
@@ -937,6 +922,21 @@
         "AuthType": "NONE",
         "TargetFunctionArn": {
           "Ref": "ContentfulWebhookFunction"
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ContentfulWebhookFunctionUrl": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ContentfulWebhookFunctionUrl",
+          "FunctionUrl"
+        ]
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-ContentfulWebhookFunctionUrl"
         }
       }
     }

@@ -1,5 +1,202 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "WebAppRepository": {
+      "Type": "AWS::ECR::Repository",
+      "Properties": {
+        "RepositoryName": {
+          "Fn::Sub": "${AWS::StackName}-web-app-repository"
+        }
+      }
+    },
+    "DataBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-data-bucket"
+        },
+        "NotificationConfiguration": {
+          "QueueConfigurations": [
+            {
+              "Event": "s3:ObjectCreated:Put",
+              "Queue": {
+                "Fn::GetAtt": [
+                  "Queue",
+                  "Arn"
+                ]
+              }
+            }
+          ]
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
+      }
+    },
+    "DeploymentBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-deployment-bucket"
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
+      }
+    },
+    "WebAppBucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketName": {
+          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-web-app-bucket"
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        }
+      }
+    },
+    "Secret": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-secret"
+        },
+        "SecretString": "{\"CONTENTFUL_WEBHOOK_AUTH_PASSWORD\":\"\",\"CONTENTFUL_WEBHOOK_AUTH_USERNAME\":\"\",\"UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_SPACE\":\"\"}"
+      }
+    },
+    "DeadLetterQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "MessageRetentionPeriod": 1209600,
+        "QueueName": {
+          "Fn::Sub": "${AWS::StackName}-dlq"
+        }
+      }
+    },
+    "Queue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": {
+          "Fn::Sub": "${AWS::StackName}-queue"
+        },
+        "ReceiveMessageWaitTimeSeconds": 20,
+        "RedrivePolicy": {
+          "deadLetterTargetArn": {
+            "Fn::GetAtt": [
+              "DeadLetterQueue",
+              "Arn"
+            ]
+          },
+          "maxReceiveCount": 5
+        },
+        "VisibilityTimeout": 5700
+      }
+    },
+    "QueuePolicy": {
+      "Type": "AWS::SQS::QueuePolicy",
+      "Properties": {
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": {
+            "Effect": "Allow",
+            "Principal": {
+              "Service": "s3.amazonaws.com"
+            },
+            "Action": "SQS:SendMessage",
+            "Resource": {
+              "Fn::GetAtt": [
+                "Queue",
+                "Arn"
+              ]
+            },
+            "Condition": {
+              "ArnLike": {
+                "aws:SourceArn": {
+                  "Fn::Sub": [
+                    "arn:aws:s3:::${DataBucketName}",
+                    {
+                      "DataBucketName": {
+                        "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-data-bucket"
+                      }
+                    }
+                  ]
+                }
+              },
+              "StringEquals": {
+                "aws:SourceAccount": {
+                  "Fn::Sub": "${AWS::AccountId}"
+                }
+              }
+            }
+          }
+        },
+        "Queues": [
+          {
+            "Ref": "Queue"
+          }
+        ]
+      }
+    },
+    "ContentfulWebhookPasswordParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/contentful-webhook-password"
+        },
+        "Type": "String",
+        "Value": "CONTENTFUL_WEBHOOK_PASSWORD"
+      }
+    },
+    "ContentfulWebhookUsernameParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/contentful-webhook-username"
+        },
+        "Type": "String",
+        "Value": "CONTENTFUL_WEBHOOK_USERNAME"
+      }
+    },
+    "UpdateGithubPersonalAccessTokenParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/update-github-personal-access-token"
+        },
+        "Type": "String",
+        "Value": "UPDATE_GITHUB_PERSONAL_ACCESS_TOKEN"
+      }
+    },
+    "WebAppCmsAccessTokenParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/web-app-cms-access-token"
+        },
+        "Type": "String",
+        "Value": "WEB_APP_CMS_ACCESS_TOKEN"
+      }
+    },
+    "WebAppCmsSpaceParameter": {
+      "Type": "AWS::SSM::Parameter",
+      "Properties": {
+        "Name": {
+          "Fn::Sub": "/${AWS::StackName}/web-app-cms-space"
+        },
+        "Type": "String",
+        "Value": "WEB_APP_CMS_SPACE"
+      }
+    }
+  },
   "Outputs": {
     "ContentfulWebhookPasswordParameterArn": {
       "Value": {
@@ -227,203 +424,6 @@
         "Name": {
           "Fn::Sub": "${AWS::StackName}-WebAppRepositoryUri"
         }
-      }
-    }
-  },
-  "Resources": {
-    "WebAppRepository": {
-      "Type": "AWS::ECR::Repository",
-      "Properties": {
-        "RepositoryName": {
-          "Fn::Sub": "${AWS::StackName}-web-app-repository"
-        }
-      }
-    },
-    "DataBucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": {
-        "BucketName": {
-          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-data-bucket"
-        },
-        "NotificationConfiguration": {
-          "QueueConfigurations": [
-            {
-              "Event": "s3:ObjectCreated:Put",
-              "Queue": {
-                "Fn::GetAtt": [
-                  "Queue",
-                  "Arn"
-                ]
-              }
-            }
-          ]
-        },
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": true,
-          "BlockPublicPolicy": true,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": true
-        }
-      }
-    },
-    "DeploymentBucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": {
-        "BucketName": {
-          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-deployment-bucket"
-        },
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": true,
-          "BlockPublicPolicy": true,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": true
-        }
-      }
-    },
-    "WebAppBucket": {
-      "Type": "AWS::S3::Bucket",
-      "Properties": {
-        "BucketName": {
-          "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-web-app-bucket"
-        },
-        "PublicAccessBlockConfiguration": {
-          "BlockPublicAcls": true,
-          "BlockPublicPolicy": true,
-          "IgnorePublicAcls": true,
-          "RestrictPublicBuckets": true
-        }
-      }
-    },
-    "Secret": {
-      "Type": "AWS::SecretsManager::Secret",
-      "Properties": {
-        "Name": {
-          "Fn::Sub": "${AWS::StackName}-secret"
-        },
-        "SecretString": "{\"CONTENTFUL_WEBHOOK_AUTH_PASSWORD\":\"\",\"CONTENTFUL_WEBHOOK_AUTH_USERNAME\":\"\",\"UPDATE_GITHUB_GITHUB_PERSONAL_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_ACCESS_TOKEN\":\"\",\"WEB_APP_CMS_CLIENT_SPACE\":\"\"}"
-      }
-    },
-    "DeadLetterQueue": {
-      "Type": "AWS::SQS::Queue",
-      "Properties": {
-        "MessageRetentionPeriod": 1209600,
-        "QueueName": {
-          "Fn::Sub": "${AWS::StackName}-dlq"
-        }
-      }
-    },
-    "Queue": {
-      "Type": "AWS::SQS::Queue",
-      "Properties": {
-        "QueueName": {
-          "Fn::Sub": "${AWS::StackName}-queue"
-        },
-        "ReceiveMessageWaitTimeSeconds": 20,
-        "RedrivePolicy": {
-          "deadLetterTargetArn": {
-            "Fn::GetAtt": [
-              "DeadLetterQueue",
-              "Arn"
-            ]
-          },
-          "maxReceiveCount": 5
-        },
-        "VisibilityTimeout": 5700
-      }
-    },
-    "QueuePolicy": {
-      "Type": "AWS::SQS::QueuePolicy",
-      "Properties": {
-        "PolicyDocument": {
-          "Version": "2012-10-17",
-          "Statement": {
-            "Action": "SQS:SendMessage",
-            "Principal": {
-              "Service": "s3.amazonaws.com"
-            },
-            "Effect": "Allow",
-            "Resource": {
-              "Fn::GetAtt": [
-                "Queue",
-                "Arn"
-              ]
-            },
-            "Condition": {
-              "StringEquals": {
-                "aws:SourceAccount": {
-                  "Fn::Sub": "${AWS::AccountId}"
-                }
-              },
-              "ArnLike": {
-                "aws:SourceArn": {
-                  "Fn::Sub": [
-                    "arn:aws:s3:::${DataBucketName}",
-                    {
-                      "DataBucketName": {
-                        "Fn::Sub": "${AWS::AccountId}-${AWS::Region}-${AWS::StackName}-data-bucket"
-                      }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        },
-        "Queues": [
-          {
-            "Ref": "Queue"
-          }
-        ]
-      }
-    },
-    "ContentfulWebhookPasswordParameter": {
-      "Type": "AWS::SSM::Parameter",
-      "Properties": {
-        "Name": {
-          "Fn::Sub": "/${AWS::StackName}/contentful-webhook-password"
-        },
-        "Type": "String",
-        "Value": "CONTENTFUL_WEBHOOK_PASSWORD"
-      }
-    },
-    "ContentfulWebhookUsernameParameter": {
-      "Type": "AWS::SSM::Parameter",
-      "Properties": {
-        "Name": {
-          "Fn::Sub": "/${AWS::StackName}/contentful-webhook-username"
-        },
-        "Type": "String",
-        "Value": "CONTENTFUL_WEBHOOK_USERNAME"
-      }
-    },
-    "UpdateGithubPersonalAccessTokenParameter": {
-      "Type": "AWS::SSM::Parameter",
-      "Properties": {
-        "Name": {
-          "Fn::Sub": "/${AWS::StackName}/update-github-personal-access-token"
-        },
-        "Type": "String",
-        "Value": "UPDATE_GITHUB_PERSONAL_ACCESS_TOKEN"
-      }
-    },
-    "WebAppCmsAccessTokenParameter": {
-      "Type": "AWS::SSM::Parameter",
-      "Properties": {
-        "Name": {
-          "Fn::Sub": "/${AWS::StackName}/web-app-cms-access-token"
-        },
-        "Type": "String",
-        "Value": "WEB_APP_CMS_ACCESS_TOKEN"
-      }
-    },
-    "WebAppCmsSpaceParameter": {
-      "Type": "AWS::SSM::Parameter",
-      "Properties": {
-        "Name": {
-          "Fn::Sub": "/${AWS::StackName}/web-app-cms-space"
-        },
-        "Type": "String",
-        "Value": "WEB_APP_CMS_SPACE"
       }
     }
   }

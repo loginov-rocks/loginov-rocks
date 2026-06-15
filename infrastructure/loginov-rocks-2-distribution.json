@@ -1,53 +1,41 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Outputs": {
-    "DistributionId": {
-      "Value": {
-        "Ref": "Distribution"
-      },
-      "Export": {
-        "Name": {
-          "Fn::Sub": "${AWS::StackName}-DistributionId"
-        }
-      }
-    }
-  },
   "Parameters": {
     "DomainName": {
-      "Description": "Domain Name for Route 53",
-      "Type": "String"
+      "Type": "String",
+      "Description": "Domain Name for Route 53"
     },
     "GoogleVerificationResourceRecord": {
-      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\"",
-      "Type": "String"
+      "Type": "String",
+      "Default": "\"google-site-verification=QSpbzAoi-CcfCwDXcOi-UeUfxDPQXNAwfy70ICPZZok\""
     },
     "ICloudDkimHost": {
-      "Default": "sig1._domainkey",
-      "Type": "String"
+      "Type": "String",
+      "Default": "sig1._domainkey"
     },
     "ICloudDkimResourceRecord": {
-      "Default": "sig1.dkim.loginov.rocks.at.icloudmailadmin.com.",
-      "Type": "String"
+      "Type": "String",
+      "Default": "sig1.dkim.loginov.rocks.at.icloudmailadmin.com."
     },
     "ICloudMxFirstResourceRecord": {
-      "Default": "10 mx01.mail.icloud.com.",
-      "Type": "String"
+      "Type": "String",
+      "Default": "10 mx01.mail.icloud.com."
     },
     "ICloudMxSecondResourceRecord": {
-      "Default": "20 mx02.mail.icloud.com.",
-      "Type": "String"
+      "Type": "String",
+      "Default": "20 mx02.mail.icloud.com."
     },
     "ICloudSpfResourceRecord": {
-      "Default": "\"v=spf1 include:icloud.com ~all\"",
-      "Type": "String"
+      "Type": "String",
+      "Default": "\"v=spf1 include:icloud.com ~all\""
     },
     "ICloudTxtResourceRecord": {
-      "Default": "\"apple-domain=QLgz0KV1deSKUhlC\"",
-      "Type": "String"
+      "Type": "String",
+      "Default": "\"apple-domain=QLgz0KV1deSKUhlC\""
     },
     "PersistentStackName": {
-      "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack",
-      "Type": "String"
+      "Type": "String",
+      "Description": "Name of previously deployed \"Persistent\" CloudFormation Stack"
     }
   },
   "Resources": {
@@ -286,13 +274,13 @@
           "Version": "2012-10-17",
           "Statement": [
             {
-              "Action": "s3:GetObject",
+              "Effect": "Allow",
               "Principal": {
                 "AWS": {
                   "Fn::Sub": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity ${WebAppBucketOriginAccessIdentity}"
                 }
               },
-              "Effect": "Allow",
+              "Action": "s3:GetObject",
               "Resource": {
                 "Fn::Sub": [
                   "${WebAppBucketArn}/*",
@@ -307,6 +295,18 @@
               }
             }
           ]
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "DistributionId": {
+      "Value": {
+        "Ref": "Distribution"
+      },
+      "Export": {
+        "Name": {
+          "Fn::Sub": "${AWS::StackName}-DistributionId"
         }
       }
     }

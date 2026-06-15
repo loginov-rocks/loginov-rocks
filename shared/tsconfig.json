@@ -6,7 +6,6 @@
     "rewriteRelativeImportExtensions": true,
     "rootDir": "src",
     "types": [
-      "jest",
       "node"
     ],
     "verbatimModuleSyntax": true
